@@ -3,6 +3,12 @@
 search: false
 ---
 
+.sidebar-left {
+  font-size: 14px;  /* 원하는 글자 크기로 조정 */
+  line-height: 1.4; /* 줄 간격 조정 */
+  padding: 10px;    /* 여백 조정 */
+}
+
 @charset "utf-8";
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
