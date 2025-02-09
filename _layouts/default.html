@@ -1,26 +1,39 @@
 ---
 ---
 
-<!-- _layouts/default.html -->
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <!-- head 내용 -->
-</head>
-<body>
-  <div class="container">
-    <div class="row">
-      <!-- 왼쪽 사이드바 영역 (예: 3컬럼) -->
-      <aside class="col-md-3">
-         {% include sidebar-left.html %}
-      </aside>
-      
-      <!-- 메인 콘텐츠 영역 (예: 9컬럼) -->
-      <main class="col-md-9">
-         {{ content }}
-      </main>
+<!doctype html>
+{% include copyright.html %}
+<html lang="{{ site.locale | replace: "_", "-" | default: "en" }}" class="no-js">
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+  </head>
+
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}" dir="{% if site.rtl %}rtl{% else %}ltr{% endif %}">
+    {% include_cached skip-links.html %}
+    {% include_cached masthead.html %}
+
+    <div class="initial-content">
+      {{ content }}
+      {% include after-content.html %}
     </div>
-  </div>
-  <!-- scripts 등 -->
-</body>
+
+    {% if site.search == true %}
+      <div class="search-content">
+        {% include_cached search/search_form.html %}
+      </div>
+    {% endif %}
+
+    <div id="footer" class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include_cached footer.html %}
+      </footer>
+    </div>
+
+    {% include scripts.html %}
+  </body>
 </html>
+
+
+
