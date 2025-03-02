@@ -3,6 +3,45 @@
 search: false
 ---
 
+/* assets/css/main.scss */
+.sidebar-left {
+  font-size: 8px;  /* 원하는 글자 크기로 조정 */
+  line-height: 1.0; /* 줄 간격 조정 */
+  padding: 10px;    /* 여백 조정 */
+}
+
+.category-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.category-item {
+  margin-bottom: 20px;
+}
+
+.category-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding-left: 10px;
+}
+
+.post-item a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 2px 0;
+}
+
+.post-item a:hover {
+  text-decoration: underline;
+}
+
 @charset "utf-8";
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
