@@ -1,6 +1,6 @@
 ---
 title : My First Post
-date : "2025-02-28"
+date : 2024-01-01 23:59:00
 categories : [Statistical Computing]
 ---
 
