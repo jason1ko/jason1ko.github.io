@@ -7,7 +7,7 @@
           <!-- category[0]는 카테고리 이름, category[1]은 해당 카테고리에 속한 포스트 배열 -->
           <h3 class="category-title">{{ category[0] }}</h3>
           <ul class="post-list">
-            {% for post in category[1] %}
+            {% for post in category[1] | sort: "date" %}
               <li class="post-item"><a href="{{ post.url }}">{{ post.title }}</a></li>
             {% endfor %}
           </ul>
