@@ -8,17 +8,486 @@ layout: post
 {% include sidebar.html %}
 
 <div class="main-content">
+
   
-<h2>Welcome to My HTML Post</h2>
-
-<p>This is an HTML-formatted post under the <strong>Statistical Computing</strong> category.</p>
-
-<ul>
-  <li>Item 1: This is a list item</li>
-  <li>Item 2: Another item</li>
-</ul>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 
 
-<p><a href="https://example.com">Visit Example Website</a></p>
+<div id="q1.-a-deck-of-k-cards-numbered-1-2-.-.-.-k-is-shuffled-and-then-turned-over-one-card-at-a-time.-say-that-a-hit-occurs-whenever-card-k-is-the-kth-card-to-be-turned-over-k-1-.-.-.-k." class="section level2">
+<h2>Q1. A deck of K cards numbered 1, 2, . . . ,K is shuffled and then
+turned over one card at a time. Say that a “hit” occurs whenever card k
+is the kth card to be turned over, k = 1, . . . ,K.</h2>
+<div id="i-show-that-the-expected-number-of-hits-is-1-for-any-k." class="section level3">
+<h3>i) Show that the expected number of hits is 1 for any K.</h3>
+<p>Let <span class="math inline">\(1_k = 1\)</span> if the kth card hits
+and <span class="math inline">\(1_k = 0\)</span> otherwise. Then,</p>
+<p><span class="math display">\[E[\sum_{k=1}^K 1_k] = \sum_{k=1}^K
+E[1_k] = \sum_{k=1}^K P[1_k = 1]\]</span></p>
+<p><span class="math inline">\(1_k = 1\)</span> implies the card ‘k’ is
+chosen at the ‘kth’ turn-over.</p>
+<p>Then, the number of all the cases is <span class="math inline">\((K-1)!\)</span>.</p>
+<p>So, <span class="math inline">\(P[1_k = 1] = \frac{(K-1)!}{K!} =
+\frac{1}{K}\)</span>.</p>
+<p>Thus,</p>
+<p><span class="math display">\[E[\sum_{k=1}^K 1_k] = \sum_{k=1}^K \frac{1}{K} = 1\]</span></p>
+</div>
+<div id="ii-for-k-10-20-30-estimate-the-expected-value-and-the-variance-of-the-number-of-hits-using-the-monte-carlo-simulation-by-iterating-the-procedure-sufficiently-many-times." class="section level3">
+<h3>ii) For K = 10, 20, 30, estimate the expected value and the variance
+of the number of hits using the Monte Carlo simulation by iterating the
+procedure sufficiently many times.</h3>
+<p>A function that generates the random permutation is needed for a
+prerequisite of main function. The random permutation function is named
+as ‘random_permu’ and it receives a numeric vector as an input. This
+function consists of one if-else statement, the first if-statement is
+for a simple case where the vector contains only one number.</p>
+<p>The main part is in the else statement. At first, save the length of
+the input, ‘permu’ in the function, to the ‘k’ variable. Save the last
+(kth) value of the ‘permu’ vector to ‘temp’ variable. Generate a random
+number ‘u’ from Unif(0, 1), and make a random integer ‘i’ between 1 and
+k using the ‘u’ and ‘floor’ function. Since <span class="math inline">\(0 \le u &lt; 1\)</span>, the range of ‘ku’ is as
+follows: <span class="math inline">\(0 \le ku &lt; k\)</span>. Since the
+floor of ‘ku’ is the integer between 0 and k-1, the floor of ‘ku’ + 1
+returns the integer between 1 and k. Then, change the ith and kth number
+each other, and reduce the number k by 1. Repeat this process until k
+becomes 2.</p>
+<p>The following code shows how the ‘random_permu’ function works.</p>
+<pre class="r"><code># define random permutation of a vector
+random_permu &lt;- function(permu=1){
+  if(length(permu) == 1){
+    return(permu)
+  }
+  else{
+    k &lt;- length(permu)
+    
+    while(k &gt;= 2){
+      temp &lt;- permu[k]
+      
+      u &lt;- runif(1)
+      i &lt;- floor(k*u)+1 # returns a random integer btw 1 and k
+      permu[k] &lt;- permu[i]
+      permu[i] &lt;- temp
+      
+      k &lt;- k-1
+    }
+    
+    return(permu)
+    
+  }
+}
 
+# for example,
+random_permu(1:10)</code></pre>
+<pre><code>##  [1]  9  5  7  8  4  2  1  6 10  3</code></pre>
+<pre class="r"><code>##  [1]  8  1  4  9  6 10  2  7  5  3</code></pre>
+<p>After making the random permutation function, the main function that
+returns the expectation and variance of the number of hits should be
+implemented; the name of the function is ‘num_hits’. This function
+requires two inputs; the first one ‘K’ is the number of cards, and the
+second one ‘iter’ means the number of iterations.</p>
+<p>How to obtain the estimated variance of the hits should be explained
+before getting into the code. The expectation can be estimated by the
+Law of Large Numbers (Monte Carlo Integral); <span class="math inline">\(\frac{1}{n} \sum_{i=1}^{n} g(U_i) \to
+E[g(U)]\)</span>, where <span class="math inline">\(U_i \sim
+Unif(0,1)\)</span> and <span class="math inline">\(g(U\_i)\)</span> is
+the corresponding random variable. Using this fact, the mean of the
+square of <span class="math inline">\(g(U_i)\)</span>, <span class="math inline">\(\frac{1}{n} \sum_{i=1}^{n} g(U_i)^2\)</span>
+converges to <span class="math inline">\(E[g(U)^2]\)</span>. Then, the
+following expression is established:</p>
+<p><span class="math display">\[\frac{1}{n} \sum_{i=1}^{n} g(U_i)^2 -
+\{\frac{1}{n} \sum_{i=1}^{n} g(U_i)\}^2\]</span></p>
+<p>In this problem, <span class="math inline">\(g(U)\)</span>
+corresponds to the number of hits for each iteration.</p>
+<p>Then, the for-loop in the ‘num_hits’ function can be explained in
+this context. For every iteration, calculate how many hits occur using
+the boolean, ‘sum’, and ‘random_permu’ function, which will be saved to
+‘temp’ variable. Add the ‘temp’ to the ‘exp_sum’ variable, and add the
+square of ‘temp’ to ‘var_sum’. After the iteration is finished, the
+added ‘exp_sum’ is divided by the iteration number ‘iter’, which will
+return the estimated expectation. Also, the added ‘var_sum’ is divided
+by ‘iter’ and subtracted by the square of estimated expectation, which
+will become the estimated variance. This process is congruous to the
+idea of the Law of Large Numbers.</p>
+<p>After then, insert the estimated expectation ‘E’ and variance ‘V’
+together in the ‘result’ vector, and designate the name of each value as
+‘E’ and ‘V’ respectively. Finally, return the ‘result’ vector.</p>
+<p>The following code shows how the ‘num_hits’ function works. The
+iteration of 1000 will be enough to estimate the values.</p>
+<pre class="r"><code>num_hits &lt;- function(K, iter){#
+  # K : the number of cards
+  # iter : the number of iterations this function will carry out
+  exp_sum &lt;- 0
+  var_sum &lt;- 0
+  
+  for(i in 1:iter){
+    temp &lt;- sum(random_permu(1:K) == 1:K) # how many hits occur
+    exp_sum &lt;- exp_sum + temp
+    var_sum &lt;- var_sum + temp^2
+  }
+  
+  E &lt;- exp_sum/iter
+  V &lt;- var_sum/iter - E^2 # using the LLN
+  
+  result &lt;- c(E, V)
+  names(result) &lt;- c(&#39;E&#39;, &#39;V&#39;)
+  
+  return(result)
+}</code></pre>
+<p>The following code shows the estimated expectation and variance for
+each card numbers; K = 10, 20, and 30. As previously mentioned, the
+iteration number is 1000. For each K, the ideal variance is presented to
+compare with the estimated value. It is evident that the iteration
+number can be raised up if the amount is regarded as insufficient.</p>
+<pre class="r"><code>num_hits(10,1000)</code></pre>
+<pre><code>##        E        V 
+## 0.982000 1.001676</code></pre>
+<pre class="r"><code>##        E        V 
+## 1.026000 0.971324
+K &lt;- 10; (K-1)/K</code></pre>
+<pre><code>## [1] 0.9</code></pre>
+<pre class="r"><code>## [1] 0.9
+
+num_hits(20,1000)</code></pre>
+<pre><code>##        E        V 
+## 0.988000 1.075856</code></pre>
+<pre class="r"><code>##        E        V 
+## 1.061000 1.073279
+K &lt;- 20; (K-1)/K</code></pre>
+<pre><code>## [1] 0.95</code></pre>
+<pre class="r"><code>## [1] 0.95
+
+num_hits(30,1000)</code></pre>
+<pre><code>##        E        V 
+## 1.068000 1.079376</code></pre>
+<pre class="r"><code>##        E        V 
+## 1.012000 1.041856
+K &lt;- 30; (K-1)/K</code></pre>
+<pre><code>## [1] 0.9666667</code></pre>
+<pre class="r"><code>## [1] 0.9666667</code></pre>
+</div>
+<div id="iii-it-is-known-that-the-distribution-of-the-number-of-hits-approaches-a-poisson-distribution-as-k-to-infty.-for-k-10-20-30-estimate-the-probability-that-the-number-of-hits-is-zero-using-the-monte-carlo-simulation-by-iterating-the-procedure-sufficiently-many-times.-discuss-your-results." class="section level3">
+<h3>iii) It is known that the distribution of the number of hits
+approaches a Poisson distribution as <span class="math inline">\(K \to
+\infty\)</span>. For K = 10, 20, 30, estimate the probability that the
+number of hits is zero using the Monte Carlo simulation by iterating the
+procedure sufficiently many times. Discuss your results.</h3>
+<p>Each indicator <span class="math inline">\(1_k\)</span> is same as a
+Bernoulli distribution with probability <span class="math inline">\(p =
+1/K, k = 1,2,...,K\)</span>. This repeats for K times, so (for given K)
+the number of hits <span class="math inline">\(\sum 1_k\)</span> follows
+the Binomial distribution <span class="math inline">\(B(K,\frac{1}{K})\)</span>. Let <span class="math inline">\(X = \sum 1_k\)</span> be a random variable
+representing the number of hits, then the problem is asking the value of
+<span class="math inline">\(P(X = 0)\)</span>. So, it is required to
+define a function generating random numbers from Binomial distribution
+first.</p>
+<p>The ‘random_binomial’ function needs 3 inputs; the capital <span class="math inline">\(N\)</span> is the number of random numbers from
+Binomial distribution, the small ‘<span class="math inline">\(n\)</span>’ is the number of Bernoulli trials, and
+‘<span class="math inline">\(p\)</span>’ is the Bernoulli probability.
+For choosing the ith random number, initialize some variables (prob,
+sum.p, u, and r) to <span class="math inline">\((1-p)^n\)</span>, prob,
+runif(1), and 0 respectively. If the random number <span class="math inline">\(u\)</span> ~ Unif(0, 1) is bigger than or equal to
+the cumulative probability ‘sum.p’, change the current probability
+‘prob’ to prob*p/(1-p)*(n-r)/(r+1), add the cumulative probability by
+the ‘prob’, and increase ‘r’ (representing the integer between 0 and n)
+by 1. If the ‘u’ is smaller than ‘sum.p’, stop the iteration and save
+the value ‘r’ to the ith value of ‘X’ vector. After repeating this for N
+times, the X vector will be returned.</p>
+<p>The following code shows how the ‘random_binomial’ function
+works.</p>
+<pre class="r"><code>random_binomial &lt;- function(N, n, p){
+  X &lt;- c()
+  
+  for(i in 1:N){
+    prob &lt;- (1-p)^n
+    sum.p &lt;- prob
+    u &lt;- runif(1)
+    r &lt;- 0
+    
+    while(u &gt;= sum.p){
+      prob &lt;- prob*p/(1-p)*(n-r)/(r+1)
+      sum.p &lt;- sum.p + prob
+      r &lt;- r+1
+    }
+    X[i] &lt;- r
+  }
+  
+  return(X)
+  
+}
+
+random_binomial(20, 5, 1/5)</code></pre>
+<pre><code>##  [1] 3 1 1 2 0 1 0 1 1 0 0 0 1 1 0 2 1 1 4 0</code></pre>
+<pre class="r"><code>##  [1] 0 1 2 0 1 1 1 3 1 1 1 1 1 1 3 2 0 1 3 2</code></pre>
+<p>Making use of this new function, a function that returns the
+probability of a hit being a given number (in this case, 0) can be
+defined. This function, the name of which is ‘prob_hit_binomial’,
+requires 4 inputs; ‘iter’ is the number of iterations, ‘N’ is the number
+of random Binomial numbers for each iteration, ‘K’ is the number of
+cards, and ‘hit’ corresponds to <span class="math inline">\(X = \sum
+1_k\)</span> the default of which is 0.</p>
+<p>For each iteration, count how many numbers of hits there are in the
+output of ‘random_binomial’ and save it to ‘temp’ variable. Then add the
+value to the ‘count’ variable, the initial value of which is 0. Repeat
+this for ‘iter’ times and divide the ‘count’ by ’N*iter’. This is the
+estimated probability of the hits being the given value (in this
+problem, 0).</p>
+<p>The following code shows how the ‘prob_hit_binomial’ works.</p>
+<pre class="r"><code>prob_hit_binomial &lt;- function(iter, N, K, hit = 0){
+  count &lt;- 0
+  
+  for(i in 1:iter){
+    temp &lt;- sum(random_binomial(N, K, 1/K) == rep(hit, N))
+    count &lt;- count + temp
+  }
+  
+  return(count/(N*iter))
+    
+}
+
+
+prob_hit_binomial(1000, 10, 10)</code></pre>
+<pre><code>## [1] 0.3506</code></pre>
+<pre class="r"><code>## [1] 0.3498
+prob_hit_binomial(1000, 10, 20)</code></pre>
+<pre><code>## [1] 0.3528</code></pre>
+<pre class="r"><code>## [1] 0.3585
+prob_hit_binomial(1000, 10, 30)</code></pre>
+<pre><code>## [1] 0.352</code></pre>
+<pre class="r"><code>## [1] 0.3631
+
+exp(-1)</code></pre>
+<pre><code>## [1] 0.3678794</code></pre>
+<pre class="r"><code>## [1] 0.3678794</code></pre>
+<p>As the number of cards ‘K’ increases, the probability that the number
+of hits is zero approaches to the value <span class="math inline">\(e^{-1} = 0.3678794\)</span>.</p>
+<p>The reason for the probability being approximate to <span class="math inline">\(e^{-1}\)</span> is that the binomial distribution
+approaches to Poisson distribution as the ‘n’ is sufficiently large and
+the corresponding <span class="math inline">\(\lambda = np\)</span> is
+sufficiently moderate. To be specific, let <span class="math inline">\(X
+\sim B(n,p)\)</span> follows binomial distribution. Then,</p>
+<p><span class="math display">\[
+\begin{aligned}  
+P(X = x) &amp; = \frac{n!}{x!(n-x)!} p^x(1-p)^{n-x} \\  
+ &amp; = \frac{n!}{x!(n-x)!}
+(\frac{\lambda}{n})^x(1-\frac{\lambda}{n})^{n-x}\\   
+ &amp; = \frac{n(n-1)...(n-x+1)}{x!}
+(\frac{\lambda}{n})^x(1-\frac{\lambda}{n})^{n-x}\\  
+ &amp; = \frac{\lambda^x}{x!}
+\frac{n(n-1)...(n-x+1)}{n^x}(1-\frac{\lambda}{n})^{\frac{n-x}{-\lambda}
+(-\lambda)}\\   
+ &amp; \approx \frac{\lambda^x}{x!} e^{-\lambda}  
+\end{aligned}
+\]</span></p>
+<p>, which is the Poisson distribution. In this case, <span class="math inline">\(\lambda = np = K*\frac{1}{K} = 1\)</span>. So the
+probability that the number of hits is 0 is approximated to <span class="math inline">\(\frac{1^0}{0!} e^{-1} = 0.367879\)</span>.</p>
+</div>
+</div>
+<div id="q2.-we-consider-the-rejection-method-to-draw-a-sample-from-the-distribution-with-the-density-fx-frac12-1x-e-x.-an-exponential-distribution-is-used-to-construct-an-envelope-function-i.e.-g_lambdax-lambda-e-lambda-x-x-0" class="section level2">
+<h2>Q2. We consider the rejection method to draw a sample from the
+distribution with the density <br /> <span class="math display">\[f(x) =
+\frac{1}{2} (1+x) e^{-x}. \]</span> <br /> An exponential distribution is
+used to construct an envelope function, i.e., <br /> <span class="math display">\[ g_{\lambda}(x)= \lambda e^{-\lambda x}, x &gt;
+0\]</span></h2>
+<div id="i-show-that-c_lambda-sup_x-0-fracfxg_lambda-x-begincases-e-lambda-0-lambda-1-infty-lambda-ge-1-endcases" class="section level3">
+<h3>i) Show that<br /> <span class="math display">\[c_{\lambda} = \sup_{x
+&gt; 0} \frac{f(x)}{g_{\lambda} (x)}  = \begin{cases}
+e^{-\lambda},  &amp; 0 &lt; \lambda &lt; 1, \\ \infty, &amp; \lambda \ge
+1 \end{cases}\]</span></h3>
+<p>Below is the organized form of <span class="math inline">\(\frac{f(x)}{g_{\lambda} (x)}\)</span>.</p>
+<p><span class="math display">\[\frac{f(x)}{g_{\lambda} (x)} = \frac{(1
++ x)e^{(\lambda - 1)x}}{2\lambda}\]</span></p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\lambda &gt; 1\)</span></li>
+</ol>
+<p><span class="math inline">\(\lim_{x \to \infty} e^{(\lambda - 1)x} =
+\infty\)</span>, so <span class="math inline">\(\lim_{x \to \infty}
+\frac{f(x)}{g_{\lambda} (x)} = \infty\)</span>. Accordingly, <span class="math inline">\(c_{\lambda} = \sup_{x &gt;
+0}\frac{f(x)}{g_{\lambda} (x)} = \infty\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="math inline">\(\lambda = 1\)</span></li>
+</ol>
+<p><span class="math inline">\(\lim\_{x \to \infty} (1+x) =
+\infty\)</span>, so <span class="math inline">\(\lim_{x \to \infty}
+\frac{f(x)}{g_{\lambda} (x)} = \infty\)</span> and <span class="math inline">\(c_{\lambda} = \sup\_{x &gt;
+0}\frac{f(x)}{g_{\lambda} (x)} = \infty\)</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math inline">\(0 &lt; \lambda &lt; 1\)</span></li>
+</ol>
+<p>For given, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\begin{aligned} \frac{d}{dx} (1+x)e^{(\lambda -
+1)x} &amp; = e^{(\lambda - 1)x} + (1+x)(\lambda - 1)e^{(\lambda - 1)x}
+\\ &amp; = e^{(\lambda - 1)x}\{1 + (1+x)(\lambda - 1) \} \\ &amp; = 0
+\end{aligned}\)</span></p>
+<p>Then, <span class="math inline">\(1 + (1+x)(\lambda - 1) =
+0\)</span>.</p>
+<p>So, <span class="math inline">\(x = \frac{\lambda}{1 -
+\lambda}\)</span>.</p>
+<p>This implies that <span class="math inline">\(\frac{f(x)}{g_{\lambda}
+(x)}\)</span> attains maximum <span class="math inline">\(c_{\lambda}\)</span> when <span class="math inline">\(x = \frac{\lambda}{1 - \lambda}\)</span>.
+Thus,</p>
+<p><span class="math inline">\(\begin{aligned} c_{\lambda} &amp;=
+\frac{(1 + x)e^{(\lambda - 1)x}}{2\lambda}| x = \frac{\lambda}{1 -
+\lambda}\\ &amp;= \frac{(1 + \frac{\lambda}{1 - \lambda})e^{(\lambda -
+1)\frac{\lambda}{1 - \lambda}}}{2\lambda} \\ &amp;=
+\frac{(\frac{1}{1-\lambda})e^{-\lambda}}{2\lambda} \\ &amp;=
+\frac{e^{-\lambda}}{2\lambda(1-\lambda)} \end{aligned}\)</span></p>
+</div>
+<div id="ii-derive-the-value-of-lambda-that-makes-the-algorithm-the-most-efficient" class="section level3">
+<h3>ii) Derive the value of <span class="math inline">\(\lambda\)</span>
+that makes the algorithm the most efficient</h3>
+<p>For every <span class="math inline">\(\lambda\)</span> in <span class="math inline">\(0 &lt;\lambda &lt; 1\)</span>, <span class="math inline">\(c_{\lambda} \ge 1\)</span> (which will be proved
+later) and the rejection method gets faster when the <span class="math inline">\(c_{\lambda}\)</span> is close to 1. So, the
+problem is same as to derive <span class="math inline">\(\lambda\)</span> that makes the <span class="math inline">\(c_{\lambda}\)</span> the smallest among the given
+<span class="math inline">\(\lambda\)</span>. Since the form of <span class="math inline">\(c_{\lambda}\)</span> is <span class="math inline">\(\frac{e^{-\lambda}}{2\lambda(1-\lambda)}\)</span>,
+it is same as to obtain <span class="math inline">\(\lambda\)</span>
+that maximize <span class="math inline">\(2\lambda(1-\lambda)e^{\lambda}\)</span> among
+<span class="math inline">\(0 &lt;\lambda &lt; 1\)</span>.</p>
+<p><span class="math inline">\(\begin{aligned}
+\frac{d}{d\lambda}\lambda(1-\lambda)e^{\lambda} &amp;=
+(1-2\lambda)e^{\lambda} + (\lambda-\lambda^2)e^{\lambda} \\ &amp;= (1 -
+\lambda - \lambda^2)e^{\lambda} \end{aligned}\)</span></p>
+<p>This leads to <span class="math inline">\(\lambda = \frac{-1 \pm
+\sqrt 5}{2}\)</span>, so <span class="math inline">\(\lambda = \frac{-1
++ \sqrt 5}{2} \approx 0.618, \quad (0 &lt; \lambda &lt; 1)\)</span>.</p>
+</div>
+<div id="iii-on-a-single-plot-with-a-reasonable-range-of-x-visualize-the-target-density-fx-and-the-envelope-c_lambdaglambda-with-our-best-lambda-to-see-how-close-they-are" class="section level3">
+<h3>iii) On a single plot with a reasonable range of x, visualize the
+target density <span class="math inline">\(f(x)\)</span> and the
+envelope <span class="math inline">\(c_{\lambda}g{\lambda}\)</span> with
+our best <span class="math inline">\(\lambda\)</span> to see how close
+they are$</h3>
+<p>As previously mentioned, the target density function is <span class="math inline">\(f(x) = \frac{1}{2}(1+x)e^{-x}\)</span>. Given the
+best <span class="math inline">\(\lambda\)</span>, the best envelope is
+<span class="math inline">\(c_{\lambda}g_{\lambda} =
+\frac{e^{-lambda}}{2\lambda(1-\lambda)}\lambda e^{-\lambda
+x}=\frac{e^{-\lambda(x+1)}}{2(1-\lambda)}\)</span>. <span class="math inline">\(f(10) = \frac{1}{2}(1+10)e^{-10} =
+0.00025\)</span>, which is sufficiently small, so the range of <span class="math inline">\(x\)</span> axis is determined by <span class="math inline">\(0 &lt; x &lt; 10\)</span>. In this problem, the
+range of x is bigger than 0, but 0 is included in the R code. The reason
+for this is that not only the value 0 doesn’t affect the plot seriously,
+but also it makes the code clean.</p>
+<p>Define a vector ‘x’ containing numbers from 0 to 10, the interval of
+which is 0.01. Then, the variable ‘fx’ works as a target density <span class="math inline">\(f(x)\)</span> on the defined ‘x’. The variable
+‘lambda’ is same as the optimal value <span class="math inline">\(\lambda = \frac{-1+\sqrt{5}}{2}\)</span>, and ‘cg’
+is the envelope.</p>
+<pre class="r"><code>x &lt;- seq(0,10,0.01)
+fx &lt;- 1/2*(1 + x)*exp(-x)
+lambda &lt;- 1/2*(-1 + sqrt(5))
+cg &lt;- exp(-lambda*(x+1))/(2*(1-lambda))
+plot(x,cg,main = &#39;plot of target density and its envelope&#39;, ylab = &#39;density&#39;,
+type = &#39;l&#39;, lty = &#39;dashed&#39;)
+lines(x,fx, col =&#39;red&#39;)
+abline(v = lambda/(1-lambda), col = &#39;green&#39;)
+legend(&#39;topright&#39;, legend = c(&#39;c*g(x)&#39;,&#39;f(x)&#39;), pch = c(4, 20),
+col = c(&#39;black&#39;,&#39;red&#39;), bg = &#39;gray&#39;)</code></pre>
+<p><img src="data:image/png;base64,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" width="672" /></p>
+<p>The envelope function is depicted with black dashed line, and the
+target function <span class="math inline">\(f(x)\)</span> is drawn with
+red connected line. The values of target function is very close to the
+envelope function, except for the x when it is close to 0, because the
+lambda is the optimal value. The vertical green line whose x-axis value
+is <span class="math inline">\(\frac{\lambda}{1-\lambda} \simeq
+1.618\)</span> shows that the target and envelope functions meet when x
+= 1.618.</p>
+</div>
+<div id="iv-generate-sufficiently-many-random-numbers-of-size-of-your-choice-from-f-using-the-rejection-method.-overlay-a-histogram-of-the-random-numbers-with-the-target-density-curve-f." class="section level3">
+<h3>iv) Generate sufficiently many random numbers (of size of your
+choice) from f using the rejection method. Overlay a histogram of the
+random numbers with the target density curve f.</h3>
+<p>The function <span class="math inline">\(g_{\lambda}(x)\)</span> is
+exponential function with mean <span class="math inline">\(\frac{1}{\lambda}\)</span> Then, the rejection
+method needs random numbers form exponential distribution. So, a
+function that generates random numbers from exponential distribution
+(the mean of which is <span class="math inline">\(\frac{1}{\lambda}\)</span>) should be defined in
+advance. Let <span class="math inline">\(U \sim Unif(0,1)\)</span> be a
+random number from uniform distribution and <span class="math inline">\(X\)</span> be the random number from the
+exponential distribution. Then the following equation holds: <span class="math inline">\(U = 1 -e^{-\lambda}\)</span> and <span class="math inline">\(X = -\frac{1}{\lambda}log(1-U)\)</span>. Since
+<span class="math inline">\(1-U \sim Unif(0,1)\)</span>, the random
+variable <span class="math inline">\(X\)</span> can be written as
+follows: <span class="math inline">\(X =
+-\frac{1}{\lambda}logU\)</span></p>
+<p>The following code shows this method.</p>
+<pre class="r"><code>random_exponential &lt;- function(N, lambda=1){
+X &lt;- c()
+u &lt;- runif(N)
+for(i in 1:N){
+X[i] &lt;- -1/lambda*log(u[i])
+}
+return(X)
+}
+random_exponential(5, 2)</code></pre>
+<pre><code>## [1] 0.05970902 0.35416898 0.99631438 0.08563744 0.09551172</code></pre>
+<p>Define two functions corresponding to the <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g_{\lambda}(x)\)</span> denoted by ‘f’ and ‘g’
+respectively. Also, insert the optimal value of <span class="math inline">\(c_{\lambda} = 1.141627\)</span> to the variable
+‘c’.</p>
+<pre class="r"><code>f &lt;- function(x){return(1/2*(1 + x)*exp(-x))}
+g &lt;- function(x){return(lambda*exp(-lambda*x))}
+c &lt;- exp(-lambda)/(2*lambda*(1-lambda))</code></pre>
+<p>Now, a function generating random numbers from <span class="math inline">\(f(x)\)</span> can be made, named by ‘hw2q2’. For
+each iteration, generate random number ‘y’ from exponential distribution
+and ‘u’ from uniform distribution. if the ‘u’ is bigger than <span class="math inline">\(\frac{f(x)}{c_{\lambda}g_{\lambda}(x)}\)</span>,
+regenerate the ‘y’ and ‘u’. If the ‘u’ is smaller than or equal to the
+threshold <span class="math inline">\(\frac{f(x)}{c_{\lambda}g_{\lambda}(x)}\)</span>
+then assign the value of ‘y’ to the ith value of ‘X’ vector and go on to
+the next iteration.</p>
+<pre class="r"><code>hw2q2 &lt;- function(N){
+X &lt;- c()
+total &lt;- 0
+for(i in 1:N){
+while(1){
+total &lt;- total + 1
+y &lt;- random_exponential(1, lambda)
+u &lt;- runif(1)
+if(u &lt;= f(y)/(c*g(y))){
+X[i] &lt;- y
+break
+}
+}
+}
+acc_rate &lt;- N/total
+result &lt;- list(X, acc_rate)
+names(result) &lt;- c(&#39;X&#39;, &#39;acc_rate&#39;)
+return(result)
+}
+result &lt;- hw2q2(10000)</code></pre>
+<p>Using the function ‘hw2q2’, 10000 random numbers from <span class="math inline">\(f(x)\)</span> are made. These numbers are saved in
+‘result$X’ variable (more information about why the return of this
+function needs ‘$’ is interpreted in the next question). A histogram can
+be made like the picture on the left side. The <span class="math inline">\(f(x)\)</span> function drawn in ed line is
+overlaid on the histogram. This picture shows that the histogram is
+quite consistent with the target function <span class="math inline">\(f(x)\)</span>.</p>
+<pre class="r"><code>hist(result$X,main = &#39;Histogram of Q2&#39;, xlab = &#39;random numbers from f(x)&#39;,
+freq = FALSE)
+lines(x,fx, col =&#39;red&#39;)</code></pre>
+<p><img src="data:image/png;base64,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" width="672" /></p>
+</div>
+<div id="v-compare-the-theoretical-value-of-the-probability-of-acceptance-and-its-estimate-obtained-by-your-simulation." class="section level3">
+<h3>v) Compare the theoretical value of the probability of acceptance
+and its estimate obtained by your simulation.</h3>
+<p>The estimated probability of acceptance can be obtained through the
+‘hw2q2’ code. At the beginning part of the function ‘total’ variable is
+defined with 0 value. This variable is for counting how many trials
+there are to accept ‘N’ numbers (N is the number of random numbers that
+this function will generate). Whether the ‘u’ is below the threshold
+value or not, the ‘total’ increases by 1 for every trial. Then
+‘acc_rate’ variable is defined as ‘N/total’, which shows the estimated
+probability of acceptance. Now, save this value as well as the ‘N’
+random numbers, denoted by X, to ‘result’ variable, the form of which is
+list so as to save different forms.</p>
+<p>After making the ‘hw2q2’ function, the random numbers are saved in
+the ‘X’ index, while the estimated probability is in ‘acc_rate’ index.
+In this case, the estimated probability is 0.8714597. The theoretical
+value of the probability of acceptance is <span class="math inline">\(\frac{1}{c_{\lambda}} = 0.875943\)</span> so the
+estimation is quite close to the ideal value.</p>
+<pre class="r"><code>acc_rate &lt;- result$acc_rate
+acc_rate</code></pre>
+<pre><code>## [1] 0.8721437</code></pre>
+<pre class="r"><code>1/c</code></pre>
+<pre><code>## [1] 0.875943</code></pre>
+</div>
+</div>
+
+  
 </div>
