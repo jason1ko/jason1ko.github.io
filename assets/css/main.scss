@@ -12,6 +12,7 @@ search: false
   height: 100vh; /* 화면 전체 높이 */
   background-color: #f8f9fa;
   padding: 50px 20px; /* 위쪽에 여백 추가 */
+  font-size: 12px;
   overflow-y: auto; /* 스크롤 가능하도록 설정 */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
