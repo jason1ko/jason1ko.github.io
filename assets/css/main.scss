@@ -12,12 +12,17 @@ search: false
   height: 100vh; /* 화면 전체 높이 */
   background-color: #f8f9fa;
   padding: 60px 20px; /* 위쪽에 여백 추가 */
-  font-size: 12px;
   overflow-y: auto; /* 스크롤 가능하도록 설정 */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
+.category-title {
+  font-size: 12px; /* 기존보다 작은 크기로 조정 */
+  font-weight: bold; /* 볼드 유지 */
+}
+
 .post-item {
+  font-size: 12px;
   margin-left: 10px; /* 제목을 오른쪽으로 이동 */
 }
 
