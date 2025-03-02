@@ -17,9 +17,13 @@ search: false
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
+.post-item {
+  margin-left: 10px; /* 제목을 오른쪽으로 이동 */
+}
+
 /* 본문 내용 위치 조정 */
 .main-content {
-  margin-left: 300px; /* 사이드바 너비 + 여백 */
+  margin-left: 250px; /* 사이드바 너비 + 여백 */
   padding: 20px;
 }
 
