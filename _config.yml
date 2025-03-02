@@ -247,7 +247,7 @@ pagination:
   title: ':title - page :num'
   limit: 0
   sort_field: 'date'
-  sort_reverse: false
+  sort_reverse: true
   category: 'posts'
   tag: ''
   locale: ''
