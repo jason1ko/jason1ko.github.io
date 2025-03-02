@@ -3,43 +3,23 @@
 search: false
 ---
 
-/* assets/css/main.scss */
+/* 사이드바 스타일 */
 .sidebar-left {
-  font-size: 8px;  /* 원하는 글자 크기로 조정 */
-  line-height: 1.0; /* 줄 간격 조정 */
-  padding: 10px;    /* 여백 조정 */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px; /* 사이드바 너비 */
+  height: 100vh; /* 화면 전체 높이 */
+  background-color: #f8f9fa;
+  padding: 20px;
+  overflow-y: auto; /* 스크롤 가능하도록 설정 */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.category-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.category-item {
-  margin-bottom: 20px;
-}
-
-.category-title {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-
-.post-list {
-  list-style: none;
-  margin: 0;
-  padding-left: 10px;
-}
-
-.post-item a {
-  text-decoration: none;
-  color: #333;
-  display: block;
-  padding: 2px 0;
-}
-
-.post-item a:hover {
-  text-decoration: underline;
+/* 본문 내용 위치 조정 */
+.main-content {
+  margin-left: 270px; /* 사이드바 너비 + 여백 */
+  padding: 20px;
 }
 
 @charset "utf-8";
