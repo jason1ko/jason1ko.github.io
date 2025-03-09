@@ -3,6 +3,17 @@
 search: false
 ---
 
+/* 상단 바 고정 */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff; /* 배경색 (필요에 따라 변경) */
+  z-index: 1000; /* 다른 요소 위에 표시 */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* 하단 그림자 (선택 사항) */
+}
+
 /* 사이드바 스타일 */
 .sidebar-left {
   position: fixed;
@@ -30,6 +41,7 @@ search: false
 .main-content {
   margin-left:  250px; /* 사이드바 너비 + 여백 */
   margin-right: 150px; /* 오른쪽 여백 추가 */
+  margin-top: 70px; 
   padding: 20px;
   max-width: 1000px;
   font-size: 14px; 
@@ -47,7 +59,7 @@ pre {
 
 code {
   background-color: #f4f4f4; /* 연한 회색 배경 */
-  color: #c7254e; /* 진한 레드 색상 */
+  color: #f4f4f4; /* 진한 레드 색상, #c7254e */
   padding: 2px 5px;
   border-radius: 3px;
 }
