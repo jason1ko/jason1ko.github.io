@@ -1,0 +1,787 @@
+---
+title: "SC HW4"
+date: 2024-01-01 23:30:00
+categories: [Statistical Computing]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+
+
+
+<div id="q1.-let-c-be-the-bivariate-gaussian-copula-with-rho-0.5-f-sim-gamma3-1.5-and-g-sim-gamma7.5-1-where-gammaalpha-beta-is-the-gamma-distribution-with-shape-parameter-alpha-0-and-rate-parameter-beta-0.-consider-random-variables-x-y-having-the-joint-distribution-constructed-by-c-f-and-g-i.e.-x-y-sim-h-where-hx-y-cfxgy.-we-want-to-estimate-mathbb-p0.5-sinx3-y2-0.5-using-the-following-two-approaches.-use-successive-computation-in-calculating-the-sample-mean-and-variance.-for-each-method-report-your-estimate-and-the-minimum-sample-size-required-to-achieve-the-criterion-in-your-simulation.-discuss-which-one-is-preferred." class="section level2">
+<h2>Q1. Let <span class="math inline">\(C\)</span> be the bivariate
+Gaussian copula with <span class="math inline">\(\rho\)</span> = 0.5,
+<span class="math inline">\(F \sim \Gamma(3, 1.5)\)</span>, and <span class="math inline">\(G \sim \Gamma(7.5, 1)\)</span>, where <span class="math inline">\(\Gamma(\alpha, \beta)\)</span> is the gamma
+distribution with shape parameter <span class="math inline">\(\alpha&gt;
+0\)</span> and rate parameter <span class="math inline">\(\beta &gt;
+0\)</span>. Consider random variables <span class="math inline">\((X,
+Y)\)</span> having the joint distribution constructed by <span class="math inline">\(C\)</span>, <span class="math inline">\(F\)</span>
+and <span class="math inline">\(G\)</span>, i.e., <span class="math inline">\((X, Y) \sim H\)</span>, where <span class="math inline">\(H(x, y) = C(F(x),G(y))\)</span>. We want to
+estimate <span class="math inline">\(\mathbb P[−0.5 &lt; \sin(X^3 + Y^2)
+&lt; 0.5]\)</span> using the following two approaches. / Use successive
+computation in calculating the sample mean and variance. For each
+method, report your estimate and the minimum sample size required to
+achieve the criterion in your simulation. Discuss which one is
+preferred.</h2>
+<div id="i-use-the-monte-carlo-integration-with-random-variables-drawn-from-the-bivariate-gaussian-copula-algorithm-a-until-the-estimated-variance-of-the-estimator-is-less-than-105." class="section level3">
+<h3>i) Use the Monte Carlo integration with random variables drawn from
+the bivariate Gaussian copula (Algorithm A) until the (estimated)
+variance of the estimator is less than <span class="math inline">\(10^{−5}\)</span>.</h3>
+<p>The idea of algorithm A is as follows: Let the indicator function of
+<span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, <span class="math inline">\(I
+[|\sin(X^3 + Y^2)| &lt; 0.5]\)</span>, be 1 when <span class="math inline">\(|\sin(X^3 + Y^2)|\)</span> is less than 0.5, or 0
+otherwise. Then <span class="math inline">\(\mathbb P\left( I [|\sin(X^3
++ Y^2)| &lt; 0.5] = 1 \right ) := p\)</span>, the probability that
+should be estimated, is, <span class="math inline">\(p = 1*p + 0*(1-p) =
+\mathbb E[I [|\sin(X^3 + Y^2)| &lt; 0.5]]\)</span>. So, by the Law of
+Large Numbers (Monte Carlo Integration), the value ‘p’ can be estimated
+by <span class="math display">\[\frac{1}{n}\sum_{i = 1}^n I [
+|\sin(X_i{^3} + Y_i{^2}) | &lt; 0.5 ] \to \mathbb E[I [|\sin(X^3 + Y^2)|
+&lt; 0.5]] = p\\
+\text{as } n \to \infty.\]</span></p>
+<p>Each <span class="math inline">\(X_i\)</span> and <span class="math inline">\(Y_i\)</span> can be expressed by <span class="math inline">\(U_1\)</span> and <span class="math inline">\(U_2\)</span> generated from Gaussian copula <span class="math inline">\(C\)</span>, whose set <span class="math inline">\((U_{1,i}, U_{2,i})\)</span> is i.i.d for all <span class="math inline">\(i\)</span>.</p>
+<p>In short, the process of estimating the expectation is as follows.
+Generate <span class="math inline">\((U_{1,i}, U_{2,i})\)</span> from
+the Gaussian copula <span class="math inline">\(C\)</span> independently
+for <span class="math inline">\(i\)</span>, obtain <span class="math inline">\((X_i, Y_i) = \left( F^{-1}(U_{1,i}),
+G^{-1}(U_{2,i}) \right)\)</span>that follows <span class="math inline">\(H\)</span>, then the expectation can be estimated
+by <span class="math display">\[\frac{1}{n}\sum_{i = 1}^n I [
+|\sin(X_i{^3} + Y_i{^2}) | &lt; 0.5 ] \to \mathbb E[I [|\sin(X^3 + Y^2)|
+&lt; 0.5]].\]</span></p>
+<p>Cholesky function is required to generate <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> from <span class="math inline">\(C\)</span>, which is similar to the HW3. So the
+‘Chol’ function, the transpose of the built-in ‘chol’ in R, is defined
+as follows.</p>
+<pre class="r"><code>Chol &lt;- function(mat){
+  return(t(chol(mat)))
+}</code></pre>
+<p>An indicator function is defined to present whether the value <span class="math inline">\(\vert \sin(X^3 + Y^2) \vert\)</span> is less than
+0.5, called ‘indicator_gau_cop’. This function needs 4 parameters used
+for the parameters of gamma distributions each. This function generates
+two random variables from standard normal distributions first (using
+‘runif’ function) denoted by z1 and z2, performs Cholesky decomposition
+to get the correlated random vectors W, get the CDF values of standard
+normal distribution with respect to each element of W, and obtain the x
+and y from the inverse of F and G w.r.t the CDF values. For the
+generated x and y, the reference value (denoted by ‘ref’) is set to the
+<span class="math inline">\(\vert \sin(X^3 + Y^2) \vert\)</span>. If the
+‘ref’ is less than 0.5, the indicator variable I is 1, or 0 otherwise,
+which is same as <span class="math inline">\(I(\vert \sin(X^3 + Y^2)
+\vert )\)</span>. At the end of the function returns the indicator
+value.</p>
+<pre class="r"><code>stu_id &lt;- 2011142127
+set.seed(stu_id)
+
+indicator_gau_cop &lt;- function(a1,l1, a2,l2){
+  
+  z1 &lt;- qnorm(runif(1)) # instead of rnorm
+  z2 &lt;- qnorm(runif(1))
+  
+  R &lt;- matrix(c(1,0.5,0.5,1), nrow = 2)
+  A &lt;- Chol(R) 
+  W &lt;- A %*% c(z1, z2)
+  
+  u1 &lt;- pnorm(W[1])
+  u2 &lt;- pnorm(W[2])  
+  
+  x &lt;- qgamma(u1, a1, l1)
+  y &lt;- qgamma(u2, a2, l2)
+  
+  ref &lt;- abs(sin(x^3 + y^2))
+  if(ref &lt; 0.5){
+    I &lt;- 1
+  }else{
+    I &lt;- 0
+  }
+  
+  return(I)
+}</code></pre>
+<p>The main function ‘hw4_q1_1’ to calculate the estimated value ‘p’
+(sample mean), sample variance, estimated variance of p, and the number
+of iterations is as follows. The estimated value is written as the
+sample mean of the indicator value <span class="math inline">\(\bar
+X\)</span> from now on. Let <span class="math inline">\(X_n\)</span>be
+the nth indicator value, <span class="math inline">\(\bar X_n\)</span>be
+sample mean of successive ‘n’ indicators from the beginning, <span class="math inline">\(S_n^2\)</span> be the sample variance of ‘n’
+sequential indicators, and <span class="math inline">\(S_n^2/n\)</span>
+be the estimated variance of nth sample mean <span class="math inline">\(\bar X_n\)</span> (‘p’). The initial value of
+sample mean and sample variance is <span class="math inline">\(\bar X =
+X_1\)</span> and <span class="math inline">\(S_1^2 = 0\)</span>. Then,
+the general form of <span class="math inline">\(\bar X_n\)</span> and
+<span class="math inline">\(S_n^2\)</span> is as follows (by the
+successive computation formula): <span class="math display">\[\bar X_n =
+\frac{(n-1)\bar X_{n-1} + X_n}{n},\quad n \ge 2\\
+S_n^2 = \left( 1 - \frac{1}{n-1}\right) S_{n-1}^2 + n(\bar X_n - \bar
+X_{n-1})^2, \quad n \ge 2.\]</span></p>
+<p>The initial values of sample mean and sample variance in the
+‘hw4_q1_1’, whose variable names are ‘Xbar’ and ‘Ssq’ respectively, are
+the output of the function indicator_gau_cop(3, 1.5, 7.5, 1) and 0 each.
+From the next iteration <span class="math inline">\((n \ge 2)\)</span>,
+generate the indicator X from indicator_gau_cop function, save the
+previous <span class="math inline">\((n-1)\)</span>th values of sample
+mean and sample variance to Xbar_prev and Ssq_prev, and calculate the
+<span class="math inline">\(n\)</span>th value of sample mean and sample
+variance in accordance with the above formulas. Save the nth sample mean
+and sample variance to Xbar_prev and Ssq_prev again, and obtain the
+<span class="math inline">\((n+1)\)</span>th value of sample mean and
+variance. There is no restriction about the smallest number for the CLT,
+so this function does not break the iteration until <span class="math inline">\(n = 30\)</span>. The variance of the estimator
+<span class="math inline">\(\bar X_n\)</span> is <span class="math inline">\(S_n^2/n\)</span>, so this iteration discontinues
+when two conditions <span class="math inline">\(n \ge 30\)</span> and
+<span class="math inline">\(S_n^2/n \le 10^{-5}\)</span> meet. After the
+halt of the iteration, save the sample mean, sample variance, the
+variance of the sample mean, and the number of iterations in the form of
+data frame.</p>
+<pre class="r"><code>hw4_q1_1 &lt;- function(d = 10^(-5)){
+  Xbar &lt;- indicator_gau_cop(3, 1.5, 7.5, 1)
+  Ssq &lt;- 0
+  n &lt;- 1
+  
+  while(1){
+    n &lt;- n+1
+    X &lt;- indicator_gau_cop(3, 1.5, 7.5, 1)
+    Xbar_prev &lt;- Xbar
+    Ssq_prev &lt;- Ssq
+    
+    Xbar &lt;- ((n-1)*Xbar_prev + X)/n
+    Ssq &lt;- (1 - 1/(n-1))*Ssq_prev + n*(Xbar - Xbar_prev)^2
+    
+    if(n &gt;= 30 &amp;&amp; Ssq/n &lt; d){break}
+  }
+  
+  result &lt;- data.frame(Xbar = Xbar, Ssq = Ssq, est_var = Ssq/n, n = n)
+  return(result)
+}</code></pre>
+<p>According to this function, the estimated probability (sample mean)
+is about 0.336, the sample variance is 0.223, the variance of estimator
+is 9.9996*<span class="math inline">\(10^{-6}\)</span>, and the number
+of iterations is 22327.</p>
+<pre class="r"><code>result1 &lt;- hw4_q1_1(10^(-5))
+result1</code></pre>
+<pre><code>##        Xbar       Ssq      est_var     n
+## 1 0.3364536 0.2232626 9.999668e-06 22327</code></pre>
+<p>cf) why algorithm A holds, given <span class="math inline">\(H(x,y) =
+C(F(x), G(y))\)</span></p>
+<p>based on Riemann–Stieltjes integral, <span class="math display">\[\begin{aligned}
+\mathbb E[k(x,y)] &amp;= \int k(x,y)dH(x,y) \\
+&amp;= \int k(x,y)dC(F(x), G(y)) \quad (u_1 := F(x), u_2 := G(y)) \\
+&amp;= \int k(F^{-1}(u_1), G^{-1}(u_2)dC(u_1, u_2) \\
+&amp;= \mathbb E[k(F^{-1}(U_1), G^{-1}(U_2)]
+\end{aligned}\]</span></p>
+<p>In this problem, <span class="math inline">\(k(X,y) = I[\vert
+\sin(X^3 + Y^2) \vert &lt; 0.5]\)</span>. Thus, after generating <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, the LLN (Monte Carlo integral) can be
+applied.</p>
+</div>
+<div id="ii-use-the-monte-carlo-integration-with-random-variables-drawn-from-the-iid-uniform-distributions-algorithm-b-until-the-estimated-variance-of-the-estimator-is-less-than-105." class="section level3">
+<h3>ii) Use the Monte Carlo integration with random variables drawn from
+the iid uniform distributions (Algorithm B) until the (estimated)
+variance of the estimator is less than <span class="math inline">\(10^{−5}\)</span>.</h3>
+<p>Seeing that the copula density exists for Gaussian copula, the
+expectation <span class="math inline">\(\mathbb E[ I[\vert \sin(X^3 +
+Y^2) \vert &lt; 0.5] ]\)</span> be expressed as follows after generating
+the i.i.d uniform distributions <span class="math inline">\(U_{1,i},
+U_{2,i}\)</span>: <span class="math display">\[\mathbb E[ I[\vert
+\sin(X^3 + Y^2) \vert &lt; 0.5] ] \to \frac{1}{n}\sum_{i = 1}^n I \left[
+\vert \sin((F^{-1}(U_{1,i}))^3 + (G^{-1}(U_{2,i}))^2 )\vert
+\right]*c(U_{1,i}, U_{2,i})\]</span> In this expression, c represents
+the density of the Gaussian copula. Also, <span class="math inline">\(U_{1,i} = F(X_i)\)</span> and <span class="math inline">\(U_{2,i} = G(Y_i)\)</span>. So, this is the main
+idea of algorithm B to estimate the probability <span class="math inline">\(\mathbb P( I[\vert \sin(X^3 + Y^2) \vert &lt; 0.5]
+= 1) = \mathbb E[ I[\vert \sin(X^3 + Y^2) \vert &lt; 0.5] ]\)</span>, in
+which <span class="math inline">\(U_{1,i}, U_{2,i}\)</span> are
+independent uniform distribution.</p>
+<p>Another indicator function ‘indicator_iid_unif’ is defined as
+follows. The input is the correlation coefficient <span class="math inline">\(\rho\)</span>. The output itself is not actually
+indicator, but the name is nominated as ‘indicator’ to simply correspond
+to the previous function. At first, generate 2 independent random
+numbers <span class="math inline">\(U_1, U_2\)</span> from uniform
+distributions, and carry out inverse of gamma function to the<span class="math inline">\(U_1, U_2\)</span>, denoted by x and y. The
+reference value is the absolute value of <span class="math inline">\(\sin (X^3 + Y^2)\)</span>. Then, Set the indicator
+variableI is 1 if the reference is less than 0.5, or 0 otherwise.</p>
+<p>Given the correlation matrix R and <span class="math inline">\(q =
+[\Phi^{-1}(U_1), \hspace{1mm} \Phi^{-1}(U_2)]^{\top}\)</span>, the
+density of Gaussian copula is as follows: <span class="math display">\[c(U_1, U_2) =
+\frac{1}{\sqrt{|R|}}\exp\left\{-\frac{1}{2}q^{\top}(R^{-1} -
+I)q\right\}, \quad I : (2 \times 2) \text{ identity matrix}\]</span></p>
+<p>The matrix R is <span class="math inline">\(R = \begin{bmatrix}1
+&amp; \rho \\ \rho &amp; 1 \end{bmatrix}\)</span>, and put <span class="math inline">\(\Phi^{-1}(U_1) = a\)</span> and <span class="math inline">\(\Phi^{-1}(U_2) = b\)</span> for simplicity. hen
+the Gaussian copula density is <span class="math display">\[\begin{aligned}
+c(U_1, U_2)
+&amp;= \frac{1}{1 - \rho^2}\exp\left\{
+-\frac{1}{2}\begin{bmatrix}a&amp;b\end{bmatrix}
+\begin{bmatrix} \frac{\rho^2}{1-\rho^2} &amp; \frac{-\rho}{1-\rho^2} \\
+\frac{-\rho}{1-\rho^2} &amp; \frac{\rho^2}{1-\rho^2}\end{bmatrix}
+\begin{bmatrix}a\\b\end{bmatrix}\right\} \\
+&amp;=  \frac{1}{1 - \rho^2}
+\exp\left\{-\frac{1}{2(1-\rho^2)}(\rho^2(a^2+b^2) - 2\rho ab) \right\}
+\end{aligned}\]</span></p>
+<p>Using this expression, the output of this function is the indicator I
+multiplied by the copula density.</p>
+<pre class="r"><code>set.seed(stu_id)
+
+indicator_iid_unif &lt;- function(p){# p : corr
+  u1 &lt;- runif(1)
+  u2 &lt;- runif(1)
+  
+  x &lt;- qgamma(u1, 3, 1.5)
+  y &lt;- qgamma(u2, 7.5, 1)
+
+  ref &lt;- abs(sin(x^3 + y^2))
+  if(ref &lt; 0.5){
+    I &lt;- 1
+  }else{
+    I &lt;- 0
+  }
+  
+  a &lt;- qnorm(u1)
+  b &lt;- qnorm(u2)
+  
+  c &lt;- 1/sqrt(1-p^2)*exp(-1/(2*(1-p^2))*(p^2*(a^2+b^2) - 2*p*(a*b)))
+  
+  return(I*c)
+}</code></pre>
+<p>The main function ‘hw4_q1_2’ is almost similar to the previous one
+‘hw4_q1_1’, except for the fact that an indicator (1 or 0) multiplied by
+a copula density is the sample. Accordingly, the <span class="math inline">\(\bar X\)</span> and <span class="math inline">\(S^2\)</span> are the sample mean and sample
+variance of the indicator (1 or 0) multiplied by copula density. Then,
+the initial value of ‘Xbar’ and an indicator ‘X’ for every iteration in
+the function are the only variables to change. The rest of the code is
+identical to the previous function, including the successive
+computation. This function also checks whether the variance of the
+sample mean (estimated probability) is less than the input <span class="math inline">\(d = 10^{-5}\)</span> after n is greater than or
+equal to 30.</p>
+<pre class="r"><code>hw4_q1_2 &lt;- function(d = 10^(-5)){
+  Xbar &lt;- indicator_iid_unif(0.5)
+  Ssq &lt;- 0
+  n &lt;- 1
+  
+  while(1){
+    n &lt;- n+1
+    X &lt;- indicator_iid_unif(0.5)
+    Xbar_prev &lt;- Xbar
+    Ssq_prev &lt;- Ssq
+    
+    Xbar &lt;- ((n-1)*Xbar_prev + X)/n
+    Ssq &lt;- (1 - 1/(n-1))*Ssq_prev +n*(Xbar - Xbar_prev)^2
+    
+    if(n &gt;= 30 &amp;&amp; Ssq/n &lt; d){break}
+  }
+  
+  result &lt;- data.frame(Xbar = Xbar, Ssq = Ssq, est_var = Ssq/n, n = n)
+  return(result)
+}</code></pre>
+<p>The sample mean (estimated probability) is about 0.332, the sample
+variance is 0.326, the variance of the estimated probability is
+9.9997*<span class="math inline">\(10^{-6}\)</span>, and the number of
+iterations is 32649.</p>
+<pre class="r"><code>result2 &lt;- hw4_q1_2(10^(-5))
+result2</code></pre>
+<pre><code>##        Xbar       Ssq      est_var     n
+## 1 0.3321876 0.3264809 9.999722e-06 32649</code></pre>
+<p>cf) why algorithms B hold, given <span class="math inline">\(H(x,y) =
+C(F(x), G(y))\)</span></p>
+<p>based on Riemann integral, <span class="math display">\[
+h(x,y) = \frac{\partial^2}{\partial x\partial y} = c(F(x),
+G(y))f(x)g(y).
+\]</span></p>
+<p>Using this, <span class="math display">\[\begin{aligned}
+\mathbb E[k(X,Y)] &amp;= \int k(x,y)dH(x,y) \\
+&amp;= \int \int k(x,y)h(x,y)dxdy \\
+&amp;= \int \int k(x,y)c(F(x), G(y))f(x)g(y)
+\end{aligned}\]</span></p>
+<p>Let <span class="math inline">\(u_1 = F(x)\)</span> and <span class="math inline">\(u_2 = G(y)\)</span>, whih are independent. Then
+<span class="math inline">\(du_1 = f(x)dx\)</span> and <span class="math inline">\(du_2 = g(y)dy\)</span>.</p>
+<p>Using this, <span class="math display">\[\begin{aligned}
+\mathbb E[k(X,Y)]
+&amp;= \int \int k\left( F^{-1}(u_1), G^{-1}(u_2) \right)c(u_1,
+u_2)du_1du_2 \\
+&amp;= \int \int k\left( F^{-1}(u_1), G^{-1}(u_2) \right)c(u_1,
+u_2)(1*1)du_1du_2\\
+&amp;= \mathbb E[k\left( F^{-1}(U_1), G^{-1}(U_2) \right)c(U_1, U_2)]
+\end{aligned}\]</span></p>
+<p>In this problem, <span class="math inline">\(k(X,Y) = I[ \vert
+\sin(X^3 + Y^2)\vert &lt; 0.5]\)</span>. Thus, after generating
+independent <span class="math inline">\(U_1, U_2\)</span>, the LLN
+(Monte Carlo integral) can be applied.</p>
+</div>
+</div>
+<div id="q2.-an-insurance-company-sells-two-insurance-policies-auto-insurance-and-fire-insurance.-consider-the-following-scenario." class="section level2">
+<h2>Q2. An insurance company sells two insurance policies, auto
+insurance and fire insurance. Consider the following scenario.</h2>
+<div id="bullet-a-new-customer-signs-up-for-auto-insurance-according-to-a-poisson-process-with-rate-50-per-week.-bullet-a-new-customer-signs-up-for-fire-insurance-according-to-a-poisson-process-with-rate-20-per-week.-bullet-a-new-customer-signs-up-for-both-insurance-policies-auto-and-fire-according-to-a-poisson-process-with-rate-10-per-week.-bullet-a-policyholder-holding-an-auto-insurance-policy-makes-a-claim-according-to-a-poisson-process-with-rate-0.04-per-week-and-the-amount-of-a-claim-has-an-exponential-distribution-with-mean-1000.-bullet-a-policyholder-holding-a-fire-insurance-policy-makes-a-claim-according-to-a-poisson-process-with-rate-0.01-per-week-and-the-amount-of-a-claim-has-an-exponential-distribution-with-mean-5000.-bullet-a-policyholder-holding-an-auto-insurance-policy-retains-hisher-auto-insurance-policy-for-an-exponentially-distributed-time-with-mean-50-weeks-rate-0.02-per-week.-if-the-policyholder-is-with-both-types-of-insurance-hisher-fire-insurance-policy-still-remains-in-effect-even-after-the-termination-of-the-auto-insurance-policy.-bullet-a-policyholder-holding-a-fire-insurance-policy-retains-hisher-fire-insurance-policy-for-an-exponentially-distributed-time-with-mean-20-weeks-rate-0.05-per-week.-if-the-policyholder-is-with-both-types-of-insurance-hisher-auto-insurance-policy-still-remains-in-effect-even-after-the-termination-of-the-fire-insurance-policy.-bullet-a-policyholder-holding-only-an-auto-insurance-policy-continuously-pays-the-company-45-per-week.-bullet-a-policyholder-holding-only-a-fire-insurance-policy-continuously-pays-the-company-55-per-week.-bullet-a-policyholder-holding-both-insurance-policies-continuously-pays-the-company-95-per-week." class="section level3">
+<h3><span class="math inline">\(\bullet\)</span> A new customer signs up
+for auto insurance according to a Poisson process with rate 50 per week.
+<br> <span class="math inline">\(\bullet\)</span> A new customer signs
+up for fire insurance according to a Poisson process with rate 20 per
+week. <br> <span class="math inline">\(\bullet\)</span> A new customer
+signs up for both insurance policies (auto and fire) according to a
+Poisson process with rate 10 per week. <br> <span class="math inline">\(\bullet\)</span> A policyholder holding an auto
+insurance policy makes a claim according to a Poisson process with rate
+0.04 per week, and the amount of a claim has an exponential distribution
+with mean $1,000. <br> <span class="math inline">\(\bullet\)</span> A
+policyholder holding a fire insurance policy makes a claim according to
+a Poisson process with rate 0.01 per week, and the amount of a claim has
+an exponential distribution with mean $5,000. <br> <span class="math inline">\(\bullet\)</span> A policyholder holding an auto
+insurance policy retains his/her auto insurance policy for an
+exponentially distributed time with mean 50 weeks (rate 0.02 per week).
+If the policyholder is with both types of insurance, his/her fire
+insurance policy still remains in effect even after the termination of
+the auto insurance policy. <br> <span class="math inline">\(\bullet\)</span> A policyholder holding a fire
+insurance policy retains his/her fire insurance policy for an
+exponentially distributed time with mean 20 weeks (rate 0.05 per week).
+If the policyholder is with both types of insurance, his/her auto
+insurance policy still remains in effect even after the termination of
+the fire insurance policy. <br> <span class="math inline">\(\bullet\)</span> A policyholder holding only an
+auto insurance policy continuously pays the company $45 per week.<br>
+<span class="math inline">\(\bullet\)</span> A policyholder holding only
+a fire insurance policy continuously pays the company $55 per week. <br>
+<span class="math inline">\(\bullet\)</span> A policyholder holding both
+insurance policies continuously pays the company $95 per week.<br></h3>
+</div>
+</div>
+<div id="define-week-variable-t-continuous-and-state-variables-n_a-n_f-n_af-a-where-n_a-is-the-number-of-policyholders-with-only-auto-insurance-n_f-is-the-number-of-policyholders-withonly-fire-insurance-n_af-is-the-number-of-policyholders-with-both-types-of-insurance-and-a-is-the-firms-current-capital.-starting-from-n_a-100-n_f-100-n_af-50-a-50000-and-t-0-we-want-to-estimate-the-probability-that-the-firms-capital-is-always-nonnegative-at-all-times-up-to-100-weeks." class="section level2">
+<h2>Define week variable <span class="math inline">\(t\)</span>
+(continuous) and state variables <span class="math inline">\((n_A, n_F ,
+n_{AF} , a)\)</span>, where <span class="math inline">\(n_A\)</span> is
+the number of policyholders with only auto insurance, <span class="math inline">\(n_F\)</span> is the number of policyholders
+withonly fire insurance, <span class="math inline">\(n_{AF}\)</span> is
+the number of policyholders with both types of insurance, and <span class="math inline">\(a\)</span> is the firm’s current capital. Starting
+from <span class="math inline">\(n_A\)</span> = 100, <span class="math inline">\(n_F\)</span> = 100, <span class="math inline">\(n_{AF}\)</span> = 50, <span class="math inline">\(a\)</span> = $50,000, and <span class="math inline">\(t\)</span> = 0, we want to estimate the
+probability that the firm’s capital is always nonnegative at all times
+up to 100 weeks.</h2>
+<div id="i-explain-how-you-can-construct-your-simulation-using-e.g.-the-distribution-of-the-events-the-distribution-of-the-time-until-the-next-event-occurs-etc." class="section level3">
+<h3>i) Explain how you can construct your simulation (using e.g., the
+distribution of the events, the distribution of the time until the next
+event occurs, etc…).</h3>
+<p>Let us check the events written in the problem more in detail.
+Without specific limitation on the events, it is regarded for all the
+events as independent. If <span class="math inline">\(X_i\)</span>
+representsa time of i-event with rate <span class="math inline">\(\lambda_i\)</span>, it is known that the minimum
+of <span class="math inline">\(X_i, \min_i X_i\)</span> follows
+exponential with rate <span class="math inline">\(\sum_i
+\lambda_i\)</span>, and the probability that $ _i X_i = X_k$ is <span class="math inline">\(\lambda_k/\sum_i \lambda_i\)</span> (* proved
+later).</p>
+<div id="new-sign-up" class="section level4">
+<h4>(1) New sign-up</h4>
+<p>The number of events that a new customer signs up for auto insurance
+(A) follows Poisson process with rate <span class="math inline">\(\nu_A
+= 50\)</span>. So, the time of the first new sign-up for A follows the
+exponential with <span class="math inline">\(\nu_A = 50\)</span>.</p>
+<p>The number of events that a new customer signs up for fire insurance
+(F) follows Poisson process with rate <span class="math inline">\(\nu_F
+= 20\)</span>. So, the time of the first new sign-up for F follows the
+exponential with <span class="math inline">\(\nu_F = 20\)</span>.</p>
+<p>The number of events that a new customer signs up for both insurance
+(AF) follows Poisson process with rate <span class="math inline">\(\nu_{AF} = 10\)</span>. So, the time of the first
+new sign-up for AF follows the exponential with <span class="math inline">\(\nu_{AF} = 10\)</span>.<br></p>
+</div>
+<div id="policy-holding-time" class="section level4">
+<h4>(2) Policy holding time</h4>
+<p>The period of time for which A holder retains the policy follows
+exponential distribution with rate <span class="math inline">\(\mu_A=2/100\)</span>. In other words, the time of
+the termination of policy A follows exponential distribution with rate
+<span class="math inline">\(\mu_A=2/100\)</span>. Then, the time of
+first termination of A-policy among <span class="math inline">\(n_A\)</span>people (holding only A policy) follows
+exponential with rate <span class="math inline">\(n_A\mu_A\)</span>, and
+the number <span class="math inline">\(n_A\)</span> decreases by 1.</p>
+<p>Also, the time of first termination of A-policy among <span class="math inline">\(n_{AF}\)</span>people follows exponential with
+rate <span class="math inline">\(n_{AF}\mu_{A}\)</span>, while the
+number <span class="math inline">\(n_{AF}\)</span>decreases by 1 and
+<span class="math inline">\(n_F\)</span> increases by 1. This is because
+the termination of A for AF holders does not affect the F policy, which
+results in the customer becoming the F holder.</p>
+<p>The period of time for which F holder retains the policy follows
+exponential distribution with rate <span class="math inline">\(\mu_F=5/100\)</span>. In other words, the time of
+the termination of policy A follows exponential distribution with rate
+<span class="math inline">\(\mu_F=5/100\)</span>. Then, the time of
+first termination of F-policy among <span class="math inline">\(n_F\)</span>people (holding only F policy) follows
+exponential with rate <span class="math inline">\(n_F\mu_F\)</span>, and
+the number <span class="math inline">\(n_F\)</span> decreases by 1.</p>
+<p>Also, the time of first termination of A-policy among <span class="math inline">\(n_{AF}\)</span>people follows exponential with
+rate <span class="math inline">\(n_{AF}\mu_{F}\)</span>, while the
+number <span class="math inline">\(n_{AF}\)</span>decreases by 1 and
+<span class="math inline">\(n_A\)</span> increases by 1. This is because
+the termination of F for AF holders does not affect the A policy, which
+results in the customer becoming the A holder. <br></p>
+</div>
+<div id="claim" class="section level4">
+<h4>(3) Claim</h4>
+<p>The event of claims by A holders follows Poisson process with rate
+<span class="math inline">\(\lambda_A=4/100\)</span>. So, the first time
+when A policy holders make claims follows exponential distribution with
+<span class="math inline">\(\lambda_A=4/100\)</span>. Since there are
+<span class="math inline">\(n_A + n_{AF}\)</span> people who have the
+A-policy, the time of the first claim among <span class="math inline">\(n_A + n_{AF}\)</span> people follows exponential
+with rate <span class="math inline">\((n_A +
+n_{AF})\lambda_A\)</span>.</p>
+<p>The event of claims by F holders follows Poisson process with rate
+<span class="math inline">\(\lambda_F=1/100\)</span>. So, the first time
+when F policy holders make claims follows exponential distributions with
+<span class="math inline">\(\lambda_F=1/100\)</span>. Since there are
+<span class="math inline">\(n_F + n_{AF}\)</span> people who have the
+F-policy, the time of the first claim among <span class="math inline">\(n_F + n_{AF}\)</span> people follows exponential
+with rate <span class="math inline">\((n_F +
+n_{AF})\lambda_F\)</span>.</p>
+</div>
+<div id="time-of-the-next-event-among-all-kinds-of-events" class="section level4">
+<h4>(4) Time of the next event among all kinds of events</h4>
+<p>To sum up, the type of events are as follows: new sign-up for A, F,
+and AF, termination of A for <span class="math inline">\(n_A\)</span>
+people, termination of A for <span class="math inline">\(n_{AF}\)</span>
+people, termination of F for <span class="math inline">\(n_F\)</span>
+people, termination of F for <span class="math inline">\(n_{AF}\)</span>
+people, claims of A insurance among <span class="math inline">\(n_A +
+n_{AF}\)</span> people, and claims of F insurance among<span class="math inline">\(n_F + n_{AF}\)</span> people. Thus, the first
+event among those follows exponential with rate; <span class="math display">\[\begin{aligned}
+z &amp;= \nu_A + \nu_F + \nu_{AF}\\
+&amp;+ (n_A*\mu_A) + (n_{AF}*\mu_A) \\
+&amp;+ (n_F*\mu_F) + (n_{AF}*\mu_F) \\
+&amp;+ (n_A + n_{AF})\lambda_A + (n_F + n_{AF})\lambda_F.
+\end{aligned}\]</span></p>
+</div>
+<div id="premium-amount-of-claim" class="section level4">
+<h4>(5) Premium <span class="math inline">\(\&amp;\)</span> amount of
+claim</h4>
+<p>There is a regular premium for each insurance. The premium of A is F
+is and AF are as follows: <span class="math display">\[ c_A = \$45 \\
+c_F = \$55 \\
+c_{AF} = \$95.
+\]</span></p>
+<p>If A holder claims, the amount of the claim follows exponential
+distribution with rate <span class="math inline">\(y_A=1/1000\)</span>.
+If F holder claims, the amount of the claim follows exponential
+distribution with rate <span class="math inline">\(y_F=1/5000\)</span>.</p>
+</div>
+<div id="indicator-function" class="section level4">
+<h4>(6) Indicator function</h4>
+<p>Given a fixed time (100 weeks in this case), an indicator function is
+defined so that it can output whether the capital remains non-negative
+for the period. (Since it requires that the Capital should be always
+Non-Negative until , the name of the function is chosen as
+‘CNN_indicator’). In this function, all of the parameters (ex. <span class="math inline">\(\mu_A, \lambda_F\)</span>…) and initial values
+(ex. <span class="math inline">\(n_{AF}, a\)</span>,…) are determined.
+Before getting into the loop, initial time <span class="math inline">\(t\)</span> is set to 0, the rate <span class="math inline">\(z\)</span> is set as the above expression, and
+generate the time of the next event based on the rate <span class="math inline">\(z\)</span>, nominated as <span class="math inline">\(t_E\)</span>.</p>
+</div>
+<div id="while-loop" class="section level4">
+<h4>(7) While loop</h4>
+<p>When the generated time of next event is bigger than the given time
+(denoted as ‘T_’), which usually occurs after a significant number of
+iterations, the output I is set to ‘1’ and discontinue the loop.</p>
+<p>The other case, which is the general case, is when the time of next
+event is less than or equal to ‘T_’. Then, increase the amount of asset
+a by the number of each policy holder times the premium of each
+insurance times the time interval: <span class="math inline">\(a +
+(n_Ac_A + n_Fc_F + n_{AF}c_{AF})(t_E - t)\)</span> After then, the
+current time <span class="math inline">\(t\)</span> is shifted to the
+<span class="math inline">\(t_E\)</span></p>
+<p>After resetting the asset and time, the next step is to generate the
+type of the next event. To categorize the events in minimum numbers,
+there are 9 events: 1) new sign-up for A, 2) new sign-up for F, 3) new
+sign-up for AF, 4) termination of A for A holders, 5) termination of A
+for AF holders, 6) termination of F for F holders, 7) termination of F
+for AF holders, 8) a claim of A, and 9) claim of F. The number inside a
+bracket in front of the event name corresponds to the event from now
+on.</p>
+<p>Each event follows exponential distribution with discrete rate
+parameters respectively (the value of parameters are defined in
+advance), and the probability that the next event (minimum of the time
+of next event) is the specific event is proportional to that rate
+parameter (times the number of holders). Then, generating the type of
+next event (which will be same as generating integers from 1 to 9) with
+different probability will be the next step. So, the probability vector
+‘p’ is set for each iteration and insert this to the integer-generating
+function, nominated as ‘random_integers’.</p>
+<p>The vector ‘p’ has the 9 rate parameters sequentially; <span class="math inline">\(\nu_A, \nu_F, \nu_{AF}, n_A\mu_A, n_{AF}\mu_A,
+n_F\mu_F, n_{AF}\mu_F, (n_A + n_{AF}\lambda_A), (n_F +
+n_{AF})\lambda_F\)</span>.</p>
+<p>If the generated integer J is 1 with prob <span class="math inline">\(\nu_A/z\)</span>, the number of A holders
+increases by 1. If the J is 2 with prob <span class="math inline">\(\nu_F/z\)</span> the number of F holders increases
+by 1. If the J is 3 with prob <span class="math inline">\(\nu_{AF}/z\)</span> the number of AF holders
+increases by 1.</p>
+<p>The number J between 4 and 7 covers the case when the policy
+terminates. J = 4 occurs with probability <span class="math inline">\(n_A\mu_A/z\)</span>, so the number of A holders
+decreases by 1. J = 5 occurs with probability <span class="math inline">\(n_{AF}\mu_A/z\)</span>, so the number of AF
+holders decreases by 1 and the number of F holders increases by 1. J = 6
+occurs with probability <span class="math inline">\(n_F\mu_F/z\)</span>,
+so the number of F holders decreases by 1. J = 7 occurs with probability
+<span class="math inline">\(n_{AF}\mu_F/z\)</span>, so the number of AF
+holders decreases by 1 and the number of A holders increases by 1.</p>
+<p>J = 8 means a claim A occurs, with probability <span class="math inline">\((n_A + n_{AF}\lambda_A)/z\)</span>. Then generate
+the amount of claim that follows <span class="math inline">\(Y \sim
+\text{Exp}(y_A)\)</span>. If the Y is bigger than the current asset,
+make the indicator I be 0 and stop the iteration. Otherwise, decrease
+the current asset by the Y. J = 9 means a claim F occurs with
+probability <span class="math inline">\((n_F +
+n_{AF})\lambda_F\)</span>. Then, generate the amount of claim that
+follows <span class="math inline">\(Y \sim \text{Exp}(y_F)\)</span>. If
+the Y is bigger than the current asset, let the indicator 𝐼 be 0 and
+stop the iteration. Otherwise, decrease the current asset by Y.</p>
+<p>After the generation of J and the following action, reset the time of
+next event <span class="math inline">\(t_E\)</span> by adding the
+current time ‘t’ and the generated new time from <span class="math inline">\(\text{Exp}(z)\)</span>, the parameter ‘z’ of which
+is changed by the increase or decrease of each policy holders. Then, it
+will go back to the front of the while loop and check whether the t_E is
+greater than ‘T_’ again. This iteration will stop until the indicator I
+is determined between 1 and 0. If the I is determined, this function
+will end by outputting the value.</p>
+</div>
+<div id="estimated-probability" class="section level4">
+<h4>(8) Estimated probability</h4>
+<p>The final step is to estimate the probability of interest. This
+problem requires to repeat the generation of the indicator for 1000
+times and to remain the capital non-negative for 100 weeks. So, add all
+the 1000 indicators with ‘T_’ = 100 and divide the summation by 1000.
+This result is the estimated probability. (The name of this function is
+‘hw4_q2’).</p>
+</div>
+</div>
+<div id="ii-estimate-the-probability-of-interest-with-1000-replications-of-the-above-simulation-scenario." class="section level3">
+<h3>ii) Estimate the probability of interest with 1,000 replications of
+the above simulation scenario.</h3>
+<p>As previously mentioned, integers-generating function is needed for
+choosing an indicator. N means how many numbers it will return, ‘idx’
+means the biggest integer it can generate (the smallest is 1 in this
+function), and ‘prob’ is the probability vector, the sum of which should
+not be 1 in the input stage. The ith element of the vector means the
+integer ‘i’ can be generated in proportion to the ith probability. Using
+the inverse transform method, integers-generating function can be made
+as follows. After generating U ~ Unif(0,1), it will check in which
+region the U is included. If the U is between p[i-1] and p[i] (assume
+that p[0] is 0), it will return ‘i’ as an output. The bottom of this
+code shows how this function generates random integers from 1 to 4 with
+identical probability.</p>
+<pre class="r"><code>set.seed(stu_id)
+
+random_integers &lt;- function(N, idx, prob = rep(1/idx, idx)){
+  X &lt;- c()
+  prob &lt;- prob/sum(prob)
+  
+  for(n in 1:N){
+    i &lt;- 1
+    sump &lt;- prob[i]
+    u &lt;- runif(1)
+    
+    while(u &gt;= sump){
+      sump &lt;- sump + prob[i+1]
+      i &lt;- i+1
+    }
+    X[n] &lt;- i
+  }
+  return(X)
+}
+
+random_integers(10, 4)</code></pre>
+<pre><code>##  [1] 1 2 4 2 2 3 3 4 2 3</code></pre>
+<p>The following code is the indicator function. vA, vF, vAF means the
+rate parameters for new sign up, lA, lF means the rate parameter for
+claim events, yA, yF means the rate parameter for the amount of claim,
+mA, mF means the rate parameter for terminating the policy, cA, cF, cAF
+is the weekly premium, nA, nF, nAF is the number of policy holders, ‘a’
+is the current amount of asset, and ‘t’ is the current time. ‘z’ is
+defined identically with the ‘z’ expression in question i), and tE is
+the generated time of next event for the given ‘z’. For every iteration,
+reset the asset, current time, probability vector, and generate the
+integer J. Perform different actions according to the value of J, change
+the ‘z’ by the after the actions, and then an indicator can be defined
+at certain iteration.</p>
+<pre class="r"><code>CNN_indicator &lt;- function(T_){
+
+  vA &lt;- 50
+  vF &lt;- 20
+  vAF &lt;- 10
+  
+  lA &lt;- 4/100
+  lF &lt;- 1/100
+  
+  yA &lt;- 1/1000
+  yF &lt;- 1/5000
+  
+  mA &lt;- 2/100
+  mF &lt;- 5/100
+  
+  cA &lt;- 45
+  cF &lt;- 55
+  cAF &lt;- 95
+  
+  nA &lt;- 100
+  nF &lt;- 100
+  nAF &lt;- 50
+  a &lt;- 50000
+  
+  t &lt;- 0
+
+  z &lt;- vA+vF+vAF + nA*mA+nAF*mA + nF*mF+nAF*mF + (nA+nAF)*lA + (nF+nAF)*lF
+  tE &lt;- -1/z*log(runif(1))
+  
+  while(1){
+    
+    if(tE &gt; T_){
+      I &lt;- 1
+      break
+    }
+    else{
+      a &lt;- a + (nA*cA + nF*cF + nAF*cAF)*(tE - t)
+      t &lt;- tE
+      
+      p &lt;- c(vA, vF, vAF, nA*mA,nAF*mA, nF*mF,nAF*mF, (nA+nAF)*lA, (nF+nAF)*lF)
+      J &lt;- random_integers(1, length(p), p)
+      
+      if(J == 1){# new A holder
+        nA &lt;- nA + 1
+      }
+      else if(J == 2){# new F holder
+        nF &lt;- nF + 1
+      }
+      else if(J == 3){# new AF holder
+        nAF &lt;- nAF + 1
+      }
+      else if(J == 4){# lost A holder
+        nA &lt;- nA - 1
+      }
+      else if(J == 5){# among AF, lost A
+        nAF &lt;- nAF - 1
+        nF &lt;- nF + 1
+      }
+      else if(J == 6){# lost F holder
+        nF &lt;- nF - 1
+      }
+      else if(J == 7){# among AF, lost F
+        nAF &lt;- nAF - 1
+        nA &lt;- nA + 1
+      }
+      else if(J == 8){# A claim
+        Y &lt;- -1/yA*log(runif(1))
+        if(Y &gt; a){
+          I &lt;- 0
+          break
+        }
+        else{
+          a &lt;- a - Y
+        }
+      }
+      else{# J == 9, F claim
+        Y &lt;- -1/yF*log(runif(1))
+        if(Y &gt; a){
+          I &lt;- 0
+          break
+        }
+        else{
+          a &lt;- a - Y
+        }
+      }# end of condition J = 1,2,,,,
+    
+    z &lt;- vA+vF+vAF + nA*mA+nAF*mA + nF*mF+nAF*mF + (nA+nAF)*lA + (nF+nAF)*lF  
+    tE &lt;- t -1/z*log(runif(1)) 
+    }# end of condition whether t &gt; T_
+      
+  }# end of while loop
+  
+  return(I)
+}</code></pre>
+<p>At last, add up all the indicator values for 1000 times, with the
+input value ‘T_’ as 100. When the summation is divided by 1000, it will
+be the estimated probability. Based on this code, the probability is
+about 0.816.</p>
+<pre class="r"><code>hw4_q2 &lt;- function(T_){
+  temp &lt;- 0
+  for(i in 1:1000){
+    temp &lt;- temp + CNN_indicator(T_)
+  }
+  
+  return(temp/1000)
+}
+
+prob &lt;- hw4_q2(100)
+prob</code></pre>
+<pre><code>## [1] 0.816</code></pre>
+<p>cf) <span class="math inline">\(\min_{1\le i \le n} X_i \sim
+\text{Exp}(\sum_{i=1}^n \lambda_i)\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+\mathbb P(\min_{1\le i \le n} X_i &gt; x)
+&amp;= \mathbb P(X_1 &gt; x, \dots, X_n &gt; x) \\
+&amp;= \prod_{i = 1}^n \mathbb P(X_i &gt; x) \quad \text{i.i.d} \\
+&amp;=  \prod_{i = 1}^n \exp(-\lambda_i x) \\
+&amp;= \exp\left\{ -\left(\sum_{i=1}^n \lambda_i \right)x \right\}
+\end{aligned}\]</span></p>
+<p>Then, the CDF of <span class="math inline">\(\min_{1\le i \le n}
+X_i\)</span> is <span class="math display">\[\begin{aligned}
+\mathbb P(\min_{1\le i \le n} X_i \le x)
+&amp;= 1 - \mathbb P(\min_{1\le i \le n} X_i &gt; x) \\
+&amp;= 1 - \exp\left\{ -\left(\sum_{i=1}^n \lambda_i \right)x \right\},
+\end{aligned}\]</span> which is the CDF of exponential distribution with
+rate parameter <span class="math inline">\(\sum_{i=1}^n
+\lambda_i\)</span>.</p>
+<p>cf) <span class="math inline">\(\mathbb P\Bigl(\min_{1\le i \le n}
+X_i = X_k \Bigr)= \lambda_k/\sum_{i=1}^n \lambda_i\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+\mathbb P\Bigl(\min_{1\le i \le n} X_i = X_k \Bigr)
+&amp;= \mathbb E \biggl[P\Bigl(\min_{1\le i \le n} X_i = X_k|X_k \Bigr)
+\biggr]
+\\ &amp;= \int P\Bigl(\min_{1\le i \le n} X_i = X_k|x_k \Bigr)f(x_k)dx_k
+\\
+&amp;= \int \mathbb P[X_i \ge x_k, i \neq k]f(x_k)dx_k \\
+&amp;= \int \prod_{i \neq k}\mathbb P[X_i \ge x_k]f(x_k)dx_k \\
+&amp;=  \int \exp\{-\sum_{i \neq
+k}\lambda_ix_k\}\lambda_k\exp\{-\lambda_kx_k\}dx_k \\
+&amp;=\lambda_k \int_0^{\infty}\exp\{-\sum_{i=1}^n \lambda_i x_k\}dx_k
+\\
+&amp;= \lambda_k/\sum_{i=1}^n \lambda_i
+\end{aligned}\]</span></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+
+
+
+
+
+</div>
