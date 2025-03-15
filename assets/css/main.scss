@@ -9,7 +9,7 @@ search: false
   position: fixed;
   left: 0;
   top: 0;
-  width: 300px; /* 사이드바 너비 */
+  width: 250px; /* 사이드바 너비 */
   height: 100vh; /* 화면 전체 높이 */
   background-color: #ffffff;
   padding: 60px 20px; /* 위쪽에 여백 추가 */
@@ -29,7 +29,7 @@ search: false
 
 /* 본문 내용 위치 조정 */
 .main-content {
-  margin-left:  250px; /* 사이드바 너비 + 여백 */
+  margin-left:  300px; /* 사이드바 너비 + 여백 */
   margin-right: 150px; /* 오른쪽 여백 추가 */
   padding: 20px;
   max-width: 1000px;
