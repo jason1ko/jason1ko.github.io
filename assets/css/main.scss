@@ -7,12 +7,12 @@ search: false
 /* 사이드바 스타일 */
 .sidebar-left {
   position: fixed;
-  top: 80px; /* 상단 바 높이만큼 아래로 내림 */
+  top: 90px; /* 상단 바 높이만큼 아래로 내림 */
   left: 0;
   width: 250px; /* 사이드바 너비 */
-  height: calc(100vh - 80px); /* 전체 높이에서 상단 바 높이를 빼서 맞춤 */
+  height: calc(100vh - 90px); /* 전체 높이에서 상단 바 높이를 빼서 맞춤 */
   background-color: #ffffff;
-  padding: 20px 20px; /* 위쪽에 여백 추가 */
+  padding: 10px 20px; /* 위쪽에 여백 추가 */
   overflow-y: auto; /* 스크롤 가능하도록 설정 */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
