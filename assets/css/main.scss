@@ -9,7 +9,6 @@ search: false
   position: fixed;
   top: 50px; /* 상단 바 높이만큼 아래로 내림 */
   left: 0;
-  top: 0;
   width: 250px; /* 사이드바 너비 */
   height: calc(100vh - 50px); /* 전체 높이에서 상단 바 높이를 빼서 맞춤 */
   background-color: #ffffff;
@@ -32,7 +31,6 @@ search: false
 .main-content {
   margin-left:  300px; /* 사이드바 너비 + 여백 */
   margin-right: 150px; /* 오른쪽 여백 추가 */
-  margin-top: 70px; /* 상단 바 높이 + 여백 */
   padding: 20px;
   max-width: 1000px;
   font-size: 14px; 
@@ -42,7 +40,6 @@ search: false
 .home-content {
   margin-left:  300px; /* 사이드바 너비 + 여백 */
   margin-right: 150px; /* 오른쪽 여백 추가 */
-  margin-top: 70px; /* 상단 바 높이 + 여백 */
   padding: 20px;
   max-width: 1000px;
   font-size: 14px; 
