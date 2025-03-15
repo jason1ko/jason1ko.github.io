@@ -1,0 +1,620 @@
+---
+title: "ESL CH3"
+date: 2023-09-01 23:59:00
+categories: [ESL]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+
+<!DOCTYPE html>
+
+<html>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="ex-3.6-show-that-the-ridge-regression-estimate-is-the-mean-and-mode-of-the-posterior-distribution-under-a-gaussian-prior-beta-sim-mathcal-n_p0-tau2-i_p-and-gaussian-sampling-model-y-sim-mathcal-n_nxbeta-sigma2-i_n-with-lambda-sigma2tau2." class="section level2">
+<h2>1. (Ex 3.6) Show that the ridge regression estimate is the mean (and
+mode) of the posterior distribution, under a Gaussian prior <span class="math inline">\(\beta \sim \mathcal N_p(0, \tau^2 I_p)\)</span>
+and Gaussian sampling model <span class="math inline">\(y \sim \mathcal
+N_N(X\beta, \sigma^2 I_N)\)</span> with <span class="math inline">\(\lambda = \sigma^2/\tau^2\)</span>.</h2>
+<div id="solution" class="section level4">
+<h4>Solution</h4>
+<p>The posterior distribution of <span class="math inline">\(\beta\)</span> is <span class="math inline">\(p(\beta | y) \propto p(y | \beta)
+p(\beta)\)</span>.<br />
+<span class="math inline">\(p(y | \beta) \propto \exp \left\{
+-\frac{1}{2\sigma^2} | y - X\beta |^2 \right\}\)</span> and<br />
+<span class="math inline">\(p(\beta) \propto \exp \left\{
+-\frac{\tau^2}{2} |\beta|^2 \right\}\)</span>.</p>
+<p>Thus,<br />
+<span class="math inline">\(p(y | \beta) p(\beta) \propto \exp \left\{
+-\frac{1}{2} \left( \frac{1}{\sigma^2} | y - X\beta |^2 + \tau^2
+|\beta|^2 \right) \right\}\)</span>.</p>
+<p>This can be rewritten as:<br />
+<span class="math inline">\(\propto \exp \left\{ -\frac{1}{2} (\beta -
+\mu_\beta)&#39; \Sigma^{-1} (\beta - \mu_\beta) \right\}\)</span>.</p>
+<p>The quadratic form in the exponential should be identical, so<br />
+<span class="math inline">\(\frac{1}{\sigma^2} (y - X\beta)&#39; (y -
+X\beta) + \frac{\tau^2}{2} \beta&#39; \beta = (\beta - \mu_\beta)&#39;
+\Sigma^{-1} (\beta - \mu_\beta) \quad \forall \beta\)</span>.</p>
+<p>Expanding,<br />
+<span class="math inline">\(\frac{1}{\sigma^2} \beta&#39; X&#39; X \beta
++ \frac{\tau^2}{2} \beta&#39; \beta = \beta&#39; \Sigma^{-1}
+\beta\)</span>.</p>
+<p>Thus,<br />
+<span class="math inline">\(\Sigma^{-1} = \frac{1}{\sigma^2} X&#39; X +
+\frac{\tau^2}{2} I_p = \frac{1}{\sigma^2} (X&#39;X + \frac{\tau^2}{2}
+\sigma^2 I_p)\)</span>.</p>
+<p>For the mean,<br />
+<span class="math inline">\(-\frac{1}{\sigma^2} \beta&#39; X&#39; y = -
+\beta&#39; \Sigma^{-1} \mu_\beta\)</span>,<br />
+so<br />
+<span class="math inline">\(\mu_\beta = \Sigma X&#39; y\)</span><br />
+<span class="math inline">\(\quad = \frac{1}{\sigma^2} (X&#39; X +
+\frac{\tau^2}{2} \sigma^2 I_p)^{-1} X&#39; y\)</span><br />
+<span class="math inline">\(\quad = (X&#39;X + \frac{\tau^2}{2} \sigma^2
+I_p)^{-1} X&#39; y\)</span>,</p>
+<p>which is the Ridge regression estimator with <span class="math inline">\(\lambda = \frac{\tau^2}{2} \sigma^2\)</span>.</p>
+</div>
+</div>
+<div id="ex-3.12-show-that-the-ridge-regression-estimates-can-be-obtained-by-ordinary-least-squares-regression-on-an-augmented-data-set-we-augment-the-centered-matrix-x-with-p-additional-rows-sqrt-lambda-i-augment-y-with-p-zeros.-by-introducing-artificial-data-having-response-value-zero-the-fitting-procedure-is-forced-to-shrink-the-coefficients-toward-zero." class="section level2">
+<h2>2. (Ex 3.12) Show that the ridge regression estimates can be
+obtained by ordinary least squares regression on an augmented data set:
+We augment the centered matrix <span class="math inline">\(X\)</span>
+with <span class="math inline">\(p\)</span> additional rows <span class="math inline">\(\sqrt \lambda I\)</span> augment <span class="math inline">\(y\)</span> with <span class="math inline">\(p\)</span> zeros. By introducing artificial data
+having response value zero, the fitting procedure is forced to shrink
+the coefficients toward zero.</h2>
+<div id="solution-1" class="section level4">
+<h4>Solution</h4>
+<p>Let<br />
+<span class="math inline">\(\tilde{X} = \begin{bmatrix} X \\
+\sqrt{\lambda} I_p \end{bmatrix}\)</span><br />
+and<br />
+<span class="math inline">\(\tilde{y} = \begin{bmatrix} y \\ 0_p
+\end{bmatrix}\)</span>.</p>
+<p>Then,<br />
+<span class="math inline">\(\tilde{X}&#39; \tilde{X} = \begin{bmatrix}
+X&#39; &amp; \sqrt{\lambda} I_p \end{bmatrix} \begin{bmatrix} X \\
+\sqrt{\lambda} I_p \end{bmatrix} = X&#39;X + \lambda I_p\)</span><br />
+and</p>
+<p><span class="math inline">\(\tilde{X}&#39; \tilde{y} =
+\begin{bmatrix} X&#39; &amp; \sqrt{\lambda} I_p \end{bmatrix}
+\begin{bmatrix} y \\ 0_p \end{bmatrix} = X&#39; y\)</span>.</p>
+<p>So,<br />
+<span class="math inline">\(\tilde{\beta} = (\tilde{X}&#39;
+\tilde{X})^{-1} \tilde{X}&#39; \tilde{y} = (X&#39;X + \lambda I_p)^{-1}
+X&#39; y = \hat{\beta}^{\text{Ridge}}\)</span>.</p>
+</div>
+</div>
+<div id="show-that-ehatmutextjs---mu2-ehatmutextml---mu2-p-where-mutextjs-left1---fracp-2p-rightz-and-z_i-sim-nmu_i-1-for-i1-dots-p-p-geq-3-mu-mu_1-dots-mu_p." class="section level2">
+<h2>3. Show that <span class="math inline">\(E[||\hat{\mu}^{\text{JS}} -
+\mu||^2] &lt; E[||\hat{\mu}^{\text{ML}} - \mu||^2] = p\)</span>, where
+<span class="math inline">\(\mu^{\text{JS}} = \left(1 - \frac{p-2}{p}
+\right)Z\)</span> and <span class="math inline">\(Z_i \sim N(\mu_i,
+1)\)</span> for <span class="math inline">\(i=1, \dots, p\)</span>,
+<span class="math inline">\(p \geq 3\)</span>, <span class="math inline">\(\mu = (\mu_1, \dots, \mu_p)\)</span>.</h2>
+<div id="solution-2" class="section level3">
+<h3>Solution</h3>
+<p>Let <span class="math inline">\(\hat{\mu} = (\hat{\mu}_1, \dots,
+\hat{\mu}_p)&#39;\)</span> be a random estimator of <span class="math inline">\(\mu\)</span>, not necessarily unbiased.<br />
+Then,<br />
+<span class="math display">\[(\hat{\mu}_i - \mu_i)^2 = (\hat{\mu}_i -
+Z_i + Z_i - \mu_i)^2 = (\hat{\mu}_i - Z_i)^2 + (Z_i - \mu_i)^2 + 2
+(\hat{\mu}_i - Z_i)(Z_i - \mu_i).\]</span></p>
+<div id="expectation-calculation" class="section level4">
+<h4>1) <strong>Expectation Calculation</strong></h4>
+<p><span class="math display">\[
+E[||\hat{\mu} - \mu||^2] = E[||\hat{\mu} - Z||^2] - p + 2 \sum_{i=1}^{p}
+\text{Cov}[Z_i, \hat{\mu}_i].
+\]</span></p>
+<p>So,</p>
+<p><span class="math display">\[
+E[(\hat{\mu}_i - \mu_i)^2] = E[(\hat{\mu}_i - Z_i)^2] + E[(Z_i -
+\mu_i)^2] + 2E[(\hat{\mu}_i - Z_i)(Z_i - \mu_i)].
+\]</span></p>
+<p>Since,</p>
+<p><span class="math display">\[
+E[(\hat{\mu}_i - Z_i)(Z_i - \mu_i)] = E_{Z}[(Z_i - \mu_i)(\hat{\mu}_i -
+Z_i)] - E_{Z}[Z_i - \mu_i]E_{\hat{\mu}_i}[\hat{\mu}_i - Z_i].
+\]</span></p>
+<p>Since <span class="math inline">\(E_{Z}[Z_i - \mu_i] = 0\)</span>, we
+get</p>
+<p><span class="math display">\[
+E[(\hat{\mu}_i - Z_i)(Z_i - \mu_i)] = \text{Cov}[Z_i, \hat{\mu}_i] -
+V[Z_i] = \text{Cov}[Z_i, \hat{\mu}_i] - 1.
+\]</span></p>
+<p>Thus,<br />
+<span class="math display">\[
+E[(\hat{\mu}_i - \mu_i)^2] = E[(\hat{\mu}_i - Z_i)^2] - 1 +
+2\text{Cov}[Z_i, \hat{\mu}_i],
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+E[||\hat{\mu} - \mu||^2] = E[||\hat{\mu} - Z||^2] - p + 2 \sum_{i=1}^{p}
+\text{Cov}[Z_i, \hat{\mu}_i].
+\]</span></p>
+</div>
+<div id="covariance-calculation" class="section level4">
+<h4>2) <strong>Covariance Calculation</strong></h4>
+<p><span class="math display">\[
+\text{Cov}[Z_i, \hat{\mu}_i] = E \left[ Z_i \frac{d\hat{\mu}_i}{dZ_i}
+\right].
+\]</span></p>
+<p>(Let <span class="math inline">\(\varphi(x)\)</span> be the p.d.f. of
+<span class="math inline">\(x \sim N(0,1)\)</span>.)</p>
+<p><span class="math display">\[
+\text{Cov}[\hat{\mu}_i, Z_i] = E_{Z_i}[(\hat{\mu}_i - \bar{\mu}_i)(Z_i -
+\mu_i)].
+\]</span></p>
+<p>(Let <span class="math inline">\(\bar{\mu}_i =
+E[\hat{\mu}_i]\)</span>.)</p>
+<p><span class="math display">\[
+= \int (\hat{\mu}_i - \bar{\mu}_i) (Z_i - \mu_i) \varphi(Z_i - \mu_i)
+dZ_i.
+\]</span></p>
+<p>(Since <span class="math inline">\(\varphi&#39;(x) = -x
+\varphi(x)\)</span>.)</p>
+<p><span class="math display">\[
+= \int (\hat{\mu}_i - \bar{\mu}_i) \left( - \frac{d}{dZ_i} \varphi(Z_i -
+\mu_i) \right) dZ_i.
+\]</span></p>
+<p>Using integration by parts,</p>
+<p><span class="math display">\[
+= \left[ (\hat{\mu}_i - \bar{\mu}_i) \varphi(Z_i - \mu_i)
+\right]_{-\infty}^{\infty} + \int \frac{d}{dZ_i} (\hat{\mu}_i -
+\bar{\mu}_i) \varphi(Z_i - \mu_i) dZ_i.
+\]</span></p>
+<p><span class="math display">\[
+= \int \frac{d\hat{\mu}_i}{dZ_i} \varphi(Z_i - \mu_i) dZ_i = E \left[
+\frac{d\hat{\mu}_i}{dZ_i} \right].
+\]</span></p>
+</div>
+<div id="expected-norm-of-modified-estimator" class="section level4">
+<h4>3). <strong>Expected Norm of Modified Estimator</strong></h4>
+<p><span class="math display">\[
+E[||\hat{\mu}^{\text{JS}} - \mu||^2] = p - E\left[
+\frac{(p-2)^2}{||Z||^2} \right].
+\]</span></p>
+<p>Since <span class="math display">\[
+E[||\hat{\mu}^{\text{mle}} - \mu||^2] = p,
+\]</span> we conclude that <span class="math display">\[
+E[||\hat{\mu}^{\text{ms}} - \mu||^2] &lt; p.
+\]</span></p>
+</div>
+<div id="conclusion" class="section level4">
+<h4>4) <strong>conclusion</strong></h4>
+<p>A single observation <span class="math inline">\(Z\)</span> leads to
+<span class="math inline">\(\hat{\mu}^{\text{mle}} = Z\)</span>.<br />
+Then, <span class="math display">\[
+E[||\hat{\mu}^{\text{mle}} - \mu||^2] = E[||Z - \mu||^2] = p.
+\]</span> Thus, <span class="math display">\[
+E[||\hat{\mu}^{\text{ms}} - \mu||^2] = E[||\hat{\mu}^{\text{mle}} -
+\mu||^2] - E\left[ \frac{(p-2)^2}{||Z||^2} \right].
+\]</span> Since <span class="math inline">\(E\left[ \frac{1}{||Z||^2}
+\right]\)</span> is positive for <span class="math inline">\(p &gt;
+2\)</span>, we obtain: <span class="math display">\[
+E[||\hat{\mu}^{\text{ms}} - \mu||^2] &lt; p.
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="show-that-hatthetatextlasso-which-minimizes-ftheta-z---theta2-lambda-theta-is-given-by-hatthetatextlasso-textsignzz---lambda2_-quad-z-in-mathbbr-lambda-0." class="section level2">
+<h2>4. Show that <span class="math inline">\(\hat{\theta}^{\text{lasso}}\)</span> which
+minimizes <span class="math display">\[ F(\theta) = (z - \theta)^2 +
+\lambda |\theta| \]</span> is given by <span class="math display">\[
+\hat{\theta}^{\text{lasso}} = \text{sign}(z)(|z| - \lambda/2)_+, \quad
+(z \in \mathbb{R}, \lambda &gt; 0). \]</span></h2>
+<div id="solution-3" class="section level4">
+<h4>Solution</h4>
+<p>We have: <span class="math display">\[ F(\theta) = z^2 - 2\theta Z +
+\theta^2 + \lambda |\theta|. \]</span></p>
+</div>
+<div id="case-1-z-geq-0" class="section level4">
+<h4>Case 1: <span class="math inline">\(z \geq 0\)</span></h4>
+<p><span class="math inline">\(F\)</span> is the summation of two
+graphs.</p>
+<ul>
+<li>If <span class="math inline">\(\arg\min_{\theta \geq 0} F(\theta) =
+0\)</span>, then <span class="math inline">\(F(\theta) =
+z^2\)</span>.</li>
+<li>If <span class="math inline">\(\arg\min_{\theta \geq z} F(\theta) =
+z\)</span>, then<br />
+<span class="math display">\[ F(z) = z^2 - 2z^2 + z^2 + \lambda z =
+\lambda z. \]</span></li>
+</ul>
+<p>When <span class="math inline">\(0 \leq \theta \leq z\)</span>,<br />
+<span class="math display">\[ F(\theta) = z^2 - 2z\theta + \theta^2 +
+\lambda |\theta| = \theta^2 + (\lambda - 2z)\theta + z^2.
+\]</span><br />
+Thus,<br />
+<span class="math display">\[ \arg\min_{\theta \in [0, z]} F(\theta) =
+\begin{cases}
+z - \lambda/2, &amp; (z \geq \lambda/2) \\
+0, &amp; (z &lt; \lambda/2)
+\end{cases}. \]</span></p>
+<p>Since <span class="math inline">\(z \geq \lambda/2\)</span>,<br />
+<span class="math display">\[ \min \{ z^2, \lambda z - \lambda^2/4, z^2
+\} = \min \{ z^2, \lambda z - \lambda^2/4 \} = \lambda z - \lambda^2/4.
+\]</span><br />
+So, <span class="math display">\[ \theta = z - \lambda/2 \quad (z \geq
+\lambda/2), \]</span><br />
+which can be written as: <span class="math display">\[ \theta =
+\text{sign}(z)(|z| - \lambda/2)_+. \]</span></p>
+<p>When <span class="math inline">\(z &lt; \lambda/2\)</span>,<br />
+<span class="math display">\[ z^2 &lt; \lambda z - \lambda^2/4,
+\]</span><br />
+so <span class="math inline">\(\theta = 0\)</span>.<br />
+Thus,<br />
+<span class="math display">\[ \theta = \text{sign}(z)(|z| -
+\lambda/2)_+. \]</span></p>
+<hr />
+</div>
+<div id="case-2-z-0" class="section level4">
+<h4>Case 2: <span class="math inline">\(z &lt; 0\)</span></h4>
+<ul>
+<li>If $_{} F() = 0 $, then $ F() = z^2$.</li>
+<li>If <span class="math inline">\(\arg\min_{\theta \geq z} F(\theta) =
+z\)</span>, then<br />
+<span class="math display">\[ F(z) = z^2 - 2z^2 + z^2 - \lambda z =
+\lambda z. \]</span></li>
+</ul>
+<p>When <span class="math inline">\(\lambda/2 \leq z &lt;
+0\)</span>,<br />
+<span class="math display">\[ \min \{ z^2, -\lambda z, -\lambda z -
+\lambda^2/4 \} = \min \{ z^2, -\lambda z - \lambda^2/4 \} = -\lambda z -
+\lambda^2/4. \]</span><br />
+So,<br />
+<span class="math display">\[ \theta = z + \lambda/2 = (-z -
+\lambda/2)_+ = -(-z - \lambda/2)_+ = \text{sign}(z)(|z| - \lambda/2)_+.
+\]</span></p>
+<p>When <span class="math inline">\(\lambda/2 &lt; z &lt;
+0\)</span>,<br />
+<span class="math display">\[ z^2 &lt; -\lambda z, \]</span><br />
+so<br />
+<span class="math display">\[ \min \{ z^2, -\lambda z \} = z^2,
+\]</span><br />
+and<br />
+<span class="math display">\[ \theta = 0 = \text{sign}(z)(|z| -
+\lambda/2)_+. \]</span></p>
+<p>Thus, we conclude that<br />
+<span class="math display">\[ \hat{\theta}^{\text{lasso}} =
+\text{sign}(z)(|z| - \lambda/2)_+. \]</span></p>
+</div>
+</div>
+<div id="ex.-3.23-consider-a-regression-problem-with-all-variables-and-response-having-mean-zero-and-standard-deviation-one.-suppose-also-that-each-variable-has-identical-absolute-correlation-with-the-response-frac1nlangle-x_j-yrangle-lambdaquad-j1...p.-let-hatbeta-be-the-least-squares-coefficient-of-y-on-x-and-let-ualpha-alpha-xhatbeta-for-alpha-0-1-be-the-vector-that-moves-a-fraction-alpha-toward-the-least-squares-fit-u.-let-rss-be-the-residual-sum-of-squares-from-the-fullleast-squares-fit." class="section level2">
+<h2>5. (Ex. 3.23) Consider a regression problem with all variables and
+response having mean zero and standard deviation one. Suppose also that
+each variable has identical absolute correlation with the response:
+<span class="math display">\[\frac{1}{N}|\langle x_j, y\rangle| =
+\lambda,\quad j=1,...,p.\]</span> Let <span class="math inline">\(\hat\beta\)</span> be the least-squares
+coefficient of <span class="math inline">\(y\)</span> on <span class="math inline">\(X\)</span>, and let <span class="math inline">\(u(\alpha) = \alpha X\hat\beta\)</span> for <span class="math inline">\(\alpha ∈ [0, 1]\)</span> be the vector that moves
+a fraction <span class="math inline">\(\alpha\)</span> toward the least
+squares fit <span class="math inline">\(u\)</span>. Let RSS be the
+residual sum-of squares from the fullleast squares fit.</h2>
+<div id="a-show-that-frac1nlangle-x_j-y-ualpharangle-1---alphalambdaquad-j1...p-and-hence-the-correlations-of-each-x_j-with-the-residuals-remain-equal-in-magnitude-as-we-progress-toward-u." class="section level3">
+<h3>(a) Show that <span class="math display">\[\frac{1}{N}\langle x_j,
+y-u(\alpha)\rangle = (1 - \alpha)\lambda,\quad j=1,...,p\]</span> and
+hence the correlations of each <span class="math inline">\(x_j\)</span>
+with the residuals remain equal in magnitude as we progress toward <span class="math inline">\(u\)</span>.</h3>
+<div id="solution-4" class="section level4">
+<h4>Solution</h4>
+<p>Note that<br />
+<span class="math display">\[ \frac{1}{N} \langle x_i, y - u(\alpha)
+\rangle \]</span><br />
+is the <span class="math inline">\(i\)</span>-th element of<br />
+<span class="math display">\[ \frac{1}{N} X^T(y - u(\alpha)).
+\]</span></p>
+<p><span class="math display">\[\begin{aligned}
+X^T(y - u(\alpha)) &amp;= X^T(y - \alpha X(X^TX)^{-1}X^Ty) \\
+&amp;= X^Ty - \alpha X^TX(X^TX)^{-1}X^Ty \\
+&amp;=(1 - \alpha)X^Ty.
+\end{aligned}\]</span></p>
+<p>We have<br />
+<span class="math display">\[ \langle x_i, y \rangle = N\lambda, \quad
+\forall i = 1, \dots, p, \]</span><br />
+so the <span class="math inline">\(i\)</span>-th element of<br />
+<span class="math display">\[ \frac{1}{N} X^T(y - u(\alpha))
+\]</span><br />
+is<br />
+<span class="math display">\[
+\left[ \frac{1}{N} X^T(y - u(\alpha)) \right]_i = \frac{1}{N} (1 -
+\alpha) X^Ty_i = \frac{1}{N} (1 - \alpha) N\lambda.
+\]</span></p>
+<p>Thus,<br />
+<span class="math display">\[
+\frac{1}{N} \langle x_i, y - u(\alpha) \rangle = \frac{1}{N} (1 -
+\alpha) \langle x_i, y \rangle = \frac{1}{N} (1 - \alpha) N\lambda = (1
+- \alpha) \lambda.
+\]</span></p>
+</div>
+</div>
+<div id="b-show-that-these-absolute-correlations-are-all-equal-to-lambdaalpha-frac1-alphasqrt1-alpha2-fracalpha2-alphanrss-lambda-and-they-decrease-monotonically-to-zero." class="section level3">
+<h3>(b) Show that these absolute correlations are all equal to <span class="math display">\[\lambda(\alpha) =
+\frac{1-\alpha}{\sqrt{(1-\alpha)^2 + \frac{\alpha(2-\alpha)}{N}RSS }
+}\lambda,\]</span> and they decrease monotonically to zero.</h3>
+<div id="solution-5" class="section level4">
+<h4>Solution</h4>
+<p>The standard deviation of <span class="math inline">\(x_i\)</span> is
+<span class="math inline">\(1\)</span>, meaning <span class="math inline">\(||x_i||^2 = 1\)</span>. Then,</p>
+<p><span class="math display">\[\begin{aligned}
+&amp;\frac{\langle x_i, y - u(\alpha) \rangle}{\{ \langle x_i, x_i
+\rangle \}^{\frac{1}{2}} \{ \langle y - u(\alpha), y - u(\alpha) \rangle
+\}^{\frac{1}{2}}} \\
+&amp;= \frac{\frac{1}{N} \langle x_i, y - u(\alpha) \rangle}{1 \cdot
+\left\{ \frac{1}{N} \langle y - u(\alpha), y - u(\alpha) \rangle
+\right\}^{\frac{1}{2}}} \\
+&amp;= \frac{(1 - \alpha) \lambda}{\left\{ \frac{1}{N} \langle y -
+u(\alpha), y - u(\alpha) \rangle \right\}^{\frac{1}{2}}}.
+\end{aligned}\]</span></p>
+<p>Now,<br />
+<span class="math display">\[
+\langle y - \alpha X\hat{\beta}, y - \alpha X\hat{\beta} \rangle = y^Ty
+- 2\alpha y^TX\hat{\beta} + \alpha^2 \hat{\beta}^TX^TX \hat{\beta}.
+\]</span></p>
+<p>Since <span class="math inline">\(X^TX\hat{\beta} = X^Ty\)</span>
+(LSE), we get</p>
+<p><span class="math display">\[
+= y^Ty + (\alpha^2 - 2\alpha) y^TX\hat{\beta}.
+\]</span></p>
+<p>Since SSE (RSS) is<br />
+<span class="math display">\[
+\langle y - X\hat{\beta}, y - X\hat{\beta} \rangle,
+\]</span> same as <span class="math inline">\(\alpha = 1\)</span> case
+above,</p>
+<p><span class="math display">\[
+\text{SSE} = y^Ty - y^TX\hat{\beta}.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[\begin{aligned}
+\langle y - \alpha X\hat{\beta}, y - \alpha X\hat{\beta} \rangle &amp;
+= y^Ty + (\alpha^2 - 2\alpha) (y^TX\hat{\beta} - \text{SSE}) \\
+&amp;= (\alpha^2 - 2\alpha + 1) y^Ty - (\alpha^2 - 2\alpha) \text{SSE}.
+\end{aligned}\]</span></p>
+<p>Since <span class="math inline">\(E[y^Ty] = 0\)</span> and <span class="math inline">\(V[y^Ty] = 1\)</span>,</p>
+<p><span class="math display">\[
+E[y^Ty] = N.
+\]</span></p>
+<p>Using this property,</p>
+<p><span class="math display">\[
+\langle y - \alpha X\hat{\beta}, y - \alpha X\hat{\beta} \rangle = N(1 -
+\alpha)^2 + \alpha(2 - \alpha) \text{SSE}.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\frac{\langle x_i, y - u(\alpha) \rangle}{\left\{ \langle x_i, x_i
+\rangle \right\}^{\frac{1}{2}} \left\{ \langle y - u(\alpha), y -
+u(\alpha) \rangle \right\}^{\frac{1}{2}}}
+= \frac{(1 - \alpha) \lambda}{\sqrt{(1 - \alpha)^2 +
+\frac{\text{SSE}}{N} \alpha (2 - \alpha)}} = \lambda(\alpha).
+\]</span></p>
+<p>Define</p>
+<p><span class="math display">\[
+f(x) = (1 - \alpha)^2 + \frac{\text{SSE}}{N} \alpha (2 - \alpha).
+\]</span></p>
+<p>It is increasing in <span class="math inline">\(\alpha \in
+(0,1)\)</span>, and <span class="math inline">\((1 - \alpha)
+\lambda\)</span> is decreasing in <span class="math inline">\(\alpha \in
+(0,1)\)</span>.</p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\lambda(\alpha) = \frac{(1 - \alpha) \lambda}{\sqrt{(1 - \alpha)^2 +
+\frac{\text{SSE}}{N} \alpha (2 - \alpha)}}
+\]</span></p>
+<p>decreases monotonically to <span class="math inline">\(\lambda(1) =
+0\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="ex.-3.25-derive-expressions-to-identify-the-next-variable-to-enter-the-active-set-at-step-k-1-and-the-value-of-alpha-at-which-this-occurs." class="section level2">
+<h2>6. (Ex. 3.25) Derive expressions to identify the next variable to
+enter the active set at step <span class="math inline">\(k + 1\)</span>,
+and the value of <span class="math inline">\(\alpha\)</span> at which
+this occurs.</h2>
+<div id="solution-6" class="section level4">
+<h4>Solution</h4>
+</div>
+<div id="step-1-solve-for-alpha_b" class="section level4">
+<h4>Step 1: Solve for <span class="math inline">\(\alpha_b\)</span></h4>
+<p><span class="math display">\[
+x_a^T r_k - \alpha x_a^T X_{A_k} \delta_k = x_b^T r_k - \alpha x_b^T
+X_{A_k} \delta_k
+\]</span></p>
+<p><span class="math display">\[
+\Rightarrow \alpha_b = \frac{x_b^T r_k - x_a^T r_k}{x_b^T X_{A_k}
+\delta_k - x_a^T X_{A_k} \delta_k}
+\]</span></p>
+<p>Choose one with<br />
+<span class="math display">\[ \alpha_b \in (0,1). \]</span></p>
+<p><span class="math display">\[
+x_a^T r_k - \alpha x_a^T X_{A_k} \delta_k = \alpha x_b^T X_{A_k}
+\delta_k - x_b^T r_k
+\]</span></p>
+<p><span class="math display">\[
+\Rightarrow \alpha_b = \frac{-x_b^T r_k + x_a^T r_k}{x_b^T X_{A_k}
+\delta_k + x_a^T X_{A_k} \delta_k}
+\]</span></p>
+<hr />
+</div>
+<div id="step-2-compute-maximum" class="section level4">
+<h4>Step 2: Compute Maximum</h4>
+<p>Then, compute<br />
+<span class="math display">\[ |x_b^T r_{k+1} (\alpha_b)| \]</span><br />
+for all <span class="math inline">\(x_b \in A_k^C\)</span> and choose
+<span class="math inline">\(b\)</span> that maximizes the value:</p>
+<p><span class="math display">\[
+b = \arg\max_{b \in A_k^C} |x_b^T r_{k+1} (\alpha_b)|.
+\]</span></p>
+</div>
+</div>
+<div id="ex.-3.25-for-given-lambda-0-let-hatbetalambda-be-the-lasso-solution-that-minimizes-frac12vert-y---xbetavert_22-lambdavert-betavert_1-and-mathcal-b_lambda-be-the-active-set-of-variables-in-the-solution." class="section level2">
+<h2>7. (Ex. 3.25) For given <span class="math inline">\(\lambda &gt;
+0\)</span>, let <span class="math inline">\(\hat\beta(\lambda)\)</span>
+be the lasso solution that minimizes <span class="math display">\[\frac{1}{2}\Vert y - X\beta\Vert_2^2 +
+\lambda\Vert \beta\Vert_1\]</span> and <span class="math inline">\(\mathcal B_{\lambda}\)</span> be the active set of
+variables in the solution.</h2>
+<div id="a-show-that-for-any-active-variable-x_j-j-in-mathcal-b_lambda-we-have-x_jy---x-hatbetalambda-lambdacdottextsignhatbeta_jlambda." class="section level3">
+<h3>(a) Show that for any active variable <span class="math inline">\(x_j (j \in \mathcal B_{\lambda})\)</span> we have
+<span class="math display">\[x_j&#39;(y - X \hat\beta(\lambda)) =
+\lambda\cdot\text{sign}(\hat\beta_j(\lambda)).\]</span></h3>
+<div id="solution-7" class="section level4">
+<h4>Solution</h4>
+<p>Let<br />
+<span class="math display">\[ Q(\beta) = \frac{1}{2} || y - X\beta
+||_2^2 + \lambda ||\beta||_1, \]</span><br />
+which expands to:<br />
+<span class="math display">\[ Q(\beta) = \frac{1}{2} (y^Ty - 2\beta^T
+X^T y + \beta^T X^T X \beta) + \lambda ||\beta||_1. \]</span></p>
+<p>For active variable <span class="math inline">\(x_i\)</span>, where
+<span class="math inline">\(\beta_i \neq 0\)</span>, we compute the
+derivative:</p>
+<p><span class="math display">\[\begin{aligned}
+\frac{\partial}{\partial \beta_i} Q(\beta) &amp;=
+\frac{\partial}{\partial \beta_i} \left( -\beta^T X^T y + \frac{1}{2}
+\beta^T X^T X \beta \right) + \lambda \text{sign}(\beta_i) \\
+&amp;= [-X^T y + X^T X \beta]_i + \lambda \text{sign}(\beta_i) \\
+&amp;= (- x_i^T y + x_i^T X \beta) + \lambda \text{sign}(\beta_i).
+\end{aligned}\]</span></p>
+<p>Since the definition of <span class="math inline">\(\hat{\beta}\)</span> satisfies:</p>
+<p><span class="math display">\[
+[-X^T y + X^T \hat{\beta}]_i + \lambda \text{sign}(\beta_i) = 0,
+\]</span></p>
+<p>it follows that:</p>
+<p><span class="math display">\[
+x_i^T (y - X \hat{\beta}) = \lambda \text{sign}(\beta_i).
+\]</span></p>
+</div>
+</div>
+<div id="b-show-that-for-any-non-active-variable-x_k-k-notin-mathcal-b_lambda-we-have-x_ky---x-hatbetalambda-le-lambda." class="section level3">
+<h3>(b) Show that for any non-active variable <span class="math inline">\(x_k, (k \notin \mathcal B_{\lambda})\)</span> we
+have <span class="math display">\[x_k&#39;(y - X \hat\beta(\lambda)) \le
+\lambda.\]</span></h3>
+<div id="solution-8" class="section level4">
+<h4>Solution</h4>
+<p>For non-active variable <span class="math inline">\(x_k\)</span>,
+where <span class="math inline">\(\beta_k = 0\)</span>, Since <span class="math inline">\(f(x) = |x|\)</span> is not differentiable at <span class="math inline">\(x = 0\)</span>, the subdifferential of <span class="math inline">\(f\)</span> at <span class="math inline">\(\beta_k\)</span> is:</p>
+<p><span class="math display">\[
+\partial f(\beta_k) = [-1,1].
+\]</span></p>
+<p>Still,</p>
+<p><span class="math display">\[
+(-x_k^T y + x_k^T X \hat{\beta}) + \lambda \partial f(\beta_k) = 0.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+x_k^T (y - X \hat{\beta}) = \lambda \partial f(\beta_k).
+\]</span></p>
+<p>and therefore,</p>
+<p><span class="math display">\[
+|x_k^T (y - X \hat{\beta})| \leq \lambda.
+\]</span></p>
+</div>
+</div>
+<div id="c-suppose-that-the-set-of-active-predictors-is-unchanged-for-lambda_0-lambda-lambda_1.-show-that-there-is-a-vector-gamma_0-such-that-hatbetalambda-hatbetalambda_0---lambda---lambda_0gamma_0" class="section level3">
+<h3>(c) Suppose that the set of active predictors is unchanged for <span class="math inline">\(\lambda_0 ≥ \lambda ≥ \lambda_1\)</span>. Show
+that there is a vector <span class="math inline">\(\gamma_0\)</span>
+such that <span class="math display">\[\hat\beta(\lambda) =
+\hat\beta(\lambda_0) - (\lambda - \lambda_0)\gamma_0\]</span></h3>
+<div id="solution-9" class="section level4">
+<h4>Solution</h4>
+<p><span class="math display">\[
+x_i^T (y - X \hat{\beta}(\lambda)) = \lambda \text{sign}(\beta_i) \quad
+\text{for active } x_i.
+\]</span></p>
+<p><span class="math display">\[
+|x_i^T (y - X \hat{\beta}(\lambda))| \leq \lambda \quad \text{for
+non-active } x_i.
+\]</span></p>
+<p>So,</p>
+<p><span class="math display">\[
+x_i^T (y - X \hat{\beta}(\lambda)) = \lambda \alpha_i, \quad \text{where
+} -1 \leq \alpha_i \leq 1.
+\]</span></p>
+<p>Let,</p>
+<p><span class="math display">\[
+X^T (y - X \hat{\beta}(\lambda)) = \lambda a, \quad \text{where } a =
+(\alpha_1, \dots, \alpha_p).
+\]</span></p>
+<p>From this,</p>
+<p><span class="math display">\[
+X^T X \hat{\beta}(\lambda) = X^T y - \lambda a.
+\]</span></p>
+<p>Solving for <span class="math inline">\(\hat{\beta}(\lambda)\)</span>,</p>
+<p><span class="math display">\[
+\hat{\beta}(\lambda) = (X^T X)^{-1} (X^T y - \lambda a).
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\gamma_0 = (X^T X)^{-1} a.
+\]</span></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
+
+
+
+</div>
