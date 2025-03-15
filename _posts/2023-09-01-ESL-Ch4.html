@@ -1,0 +1,771 @@
+---
+title: "ESL Ch4"
+date: 2023-09-01 23:40:00
+categories: [ESL]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<!DOCTYPE html>
+
+<html>
+  <body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="elements-of-statistical-learning-ch4" class="section level1">
+<h1>Elements of Statistical Learning Ch4</h1>
+<div id="let-g-denote-the-class-label-in-this-subsection.-define-y-y_1-dots-y_k-where-y_k-1-if-g-k-else-y_k-0.-mathbf-y-is-an-n-times-k-indicator-response-matrix-where-each-row-contains-a-single-1.-fit-a-linear-regression-model-to-each-column-of-mathbf-y-simultaneously-beginaligned-haty-x-xt-x-1-xt-y-hatb-xt-x-1-xt-y-quad-p1-times-k-text-coefficient-matrixendaligned-where-x-is-the-model-matrix-with-p1-columns-for-the-p-inputs-and-an-intercept.-with-input-x-compute-the-fitted-output-hatfxt-1-xt-hatb-and-identify-the-largest-component-and-classify-accordingly-hatgx-argmax_k-in-g-hatf_kx.-then-show-that-the-sum-of-the-fitted-values-satisfiessum_k-in-g-hatf_kx-1." class="section level2">
+<h2>1. Let <span class="math inline">\(G\)</span> denote the class label
+in this subsection. Define <span class="math inline">\(Y = (Y_1, \dots,
+Y_K)\)</span> where <span class="math inline">\(Y_k = 1\)</span> if
+<span class="math inline">\(G = k\)</span>, else <span class="math inline">\(Y_k = 0\)</span>. <span class="math inline">\(\mathbf Y\)</span> is an <span class="math inline">\(N \times K\)</span> indicator response matrix,
+where each row contains a single 1. Fit a linear regression model to
+each column of <span class="math inline">\(\mathbf Y\)</span>
+simultaneously: <span class="math display">\[\begin{aligned} \hat{Y}
+&amp;= X (X^T X)^{-1} X^T Y \\ \hat{B} &amp;= (X^T X)^{-1} X^T Y, \quad
+(p+1) \times K \text{ coefficient matrix},\end{aligned}\]</span> where
+<span class="math inline">\(X\)</span> is the model matrix with <span class="math inline">\((p+1)\)</span> columns for the <span class="math inline">\(p\)</span> inputs and an intercept. With input
+<span class="math inline">\(x\)</span>, compute the fitted output <span class="math inline">\(\hat{f}(x)^T = (1, x^T) \hat{B}\)</span> and
+identify the largest component and classify accordingly <span class="math inline">\(\hat{G}(x) = \arg\max_{k \in G}
+\hat{f}_k(x).\)</span> Then, show that the sum of the fitted values
+satisfies:<span class="math display">\[\sum_{k \in G} \hat{f}_k(x) =
+1.\]</span></h2>
+<div id="solution" class="section level4">
+<h4>Solution</h4>
+<p>Let<br />
+<span class="math display">\[ X = \begin{bmatrix} 1_N &amp; X_{(p)}
+\end{bmatrix}, \]</span><br />
+where <span class="math inline">\(1_N = (1, \dots, 1)^T\)</span> and
+<span class="math inline">\(X_{(p)}\)</span> is an <span class="math inline">\(N \times p\)</span> matrix.</p>
+<p><span class="math display">\[X^T X = \begin{bmatrix}
+1_N^T 1_N &amp; 1_N^T X_{(p)} \\
+X_{(p)}^T 1_N &amp; X_{(p)}^T X_{(p)}
+\end{bmatrix} =
+\begin{bmatrix}
+N &amp; 1_N^T X_{(p)} \\
+X_{(p)}^T 1_N &amp; X_{(p)}^T X_{(p)}
+\end{bmatrix}.\]</span></p>
+<p><span class="math display">\[
+X^T Y\mathbf 1_k =
+\begin{bmatrix}
+1_N^T \\
+X_{(p)}^T
+\end{bmatrix} 1_N =
+\begin{bmatrix}
+N \\
+X_{(p)}^T 1_N
+\end{bmatrix}.
+\]</span></p>
+<p>Then,<br />
+<span class="math display">\[
+\hat{B}\mathbf 1_k = (X^T X)^{-1} X^T Y\mathbf 1_k = \begin{bmatrix}
+N &amp; 1_N^T X_{(p)} \\
+X_{(p)}^T 1_N &amp; X_{(p)}^T X_{(p)}
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+N \\
+X_{(p)}^T 1_N
+\end{bmatrix}.
+\]</span></p>
+<p>Using the property</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+N &amp; 1_N^T X_{(p)} \\
+X_{(p)}^T 1_N &amp; X_{(p)}^T X_{(p)}
+\end{bmatrix}\begin{bmatrix}
+N &amp; 1_N^T X_{(p)} \\
+X_{(p)}^T 1_N &amp; X_{(p)}^T X_{(p)}
+\end{bmatrix}^{-1}=
+\begin{bmatrix}
+1 &amp; 0_p^T \\
+0_p &amp; I_p
+\end{bmatrix},
+\]</span></p>
+<p>we get</p>
+<p><span class="math display">\[
+\hat{B}\mathbf  1_k = \begin{bmatrix} 1 \\ 0_p \end{bmatrix}, \quad
+\text{where } 0_p = (0, \dots, 0)^T \in \mathbb{R}^p.
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+\hat{f}(x)^T = (1, x^T) \hat{B},
+\]</span> we have <span class="math display">\[
+\sum_{k=1}^{K} \hat{f}_k(x) = \hat{f}(x)^T 1_K = (1, x^T) \hat{B} 1_K=
+(1, x^T) \begin{bmatrix} 1 \\ 0_p \end{bmatrix} = 1.
+\]</span></p>
+<p>Thus, we have proved that<br />
+<span class="math display">\[ \sum_{k=1}^{K} \hat{f}_k(x) = 1.
+\]</span></p>
+</div>
+</div>
+<div id="ex-4.2-suppose-we-have-features-x-in-mathbbrp-a-two-class-response-with-class-sizes-n_1-n_2-and-the-target-coded-as--nn_1-nn_2." class="section level2">
+<h2>2. (Ex 4.2) Suppose we have features <span class="math inline">\(x
+\in \mathbb{R}^p\)</span>, a two-class response, with class sizes <span class="math inline">\(n_1, n_2\)</span>, and the target coded as <span class="math inline">\(-n/n_1, n/n_2\)</span>.</h2>
+<div id="a-show-that-the-lda-rule-classifies-to-class-2-if-xt-hatsigma-1hatmu_2---hatmu_1-frac12-hatmu_2t-hatsigma-1-hatmu_2---frac12-hatmu_1t-hatsigma-1-hatmu_1-logleftfracn_1nright---logleftfracn_2nright-and-class-1-otherwise." class="section level3">
+<h3>(a) Show that the LDA rule classifies to class 2 if <span class="math display">\[ x^T \hat{\Sigma}^{-1}(\hat{\mu}_2 - \hat{\mu}_1)
+&gt; \frac{1}{2} \hat{\mu}_2^T \hat{\Sigma}^{-1} \hat{\mu}_2 -
+\frac{1}{2} \hat{\mu}_1^T \hat{\Sigma}^{-1} \hat{\mu}_1 +
+\log\left(\frac{n_1}{n}\right) -
+\log\left(\frac{n_2}{n}\right),\]</span> and class 1 otherwise.</h3>
+<div id="solution-1" class="section level4">
+<h4>Solution</h4>
+<p>The LDA classifies to class 2 if <span class="math inline">\(\delta_2(x) &gt; \delta_1(x)\)</span>. That
+is,</p>
+<p><span class="math display">\[ x^T \hat{\Sigma}^{-1} \hat{\mu}_2 -
+\frac{1}{2} \hat{\mu}_2^T \hat{\Sigma}^{-1} \hat{\mu}_2 + \log
+\hat{\pi}_2 &gt; x^T \hat{\Sigma}^{-1} \hat{\mu}_1 - \frac{1}{2}
+\hat{\mu}_1^T \hat{\Sigma}^{-1} \hat{\mu}_1 + \log \hat{\pi}_1.
+\]</span></p>
+<p>In this case, <span class="math inline">\(\hat{\pi}_1 =
+\frac{n_1}{n}\)</span> and <span class="math inline">\(\hat{\pi}_2 =
+\frac{n_2}{n}\)</span> (<span class="math inline">\(n = n_1 +
+n_2\)</span>). Then,</p>
+<p><span class="math display">\[
+x^T \hat{\Sigma}^{-1} (\hat{\mu}_2 - \hat{\mu}_1)  &gt; \frac{1}{2}
+\hat{\mu}_2^T \hat{\Sigma}^{-1} \hat{\mu}_2 - \frac{1}{2} \hat{\mu}_1^T
+\hat{\Sigma}^{-1} \hat{\mu}_1 + \log \frac{n_1}{n} - \log \frac{n_2}{n}
+\]</span></p>
+<p>implies that the LDA classifies to class 2.</p>
+</div>
+</div>
+<div id="b-consider-minimization-of-the-least-squares-criterion-sum_i1n-y_i---beta_0---betat-x_i2.-show-that-the-solution-hatbeta-satisfies-leftn---2-hatsigma-fracn_1-n_2n-hatsigma_b-right-hatbeta-nhatmu_2---hatmu_1-where-hatsigma_b-hatmu_2---hatmu_1hatmu_2---hatmu_1t." class="section level3">
+<h3>(b) Consider minimization of the least squares criterion <span class="math display">\[ \sum_{i=1}^{n} (y_i - \beta_0 - \beta^T x_i)^2.
+\]</span> Show that the solution <span class="math inline">\(\hat{\beta}\)</span> satisfies <span class="math display">\[ \left[(n - 2) \hat{\Sigma} + \frac{n_1 n_2}{n}
+\hat{\Sigma}_B \right] \hat{\beta} = n(\hat{\mu}_2 -
+\hat{\mu}_1),\]</span> where <span class="math inline">\(\hat{\Sigma}_B
+= (\hat{\mu}_2 - \hat{\mu}_1)(\hat{\mu}_2 -
+\hat{\mu}_1)^T\)</span>.</h3>
+<div id="solution-2" class="section level4">
+<h4>Solution</h4>
+<p>Let</p>
+<p><span class="math display">\[
+X_i = (x_{i1}, \dots, x_{ip})^T \in \mathbb{R}^p, \quad Y = (y_1, \dots,
+y_n) \in \mathbb{R}^n, \quad
+\beta = (\beta_1, \dots, \beta_p)^T \in \mathbb{R}^p.
+\]</span></p>
+<p>We have:</p>
+<p><span class="math display">\[
+\left( \sum_{i=1}^{n} x_i x_i^T \right) \hat{\beta} - \frac{1}{n} \left(
+\sum_{i=1}^{n} x_i \right)
+\left( \sum_{i=1}^{n} x_i^T \right) \hat{\beta} = \sum_{i=1}^{n} y_i x_i
+- \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right)
+\left( \sum_{i=1}^{n} y_i \right).
+\]</span></p>
+<p>Define:</p>
+<p><span class="math display">\[
+X =
+\begin{bmatrix}
+1 &amp; x_1^T \\
+1 &amp; x_2^T \\
+\vdots &amp; \vdots \\
+1 &amp; x_n^T
+\end{bmatrix},
+\quad X^T =
+\begin{bmatrix}
+1 &amp; 1 &amp; \cdots &amp; 1 \\
+x_1 &amp; x_2 &amp; \cdots &amp; x_n
+\end{bmatrix},
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+X^T X =
+\begin{bmatrix}
+n &amp; \sum_{i=1}^{n} x_i^T \\
+\sum_{i=1}^{n} x_i &amp; \sum_{i=1}^{n} x_i x_i^T
+\end{bmatrix}.
+\]</span></p>
+<p>Also,</p>
+<p><span class="math display">\[
+X^T Y =
+\begin{bmatrix}
+\sum_{i=1}^{n} y_i \\
+\sum_{i=1}^{n} y_i x_i
+\end{bmatrix}.
+\]</span></p>
+<p>The least squares estimate (LSE) solution $ (_0, )^T $ satisfies:</p>
+<p><span class="math display">\[
+X^T X
+\begin{bmatrix}
+\hat{\beta}_0 \\
+\hat{\beta}
+\end{bmatrix}
+= X^T Y.
+\]</span></p>
+<p>That is,</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+n &amp; \sum_{i=1}^{n} x_i^T \\
+\sum_{i=1}^{n} x_i &amp; \sum_{i=1}^{n} x_i x_i^T
+\end{bmatrix}
+\begin{bmatrix}
+\hat{\beta}_0 \\
+\hat{\beta}
+\end{bmatrix}=
+\begin{bmatrix}
+\sum_{i=1}^{n} y_i \\
+\sum_{i=1}^{n} y_i x_i
+\end{bmatrix}.
+\]</span></p>
+<p>We obtain:</p>
+<p><span class="math display">\[
+\sum_{i=1}^{n} \hat{\beta}_0 + \left( \sum_{i=1}^{n} x_i^T \right)
+\hat{\beta} = \sum_{i=1}^{n} y_i,
+\]</span></p>
+<p><span class="math display">\[
+\left( \sum_{i=1}^{n} x_i \right) \hat{\beta}_0 + \left( \sum_{i=1}^{n}
+x_i x_i^T \right) \hat{\beta}
+= \sum_{i=1}^{n} y_i x_i.
+\]</span></p>
+<p>Since,</p>
+<p><span class="math display">\[
+\hat{\beta}_0 = \frac{1}{n} \sum_{i=1}^{n} y_i - \left( \frac{1}{n}
+\sum_{i=1}^{n} x_i \right)^T \hat{\beta},
+\]</span></p>
+<p>we substitute:</p>
+<p><span class="math display">\[
+\left( \sum_{i=1}^{n} x_i x_i^T \right) \hat{\beta} - \frac{1}{n} \left(
+\sum_{i=1}^{n} x_i \right)
+\left( \sum_{i=1}^{n} x_i^T \right) \hat{\beta} = \sum_{i=1}^{n} y_i x_i
+- \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right)
+\left( \sum_{i=1}^{n} y_i \right).
+\]</span></p>
+</div>
+</div>
+<div id="c-hence-show-that-hatsigma_b-hatbeta-is-in-the-direction-hatmu_2---hatmu_1-and-thus-hatbeta-propto-hatsigma-1hatmu_2---hatmu_1.-therefore-the-least-squares-regression-coefficient-is-identical-to-the-lda-coefficient-up-to-a-scalar-multiple." class="section level3">
+<h3>(c) Hence show that <span class="math inline">\(\hat{\Sigma}_B
+\hat{\beta}\)</span> is in the direction <span class="math inline">\((\hat{\mu}_2 - \hat{\mu}_1)\)</span> and thus
+<span class="math display">\[\hat{\beta} \propto
+\hat{\Sigma}^{-1}(\hat{\mu}_2 - \hat{\mu}_1).\]</span> Therefore, the
+least squares regression coefficient is identical to the LDA
+coefficient, up to a scalar multiple.</h3>
+<div id="solution-3" class="section level4">
+<h4>solution</h4>
+<p>We now show:</p>
+<p><span class="math display">\[
+\hat{\Sigma}_B \hat{\beta} = c (\hat{\mu}_2 - \hat{\mu}_1).
+\]</span></p>
+<p>Since,</p>
+<p><span class="math display">\[
+\hat{\Sigma}_B \hat{\beta} = (\hat{\mu}_2 - \hat{\mu}_1) (\hat{\mu}_2 -
+\hat{\mu}_1)^T \hat{\beta},
+\]</span></p>
+<p>where <span class="math inline">\(c = (\hat{\mu}_2 - \hat{\mu}_1)^T
+\hat{\beta} \in \mathbb{R}\)</span>, we see that <span class="math inline">\(\hat{\Sigma}_B \hat{\beta}\)</span> is in the
+direction of <span class="math inline">\((\hat{\mu}_2 -
+\hat{\mu}_1)\)</span>.</p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\hat{\Sigma} \hat{\beta} \propto (\hat{\mu}_2 - \hat{\mu}_1),
+\]</span></p>
+<p>which implies:</p>
+<p><span class="math display">\[
+\hat{\beta} \propto \hat{\Sigma}^{-1} (\hat{\mu}_2 - \hat{\mu}_1).
+\]</span></p>
+</div>
+</div>
+<div id="d-show-that-this-result-holds-for-any-distinct-coding-of-the-two-classes." class="section level3">
+<h3>(d) Show that this result holds for any (distinct) coding of the two
+classes.</h3>
+<div id="solution-4" class="section level4">
+<h4>Solution</h4>
+<p>Using equation (1) from part (b), we see that we can use any <span class="math inline">\(t_1, t_2\)</span> such that <span class="math inline">\(t_1 \neq t_2\)</span>. Then,</p>
+<p><span class="math display">\[
+\text{RHS} \propto (\hat{\mu}_2 - \hat{\mu}_1).
+\]</span></p>
+<p>Also,</p>
+<p><span class="math display">\[
+\left( (n - 2) \hat{\Sigma} + \frac{n_1 n_2}{n} (\hat{\mu}_2 -
+\hat{\mu}_1)(\hat{\mu}_2 - \hat{\mu}_1)^T \right)
+\hat{\beta} \propto (\hat{\mu}_2 - \hat{\mu}_1).
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+(n - 2) \hat{\Sigma} \hat{\beta} \propto (\hat{\mu}_2 - \hat{\mu}_1),
+\]</span></p>
+<p>and hence,</p>
+<p><span class="math display">\[
+\hat{\beta} \propto \hat{\Sigma}^{-1} (\hat{\mu}_2 - \hat{\mu}_1).
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="ex-4.3-suppose-we-transform-the-original-predictors-x-to-haty-via-linear-regression.-in-detail-let-haty-xxt-x-1-xt-y-x-hatb-where-y-is-the-indicator-response-matrix.-similarly-for-any-input-x-in-mathbbrp-we-get-a-transformed-vectorhatx-hatbt-x-in-mathbbrk.-show-that-lda-using-haty-is-identical-to-lda-in-the-original-space." class="section level2">
+<h2>3. (Ex 4.3) Suppose we transform the original predictors <span class="math inline">\(X\)</span> to <span class="math inline">\(\hat{Y}\)</span> via linear regression. In detail,
+let: <span class="math inline">\(\hat{Y} = X(X^T X)^{-1} X^T Y = X
+\hat{B},\)</span> where <span class="math inline">\(Y\)</span> is the
+indicator response matrix. Similarly, for any input <span class="math inline">\(x \in \mathbb{R}^p\)</span>, we get a transformed
+vector:<span class="math inline">\(\hat{x} = \hat{B}^T x \in
+\mathbb{R}^K.\)</span> Show that LDA using <span class="math inline">\(\hat{Y}\)</span> is identical to LDA in the
+original space.</h2>
+<div id="solution-5" class="section level4">
+<h4>Solution</h4>
+</div>
+<div id="preliminary" class="section level4">
+<h4>(1) Preliminary</h4>
+<p>Recall that each row of <span class="math inline">\(Y\)</span> has a
+single 1 and <span class="math inline">\(Y \in \mathbb{R}^{N \times
+K}\)</span>.</p>
+<p>The main point is to show that linear discriminant function w.r.t.
+<span class="math inline">\(X\)</span>, <span class="math inline">\(\delta_k(x)\)</span>, is identical to that w.r.t.
+<span class="math inline">\(\hat{Y}\)</span>, <span class="math inline">\(\hat{\delta}_k(x)\)</span>.</p>
+<p><span class="math display">\[
+\delta_k(x) = \log \pi_k + x^T \Sigma^{-1} \mu_k - \frac{1}{2} \mu_k^T
+\Sigma^{-1} \mu_k
+\]</span></p>
+<p><span class="math display">\[
+\Rightarrow \hat{\delta}_k(x) = \log \tilde{\pi}_k + x^T
+\tilde{\Sigma}^{-1} \tilde{\mu}_k - \frac{1}{2} \tilde{\mu}_k^T
+\tilde{\Sigma}^{-1} \tilde{\mu}_k
+\]</span></p>
+<p>Let <span class="math inline">\(\tilde{\pi}_k\)</span>, <span class="math inline">\(\tilde{\mu}_k\)</span>, <span class="math inline">\(\tilde{\Sigma}\)</span> be estimators of class
+probability, class mean, and class covariance respectively.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\tilde{\pi}_k = \hat{\pi}_k
+\Rightarrow \tilde{\pi}_k = \frac{N_k}{N}\)</span></p>
+<p><span class="math display">\[
+Y_k : \text{k-th column, indicator of k-group},\quad   X^T Y_k \in
+\mathbb{R}^{p+1}
+\]</span></p></li>
+<li><p><span class="math display">\[\begin{aligned}
+\tilde{\mu}_k &amp;= \frac{1}{N_k} \sum_{i: y_i = k} \hat{B} x_i \\
+&amp;= B^T \frac{1}{N_k} \sum_{i: y_i = k} x_i \\
+&amp;= B^T \sum_{i: y_i = k} \frac{x_i}{N_k} = B^T X^T Y_k
+\end{aligned}\]</span></p></li>
+</ol>
+<p>where <span class="math display">\[
+   \hat{B} = (X^T X)^{-1} X^T Y \in \mathbb{R}^{p \times K}.
+   \]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li><p><span class="math display">\[\begin{aligned}
+\tilde{\Sigma} &amp;= \frac{1}{N-K} \sum_{k=1}^{K} \sum_{i: y_i = k} (
+\hat{y}_i - \tilde{\mu}_k ) ( \hat{y}_i - \tilde{\mu}_k )^T \\
+&amp;= \frac{1}{N-K} \sum_{k=1}^{K} \sum_{i: y_i = k} ( B^T x_i - B^T
+\tilde{\mu}_k )( B^T x_i - B^T \tilde{\mu}_k )^T \\
+&amp;= B^T \frac{1}{N-K} \sum_{k=1}^{K} \sum_{i: y_i = k} ( x_i -
+\tilde{\mu}_k )( x_i - \tilde{\mu}_k )^T B \\
+&amp;   = B^T \Sigma B
+\end{aligned}\]</span></p></li>
+<li><p><span class="math display">\[\begin{aligned}
+(N-K) \tilde{\Sigma} &amp;= \sum_{k=1}^{K} \sum_{i: y_i = k} ( x_i -
+\tilde{\mu}_k )( x_i - \tilde{\mu}_k )^T \\
+&amp; = \sum x_i x_i^T - 2 \sum_{k=1}^{K} \sum_{i: y_i = k} x_i
+\tilde{\mu}_k^T + \sum_{k=1}^{K} \sum_{i: y_i = k} \tilde{\mu}_k
+\tilde{\mu}_k^T \\
+&amp;= \sum x_i x_i^T - 2 \sum_{k=1}^{K} \frac{1}{N_k} X^T Y_k (Y_k^T X)
++ \sum_{k=1}^{K} X^T Y_k (Y_k^T X) \\
+&amp;= X^T X - \sum_{k=1}^{K} \frac{1}{N_k} X^T Y_k Y_k^T X \\
+&amp;= X^T X - X^T Y D Y^T X, \quad ( D = \text{diag} \{ n_1^{-1},
+n_2^{-1}, \dots, n_K^{-1} \} ) \\
+&amp;= X^T (I - Y D Y^T) X
+\end{aligned}\]</span></p></li>
+<li><p>So <span class="math inline">\(\delta_k\)</span> can be defined
+as</p></li>
+</ol>
+<p><span class="math display">\[
+\hat{\delta}_k(\hat{y}) = \log \tilde{\pi}_k + \hat{y}^T
+\tilde{\Sigma}^{-1} \tilde{\mu}_k - \frac{1}{2} \tilde{\mu}_k^T
+\tilde{\Sigma}^{-1} \tilde{\mu}_k.
+\]</span></p>
+<p>We simply assume that <span class="math inline">\(\tilde{\Sigma} \in
+\mathbb{R}^{p \times p}\)</span>, <span class="math inline">\(\tilde{\Sigma}^{-1} \in \mathbb{R}^{K \times
+K}\)</span> exist.</p>
+</div>
+<div id="hatyt-tildesigma-1-tildemu_k" class="section level4">
+<h4>(2) <span class="math inline">\(\hat{Y}^T \tilde{\Sigma}^{-1}
+\tilde{\mu}_k\)</span></h4>
+<p><span class="math display">\[
+\hat{Y}^T \tilde{\Sigma}^{-1} \tilde{\mu}_k = (\hat{B}^T X)^T (\hat{B}^T
+\tilde{\Sigma} \hat{B})^{-1} \hat{B}^T \frac{1}{N_k} X^T Y_k,
+\]</span> and <span class="math display">\[\begin{aligned}
+\hat{B}^T \tilde{\Sigma} \hat{B} &amp;= \frac{1}{N-K} \hat{B}^T X (I - Y
+D Y^T) X \hat{B} \\
+&amp;= \frac{1}{N-K} \left( \hat{B}^T X X^T \hat{B} - \hat{B}^T X Y D
+Y^T X \hat{B} \right) \\
+&amp;= \frac{1}{N-K} \left( Y X (X^T X)^{-1} X^T X (X^T X)^{-1} X^T Y -
+\hat{B}^T X Y D Y^T X \hat{B} \right) \\
+&amp;= \frac{1}{N-K} \left( Y X (X^T X)^{-1} X^T Y - \hat{B}^T X Y D Y^T
+X \hat{B} \right) \\
+&amp;= \frac{1}{N-K} \left( H - H D H \right)
+\end{aligned}\]</span> by letting <span class="math inline">\(\hat{B}^T
+X^T Y := H\)</span>, so <span class="math inline">\(H^T =
+H\)</span>.</p>
+<p>For nonzero <span class="math inline">\(a \in
+\mathbb{R}^K\)</span>,</p>
+<p><span class="math display">\[
+a^T H a = a^T Y X (X^T X)^{-1} X^T Y a = c^T (X^T X)^{-1} c, \quad ( c =
+X^T Y a \in \mathbb{R}^p )
+\]</span></p>
+<p>Assuming <span class="math inline">\(K &lt; \min(m, p)\)</span>,
+<span class="math inline">\(X^T Y\)</span> is full column rank and thus
+<span class="math inline">\(c \neq 0\)</span>.</p>
+<p>Since <span class="math inline">\((X^T X)^{-1}\)</span> is P.D.,
+<span class="math inline">\(c^T (X^T X)^{-1} c = a^T H a &gt;
+0\)</span>, and thus <span class="math inline">\(H\)</span> is P.D. (and
+invertible). Then,</p>
+<p><span class="math display">\[
+(\hat{B}^T \tilde{\Sigma} \hat{B})^{-1} = (N-K) (H + H(-D)H)^{-1} =
+(N-K) (I - D H)^{-1} H^{-1},
+\]</span></p>
+<p><span class="math display">\[
+\hat{Y}^T \tilde{\Sigma}^{-1} \tilde{\mu}_k = (\hat{B}^T X)^T (\hat{B}^T
+\tilde{\Sigma} \hat{B})^{-1} \hat{B}^T \frac{1}{N_k} X^T Y_k = \left[
+X^T \hat{B} (\hat{B}^T \tilde{\Sigma} \hat{B})^{-1} \hat{B}^T
+\frac{1}{N_k} X^T Y_k \right]_k,
+\]</span> and</p>
+<p><span class="math display">\[\begin{aligned}
+\hat{B} (\hat{B}^T \tilde{\Sigma} \hat{B})^{-1} \hat{B}^T X^T Y
+&amp;= (N-K) \hat{B} (I - D H)^{-1} H^{-1} \hat{B}^T X^T Y \\
+&amp;= (N-K) \hat{B} (I - D H)^{-1} \quad \text{∵ } H = \hat{B}^T X^T Y
+\\
+&amp;= (N-K) \tilde{\Sigma} \hat{\Sigma}^{-1} \hat{B} (I - D H)^{-1} \\
+&amp;= \hat{\Sigma}^{-1} X^T (I - Y D Y^T) X \hat{B} (I - D H)^{-1} \\
+&amp;= \hat{\Sigma}^{-1} (X^T X \hat{B} - X^T Y D Y^T X \hat{B}) (I - D
+H)^{-1} \\
+&amp;= \hat{\Sigma}^{-1} (X^T Y - X^T Y D H) (I - D H)^{-1} \\
+&amp;= \hat{\Sigma}^{-1} X^T Y (I - D H) (I - D H)^{-1} =
+\hat{\Sigma}^{-1} X^T Y
+\end{aligned}\]</span></p>
+<p>So,</p>
+<p><span class="math display">\[
+\hat{Y}^T \tilde{\Sigma}^{-1} \tilde{\mu}_k = \left[ \frac{1}{N_k} x^T
+\hat{\Sigma}^{-1} X^T Y \right]_k= x^T \hat{\Sigma}^{-1} \left(
+\frac{1}{N_k} X^T Y_k \right) = x^T \hat{\Sigma}^{-1} \hat{\mu}_k.
+\]</span></p>
+</div>
+<div id="tildemu_kt-tildesigma-1-tildemu_k" class="section level4">
+<h4>(3) <span class="math inline">\(\tilde{\mu}_k^T \tilde{\Sigma}^{-1}
+\tilde{\mu}_k\)</span></h4>
+<p>Let <span class="math inline">\(\hat{M} = [\hat{\mu}_1 \dots
+\hat{\mu}_K]\)</span> be <span class="math inline">\(K \times K\)</span>
+matrix.</p>
+<p><span class="math display">\[
+\tilde{\mu}_k = \hat{B}^T \frac{1}{N_k} X^T Y_k = \hat{B}^T X \left(
+\frac{1}{N_k} Y_k \right) = \hat{B}^T X Y D,
+\]</span></p>
+<p>so <span class="math inline">\(\hat{M} = \hat{B}^T X Y
+D\)</span>.</p>
+<p><span class="math display">\[
+\tilde{\mu}_k^T \tilde{\Sigma}^{-1} \hat{M} = \hat{\mu}_k^T \hat{B}
+(\hat{B}^T \tilde{\Sigma} \hat{B})^{-1} \hat{B}^T X^T Y D =
+\hat{\mu}_k^T \hat{\Sigma}^{-1} X^T Y D.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\tilde{\mu}_k^T \tilde{\Sigma}^{-1} \tilde{\mu}_k = \hat{\mu}_k^T
+\hat{\Sigma}^{-1} X^T [Y D]_k = \hat{\mu}_k^T \hat{\Sigma}^{-1}
+\hat{\mu}_k.
+\]</span></p>
+</div>
+<div id="conclusion" class="section level4">
+<h4>(4) Conclusion</h4>
+<p><span class="math display">\[\begin{aligned}
+\hat{\delta}_k(\hat{y}) &amp;= \log \tilde{\pi}_k + \hat{Y}^T
+\tilde{\Sigma}^{-1} \tilde{\mu}_k - \frac{1}{2} \tilde{\mu}_k^T
+\tilde{\Sigma}^{-1} \tilde{\mu}_k \\
+&amp;= \log \tilde{\pi}_k + x^T \hat{\Sigma}^{-1} \hat{\mu}_k -
+\frac{1}{2} \hat{\mu}_k^T \hat{\Sigma}^{-1} \hat{\mu}_k = \delta_k(x).
+\quad \blacksquare
+\end{aligned}\]</span></p>
+</div>
+</div>
+<div id="consider-the-classification-problem-with-k-classes-and-the-p-dimension-predictor-x.-let-s-k---1-and-p-geq-s.-for-k-1-dots-s-we-code-the-class-k-as-an-indicator-s-vector-y-y_1-dots-y_s-with-y_k-1-and-y_i-0-for-i-neq-k-and-class-k-is-coded-as-y-0-dots-0.-let-s_11-s_22-s_12-denote-the-sample-covariance-matrices-scaled-by-n-for-x-y-and-x-y.-show-that-s_b-n-1-s_12-s_22-1-s_21-where-s_b-is-the-between-class-covariance-matrix." class="section level2">
+<h2>4. Consider the classification problem with <span class="math inline">\(K\)</span> classes and the <span class="math inline">\(p\)</span>-dimension predictor <span class="math inline">\(X\)</span>. Let <span class="math inline">\(s = K
+- 1\)</span> and <span class="math inline">\(p \geq s\)</span>. For
+<span class="math inline">\(k = 1, \dots, s\)</span>, we code the class
+<span class="math inline">\(k\)</span> as an indicator <span class="math inline">\(s\)</span>-vector <span class="math inline">\(Y =
+(Y_1, \dots, Y_s)\)</span> with <span class="math inline">\(Y_k =
+1\)</span> and <span class="math inline">\(Y_i = 0\)</span> for <span class="math inline">\(i \neq k\)</span>, and class <span class="math inline">\(K\)</span> is coded as <span class="math inline">\(Y = (0, \dots, 0)\)</span>. Let <span class="math inline">\(S_{11}, S_{22}, S_{12}\)</span> denote the sample
+covariance matrices scaled by <span class="math inline">\(N\)</span> for
+<span class="math inline">\(X, Y\)</span>, and <span class="math inline">\((X, Y)\)</span>. Show that <span class="math display">\[S_B = N^{-1} S_{12} S_{22}^{-1} S_{21}\]</span>
+where <span class="math inline">\(S_B\)</span> is the between-class
+covariance matrix.</h2>
+<div id="solution-6" class="section level4">
+<h4>Solution</h4>
+</div>
+<div id="preliminary-1" class="section level4">
+<h4>(1) Preliminary</h4>
+<p>Let <span class="math inline">\(H = I_N - \frac{1}{N} 1_N
+1_N^T\)</span> be a centering matrix,<br />
+where <span class="math inline">\(J_N := 1_N 1_N^T\)</span>, and <span class="math inline">\(1_N := (1, \dots, 1) \in
+\mathbb{R}^N\)</span>.</p>
+<p>Matrix <span class="math inline">\(Y \in \mathbb{R}^{N \times
+S}\)</span> is defined as <span class="math inline">\(Y = [Y_1, \dots,
+Y_S]\)</span>,<br />
+where <span class="math inline">\(Y_k \in \mathbb{R}^N\)</span>, <span class="math inline">\(N_k = Y_k^T 1_N\)</span> <span class="math inline">\((k = 1, \dots, S)\)</span>, <span class="math inline">\((Y_k)_i = 0\)</span> or <span class="math inline">\(1\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+N^{-1} Y^T 1_N &amp;= \bar{Y} \in \mathbb{R}^S, \quad \text{where }
+(\bar{Y})_k = \frac{1}{N} \sum_{i} Y_{ik} = \frac{N_k}{N}. \\
+N_k^{-1} X^T Y_k &amp;= \bar X_k\in \mathbb{R}^p, \quad \text{where }
+(\bar{X}_k)_i \text{ is the average of k-class in the } i \text{th
+column of } X. \\
+N^{-1} X^T 1_N &amp;= \bar{X} \in \mathbb{R}^p, \quad \text{where }
+(\bar{X})_i \text{ is the average in } i \text{th column of } X.
+\end{aligned}\]</span></p>
+</div>
+<div id="s_12" class="section level4">
+<h4>(2) <span class="math inline">\(S_{12}\)</span></h4>
+<p><span class="math display">\[\begin{aligned}
+S_{12} &amp;= N^{-1} X^T H Y = N^{-1} X (I_N - N^{-1} 1_N 1_N^T) Y \\
+&amp;= N^{-1} X^T Y - N^{-1} X^T 1_N N^{-1} 1_N^T Y \\
+&amp;= N^{-1} X^T Y - N^{-1} X^T 1_N
+\begin{bmatrix}
+\frac{N_1}{N} &amp; \dots &amp; \frac{N_S}{N}
+\end{bmatrix} \qquad \because \text{(determinant of product)} \\
+&amp;= \frac{1}{N}
+\begin{bmatrix}
+X^T Y_1 - X^T 1_N \frac{N_1}{N} &amp; \dots &amp; X^T Y_S - X^T 1_N
+\frac{N_S}{N}
+\end{bmatrix} \\
+&amp;= \frac{1}{N}
+\begin{bmatrix}
+N_1 (\bar{X}_1 - \bar{X}) &amp; \dots &amp; N_S (\bar{X}_S - \bar{X})
+\end{bmatrix}.
+\end{aligned}\]</span></p>
+</div>
+<div id="s_22-1" class="section level4">
+<h4>(3) <span class="math inline">\(S_{22}^{-1}\)</span></h4>
+<p><span class="math display">\[
+S_{22} = \frac{1}{N} Y^T H Y = \frac{1}{N} Y^T (I_N - N^{-1} J_N) Y=
+\frac{1}{N} Y^T Y - N^{-1} Y^T J_N Y.
+\]</span></p>
+</div>
+<div id="yt-y-textdiag-n_1-dots-n_s" class="section level4">
+<h4>1) <span class="math inline">\(Y^T Y = \text{diag} \{ N_1, \dots,
+N_S \}\)</span></h4>
+<p><span class="math inline">\(Y_k\)</span> is an indicator vector,
+showing whether <span class="math inline">\(X_i\)</span> is in class
+<span class="math inline">\(k\)</span>. Each <span class="math inline">\(X_{i,k}\)</span> should only be in one class, so
+<span class="math inline">\((Y_k)_i (Y_\ell)_i = 0\)</span> for <span class="math inline">\(k \neq \ell\)</span>. <span class="math inline">\((Y_k)_i (Y_k)_i\)</span> can’t be simultaneously
+1, so <span class="math inline">\(Y_k^T Y_\ell = 0\)</span>.</p>
+<p>Note that <span class="math inline">\(Y_k^T Y_k = N_k\)</span>.
+Then</p>
+<p><span class="math display">\[
+Y^T Y =  
+\begin{bmatrix}
+Y_1^T \\
+\vdots \\
+Y_S^T
+\end{bmatrix}  
+[Y_1, \dots, Y_S]  
+= \text{diag} \{ N_1, \dots, N_S \}
+\]</span></p>
+</div>
+<div id="s_22-1-using-woodbury-matrix-identity" class="section level4">
+<h4>2) <span class="math inline">\(S_{22}^{-1}\)</span> using Woodbury
+Matrix identity</h4>
+<p>Since the Woodbury Matrix identity is<br />
+<span class="math inline">\((A + U C V)^{{-1}} = A^{-1} - A^{-1} U (C +
+V A^{-1} U)^{-1} V A^{-1}\)</span>, we may use this as follows:</p>
+<p><span class="math display">\[\begin{aligned}
+S_{22}^{-1} &amp;= \left( \frac{1}{N} Y^T Y + Y^T \left( \frac{1}{N^2}
+J_N \right) Y \right)^{-1} \\
+&amp;= \left( \frac{1}{N} Y^T Y + \frac{1}{N^2} Y^T 1_N 1_N^T Y
+\right)^{-1} \\
+&amp;= N (Y^T Y)^{-1} - N (Y^T Y)^{-1} Y^T 1_N (-1 + \frac{1}{N} 1_N^T Y
+(Y^T Y)^{-1} Y^T 1_N )^{-1} \frac{1}{N} 1_N^T Y (Y^T Y)^{-1}\\
+&amp;= N (Y^T Y)^{-1} - (Y^T Y)^{-1} Y^T 1_N (-1 + \frac{1}{N} 1_N^T Y
+(Y^T Y)^{-1} Y^T 1_N)^{-1} 1_N^T Y (Y^T Y)^{-1}
+\end{aligned}\]</span></p>
+<hr />
+</div>
+<div id="nt-y-yt-y-1-yt-1_n-and-yt-y-1-yt-1_n" class="section level4">
+<h4>3) <span class="math inline">\(1_N^T Y (Y^T Y)^{-1} Y^T 1_N\)</span>
+and <span class="math inline">\((Y^T Y)^{-1} Y^T 1_N\)</span></h4>
+<p><span class="math display">\[\begin{aligned}
+1_N^T Y (Y^T Y)^{-1} Y^T 1_N &amp;= 1_N^T Y \text{diag} \left\{
+\frac{1}{N_1}, \dots, \frac{1}{N_S} \right\} Y^T 1_N \\
+&amp;= (N_1, \dots, N_s) \text{diag} \left\{ \frac{1}{N_1}, \dots,
+\frac{1}{N_s} \right\}
+\begin{bmatrix}
+N_1 \\
+\vdots \\
+N_s
+\end{bmatrix} \\
+&amp;= N_1 + \dots + N_s = N - N_K
+\end{aligned}\]</span></p>
+<p>Then,</p>
+<p><span class="math display">\[
+\left( -1 + \frac{1}{N} 1_N^T Y (Y^T Y)^{-1} Y^T 1_N \right)^{-1} = (-1
++ \frac{1}{N} (N - N_K))^{-1}
+= (-1 + 1 - \frac{N_K}{N})^{-1} = - \frac{N}{N_K}
+\]</span> and <span class="math display">\[
+(Y^T Y)^{-1} Y^T 1_N = \text{diag} \left\{ \frac{1}{N_1}, \dots,
+\frac{1}{N_s} \right\}
+\begin{bmatrix}
+N_1 \\
+\vdots \\
+N_s
+\end{bmatrix}
+= 1_s
+\]</span></p>
+</div>
+<div id="conclusion-1" class="section level4">
+<h4>4) Conclusion</h4>
+<p><span class="math display">\[
+S_{22}^{-1} = N (Y^T Y)^{-1} - 1_S \left( - \frac{N}{N_K} \right) 1_S^T
+\]</span></p>
+<hr />
+</div>
+<div id="n-s_12-s_22-1-s_21" class="section level4">
+<h4>(3) <span class="math inline">\(N S_{12} S_{22}^{-1}
+S_{21}\)</span></h4>
+<p>It remains to show</p>
+<p><span class="math display">\[
+N S_{12} S_{22}^{-1} S_{21} = S_B := \sum_{k=1}^{S} N_k (\bar{X}_k -
+\bar{X}) (\bar{X}_k - \bar{X})^T.
+\]</span></p>
+<p><span class="math display">\[\begin{aligned}
+N S_{12} S_{22}^{-1} S_{21} &amp;= N \frac{1}{N}  
+\begin{bmatrix}
+N_1 (\bar{X}_1 - \bar{X}) &amp; \dots &amp; N_S (\bar{X}_S - \bar{X})
+\end{bmatrix}
+\left( N (Y^T Y)^{-1} + \frac{N}{N_K} 1_S 1_S^T \right)
+\frac{1}{N}
+\begin{bmatrix}
+N_1 (\bar{X}_1 - \bar{X})^T \\
+\vdots \\
+N_S (\bar{X}_S - \bar{X})^T
+\end{bmatrix} \\
+&amp;= \begin{bmatrix}
+N_1 (\bar{X}_1 - \bar{X}) &amp; \dots &amp; N_S (\bar{X}_S - \bar{X})
+\end{bmatrix}
+\left( \text{diag} \left\{ \frac{1}{N_1}, \dots, \frac{1}{N_S} \right\}
++ \frac{1}{N_K} 1_S 1_S^T \right)
+\begin{bmatrix}
+N_1 (\bar{X}_1 - \bar{X})^T \\
+\vdots \\
+N_S (\bar{X}_S - \bar{X})^T
+\end{bmatrix}
+\end{aligned}\]</span></p>
+<p>We split this into two parts:</p>
+</div>
+<div id="section" class="section level4">
+<h4>1)</h4>
+<p><span class="math display">\[
+\begin{bmatrix}
+N_1 (\bar{X}_1 - \bar{X}) &amp; \dots &amp; N_S (\bar{X}_S - \bar{X})
+\end{bmatrix}
+\text{diag} \left\{ \frac{1}{N_1}, \dots, \frac{1}{N_S} \right\}
+\begin{bmatrix}
+N_1 (\bar{X}_1 - \bar{X})^T \\
+\vdots \\
+N_S (\bar{X}_S - \bar{X})^T
+\end{bmatrix} = \sum_{k=1}^{S} N_k (\bar{X}_k - \bar{X}) (\bar{X}_k -
+\bar{X})^T.
+\]</span></p>
+</div>
+<div id="section-1" class="section level4">
+<h4>2)</h4>
+<p><span class="math display">\[
+\begin{bmatrix}
+N_1 (\bar{X}_1 - \bar{X}) &amp; \dots &amp; N_S (\bar{X}_S - \bar{X})
+\end{bmatrix}
+1_S = \sum_{k=1}^{S} N_k (\bar{X}_k - \bar{X}).
+\]</span></p>
+<p>Note that<span class="math inline">\((N_k \bar{X}_k)_i\)</span> is
+the sum of <span class="math inline">\(X\)</span>’s in the <span class="math inline">\(i\)</span>th column whose class is <span class="math inline">\(k\)</span>, and <span class="math inline">\((N
+\bar{X})_i\)</span> is the sum of <span class="math inline">\(X\)</span>’s in the <span class="math inline">\(i\)</span>th column for all classes <span class="math inline">\((1, \dots, s, K), (i = 1, \dots, p).\)</span>
+Then, <span class="math inline">\((N \bar{X})_i - \sum_{k=1}^{S} N_k
+\bar{X}_k\)</span> is the sum of <span class="math inline">\(X\)</span>’s in the <span class="math inline">\(i\)</span>th column whose class is <span class="math inline">\(K\)</span>.<br />
+Using this, <span class="math inline">\(\sum_{k=1}^{S} N_k \bar{X}_k = N
+\bar{X} - N_K \bar{X}_K\)</span>.</p>
+<p>Also, <span class="math inline">\(\sum_{k=1}^{S} N_k \bar{X}_k = (N -
+N_K) \bar{X}\)</span>. So,</p>
+<p><span class="math display">\[
+\sum_{k=1}^{S} N_k (\bar{X}_k - \bar{X}) = N \bar{X} - N_k \bar{X}_K - N
+\bar{X} + N_k \bar{X} = N_k (\bar{X}_K - \bar{X}),
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{1}{N_K}  
+\begin{bmatrix}
+N_1 (\bar{X}_1 - \bar{X}) &amp; \dots &amp; N_S (\bar{X}_S - \bar{X})
+\end{bmatrix}
+1_S 1_S^T
+\begin{bmatrix}
+N_1 (\bar{X}_1 - \bar{X})^T \\
+\vdots \\
+N_S (\bar{X}_S - \bar{X})^T
+\end{bmatrix}
+= N_K (\bar{X}_K - \bar{X}) (\bar{X}_K - \bar{X})^T.
+\]</span></p>
+</div>
+<div id="conclusion-2" class="section level4">
+<h4>3) Conclusion</h4>
+<p>Hence,</p>
+<p><span class="math display">\[\begin{aligned}
+N S_{12} S_{22}^{-1} S_{21} &amp;= \sum_{k=1}^{S} N_k (\bar{X}_k -
+\bar{X}) (\bar{X}_k - \bar{X})^T + N_k (\bar{X}_K - \bar{X}) (\bar{X}_K
+- \bar{X})^T \\
+&amp;= \sum_{k=1}^{K} N_k (\bar{X}_k - \bar{X}) (\bar{X}_k - \bar{X})^T
+= S_B.
+\end{aligned}\]</span></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
+
+</div>
