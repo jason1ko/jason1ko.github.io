@@ -5,6 +5,8 @@ search: false
 
 
 .site-header {
+  position: fixed;
+  top: 0;
   margin-left: 250px; /* 왼쪽 사이드바 너비에 맞게 조정 */
   width: calc(100% - 250px); /* 오른쪽 영역만 사용 */
 }
