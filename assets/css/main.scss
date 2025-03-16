@@ -44,11 +44,40 @@ search: false
   margin-left: 10px; /* 제목을 오른쪽으로 이동 */
 }
 
+
+.right-sidebar {
+  position: fixed;
+  top: 90px; /* 헤더 높이에 맞춤 */
+  right: 0;
+  width: 200px;
+  height: calc(100vh - 90px);
+  background-color: #f9f9f9;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+}
+
+.social-links li {
+  margin: 5px 0;
+}
+
+
 /* 본문 내용 위치 조정 */
 .main-content {
   margin-top: 90px;
   margin-left:  300px; /* 사이드바 너비 + 여백 */
-  margin-right: 150px; /* 오른쪽 여백 추가 */
+  margin-right: 200px; /* 오른쪽 여백 추가 */
   padding: 20px;
   max-width: 1200px;
   font-size: 14px; 
@@ -58,7 +87,7 @@ search: false
 .home-content {
   margin-top: 90px;
   margin-left:  300px; /* 사이드바 너비 + 여백 */
-  margin-right: 150px; /* 오른쪽 여백 추가 */
+  margin-right: 200px; /* 오른쪽 여백 추가 */
   padding: 20px;
   max-width: 1200px;
   font-size: 14px; 
