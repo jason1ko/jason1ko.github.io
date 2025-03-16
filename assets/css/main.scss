@@ -4,6 +4,11 @@ search: false
 ---
 
 
+.site-header {
+  margin-left: 250px; /* 왼쪽 사이드바 너비에 맞게 조정 */
+  width: calc(100% - 250px); /* 오른쪽 영역만 사용 */
+}
+
 /* 사이드바 스타일 */
 .sidebar-left {
   position: fixed;
