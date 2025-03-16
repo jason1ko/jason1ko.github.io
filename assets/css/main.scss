@@ -45,33 +45,6 @@ search: false
 }
 
 
-.right-sidebar {
-  position: fixed;
-  top: 90px; /* 헤더 높이에 맞춤 */
-  right: 0;
-  width: 200px;
-  height: calc(100vh - 90px);
-  background-color: #f9f9f9;
-  padding: 20px;
-  overflow-y: auto;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.profile-img {
-  width: 100px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.social-links {
-  list-style: none;
-  padding: 0;
-}
-
-.social-links li {
-  margin: 5px 0;
-}
-
 
 /* 본문 내용 위치 조정 */
 .main-content {
