@@ -66,8 +66,12 @@ search: false
   font-size: 14px; 
 }
 
+
 .page__footer {
-  display: none;
+  background-color: transparent;
+  padding: 0;
+  height: 0;
+  border: none;
 }
 
 
