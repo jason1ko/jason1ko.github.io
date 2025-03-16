@@ -12,10 +12,10 @@ search: false
 /* 사이드바 스타일 */
 .sidebar-left {
   position: fixed;
-  top: 90px; /* 상단 바 높이만큼 아래로 내림 */
+  top: 0; /* 상단 바 높이만큼 아래로 내림, 90px; */
   left: 0;
   width: 250px; /* 사이드바 너비 */
-  height: calc(100vh - 90px); /* 전체 높이에서 상단 바 높이를 빼서 맞춤 */
+  height: 100vh; /* 전체 높이에서 상단 바 높이를 빼서 맞춤 calc(100vh - 90px); */
   background-color: #ffffff;
   padding: 10px 20px; /* 위쪽에 여백 추가 */
   overflow-y: auto; /* 스크롤 가능하도록 설정 */
