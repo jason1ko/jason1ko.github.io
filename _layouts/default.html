@@ -13,6 +13,8 @@
     {% include_cached skip-links.html %}
     {% include_cached masthead.html %}
 
+    {% include right-sidebar.html %} <!-- 여기에 추가 (헤더 바로 아래) -->
+
     <div class="initial-content">
       {{ content }}
       {% include after-content.html %}
