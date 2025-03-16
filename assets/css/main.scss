@@ -48,7 +48,7 @@ search: false
 
 /* 본문 내용 위치 조정 */
 .main-content {
-  margin-top: 90px;
+  /*margin-top: 90px;*/
   margin-left:  300px; /* 사이드바 너비 + 여백 */
   margin-right: 200px; /* 오른쪽 여백 추가 */
   padding: 20px;
@@ -58,7 +58,7 @@ search: false
 
 /* 메인 화면에서만 적용 */
 .home-content {
-  margin-top: 90px;
+  /*margin-top: 90px;*/
   margin-left:  300px; /* 사이드바 너비 + 여백 */
   margin-right: 200px; /* 오른쪽 여백 추가 */
   padding: 20px;
