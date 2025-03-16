@@ -10,7 +10,7 @@ search: false
 
 
 .masthead {
-  position: fixed;
+  position: relative; /*fixed; */
   top: 0;
   left: 250px; /* 사이드바 크기 */
   width: calc(100% - 250px);
