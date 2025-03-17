@@ -1,0 +1,288 @@
+---
+title: "ESL CH7"
+date: 2023-09-01 23:30:00
+categories: [Elements of Statistical Learning]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<!DOCTYPE html>
+
+<html>
+
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="elements-of-statistical-learning-ch7" class="section level1">
+<h1>Elements of Statistical Learning CH7</h1>
+<div id="let-a-a_ij-b-b_ij-be-n-times-n-positive-semidefinite-psd-matrices" class="section level2">
+<h2>1. Let <span class="math inline">\(A = \{a_{ij}\}, B =
+\{b_{ij}\}\)</span> be <span class="math inline">\((n \times n)\)</span>
+positive semidefinite (PSD) matrices</h2>
+<div id="a-show-that-a-otimes-b-is-also-psd" class="section level3">
+<h3>(a) Show that <span class="math inline">\(A \otimes B\)</span> is
+also PSD</h3>
+<p><strong>proof</strong></p>
+<p>Note that <span class="math inline">\(B\)</span> can be any <span class="math inline">\((m \times m)\)</span> matrix (<span class="math inline">\(n \neq m\)</span> in general).</p>
+<div id="a-otimes-bc-otimes-d-ac-otimes-bd-quad-c-in-mathbbrn-times-k-d-in-mathbbrm-times-l" class="section level4">
+<h4>1) <span class="math inline">\((A \otimes B)(C \otimes D) = (AC)
+\otimes (BD) \quad (C \in \mathbb{R}^{n \times k}, D \in \mathbb{R}^{m
+\times l})\)</span></h4>
+<p><span class="math display">\[\begin{aligned}
+(A \otimes B)(C \otimes D) &amp;=
+\begin{bmatrix}
+a_{1,1}B &amp; \cdots &amp; a_{1,n}B \\
+\vdots &amp; \ddots &amp; \vdots \\
+a_{n,1}B &amp; \cdots &amp; a_{n,n}B
+\end{bmatrix}
+\begin{bmatrix}
+c_{1,1}B &amp; \cdots &amp; c_{1,k}B \\
+\vdots &amp; \ddots &amp; \vdots \\
+c_{n,1}B &amp; \cdots &amp; c_{n,k}B
+\end{bmatrix} \\
+&amp;= \begin{bmatrix}
+\sum_{s=1}^{n} a_{1,s}c_{s,1}BD &amp; \cdots &amp; \sum_{s=1}^{n}
+a_{1,s}c_{s,k}BD \\
+\vdots &amp; \ddots &amp; \vdots \\
+\sum_{s=1}^{n} a_{n,s}c_{s,1}BD &amp; \cdots &amp; \sum_{s=1}^{n}
+a_{n,s}c_{s,k}BD
+\end{bmatrix} \\
+&amp;= \begin{bmatrix}
+[AC]_{1,1} BD &amp; \cdots &amp; [AC]_{1,k}BD \\
+\vdots &amp; \ddots &amp; \vdots \\
+[AC]_{n,1} BD &amp; \cdots &amp; [AC]_{n,k}BD
+\end{bmatrix} \\
+&amp;= (AC) \otimes (BD)
+\end{aligned}\]</span></p>
+<p>cf). For <span class="math inline">\(x \in \mathbb{R}^{n \times 1}, y
+\in \mathbb{R}^{m \times 1}\)</span>, <span class="math inline">\(x
+\otimes y =
+\begin{bmatrix}
+x_1 y \\
+\vdots \\
+x_n y
+\end{bmatrix}
+\in \mathbb{R}^{nm \times 1}\)</span></p>
+</div>
+<div id="ax-lambda-x-quad-by-mu-y-quad-rightarrow-quad-a-otimes-bx-otimes-y-lambda-mu-x-otimes-y" class="section level4">
+<h4>2) <span class="math inline">\(Ax = \lambda x, \quad By = \mu y
+\quad \Rightarrow \quad (A \otimes B)(x \otimes y) = \lambda \mu (x
+\otimes y)\)</span></h4>
+<p>Using <strong>1)</strong> directly:</p>
+<p><span class="math display">\[(A \otimes B)(x \otimes y) = (Ax)
+\otimes (By) = (\lambda x) \otimes (\mu y) = \lambda \mu (x \otimes
+y).\]</span></p>
+</div>
+<div id="conclusion" class="section level4">
+<h4>3) conclusion</h4>
+<p>Suppose <span class="math inline">\(\lambda_1, \cdots,
+\lambda_n\)</span> and <span class="math inline">\(\mu_1, \cdots,
+\mu_m\)</span> are eigenvalues of <span class="math inline">\(A\)</span>
+&amp; <span class="math inline">\(B\)</span> respectively. Then, 2 shows
+that <span class="math inline">\(\{\lambda_i \mu_j : 1 \leq i \leq n, 1
+\leq j \leq m\}\)</span> is a set of eigenvalues of <span class="math inline">\(A \otimes B\)</span>. <span class="math inline">\(A, B\)</span> are PSD, so <span class="math inline">\(\lambda_i \geq 0\)</span> and <span class="math inline">\(\mu_j \geq 0\)</span> <span class="math inline">\(\forall i,j\)</span>. Since <span class="math inline">\(\lambda_i \mu_j \geq 0\)</span> <span class="math inline">\(\forall i,j\)</span>, <span class="math inline">\(A \otimes B\)</span> is PSD.</p>
+<hr />
+</div>
+</div>
+<div id="b-show-that-the-hadamard-product-of-a-and-b-is-psd-schur-product-thm" class="section level3">
+<h3>(b) Show that the Hadamard product of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is PSD (Schur Product Thm)</h3>
+<p><strong>proof</strong></p>
+<p>The Hadamard product <span class="math inline">\(A \circ B\)</span>
+is defined as follows: <span class="math inline">\([A \circ B]_{i,j} =
+a_{ij} b_{ij}\)</span>.</p>
+<p>The following <strong>1)</strong> holds for <span class="math inline">\(A, B \in \mathbb{R}^{n \times n}\)</span> (<span class="math inline">\(n \neq m\)</span> in general) , <span class="math inline">\(x = (x_1, \cdots, x_m)^T \in \mathbb{R}^m\)</span>
+and <span class="math inline">\(y = (y_1, \cdots, y_n) \in
+\mathbb{R}^n\)</span>.</p>
+<div id="xt-a-circ-b-y-texttr-left-a-textdiagx-b-textdiagy-right" class="section level4">
+<h4>1) <span class="math inline">\(x^T (A \circ B) y = \text{tr} \left\{
+A \text{diag}(x) B \text{diag}(y) \right\}\)</span></h4>
+<p><span class="math display">\[\begin{aligned}
+x^T (A \circ B) y &amp;= \sum_{i=1}^{m} \sum_{j=1}^{n} x_i (a_{ij}
+b_{ij}) y_j = \sum_{i=1}^{m} \sum_{j=1}^{n} (x_i a_{ij})(b_{ij} y_j)  \\
+&amp;= \sum_{i=1}^{m} \sum_{j=1}^{n} \left[ \text{diag}(x) A
+\right]_{i,j} \left[ B \, \text{diag}(y) \right]_{i,j} \\
+&amp;= \sum_{i=1}^{m} \sum_{j=1}^{n} \left[ A^T \text{diag}(x)
+\right]_{j,i} \left[ B \, \text{diag}(y) \right]_{i,j} \\
+&amp;= \sum_{i=1}^{m} \sum_{j=1}^{n} \left[ A^T \text{diag}(x)
+\right]_{j,i} \left[ B \, \text{diag}(y) \right]_{i,j} \\
+&amp;= \sum_{i=1}^{m} \sum_{j=1}^{n} \left[ A^T \text{diag}(x) B \,
+\text{diag}(y) \right]_{j,j} \\
+&amp;= \text{tr} \left\{ A^T \text{diag}(x) B \, \text{diag}(y) \right\}
+\end{aligned}\]</span></p>
+</div>
+<div id="a-circ-b-succeq-0-conclusion." class="section level4">
+<h4>2) <span class="math inline">\(A \circ B \succeq 0\)</span>,
+conclusion.</h4>
+<p>Above result obviously holds when <span class="math inline">\(m =
+n\)</span> &amp; <span class="math inline">\(y = x \in
+\mathbb{R}^n\)</span>. That is, <span class="math display">\[
+x^T (A \circ B) x = \text{tr} \left\{ A \, \text{diag}(x) B \,
+\text{diag}(x) \right\}, \quad \because A \text{ is symmetric}.
+\]</span></p>
+<p><span class="math inline">\(A, B\)</span> are symmetric, so <span class="math inline">\(A^{\frac{1}{2}}\)</span> &amp; <span class="math inline">\(B^{\frac{1}{2}}\)</span> can be defined as
+follows.</p>
+<p><span class="math inline">\(\Lambda_A := \text{diag}([\lambda_{A1},
+\cdots, \lambda_{Am}])\)</span> and <span class="math inline">\(\Lambda_B := \text{diag}([\lambda_{B1}, \cdots,
+\lambda_{Bn}])\)</span>.<br />
+<span class="math inline">\(\lambda_{A,i}, \lambda_{B,i} \geq 0 \quad
+\forall i = 1, \cdots, n\)</span> (<span class="math inline">\(\because
+A, B\)</span> are PSD).</p>
+<p>So, <span class="math inline">\(A^{\frac{1}{2}} :=
+\text{diag}([\sqrt{\lambda_{A1}}, \cdots, \sqrt{\lambda_{Am}}])\)</span>
+&amp; <span class="math inline">\(B^{\frac{1}{2}} :=
+\text{diag}([\sqrt{\lambda_{B1}}, \cdots, \sqrt{\lambda_{Bm}}])\)</span>
+can be defined.</p>
+<p>When <span class="math inline">\(A = \Gamma_A \Lambda_A
+\Gamma_A^T\)</span> and <span class="math inline">\(B = \Gamma_B
+\Lambda_B \Gamma_B^T\)</span>, <span class="math inline">\(A^{\frac{1}{2}} = \Gamma_A \Lambda_A^{\frac{1}{2}}
+\Gamma_A^T\)</span> &amp; <span class="math inline">\(B^{\frac{1}{2}} =
+\Gamma_B \Lambda_B^{\frac{1}{2}} \Gamma_B^T\)</span>.</p>
+<p>Then,</p>
+<p><span class="math display">\[\begin{aligned}
+x^T (A \circ B) x &amp;= \text{tr} \left\{ A \, \text{diag}(x) B \,
+\text{diag}(x) \right\} \\
+&amp;= \text{tr} \left\{ A^T A^{\frac{1}{2}} \text{diag}(x)
+B^{\frac{1}{2}} B^{\frac{1}{2}} \text{diag}(x) \right\} \\
+&amp;= \text{tr} \left\{ A^{\frac{1}{2}} \text{diag}(x) B^{\frac{1}{2}}
+B^{\frac{1}{2}} \text{diag}(x) A^{\frac{1}{2}} \right\} \\
+&amp;= \text{tr} \left\{ C C^T \right\} \quad \left( \text{let } C =
+B^{\frac{1}{2}} \text{diag}(x) A^{\frac{1}{2}} \right) \\
+&amp;= \text{tr} \left\{ \sum_{i=1}^{m} [C]_{i,j} [C]_{i,j} \right\} =
+\text{tr} \left\{ \sum_{i=1}^{m} c_{ii}^2 \right\} \\
+&amp;=\sum_{i=1}^{m} \sum_{j=1}^{m} C_{i,j}^2 \geq 0 \quad (C_{i,j} =
+[C]_{j,i}).
+\end{aligned}\]</span></p>
+<p>This holds for all non-zero <span class="math inline">\(x \in
+\mathbb{R}^n\)</span>, so <span class="math inline">\(A \circ B\)</span>
+is PSD.</p>
+<hr />
+</div>
+</div>
+</div>
+<div id="ex.-7.4-consider-the-in-sample-error-and-the-training-error-in-squared-error-loss-texterr_textin-frac1n-sum_i1n-mathbbe_mathcaly0-left-y_i0---fx_i2-right-texterr-frac1n-sum_i1n-y_i---fx_i2.-show-that-the-average-optimism-in-the-training-error-is-mathbbe_mathcaly-y_i-hatfx_i-omega-frac2n-sum_i1n-textcov_mathcaly-y_i-hatfx_i" class="section level2">
+<h2>2. (Ex. 7.4) Consider the in-sample error and the training error in
+squared error loss <span class="math display">\[\text{Err}_{\text{in}} =
+\frac{1}{N} \sum_{i=1}^{N} \mathbb{E}_{\mathcal{Y}^0} \left[ (Y_i^0 -
+f(x_i))^2 \right]\]</span> <span class="math display">\[\text{err} =
+\frac{1}{N} \sum_{i=1}^{N} (y_i - f(x_i))^2.\]</span> Show that the
+average optimism in the training error is <span class="math inline">\(\mathbb{E}_{\mathcal{Y}} [y_i
+\hat{f}(x_i)]\)</span> <span class="math display">\[\omega = \frac{2}{N}
+\sum_{i=1}^{N} \text{Cov}_{\mathcal{Y}} [y_i,
+\hat{f}(x_i)]\]</span></h2>
+<p><strong>proof</strong></p>
+<p><span class="math inline">\(\mathbb{E}_{\mathcal{Y}}\)</span> refers
+to expectation over the training values <span class="math inline">\(\mathcal{Y}\)</span>.<br />
+<span class="math inline">\(\mathcal{Y}^0\)</span> refers to new
+observation corresponding to its training sets <span class="math inline">\(x_i\)</span> <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(\mathcal{Y} \perp \mathcal{Y}^0\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+\omega &amp;= \mathbb{E}_{\mathcal{Y}} \left[ \text{Err}_{\text{in}} -
+\text{err} \right]
+= \mathbb{E}_{\mathcal{Y}} \left[ \frac{1}{N} \sum_{i=1}^{N}
+\mathbb{E}_{\mathcal{Y}^0} \left[ (Y_i^0 - f(x_i))^2 \right] -
+\frac{1}{N} \sum_{i=1}^{N} (y_i - f(x_i))^2 \right] \\
+&amp;= \frac{1}{N} \mathbb{E}_{\mathcal{Y}} \left[ \sum_{i=1}^{N}
+\mathbb{E}_{\mathcal{Y}^0} \left[ (Y_i^0)^2 - 2 Y_i^0 f(x_i) + f(x_i)^2
+\right] - \sum_{i=1}^{N} (y_i^2 - 2 y_i f(x_i) + f(x_i)^2) \right] \\
+&amp;= \frac{1}{N} \mathbb{E}_{\mathcal{Y}} \left[ \sum_{i=1}^{N} \left(
+\mathbb{E}_{\mathcal{Y}^0} \left[ (Y_i^0)^2 - 2 Y_i^0 f(x_i) \right] -
+(y_i^2 - 2 y_i f(x_i)) \right) \right] \quad (\because \mathcal{Y}^0
+\perp f(x_i)) \\
+&amp;= \frac{1}{N} \sum_{i=1}^{N} \left( \mathbb{E}_{\mathcal{Y}} \left[
+\mathbb{E}_{\mathcal{Y}^0} [(Y_i^0)^2] - y_i^2 + 2 y_i f(x_i) - 2
+\mathbb{E}_{\mathcal{Y}^0} [Y_i^0] f(x_i) \right] \right) \\
+&amp;= \frac{1}{N} \sum_{i=1}^{N} \left( \mathbb{E}_{\mathcal{Y}}
+[\mathbb{E}_{\mathcal{Y}^0} [(Y_i^0)^2]] -
+\mathbb{E}_{\mathcal{Y}}[y_i^2] + 2 \mathbb{E}_{\mathcal{Y}} [y_i
+f(x_i)] - 2 \mathbb{E}_{\mathcal{Y}, \mathcal{Y}^0} [Y_i^0 f(x_i)]
+\right) \quad (\because \mathcal{Y} \perp \mathcal{Y}^0) \\
+&amp;= \frac{2}{N} \sum_{i=1}^{N} \left( \mathbb{E}_{\mathcal{Y}} [y_i
+f(x_i)] - \mathbb{E}_{\mathcal{Y}, \mathcal{Y}^0} [Y_i^0 f(x_i)] \right)
+\quad (\because \mathcal{Y}^0 \perp \mathcal{Y} \Rightarrow
+\mathbb{E}_{\mathcal{Y}} [y_i^2] = \mathbb{E}_{\mathcal{Y}^0} [
+(Y_i^0)^2 ]) \\
+&amp;= \frac{2}{N} \sum_{i=1}^{N} \left( \mathbb{E}_{\mathcal{Y}} [y_i
+f(x_i)] - \mathbb{E}_{\mathcal{Y}} [\mathbb{E}_{\mathcal{Y}^0} [Y_i^0]
+f(x_i)] \right)
+\quad \text{law of total expectation} \\
+&amp;= \frac{2}{N} \sum_{i=1}^{N} \left( \mathbb{E}_{\mathcal{Y}} [y_i
+f(x_i)] - \mathbb{E}_{\mathcal{Y}} [\mathbb{E}_{\mathcal{Y}^0} [Y_i^0]
+\mathbb{E}_{\mathcal{Y}} [f(x_i)]] \right)
+\quad (\because \mathcal{Y}^0 \text{ is given } \rightarrow
+\text{constant in } \mathbb{E}_{\mathcal{Y}}) \\
+&amp;= \frac{2}{N} \sum_{i=1}^{N} \left( \mathbb{E}_{\mathcal{Y}} [y_i
+f(x_i)] - \mathbb{E}_{\mathcal{Y}} [y_i] \mathbb{E}_{\mathcal{Y}}
+[f(x_i)] \right)
+\quad (\because \mathbb{E}_{\mathcal{Y}} [f(x_i)] \perp \mathcal{Y}^0
+\rightarrow \text{constant}) \\
+&amp;= \frac{2}{N} \sum_{i=1}^{N} \text{Cov}_{\mathcal{Y}} [y_i,
+f(x_i)]. \quad \square
+\end{aligned}\]</span></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
+  
+</div>
