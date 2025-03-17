@@ -19,7 +19,7 @@ locale                   : "en-US"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "KO Hanjun"
 title_separator          : "-"
-subtitle                 : # site tagline that appears below site title in masthead
+subtitle                 : # site tagline that appears below site title in masthead 
 name                     : "Your Name"
 description              : "An amazing website."
 url                      : "https://jason1ko.github.io"
