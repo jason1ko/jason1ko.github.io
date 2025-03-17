@@ -1,0 +1,652 @@
+---
+title: "ESL Ch5"
+date: 2023-09-01 23:40:00
+categories: [Elements of Statistical Learning]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<!DOCTYPE html>
+
+<html>
+
+
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="elements-of-statistical-learning-ch5" class="section level1">
+<h1>Elements of Statistical Learning CH5</h1>
+<div id="ex.-5.4-fx-is-given-as-fx-sum_i03-beta_i-xi-sum_k1k-theta_k-x---xi_k_3" class="section level2">
+<h2>1. (Ex. 5.4) <span class="math inline">\(f(X)\)</span> is given as
+<span class="math display">\[f(X) = \sum_{i=0}^{3} \beta_i X^i +
+\sum_{k=1}^{K} \theta_k (X - \xi_k)_+^3\]</span></h2>
+<div id="i-show-that-the-condition-of-natural-cubic-splines-implies-beta_2-beta_3-0-quad-sum_k1k-theta_k-0-quad-sum_k1k-xi_k-theta_k-0" class="section level3">
+<h3>i) Show that the condition of natural cubic splines implies: <span class="math display">\[\beta_2 = \beta_3 = 0, \quad \sum_{k=1}^{K}
+\theta_k = 0, \quad \sum_{k=1}^{K} \xi_k \theta_k = 0\]</span></h3>
+<p><strong>solution</strong></p>
+<div id="beta_2-beta_3-0" class="section level4">
+<h4>1) <span class="math inline">\(\beta_2 = \beta_3 = 0\)</span></h4>
+<p><span class="math inline">\(f(X)\)</span> should be linear when <span class="math inline">\(X \leq \xi_1\)</span>.</p>
+<p><span class="math display">\[
+f(X) = \beta_0 + \beta_1 X + \beta_2 X^2 + \beta_3 X^3 \quad (X \leq
+\xi_1),
+\]</span></p>
+<p>so <span class="math inline">\(\beta_2 = \beta_3 = 0\)</span>.</p>
+</div>
+<div id="sum_k1k-theta_k-0-quad-sum_k1k-xi_k-theta_k-0" class="section level4">
+<h4>2) <span class="math inline">\(\sum_{k=1}^{K} \theta_k = 0, \quad
+\sum_{k=1}^{K} \xi_k \theta_k = 0\)</span></h4>
+<p><span class="math inline">\(f(X)\)</span> is linear when <span class="math inline">\(X \geq \xi_K\)</span>:</p>
+<p><span class="math display">\[
+\begin{align*}
+f(X) &amp;= \sum_{i=0}^{3} \beta_i X^i + \sum_{k=1}^{K} \theta_k (X -
+\xi_k)_+^3 \\
+&amp;= \sum_{i=0}^{3} \beta_i X^i + \sum_{k=1}^{K} \theta_k (X^3 - 3
+\xi_k X^2 + 3 \xi_k^2 X - \xi_k^3) \\
+&amp;= \left\{ \beta_0 + \sum_{k=1}^{K} \theta_k (-\xi_k^3) \right\} +
+\left( \beta_1 + \sum_{k=1}^{K} \theta_k 3 \xi_k^2 \right) X + \left(
+\sum_{k=1}^{K} \theta_k 3 \xi_k \right) X^2 + \left( \sum_{k=1}^{K}
+\theta_k \right) X^3 \quad (X \geq \xi_K)
+\end{align*}
+\]</span></p>
+<p><span class="math inline">\(f(X)\)</span> is linear, so:</p>
+<p><span class="math display">\[
+\sum_{k=1}^{K} \theta_k = 0 \quad \&amp; \quad \sum_{k=1}^{K} \xi_k
+\theta_k = 0
+\]</span></p>
+<hr />
+</div>
+</div>
+<div id="ii-show-thatn_1x-1-quad-n_2x-x-quad-n_k2x-d_kx---d_k-1xwhered_kx-fracx---xi_k3_---x---xi_k3_xi_k---xi_k-quad-k-1-dots-k---2" class="section level3">
+<h3>ii) Show that:<span class="math display">\[N_1(X) = 1, \quad N_2(X)
+= X, \quad N_{k+2}(X) = d_k(X) - d_{K-1}(X)\]</span>where<span class="math display">\[d_k(X) = \frac{(X - \xi_k)^3_+ - (X -
+\xi_{K})^3_+}{\xi_K - \xi_k}, \quad (k = 1, \dots, K - 2)\]</span></h3>
+<p><strong>solution</strong></p>
+<p><span class="math inline">\(X \to x\)</span> for simplicity.</p>
+<p><span class="math display">\[\begin{aligned}
+\sum_{k=1}^{K} \theta_k (x - \xi_k)_+^3 &amp;= \sum_{k=1}^{K-2} \theta_k
+(x - \xi_k)_+^3 + \theta_{K-1} (x - \xi_{K-1})_+^3 + \theta_K (x -
+\xi_K)_+^3 \\
+&amp;= \sum_{k=1}^{K-2} \theta_k (x - \xi_k)_+^3 + \theta_{K-1} (x -
+\xi_{K-1})_+^3 + \theta_K (x - \xi_K)_+^3 - \theta_{K-1}(x-\xi_K)_+^3+
+\theta_{K-1}(x-\xi_K)_+^3\\
+&amp;= \sum_{k=1}^{K-2} \theta_k (x - \xi_k)_+^3 +(\theta_K +
+\theta_{K-1})(x-\xi_K)_+^3 + \theta_{K-1}\{(x-\xi_{K-1})_+^3 - (x
+-\xi_K)_+^3\} \\
+&amp;= \sum_{k=1}^{K-2} \theta_k (x - \xi_k)_+^3 - \sum_{k=1}^{K-2}
+\theta_k (x - \xi_K)_+^3 + \frac{\xi_K - \xi_{K-1}}{\xi_K -
+\xi_{K-1}}\theta_{K-1} \sum_{k=1}^{K-2}\{(x-\xi_{K-1})_+^3 - (x
+-\xi_K)_+^3\} \qquad\because \sum_{k=1}^{K} \theta_k = 0 \\
+&amp;= \sum_{k=1}^{K-2} \theta_k \frac{(x - \xi_k)_+^3 - (x -
+\xi_K)_+^3}{\xi_K - \xi_k} \cdot (\xi_K - \xi_k) + \sum_{k=1}^{K-2}
+\theta_k \frac{(x - \xi_{K-1})_+^3 - (x - \xi_K)_+^3}{\xi_K - \xi_{K-1}}
+(\xi_K - \xi_k) \\
+&amp;= \sum_{k=1}^{K-2} (\xi_K - \xi_k) \theta_k \left\{ \frac{(x -
+\xi_k)_+^3 - (x - \xi_K)_+^3}{\xi_K - \xi_k} - \frac{(x - \xi_{K-1})_+^3
+- (x - \xi_K)_+^3}{\xi_K - \xi_{K-1}} \right\} \\
+&amp;:= \sum_{k=1}^{K-2} \alpha_{k+2} \left( d_k(x) - d_{K-1}(x)
+\right), \quad (\alpha_{k+2} = \theta_k (\xi_K - \xi_k), \quad k = 1, 2,
+\dots)
+\end{aligned}\]</span></p>
+<p>Letting <span class="math inline">\(x_1 = \beta_1\)</span> and <span class="math inline">\(x_2 = \beta_2\)</span>, we have</p>
+<p><span class="math display">\[
+\begin{align*}
+f(x) &amp;= \beta_0 + \beta_1 x + \sum_{k=1}^{K} \theta_k (x -
+\xi_k)_+^3 \\
+&amp;= \beta_0 + \beta_1 x + \sum_{k=1}^{K-2} \alpha_{k+2} N_{k+2}(x) \\
+&amp;= \sum_{k=1}^{K} \alpha_k N_k(x).
+\end{align*}
+\]</span></p>
+</div>
+</div>
+<div id="ex.-5.7" class="section level2">
+<h2>2. (Ex. 5.7)</h2>
+<div id="a-show-thatint_ab-gx-hx-dx-0" class="section level3">
+<h3>(a) Show that:<span class="math display">\[\int_{a}^{b}
+g&#39;&#39;(x) h&#39;&#39;(x) dx = 0\]</span></h3>
+<p><strong>solution</strong></p>
+<p><span class="math display">\[
+\int_{a}^{b} g&#39;&#39;(x) h&#39;&#39;(x) dx = \left[ g&#39;&#39;(x)
+h&#39;(x) \right]_{x=a}^{x=b} - \int_{a}^{b} g&#39;&#39;&#39;(x)
+h&#39;(x) dx
+\]</span></p>
+<p><span class="math inline">\(g\)</span> is NCS (Natural Cubic Spline),
+so <span class="math inline">\(g\)</span> is linear at <span class="math inline">\(x = a, b\)</span>. That is, <span class="math inline">\(g&#39;&#39;(a) = g&#39;&#39;(b) = 0\)</span>.
+So,</p>
+<p><span class="math display">\[
+\left[ g&#39;&#39;(x) h&#39;(x) \right]_{x=a}^{x=b} = g&#39;&#39;(b)
+h&#39;(b) - g&#39;&#39;(a) h&#39;(a) = 0
+\]</span></p>
+<p><span class="math inline">\(g\)</span> is NCS, so <span class="math inline">\(g&#39;&#39;&#39;(x)\)</span> is constant for each
+interval <span class="math inline">\((\xi_i, \xi_{i+1})\)</span>. Since
+<span class="math inline">\(g&#39;&#39;&#39;(\xi_i) =
+g&#39;&#39;&#39;(\xi_{i+1}) = 0\)</span>,</p>
+<p><span class="math display">\[
+\int_{a}^{b} g&#39;&#39;&#39;(x) h&#39;(x) dx = \sum_{i=1}^{N}
+g&#39;&#39;&#39;(\xi_i) \int_{\xi_i}^{\xi_{i+1}} h&#39;(x) dx =
+\sum_{i=1}^{N} g&#39;&#39;&#39;(\xi_i) \left( h(\xi_{i+1}) - h(\xi_i)
+\right)
+\]</span></p>
+<p><span class="math inline">\(h = \hat{g} - g\)</span> and <span class="math inline">\(\hat{g}\)</span> is an interpolant of <span class="math inline">\(\{ (\xi_i, z_i) \}_{i=1}^{N}\)</span>, so <span class="math inline">\(\hat{g}(\xi_i) = g(\xi_i)\)</span>. This leads
+to:</p>
+<p><span class="math display">\[
+\int_{a}^{b} g&#39;&#39;&#39;(x) h&#39;(x) dx = 0
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\int_{a}^{b} g&#39;&#39;(x) h&#39;&#39;(x) dx = 0
+\]</span></p>
+</div>
+<div id="b-show-that-int_ab-hatgx2-dt-geq-int_ab-gx2-dt" class="section level3">
+<h3>(b) Show that: <span class="math display">\[\int_{a}^{b}
+\hat{g}&#39;&#39;(x)^2 dt \geq \int_{a}^{b} g&#39;&#39;(x)^2
+dt\]</span></h3>
+<p>(<span class="math inline">\(\int_{a}^{b} = S\)</span>, <span class="math inline">\(\int g(x) dx \Rightarrow \int g\)</span>) for
+simplicity.</p>
+<p><strong>solution</strong></p>
+<p><span class="math display">\[
+\int \hat{g}&#39;&#39;^2 = \int (g&#39;&#39; + h&#39;&#39;)^2 = \int
+g&#39;&#39;^2 + \int h&#39;&#39;^2 + 2 \int g&#39;&#39; h&#39;&#39;=
+\int g&#39;&#39;^2 + \int h&#39;&#39;^2 \quad (\because \int g&#39;&#39;
+h&#39;&#39; = 0)
+\geq \int g&#39;&#39;^2 \quad (\because \int h&#39;&#39;^2 \geq 0)
+\]</span></p>
+<p>The equality holds when <span class="math inline">\(\int
+(h&#39;&#39;)^2 = 0 \ \Rightarrow \ h&#39;&#39; = 0\)</span> a.e. Then
+<span class="math inline">\(h&#39; = \int h&#39;&#39; + c = c\)</span>
+(Constant), and <span class="math inline">\(h = c x + d\)</span>
+(linear). We have <span class="math inline">\(h(\xi_i) = 0\)</span>
+<span class="math inline">\(\forall i = 1, \dots, N(N \geq 2)\)</span>,
+so <span class="math inline">\(c = d = 0\)</span> and <span class="math inline">\(h = 0\)</span>.</p>
+</div>
+<div id="c-show-that-argmin_f-left-sum_i1n-y_i---fx_i2-lambda-int-f2-right-quad-textis-ncs." class="section level3">
+<h3>(c) Show that: <span class="math display">\[\arg\min_{f} \left\{
+\sum_{i=1}^{N} (y_i - f(x_i))^2 + \lambda \int (f&#39;&#39;)^2 \right\}
+\quad \text{is NCS}.\]</span></h3>
+<p><strong>solution</strong></p>
+<p>Let: <span class="math display">\[
+\hat{f} = \arg\min_{f} \left\{ \sum_{i=1}^{N} (y_i - f(x_i))^2 + \lambda
+\int (f&#39;&#39;)^2 \right\}
+\]</span> and let <span class="math inline">\(g\)</span> be a NCS
+interpolant to the pairs <span class="math inline">\(\{(x_i,
+\hat{f}(x_i))\}_{i=1}^{N}\)</span>. It is obvious that <span class="math inline">\(y_i - \hat{f}(x_i) = y_i - g(x_i)\)</span>, so:
+<span class="math display">\[
+\sum_{i=1}^{N} (y_i - \hat{f}(x_i))^2 = \sum_{i=1}^{N} (y_i - g(x_i))^2.
+\]</span> <span class="math inline">\(\hat{f}\)</span> is the minimizer,
+so:</p>
+<p><span class="math display">\[
+\int (g&#39;&#39;)^2 \geq \int (\hat{f}&#39;&#39;)^2.
+\]</span></p>
+<p><span class="math inline">\(g\)</span> is NCS, so:</p>
+<p><span class="math display">\[
+\int (\hat{f}&#39;&#39;)^2 \geq \int (g&#39;&#39;)^2 \quad (\text{by
+part (b)}).
+\]</span></p>
+<p>This shows:</p>
+<p><span class="math display">\[
+\int (\hat{f}&#39;&#39;)^2 = \int (g&#39;&#39;)^2.
+\]</span></p>
+<p>So, <span class="math inline">\(g\)</span> also minimizes the given
+RSS.</p>
+<p><span class="math display">\[
+\therefore \quad \arg\min_{f} \left\{ \sum_{i=1}^{N} (y_i - f(x_i))^2 +
+\lambda \int (f&#39;&#39;)^2 \right\} = g.
+\]</span></p>
+</div>
+</div>
+<div id="ex.-5.15-prove-the-following-questions." class="section level2">
+<h2>3. (Ex. 5.15) Prove the following questions.</h2>
+<p>(<span class="math inline">\(\langle \cdot, \cdot \rangle_{\gamma_k}
+\Rightarrow \langle \cdot, \cdot \rangle_{\mathcal{H}_K} \Rightarrow \|
+\cdot \|, \quad \sum \Rightarrow \sum, \quad \langle \cdot, \cdot
+\rangle_{L_2} \Rightarrow (\cdot \cdot)\)</span> for simplicity.)</p>
+<div id="a-langle-kcdot-x-f-rangle-fx" class="section level3">
+<h3>(a) <span class="math inline">\(\langle K(\cdot, x), f \rangle =
+f(x)\)</span></h3>
+<p><strong>proof</strong></p>
+<p>Let:</p>
+<p><span class="math display">\[
+f(t) = \sum_{i} c_i \phi_i(t), \quad K(x, y) = \sum_{i} \frac{1}{r_i}
+\phi_i(x) \phi_i(y)
+\]</span></p>
+<p>Then:</p>
+<p><span class="math display">\[
+\begin{align*}
+\langle K(\cdot, x), f \rangle
+&amp;= \left\langle \sum_{i} \frac{1}{r_i} \phi_i(x) \phi_i(\cdot),
+\sum_{j} c_j \phi_j(\cdot) \right\rangle \\
+&amp;= \sum_{i} \frac{1}{r_i} \phi_i(x) \langle \phi_i(\cdot), \sum_{j}
+c_j \phi_j(\cdot) \rangle \\
+&amp;= \sum_{i} \frac{1}{r_i} \phi_i(x) \sum_{j} c_j \langle
+\phi_i(\cdot), \phi_j(\cdot) \rangle \\
+&amp;= \sum_{i} \frac{1}{r_i} \phi_i(x) \sum_{j} c_j r_i \delta_{ij} \\
+&amp;= \sum_{i} \phi_i(x) c_i \\
+&amp;= f(x)
+\end{align*}
+\]</span></p>
+</div>
+<div id="b-langle-kcdot-x_i-kcdot-x_j-rangle-kx_i-x_j" class="section level3">
+<h3>(b) <span class="math inline">\(\langle K(\cdot, x_i), K(\cdot, x_j)
+\rangle = K(x_i, x_j)\)</span></h3>
+<p><strong>proof</strong></p>
+<p><span class="math display">\[\begin{aligned}
+\langle K(\cdot, x_i), K(\cdot, x_j) \rangle &amp;= \langle \sum_k r_k
+\phi_k(x_i) \phi_k(\cdot), \sum_k  r_k\phi_k(x_j) \phi_k(\cdot) \rangle
+\\
+&amp;= \sum_k\frac{1}{r_k}\bigl( \sum_l r_l \phi_l(x_i) \phi_l(\cdot),
+\phi_k(\cdot) \bigr) \bigl( \sum_l r_l \phi_l(x_j) \phi_l(\cdot),
+\phi_k(\cdot) \bigr) \\
+&amp;= \sum_n \frac{1}{r_n} \phi_n(x_i) \phi_n(x_j) \\
+&amp;= K(x_i, x_j).
+\end{aligned}\]</span></p>
+</div>
+<div id="c-if-gx-sum_i1n-alpha_i-kx-x_i-then-jg-sum_i1n-sum_j1n-alpha_i-alpha_j-kx_i-x_j" class="section level3">
+<h3>(c) If <span class="math inline">\(g(x) = \sum_{i=1}^{N} \alpha_i
+K(x, x_i)\)</span>, then <span class="math display">\[J(g) =
+\sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_i \alpha_j K(x_i,
+x_j)\]</span></h3>
+<p><strong>proof</strong></p>
+<p><span class="math inline">\(J(g) = \langle g, g \rangle\)</span> by
+definition. So,</p>
+<p><span class="math display">\[\begin{aligned}
+J(g) &amp;= \left\langle \sum_{i=1}^{N} \alpha_i K(\cdot, x_i),
+\sum_{j=1}^{N} \alpha_j K(\cdot, x_j) \right\rangle \\
+&amp;= \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_i \alpha_j \langle K(\cdot,
+x_i), K(\cdot, x_j) \rangle \\
+&amp;= \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_i \alpha_j K(x_i, x_j) \quad
+\text{(by part (b))}.
+\end{aligned}\]</span></p>
+</div>
+<div id="d-suppose-hatg-g-rho-with-rho-in-mathcalh_k-and-orthogonal-to-each-kx_i-cdot-in-mathcalh_k-forall-i-1-dots-n.-show-that-sum_i1n-ly_i-hatgx_i-lambda-jhatg-geq-sum_i1n-ly_i-gx_i-lambda-jg." class="section level3">
+<h3>(d) Suppose <span class="math display">\[\hat{g} = g + \rho\]</span>
+with <span class="math inline">\(\rho \in \mathcal{H}_K\)</span> and
+orthogonal to each <span class="math inline">\(K(x_i, \cdot)\)</span> in
+<span class="math inline">\(\mathcal{H}_K\)</span> <span class="math inline">\(\ \forall i = 1, \dots, N\)</span>. Show that
+<span class="math display">\[\sum_{i=1}^{N} L(y_i, \hat{g}(x_i)) +
+\lambda J(\hat{g}) \geq \sum_{i=1}^{N} L(y_i, g(x_i)) + \lambda
+J(g).\]</span></h3>
+<p><strong>proof</strong></p>
+<div id="ly_i-hatgx_i-ly_i-gx_i" class="section level4">
+<h4>1) <span class="math inline">\(L(y_i, \hat{g}(x_i)) = L(y_i,
+g(x_i))\)</span></h4>
+<p><span class="math inline">\(\langle K(x_i, \cdot), \rho(\cdot)
+\rangle = \rho(x_i) = 0\)</span> <span class="math inline">\(\forall i =
+1, \dots, N\)</span>. So, <span class="math inline">\(\hat{g}(x_i) =
+g(x_i)\)</span> and</p>
+<p><span class="math display">\[
+L(y_i, \hat{g}(x_i)) = L(y_i, g(x_i)) \quad \forall i.
+\]</span></p>
+</div>
+<div id="jhatg-geq-jg" class="section level4">
+<h4>2) <span class="math inline">\(J(\hat{g}) \geq J(g)\)</span></h4>
+<p><span class="math display">\[
+J(\hat{g}) = \langle g + \rho, g + \rho \rangle = \| g \|^2 + \| \rho
+\|^2 + 2 \langle g, \rho \rangle
+\]</span></p>
+<p><span class="math display">\[
+\langle g, \rho \rangle = \left\langle \sum_{i} \alpha_i K(x_i, \cdot),
+\rho(\cdot) \right\rangle = \sum_{i} \alpha_i \langle K(x_i, \cdot),
+\rho(\cdot) \rangle = 0,\qquad \because K(x_i, \cdot) \perp \rho(\cdot)
+\]</span></p>
+<p>So, <span class="math display">\[
+J(\hat{g}) = J(g) + \| \rho \|^2 \geq J(g)
+\]</span></p>
+<p>The equality holds iff <span class="math inline">\(\rho = 0\)</span>
+(trivial).</p>
+</div>
+<div id="conclusion" class="section level4">
+<h4>3) Conclusion</h4>
+<p>Combining <strong>1)</strong> and <strong>2)</strong>, <span class="math display">\[
+\sum_{i=1}^{N} L(y_i, \hat{g}(x_i)) + \lambda J(\hat{g}) \geq
+\sum_{i=1}^{N} L(y_i, g(x_i)) + \lambda J(g).
+\]</span></p>
+</div>
+</div>
+<div id="cf-in-conclusion" class="section level3">
+<h3>cf) In conclusion:</h3>
+<p><span class="math display">\[
+\arg\min_{f \in \mathcal{H}_K} \left\{ \sum_{i=1}^{N} L(y_i, f(x_i)) +
+\lambda J(f) \right\} = g.
+\]</span></p>
+<p><strong>proof</strong></p>
+<p>Consider a Hilbert space <span class="math inline">\(G\)</span> whose
+basis consists of <span class="math inline">\(\{ K(x_i, \cdot), \dots,
+K(x_N, \cdot) \}\)</span>, and let <span class="math inline">\(G^{\perp}\)</span> be an orthogonal complement of
+<span class="math inline">\(G\)</span> with respect to <span class="math inline">\(\mathcal{H}_K\)</span>. (<span class="math inline">\(\because K(x_i, \cdot) \in \mathcal{H}_K\)</span>)
+We have: <span class="math display">\[
+\mathcal{H}_K = G \oplus G^{\perp} \quad (\because \text{Proposition
+4.2, Real Analysis (Stein)})
+\]</span></p>
+<p>So, any <span class="math inline">\(f \in \mathcal{H}_K\)</span> can
+be written as:</p>
+<p><span class="math display">\[
+f = g + \rho,
+\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[
+g(\cdot) = \sum_{i=1}^{N} \alpha_i K(x_i, \cdot) \in G, \quad \rho \in
+G^{\perp}.
+\]</span></p>
+<p><span class="math inline">\(\rho \in G^{\perp}\)</span> directly
+means:</p>
+<p><span class="math display">\[
+\langle \rho, K(x_i, \cdot) \rangle = 0 \quad \forall i = 1, \dots, N,
+\]</span></p>
+<p>so we can apply <strong>(d)</strong> to complete the proof.</p>
+</div>
+</div>
+<div id="ex.-5.16-consider-a-ridge-regression-problem-and-m-geq-n-min_c_i_i1m-sum_i1n-left-y_i---sum_j1m-fracc_jsqrtr_j-phi_jx_i-right2-lambda-sum_j1m-fracc_j2r_j.-assume-you-have-a-kernel-k-that-computes-inner-productkx_i-y-sum_m1m-h_mx_i-h_my." class="section level2">
+<h2>4. (Ex. 5.16) Consider a ridge regression problem and <span class="math inline">\(M \geq N\)</span>: <span class="math display">\[\min_{\{c_i\}_{i=1}^{M}} \sum_{i=1}^{N} \left(
+y_i - \sum_{j=1}^{M} \frac{c_j}{\sqrt{r_j}} \phi_j(x_i) \right)^2 +
+\lambda \sum_{j=1}^{M} \frac{c_j^2}{r_j}.\]</span> Assume you have a
+kernel <span class="math inline">\(K\)</span> that computes inner
+product:<span class="math display">\[K(x_i, y) = \sum_{m=1}^{M} h_m(x_i)
+h_m(y).\]</span></h2>
+<div id="a-derive-hx-v-d_rfrac12-phix.-how-would-you-compute-v-and-d_r-given-k-hence-show-that-the-above-expression-is-equivalent-to-the-following" class="section level3">
+<h3>(a) Derive <span class="math inline">\(h(x) = V D_r^{\frac{1}{2}}
+\phi(x)\)</span>. How would you compute <span class="math inline">\(V\)</span> and <span class="math inline">\(D_r\)</span> given <span class="math inline">\(K\)</span>? Hence, show that the above expression
+is equivalent to the following:</h3>
+<p><span class="math display">\[
+\min_{\{\beta_m\}_{m=1}^{M}} \sum_{i=1}^{N} \left( y_i - \sum_{m=1}^{M}
+\beta_m h_m(x_i) \right)^2 + \lambda \sum_{m=1}^{M} \beta_m^2
+\]</span></p>
+<p><strong>proof</strong></p>
+<div id="hx-v-d_rfrac12-phix" class="section level4">
+<h4>1) <span class="math inline">\(h(x) = V D_r^{\frac{1}{2}}
+\phi(x)\)</span></h4>
+<p>Let <span class="math inline">\(h(x) = (h_1(x), \dots,
+h_M(x))^T\)</span> and <span class="math inline">\(\phi(x) = (\phi_1(x),
+\dots, \phi_M(x))^T\)</span>.</p>
+<p><span class="math display">\[
+K(x, y) = \sum_{m=1}^{M} h_m(x) h_m(y) = \sum_{k=1}^{M} r_k \phi_k(x)
+\phi_k(y) \quad \text{by definition of } K \ (5.4.5)
+\]</span></p>
+<p>Compute inner product:</p>
+<p><span class="math display">\[
+\langle K(x, y), \phi_k(x) \rangle = \sum_{m=1}^{M} h_m(x) \langle
+h_m(y), \phi_k(x) \rangle
+\]</span></p>
+<p><span class="math display">\[
+\langle K(x, y), \phi_k(x) \rangle = \sum_{k=1}^{M} r_k \phi_k(x)
+\langle \phi_k(y), \phi_k(x) \rangle = r_k \phi_k(y)
+\]</span></p>
+<p>Then:</p>
+<p><span class="math display">\[
+\sum_{m=1}^{M} \langle h_m(x), \phi_k(x) \rangle h_m(y) = r_k \phi_k(y)
+\quad (1)
+\]</span></p>
+<p>Also:</p>
+<p><span class="math display">\[
+r_k \langle \phi_k(x), \phi_l(y) \rangle = \sum_{m=1}^{M} \langle
+h_m(x), \phi_k(x) \rangle \langle h_m(y), \phi_l(y) \rangle :=
+\sum_{m=1}^{M} q_{k, m} q_{l, m}
+\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[
+q_{k, m} = \langle h_m(\cdot), \phi_k(\cdot) \rangle
+\]</span></p>
+<p>Note that:</p>
+<p><span class="math display">\[
+\sum_{m=1}^{M} q_{k, m} q_{l, m} = r_k \quad \text{when} \ l = k, \
+\text{and 0 otherwise}.
+\]</span></p>
+<p>The (1) can be written as:</p>
+<p><span class="math display">\[
+\sum_{m=1}^{M} q_{k, m} h_m(x) = r_k \phi_k(x),
+\]</span></p>
+<p>which is equivalent to:</p>
+<p><span class="math display">\[
+G_M h(x) = D_r \phi(x) \quad \sim (2)
+\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[
+G_M = [q_{k, m}] \in \mathbb{R}^{M \times M} \quad \text{and} \quad D_r
+= \text{diag}(r_1, \dots, r_M).
+\]</span></p>
+<p>Compute:</p>
+<p><span class="math display">\[
+[G_M G_M^T]_{k, l} = \sum_{m=1}^{M} q_{k, m} [G_M]_{m, l}
+= \sum_{m=1}^{M} q_{k, m} q_{l, m} =
+\begin{cases}
+r_k &amp; (l = k) \\
+0 &amp; (l \neq k)
+\end{cases}
+\]</span></p>
+<p>Thus:</p>
+<p><span class="math display">\[
+G_M G_M^T = D_r.
+\]</span></p>
+<p>Note that <span class="math inline">\(G_M\)</span> is non-singular,
+and <span class="math inline">\(G_M^T = G_M D_r \quad (r_k &gt;
+0)\)</span>. Also, <span class="math inline">\(D_r^{-\frac{1}{2}} G_M
+D_r^{-\frac{1}{2}} = I_M\)</span> so <span class="math inline">\((D_r^{\frac{1}{2}} G_M)^T = G_M
+D_r^{\frac{1}{2}}.\)</span> Then:</p>
+<p><span class="math display">\[\begin{aligned}
+&amp;G_M h(x) = D_r \phi(x) \quad \because (2) \\
+&amp;\Leftrightarrow D_r^{\frac{1}{2}} G_M h(x) = D_r^{\frac{1}{2}}
+\phi(x) \\
+&amp;\Leftrightarrow h(x) = G_M^T \phi(x) = G_M^T D_r^{-1} D_r \phi(x)
+\\
+&amp;\Leftrightarrow h(x) = V D_r^{\frac{1}{2}} \phi(x) \quad
+(\text{let} \ V := G_M^T D_r^{-\frac{1}{2}})
+\end{aligned}\]</span></p>
+<p><span class="math inline">\((D_r^{\frac{1}{2}} G_M)^{-1} = G_M
+D_r^{-\frac{1}{2}}\)</span>, so <span class="math inline">\(G_M
+D_r^{-\frac{1}{2}} D_r^{\frac{1}{2}} G_M = I_M\)</span>. Using this:</p>
+<p><span class="math display">\[
+V V^T = G_M D_r^{-\frac{1}{2}} D_r^{\frac{1}{2}} G_M^T = (G_M D_r^{-1}
+G_M)^{-1} = I_M
+\]</span></p>
+<p>Also:</p>
+<p><span class="math display">\[
+V^T V = D_r^{-\frac{1}{2}} G_M^T G_M D_r^{-\frac{1}{2}} =
+D_r^{\frac{1}{2}} (G_M G_M^T) D_r^{\frac{1}{2}} = I_M
+\]</span></p>
+<p>This shows <span class="math inline">\(V\)</span> is <span class="math inline">\((M \times M)\)</span> orthogonal matrix.</p>
+</div>
+</div>
+<div id="min_c_i_i1m-sum_i1n-left-y_i---sum_j1m-fracc_jsqrtr_j-phi_jx_i-right2-lambda-sum_j1m-fracc_j2r_jleftrightarrow-min_beta_m_m1m-sum_i1n-left-y_i---sum_m1m-beta_m-h_mx_i-right2-lambda-sum_m1m-beta_m2" class="section level3">
+<h3>2) <span class="math inline">\(\min_{\{c_i\}_{i=1}^{M}}
+\sum_{i=1}^{N} \left( y_i - \sum_{j=1}^{M} \frac{c_j}{\sqrt{r_j}}
+\phi_j(x_i) \right)^2 + \lambda \sum_{j=1}^{M}
+\frac{c_j^2}{r_j}\Leftrightarrow \min_{\{\beta_m\}_{m=1}^{M}}
+\sum_{i=1}^{N} \left( y_i - \sum_{m=1}^{M} \beta_m h_m(x_i) \right)^2 +
+\lambda \sum_{m=1}^{M} \beta_m^2\)</span></h3>
+<p><span class="math display">\[\begin{aligned}
+\min_{\beta} \sum_{i=1}^{N} (y_i - \beta^T h(x_i))^2 + \lambda \beta^T
+\beta
+&amp;=  \sum_{i=1}^{N} (y_i - \beta^T V D_r^{\frac{1}{2}} \phi(x_i))^2 +
+\lambda \beta^T \beta \\
+&amp;= \min_{c} \sum_{i=1}^{N} (y_i - c^T \phi(x_i))^2 + \lambda (V
+D_r^{-\frac{1}{2}} c)^T (V D_r^{-\frac{1}{2}} c) \\
+&amp; \Bigl(\because \text{by letting } D_r^{\frac{1}{2}} V^T \beta = c
+\in \mathbb{R}^M \Rightarrow \beta = (V^T)^{-1} D_r^{-\frac{1}{2}} c = V
+D_r^{-\frac{1}{2}} c \quad (\text{orthogonal } V) \Bigr) \\
+&amp;= \min_{c} \sum_{i=1}^{N} (y_i - c^T \phi(x_i))^2 + \lambda c^T
+D_r^{-1} c \quad \because c^T D_r^{-\frac{1}{2}} V^T V
+D_r^{-\frac{1}{2}} c = c^T D_r^{-1} c, \quad V V^T = I \\
+&amp;= \min_{\{c_i\}_{i=1}^{M}} \sum_{i=1}^{N} \left( y_i -
+\sum_{j=1}^{M} \frac{c_j}{\sqrt{r_j}} \phi_j(x_i) \right)^2 + \lambda
+c^T D_r^{-1} c \\
+&amp;= \min_{\{c_i\}_{i=1}^{M}} \sum_{i=1}^{N} \left( y_i -
+\sum_{j=1}^{M} \frac{c_j}{\sqrt{r_j}} \phi_j(x_i) \right)^2 + \lambda
+\sum_{j=1}^{M} \frac{c_j^2}{r_j}.
+\end{aligned}\]</span></p>
+<p>Letting <span class="math inline">\(M \to \infty\)</span> leads to
+the desired conclusion.</p>
+</div>
+<div id="b-show-thathatf-h-hatbeta-k-k-lambda-i-1-ywhere-h-is-n-times-m-matrix-of-h_mx_i-and-k-h-ht-is-n-times-n-matrix-of-inner-product-hx_it-hx_j." class="section level3">
+<h3>(b) Show that:<span class="math display">\[\hat{f} = H \hat{\beta} =
+K (K + \lambda I)^{-1} Y\]</span>where <span class="math inline">\(H\)</span> is <span class="math inline">\(N \times
+M\)</span> matrix of <span class="math inline">\(h_m(x_i)\)</span>, and
+<span class="math inline">\(K = H H^T\)</span> is <span class="math inline">\(N \times N\)</span> matrix of inner product <span class="math inline">\(h(x_i)^T h(x_j)\)</span>.</h3>
+<p><strong>proof</strong></p>
+<p><span class="math display">\[
+y_i = \beta^T h(x_i) = y_i - h(x_i)^T \beta = (Y - H \beta)_i
+\]</span></p>
+<p>where <span class="math inline">\([H]_{i, m} = h_m(x_i)\)</span> and
+<span class="math inline">\(r_i(H) = h(x_i)\)</span>, <span class="math inline">\(\quad (Y = (y_1, \dots, y_N)^T)\)</span>.</p>
+<p>Let:</p>
+<p><span class="math display">\[\begin{aligned}
+Q(\beta) &amp;= \sum_{i=1}^{N} (y_i - \beta^T h(x_i))^2 + \lambda
+\beta^T \beta \\
+&amp;= (Y - H \beta)^T (Y - H \beta) + \lambda \beta^T \beta \\
+&amp;= Y^T Y - 2 Y^T H \beta + \beta^T H^T H \beta + \lambda \beta^T
+\beta
+\end{aligned}\]</span></p>
+<p>Since <span class="math display">\[
+\frac{\partial}{\partial \beta} Q(\beta) = -2 H^T Y + 2 (H^T H + \lambda
+I) \beta,
+\]</span></p>
+<p>minimizer <span class="math inline">\(\hat{\beta}\)</span>
+satisfies:</p>
+<p><span class="math display">\[
+H^T Y - (H^T H + \lambda I) \hat{\beta} = 0
+\]</span></p>
+<p>and:</p>
+<p><span class="math display">\[
+\hat{\beta} = (H^T H + \lambda I)^{-1} H^T Y \in \mathbb{R}^M
+\]</span></p>
+<p>Note that:</p>
+<p><span class="math display">\[
+x^T (H^T H + \lambda I) x = \| H x \|_2^2 + \lambda \| x \|_2^2 &gt; 0
+\]</span></p>
+<p>for nonzero <span class="math inline">\(x \in \mathbb{R}^M\)</span>.
+So <span class="math inline">\(H^T H + \lambda I\)</span> is PD, <span class="math inline">\(\Rightarrow\)</span> non-singular.</p>
+<p>Then:</p>
+<p><span class="math display">\[
+\hat{f}(x_i) = \sum_{m=1}^{M} \hat{\beta}_m h_m(x_i) = h(x_i)^T
+\hat{\beta} \quad (\sim (3))
+\]</span></p>
+<p>and:</p>
+<p><span class="math display">\[
+\hat{f} = (f(x_1), \dots, f(x_N)) = H \hat{\beta} = H (H^T H + \lambda
+I)^{-1} H^T Y
+\]</span></p>
+<p>The Woodbury identity leads to:</p>
+<p><span class="math display">\[
+(\lambda I + H H^T)^{-1} = (\lambda I)^{-1} - (\lambda I)^{-1} H (I +
+H^T (\lambda I)^{-1} H)^{-1} H^T (\lambda I)^{-1}
+= \frac{1}{\lambda} I - \frac{1}{\lambda} H (I + \frac{1}{\lambda} H^T
+H)^{-1} \frac{1}{\lambda} H^T
+\]</span></p>
+<p>Then:</p>
+<p><span class="math display">\[\begin{aligned}
+\hat{f} &amp;= H \left( \frac{1}{\lambda} I - \frac{1}{\lambda} H (I +
+\frac{1}{\lambda} H^T H)^{-1} H^T \right) Y \\
+&amp;= \frac{1}{\lambda} H H^T Y - \frac{1}{\lambda} H (I +
+\frac{1}{\lambda} H^T H)^{-1} H^T H^T Y \\
+&amp;= \frac{1}{\lambda} H H^T \left( I - (\lambda I + H^T H)^{-1} H^T H
+\right) Y \\
+&amp;= \frac{1}{\lambda} H H^T (I - (\lambda I + H^T H)^{-1} H^T H) Y
+\qquad \text{let }H H^T = K \\
+&amp;= \frac{1}{\lambda} K \left( (I + K^T)(\lambda I + K) - (I + K^T) K
+\right) Y \\
+&amp;= \frac{1}{\lambda} K \left( (\lambda I + K^T)(\lambda I) \right) Y
+\\
+&amp;= K (\lambda I + K)^{-1} Y
+\end{aligned}\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+[K]_{i, j} = [H H^T]_{i, j} = \sum_{m=1}^{M} [H]_{i, m} [H^T]_{m, j}
+= \sum_{m=1}^{M} h_m(x_i) h_m(x_j) = h(x_i)^T h(x_j) = K(x_i, x_j).
+\]</span></p>
+</div>
+<div id="c-show-that-hatfx-hxt-hatbeta-sum_j1n-kx-x_j-hatalpha_j-left-hatalpha-k-lambda-i-1-y-in-mathbbrn-right" class="section level3">
+<h3>(c) Show that: <span class="math display">\[\hat{f}(x) = h(x)^T
+\hat{\beta} = \sum_{j=1}^{N} K(x, x_j) \hat{\alpha}_j\]</span> <span class="math display">\[\left( \hat{\alpha} = (K + \lambda I)^{-1} Y \in
+\mathbb{R}^N \right)\]</span></h3>
+<p><strong>proof</strong></p>
+<p>We’ve shown in (b) that:</p>
+<p><span class="math display">\[
+\hat{f}(x_i) = \sum_{m=1}^{M} \hat{\beta}_m h_m(x_i) = h(x_i)^T
+\hat{\beta}
+\]</span></p>
+<p>The conclusion of (b) is that:</p>
+<p><span class="math display">\[
+\hat{f} = K (K + \lambda I)^{-1} Y = K \hat{\alpha}.
+\]</span> So, <span class="math display">\[
+\hat{f}(x_i) = (\hat{f})_i = (K \hat{\alpha})_i = r_i(K) \cdot
+\hat{\alpha} = \sum_{j=1}^{N} K(x_i, x_j) \hat{\alpha}_j =
+\sum_{j=1}^{N} K(x_i, x_j) \hat{\alpha}_j
+\]</span></p>
+</div>
+<div id="d-how-would-you-modify-your-solution-if-m-n" class="section level3">
+<h3>(d) How would you modify your solution if <span class="math inline">\(M &lt; N\)</span>?</h3>
+<p><strong>solution</strong></p>
+<p><span class="math inline">\(H H^T + \lambda I\)</span> is positive
+definite whether <span class="math inline">\(M &lt; N\)</span> or not
+(<span class="math inline">\(\lambda &gt; 0\)</span>). So, <span class="math inline">\(\hat{f}\)</span> can still be written as:</p>
+<p><span class="math display">\[
+K (K + \lambda I)^{-1} Y.
+\]</span></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
+
+</div>
