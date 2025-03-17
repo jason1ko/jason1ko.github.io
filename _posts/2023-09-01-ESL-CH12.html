@@ -1,0 +1,363 @@
+---
+title: "ESL CH12"
+date: 2023-09-01 23:00:00
+categories: [Elements of Statistical Learning]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<!DOCTYPE html>
+
+<html>
+
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="elements-of-statistical-learning-ch12" class="section level1">
+<h1># Elements of Statistical Learning Ch12</h1>
+<div id="let-hatf-be-the-minimizer-of-the-conditional-risk-mathbbe-ly-fx-mid-x-x-where-y-in--1-1.-let-px-mathbbpy-1-mid-x-x.-then-express-textsignhatf-for-different-fs-using-px." class="section level2">
+<h2>1. Let <span class="math inline">\(\hat{f}\)</span> be the minimizer
+of the conditional risk <span class="math display">\[ \mathbb{E} [ L(Y,
+f(x)) \mid x = x ] \]</span> where <span class="math inline">\(Y \in
+\{-1, 1\}\)</span>. Let <span class="math inline">\(p(x) = \mathbb{P}(Y
+= 1 \mid x = x)\)</span>. Then, express <span class="math inline">\(\text{sign}(\hat{f})\)</span> for different <span class="math inline">\(f\)</span>’s using <span class="math inline">\(p(x)\)</span>.</h2>
+<p><span class="math inline">\(f(x) \Rightarrow f\)</span> and <span class="math inline">\(p(x) \Rightarrow p\)</span> for simplicity.</p>
+<div id="a-ly-fx-y---fx2" class="section level3">
+<h3>(a) <span class="math inline">\(L(Y, f(x)) = (Y -
+f(x))^2\)</span></h3>
+<div id="solution" class="section level4">
+<h4>solution</h4>
+<p><span class="math display">\[
+\begin{align*}
+\mathbb{E}_Y[(Y - f)^2]
+&amp;= (1 - f)^2 p + (-1 - f)^2 (1 - p) \\
+&amp;= (1 - 2f + f^2) p + (1 + 2f + f^2) (1 - p) \\
+&amp;= f^2 (p + 1 - p) + f (-2p + 2(1 - p)) + (p + 1 - p) \\
+&amp;= f^2 - 2(2p - 1) f + 1 \\
+&amp;= \{ f - (2p - 1) \}^2 + 1 - (2p - 1)^2
+\end{align*}
+\]</span></p>
+<p><span class="math inline">\(\Rightarrow\)</span> minimized when <span class="math inline">\(f = 2p - 1\)</span>.</p>
+<p>So, <span class="math inline">\(\hat{f}(x) = 2p(x) - 1\)</span>
+and<br />
+<span class="math display">\[
+\text{sign}(\hat{f}) = \text{sign}(2p(x) - 1).
+\]</span></p>
+</div>
+</div>
+<div id="b-ly-fx-1---y-fx_-quad-textwhere-quad-z_-z-cdot-iz-geq-0" class="section level3">
+<h3>(b) <span class="math inline">\(L(Y, f(x)) = (1 - Y f(x))_+ , \quad
+\text{where} \quad Z_+ = Z \cdot I(Z \geq 0)\)</span></h3>
+<div id="solution-1" class="section level4">
+<h4>solution</h4>
+<p><span class="math display">\[
+\mathbb{E}_Y[(1 - Y f(x))_+] := R(f) = (1 - f)_+ p + (1 + f)_+ (1 - p)
+\]</span></p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(f(x) \leq -1\)</span></li>
+</ol>
+<p><span class="math display">\[
+R(f) = (1 - f) p + 0 = (1 - f) p
+\]</span></p>
+<p><span class="math inline">\(p \geq 0\)</span>, so <span class="math inline">\(R(f)\)</span> is decreasing w.r.t <span class="math inline">\(f \in (-\infty, -1]\)</span>.</p>
+<p>So, <span class="math display">\[
+\arg \min_{f \leq -1} R(f) = -1
+\]</span> and this holds for all <span class="math inline">\(p(x) \in
+[0, 1]\)</span>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="math inline">\(f(x) \geq 1\)</span></li>
+</ol>
+<p><span class="math display">\[
+R(f) = (1 + f) (1 - p),
+\]</span> which is increasing w.r.t <span class="math inline">\(f \in
+[1, \infty)\)</span>.</p>
+<p>So, <span class="math display">\[
+\arg \min_{f \geq 1} R(f) = 1
+\]</span> which holds for all <span class="math inline">\(p \in [0,
+1]\)</span>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math inline">\(-1 \leq f(x) \leq 1 \Rightarrow 1 - f
+\geq 0\)</span>, <span class="math inline">\(1 + f \geq 0\)</span></li>
+</ol>
+<p><span class="math inline">\(f\)</span> is restricted to <span class="math inline">\(f \in [-1, 1]\)</span> and <span class="math inline">\(Y \in \{-1, 1\}\)</span>. So, <span class="math inline">\(1 - Yf\)</span> is non-negative: <span class="math inline">\((1 - Yf)_+ = 1 - Yf\)</span>. Then, <span class="math inline">\(R(f) = \mathbb{E}_Y[(1 - Yf)_+] = 1 -
+\mathbb{E}_Y[Yf]\)</span>.</p>
+<p>The minimizer of <span class="math inline">\(R(f)\)</span> is
+equivalent to the maximizer of <span class="math inline">\(\mathbb{E}_Y[Yf]\)</span>. Then, <span class="math display">\[
+\mathbb{E}_Y[Yf] = f(x) p(x) + (-f(x))(1 - p(x)) = f(x)(2p(x) - 1)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\mathbb{E}_Y[Yf]\)</span> is increasing
+w.r.t <span class="math inline">\(f\)</span> when <span class="math inline">\(2p - 1 &gt; 0\)</span>, so <span class="math display">\[
+\arg\max_{-1 \leq f \leq 1} \mathbb{E}_Y[Yf] = 1.
+\]</span></li>
+<li><span class="math inline">\(\mathbb{E}_Y[Yf] = 0\)</span> when <span class="math inline">\(p = \frac{1}{2}\)</span>, so <span class="math inline">\(\arg\max_{-1 \leq f \leq 1}
+\mathbb{E}_Y[Yf]\)</span> doesn’t exist.</li>
+<li><span class="math inline">\(\mathbb{E}_Y[Yf]\)</span> is decreasing
+w.r.t <span class="math inline">\(f\)</span> when <span class="math inline">\(2p - 1 &lt; 0\)</span>, so <span class="math display">\[
+\arg\max_{-1 \leq f \leq 1} \mathbb{E}_Y[Yf] = -1.
+\]</span></li>
+</ul>
+<p>The equivalent expression is: <span class="math display">\[
+\arg\min_{-1 \leq f \leq 1} R(f) =
+\begin{cases}
+-1, &amp; 0 &lt; p &lt; \frac{1}{2} \\
+1, &amp; \frac{1}{2} &lt; p &lt; 1
+\end{cases}
+\]</span></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Conclusion</li>
+</ol>
+<p>Hence, <span class="math display">\[
+\arg\min_{f} R(f) =
+\begin{cases}
+-1, &amp; 0 &lt; p &lt; \frac{1}{2} \\
+1, &amp; \frac{1}{2} &lt; p &lt; 1
+\end{cases}
+\]</span></p>
+<hr />
+</div>
+</div>
+<div id="c-ly-fx-exp-y-fx" class="section level3">
+<h3>(c) <span class="math inline">\(L(y, f(x)) = \exp(-y
+f(x))\)</span></h3>
+<div id="solution-2" class="section level4">
+<h4>solution</h4>
+<p><span class="math display">\[
+\mathbb{E}_Y[e^{-Yf}] = e^{-f} p + e^{f} (1 - p) := R(f)
+\]</span></p>
+<p>Differentiate: <span class="math display">\[
+\frac{d}{df} R(f) = -e^{-f} p + e^{f} (1 - p) = -p \cdot \frac{1}{e^{f}}
++ (1 - p) e^{f}
+\]</span></p>
+<p>Set derivative to 0: <span class="math display">\[
+-p \cdot \frac{1}{e^{f}} + (1 - p) e^{f} = 0 \\
+\Leftrightarrow (1 - p) e^{2f} = p \\
+\Leftrightarrow e^{2f} = \frac{p}{1 - p} \\
+\Leftrightarrow f = \frac{1}{2} \log \left( \frac{p}{1 - p} \right)
+\]</span></p>
+<p><span class="math inline">\(p \geq \frac{1}{2} \Leftrightarrow
+\frac{p}{1 - p} \geq 1 \Leftrightarrow \hat{f} \geq 0\)</span> and vice
+versa. So, <span class="math display">\[
+\text{sign}(\hat{f}) = \text{sign}(2p(x) - 1).
+\]</span></p>
+</div>
+</div>
+<div id="d-ly-fx-log1-e-y-fx" class="section level3">
+<h3>(d) <span class="math inline">\(L(y, f(x)) = \log(1 + e^{-y
+f(x)})\)</span></h3>
+<div id="solution-3" class="section level4">
+<h4>solution</h4>
+<p><span class="math display">\[
+R(f) := \mathbb{E}_Y \left[ \log(1 + e^{-Y f(x)}) \right] = \log(1 +
+e^{-f}) p + \log(1 + e^{f}) (1 - p)
+\]</span></p>
+<p>Differentiate:</p>
+<p><span class="math display">\[
+\frac{d}{df} R = p \cdot \frac{-e^{-f}}{1 + e^{-f}} + (1 - p) \cdot
+\frac{e^{f}}{1 + e^{f}}
+\]</span></p>
+<p>Set derivative to zero:</p>
+<p><span class="math display">\[
+p \cdot \frac{-e^{-f}}{1 + e^{-f}} + (1 - p) \cdot \frac{e^{f}}{1 +
+e^{f}} = 0
+\]</span></p>
+<p>Simplify:</p>
+<p><span class="math display">\[
+\frac{-p \cdot e^{-f}}{1 + e^{-f}} = \frac{(1 - p) \cdot e^{f}}{1 +
+e^{f}}
+\]</span></p>
+<p>Multiply numerator and denominator by <span class="math inline">\(e^{f}\)</span>:</p>
+<p><span class="math display">\[
+\frac{-p}{1 + e^{f}} = \frac{(1 - p) e^{f}}{1 + e^{f}}
+\]</span></p>
+<p>Simplify:</p>
+<p><span class="math display">\[
+-p = (1 - p) e^{f}
+\]</span></p>
+<p>Rearrange:</p>
+<p><span class="math display">\[
+\frac{p}{1 - p} = e^{f}
+\]</span></p>
+<p>Take logarithm:</p>
+<p><span class="math display">\[
+\hat{f} = \log \left( \frac{p}{1 - p} \right)
+\]</span></p>
+<p>Note that:</p>
+<p><span class="math display">\[
+p \geq \frac{1}{2} \Leftrightarrow \frac{p}{1 - p} \geq 1
+\Leftrightarrow \hat{f} \geq 0
+\]</span> So,</p>
+<p><span class="math display">\[
+\text{sign}(\hat{f}) = \text{sign}(2p(x) - 1).
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="section" class="section level2">
+<h2><strong>2.</strong></h2>
+<div id="show-that-hatxi_i-1---y_i-wt-x_i-b_" class="section level3">
+<h3>(1) Show that <span class="math display">\[\hat{\xi}_i = (1 - y_i
+(w^T x_i + b))_+\]</span></h3>
+<p><strong>solution</strong></p>
+<p>Below are the Lagrangian form and corresponding KKT conditions (<span class="math inline">\(C &gt; 0\)</span>):</p>
+<p><span class="math display">\[
+\mathcal{L}((w, b, \xi), (\alpha, \beta)) = \frac{1}{2} \|w\|^2 + C
+\sum_i \xi_i - \sum_i \alpha_i \left\{ y_i (w^T x_i + b) - (1 - \xi_i)
+\right\} - \sum_i \beta_i \xi_i
+\]</span></p>
+<p>Conditions: 1) <span class="math inline">\(y_i (w^T x_i + b) - (1 -
+\xi_i) \geq 0\)</span>, <span class="math inline">\(\xi_i \geq
+0\)</span> <span class="math inline">\(\quad \forall i\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p><span class="math inline">\(\alpha_i \geq 0\)</span>, <span class="math inline">\(\beta_i \geq 0\)</span> <span class="math inline">\(\quad \forall i\)</span></p></li>
+<li><p><span class="math inline">\(\alpha_i \left\{ y_i (w^T x_i + b) -
+(1 - \xi_i) \right\} = 0\)</span>, <span class="math inline">\(\beta_i
+\xi_i = 0\)</span></p></li>
+<li><p><span class="math display">\[
+\frac{\partial \mathcal{L}}{\partial w} = w - \sum_i \alpha_i y_i x_i =
+0, \quad
+\frac{\partial \mathcal{L}}{\partial b} = \sum_i \alpha_i y_i = 0, \quad
+\frac{\partial \mathcal{L}}{\partial \xi_i} = C - \alpha_i - \beta_i = 0
+\quad \forall i
+\]</span></p></li>
+</ol>
+<p>Let <span class="math inline">\(f_i = w^T x_i + b\)</span> for
+simplicity.</p>
+<div id="case-1-1---y_i-f_i-leq-0" class="section level4">
+<h4>Case 1: <span class="math inline">\(1 - y_i f_i \leq 0\)</span></h4>
+<p>Assume that <span class="math inline">\(\xi_i &gt; 0\)</span>. <span class="math inline">\(\beta_i \xi_i = 0\)</span> <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(\beta_i = 0\)</span> (by KKT (iii)), so <span class="math inline">\(\beta_i = 0\)</span>. Since <span class="math inline">\(\alpha_i = C\)</span> (by KKT (iv)), <span class="math inline">\(y_i f_i - 1 + \xi_i = 0\)</span> (KKT (iii)). This
+leads to: <span class="math display">\[
+\xi_i = 1 - y_i f_i \leq 0,
+\]</span> which is a contradiction (since <span class="math inline">\(\xi_i \geq 0\)</span>). Thus, <span class="math inline">\(\xi_i = 0\)</span> (by KKT (ii)).</p>
+</div>
+<div id="case-2-1---y_i-f_i-0" class="section level4">
+<h4>Case 2: <span class="math inline">\(1 - y_i f_i &gt; 0\)</span></h4>
+<p><span class="math inline">\(\xi_i \geq 1 - y_i f_i\)</span> (by KKT
+(ii)), so <span class="math inline">\(\xi_i &gt; 0\)</span> and
+accordingly <span class="math inline">\(\beta_i = 0\)</span> (by KKT
+(iii)). Since <span class="math inline">\(C = \alpha_i\)</span> (by KKT
+(iv)), <span class="math inline">\(y_i f_i - 1 + \xi_i = 0\)</span> (by
+KKT (iii)). Thus: <span class="math display">\[
+\xi_i = 1 - y_i f_i
+\]</span></p>
+<p>Therefore: <span class="math display">\[
+\hat{\xi}_i = (1 - y_i f_i)_+
+\]</span></p>
+<p>Note that the two statements are equivalent: <span class="math display">\[
+\left\{ \xi_i \geq 0 \ \&amp;\ \xi_i = 1 - y_i f_i \geq 0 \right\} \
+\Longleftrightarrow \ \left\{ \xi_i = (1 - y_i f_i)_+ \right\}.
+\]</span></p>
+</div>
+</div>
+<div id="show-that-min_w-b-xi-left-frac12-w2-c-sum_i-xi_i-xi_i-geq-0-xi_i-geq-1---y_i-f_i-right-min_w-b-left-frac12-w2-c-sum_i-1---y_i-f_i_-right" class="section level3">
+<h3>(2) Show that: <span class="math display">\[ \min_{w, b, \xi}
+\left\{ \frac{1}{2} \|w\|^2 + C \sum_i \xi_i : \xi_i \geq 0, \ \xi_i
+\geq 1 - y_i f_i \right\} = \min_{w, b} \left\{ \frac{1}{2} \|w\|^2 + C
+\sum_i (1 - y_i f_i)_+ \right\}\]</span></h3>
+<p><strong>solution</strong></p>
+<div id="leq-direction" class="section level4">
+<h4>1) “<span class="math inline">\(\leq\)</span>” direction:</h4>
+<p><span class="math display">\[\begin{aligned}
+&amp;\min_{w, b, \xi} \left\{ \frac{1}{2} \|w\|^2 + C \sum_i \xi_i :
+\xi_i \geq 0, \ \xi_i \geq 1 - y_i f_i \right\} \\
+&amp;= \min_{w, b, \xi} \left\{ \frac{1}{2} \|w\|^2 + C \sum_i \xi_i :
+\xi_i = (1 - y_i f_i)_+ \right\} \\
+&amp;\geq \min_{w, b, \xi} \left\{ \frac{1}{2} \|w\|^2 + C \sum_i \xi_i
+: \xi_i \geq (1 - y_i f_i)_+ \right\}
+\quad (\text{since feasible region shrinks}) \\
+&amp;= \min_{w, b} \left\{ \frac{1}{2} \|w\|^2 + C \sum_i (1 - y_i
+f_i)_+ \right\}
+\end{aligned}\]</span></p>
+</div>
+<div id="geq-direction" class="section level4">
+<h4>2) “<span class="math inline">\(\geq\)</span>” direction:</h4>
+<p><span class="math display">\[
+\min_{w, b, \xi} \left\{ \frac{1}{2} \|w\|^2 + C \sum_i \xi_i : \xi_i
+\geq (1 - y_i f_i)_+ \right\}
+\leq
+\min_{w, b} \left\{ \frac{1}{2} \|w\|^2 + C \sum_i (1 - y_i f_i)_+
+\right\}
+\]</span> because <span class="math inline">\(A \subset B\)</span>
+implies <span class="math inline">\(\min A \ge \min B\)</span>. Feasible
+point choosing <span class="math inline">\(\xi_i = (1 - y_i
+f_i)_+\)</span> achieves equality.</p>
+</div>
+<div id="conclusion" class="section level4">
+<h4>3) Conclusion:</h4>
+<p><span class="math display">\[\min_{w, b, \xi} \left\{ \frac{1}{2}
+\|w\|^2 + C \sum_i \xi_i : \xi_i \geq 0, \ \xi_i \geq 1 - y_i f_i
+\right\}=
+\min_{w, b} \left\{ \frac{1}{2} \|w\|^2 + C \sum_i (1 - y_i f_i)_+
+\right\}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
+  
+</div>
