@@ -4,7 +4,31 @@ layout: post
 
 {% include sidebar.html %}  <!-- 사이드바 포함 -->
 
-<div class="home-content">
-  <h1>Welcome!</h1>
-  <p>This blog shares my study and research on statistics and data science.</p>
+<div class="main-wrapper" style="display: flex; align-items: flex-start; margin-top: 50px;">
+
+  <!-- 왼쪽 컬럼: 소개 -->
+  <div class="intro-section" style="flex: 2; padding: 20px;">
+    <h1>Welcome!</h1>
+    <p>This blog shares my study and research on statistics and data science.</p>
+
+  </div>
+
+  <!-- 오른쪽 컬럼: 프로필 -->
+  <div class="profile-section" style="flex: 1; padding: 20px; text-align: center;">
+    <!-- 프로필 사진 -->
+    <img src="/assets/images/my_selfie.jpg" alt="Profile" style="border-radius: 50%; width: 120px; height: 120px;">
+    
+    <!-- 이름 -->
+    <h3 style="margin-top: 12px;">KO Hanjun</h3>
+    <p>M.S. student in Statistics</p>
+    
+    <!-- 아이콘과 정보 -->
+    <ul style="list-style: none; padding: 0; margin-top: 12px; text-align: left;">
+      <li><i class="fas fa-map-marker-alt"></i> Gangnam, Seoul, Korea</li>
+      <li><i class="fab fa-github"></i> <a href="https://github.com/jason1ko">Github</a></li>
+      <li><i class="fas fa-envelope"></i> jason801601@gmail.com</li>
+      <!-- <li><i class="fas fa-graduation-cap"></i> <a href="https://scholar.google.com">Google Scholar</a></li> -->
+    </ul>
+  </div>
+
 </div>
