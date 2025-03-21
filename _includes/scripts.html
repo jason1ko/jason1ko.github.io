@@ -26,3 +26,21 @@
     <script src="{{ script | relative_url }}"></script>
   {% endfor %}
 {% endif %}
+
+
+<!-- === 여기에 추가 === -->
+<script>
+  const sidebar = document.getElementById('sidebar');
+
+  if (sidebar) {
+    // 저장된 위치 복원
+    if (localStorage.getItem('sidebar-scroll')) {
+      sidebar.scrollTop = localStorage.getItem('sidebar-scroll');
+    }
+
+    // 스크롤 이벤트로 저장
+    sidebar.addEventListener('scroll', () => {
+      localStorage.setItem('sidebar-scroll', sidebar.scrollTop);
+    });
+  }
+</script>
