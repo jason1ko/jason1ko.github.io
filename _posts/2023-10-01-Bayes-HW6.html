@@ -1,0 +1,477 @@
+---
+title: "Bayes HW6"
+date: 2023-10-01 23:20:00
+categories: [Bayesian Statistics]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<!DOCTYPE html>
+
+<html>
+
+
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="bayesian-statistics-hw6" class="section level1">
+<h1>Bayesian Statistics HW6</h1>
+<div id="q1.-consider-the-following-bayesian-hierarchical-mixture-model.-let-mathbfy-y_i_i1n-denote-a-set-of-observations-that-are-grouped-into-j-clusters-following-different-gaussian-distributions-and-let-mathbfz-z_i_i1n-denote-a-set-of-latent-variables-for-allocating-each-observation-to-a-cluster-such-that-z_i-j-if-and-only-if-the-ith-observation-is-allocated-to-the-jth-cluster-for-j-1-dots-j.-the-bayesian-hierarchical-mixture-model-is-expressed-as-beginaligned-y_i-mid-mu-sigma2-z-oversettextindsim-mathcal-nmu_z_i-sigma2-quad-i-1-dots-n-z_i-mid-mathbfv-oversettextiidsim-prod_j1j-pi_jmathbfvdelta_jz_i-quad-i-1-dots-n-v_j-mid-alpha-oversettextiidsim-textbeta1-alpha-quad-j-1-dots-j-1-quad-v_j-1-mu_j-mid-sigma2-oversettextiidsim-mathcal-n0-kappa-sigma2-quad-j-1-dots-j-sigma2-sim-textinv-gammagamma-betaendaligned-where-mu-mu_1-dots-mu_j-denotes-a-set-of-cluster-specific-means-of-a-normal-distribution-sigma2-denotes-a-common-variance-across-clusters-mathbfv-v_j_j1j-1-denotes-a-set-of-random-variables-from-a-so-called-stick-breaking-process-with-v_j-1-so-that-pi_jmathbfv-v_j-prod_lj-1---v_l-becomes-a-mixture-probability-weight-delta_jz_i-is-a-delta-function-such-that-a-probability-measure-is-concentrated-at-z_i-j-and-alpha-kappa-gamma-beta-are-known-constants.-our-goal-is-to-construct-the-gibbs-sampler-that-simulates-the-target-posterior-distribution-of-the-model-pmathbfz-mathbfv-mu-sigma2-mid-mathbfy." class="section level2">
+<h2>Q1. Consider the following Bayesian hierarchical mixture model. Let
+<span class="math inline">\(\mathbf{Y} = \{Y_i\}_{i=1}^n\)</span> denote
+a set of observations that are grouped into <span class="math inline">\(J\)</span> clusters following different Gaussian
+distributions, and let <span class="math inline">\(\mathbf{Z} =
+\{Z_i\}_{i=1}^n\)</span> denote a set of latent variables for allocating
+each observation to a cluster such that <span class="math inline">\(Z_i
+= j\)</span> if and only if the <span class="math inline">\(i\)</span>th
+observation is allocated to the <span class="math inline">\(j\)</span>th
+cluster, for <span class="math inline">\(j = 1, \dots, J\)</span>. The
+Bayesian hierarchical mixture model is expressed as <span class="math display">\[ \begin{aligned}     Y_i \mid (\mu, \sigma^2, Z)
+&amp;\overset{\text{ind}}{\sim} \mathcal N(\mu_{Z_i}, \sigma^2), \quad i
+= 1, \dots, n, \\ Z_i \mid \mathbf{V} &amp;\overset{\text{iid}}{\sim}
+\prod_{j=1}^J \pi_j(\mathbf{V})^{\delta_j(Z_i)}, \quad i = 1, \dots, n,
+\\    V_j \mid \alpha &amp;\overset{\text{iid}}{\sim} \text{Beta}(1,
+\alpha), \quad j = 1, \dots, J-1, \quad V_J = 1, \\    \mu_j \mid
+\sigma^2 &amp;\overset{\text{iid}}{\sim} \mathcal N(0, \kappa \sigma^2),
+\quad j = 1, \dots, J, \\    \sigma^2 &amp;\sim \text{Inv-Gamma}(\gamma,
+\beta),\end{aligned}\]</span> where <span class="math inline">\(\mu =
+(\mu_1, \dots, \mu_J)\)</span> denotes a set of cluster-specific means
+of a normal distribution, <span class="math inline">\(\sigma^2\)</span>
+denotes a common variance across clusters, <span class="math inline">\(\mathbf{V} = \{V_j\}_{j=1}^{J-1}\)</span> denotes
+a set of random variables from a so-called stick-breaking process with
+<span class="math inline">\(V_J = 1\)</span>, so that <span class="math display">\[ \pi_j(\mathbf{V}) = V_j \prod_{l&lt;j} (1 -
+V_l)\]</span> becomes a mixture probability weight, <span class="math inline">\(\delta_j(Z_i)\)</span> is a delta function such
+that a probability measure is concentrated at <span class="math inline">\(Z_i = j\)</span>, and <span class="math inline">\((\alpha, \kappa, \gamma, \beta)\)</span> are known
+constants. Our goal is to construct the Gibbs sampler that simulates the
+target posterior distribution of the model, <span class="math inline">\(p(\mathbf{Z}, \mathbf{V}, \mu, \sigma^2 \mid
+\mathbf{Y})\)</span>.</h2>
+<div id="obtain-the-full-posterior." class="section level3">
+<h3>(*) Obtain the full posterior.</h3>
+<p><span class="math display">\[\begin{aligned}
+p(\mathbf{Z}, \mathbf{V}, \mu, \sigma^2 \mid \mathbf{Y}) &amp;\propto
+p(\mathbf Y|\mathbf{Z}, \mathbf{V}, \mu, \sigma^2)p(\mathbf{Z},
+\mathbf{V}, \mu, \sigma^2) \\
+&amp;\propto p(\mathbf Y|\mathbf{Z},  \mu, \sigma^2)p(\mathbf Z |
+\mathbf V)p(\mathbf{V}, \mu, \sigma^2) \\
+&amp;\propto p(\mathbf Y|\mathbf{Z},  \mu, \sigma^2)p(\mathbf Z |
+\mathbf V)p(\mathbf V)p(\mu|\sigma^2)p(\sigma^2)
+\end{aligned}\]</span></p>
+<hr />
+</div>
+<div id="a-construct-a-sampling-step-for-mathbfz-in-the-gibbs-sampler." class="section level3">
+<h3>(a) Construct a sampling step for <span class="math inline">\(\mathbf{Z}\)</span> in the Gibbs sampler.</h3>
+<div id="conditional-posterior-of-z_i" class="section level4">
+<h4>1). Conditional posterior of <span class="math inline">\(Z_i\)</span></h4>
+<p>Recall that <span class="math display">\[
+Z_i \mid \mathbf{V} \;\sim\; \prod_{j=1}^J
+\pi_j(\mathbf{V})^{\delta_j(Z_i)},
+\]</span> where <span class="math display">\[
+\pi_j(\mathbf{V}) \;=\; V_j \prod_{l&lt;j} (1 - V_l),
+\]</span> and <span class="math display">\[
+Y_i \mid (Z_i = j, \mu_j, \sigma^2) \;\sim\; N(\mu_j, \sigma^2).
+\]</span></p>
+<p>Given all other parameters <span class="math inline">\(\mu, \sigma^2,
+\mathbf{V}\)</span> and the observed data <span class="math inline">\(Y_i\)</span>, the posterior probability for <span class="math inline">\(Z_i\)</span> taking a particular cluster value
+<span class="math inline">\(j\)</span> is proportional to the prior
+<span class="math inline">\(\pi_j(\mathbf{V})\)</span> times the
+likelihood of <span class="math inline">\(Y_i\)</span> under that
+cluster’s parameters:</p>
+<p><span class="math display">\[
+p(Z_i = j \mid \mathbf{Y}, \mu, \sigma^2, \mathbf{V})
+\;\propto\;
+\pi_j(\mathbf{V}) \,\cdot\, f\bigl(Y_i \mid \mu_j, \sigma^2\bigr),
+\]</span> where <span class="math inline">\(f(\cdot)\)</span> is the
+density of the normal distribution <span class="math inline">\(\mathcal
+N(\mu_j, \sigma^2)\)</span>. Explicitly,</p>
+<p><span class="math display">\[
+f\bigl(Y_i \mid \mu_j, \sigma^2\bigr)
+\;=\;
+\frac{1}{\sqrt{2\pi\,\sigma^2}} \exp\!\Bigl(\!-\frac{(Y_i -
+\mu_j)^2}{2\,\sigma^2}\Bigr).
+\]</span></p>
+</div>
+<div id="normalizing-to-obtain-the-full-conditional" class="section level4">
+<h4>2). Normalizing to obtain the full conditional</h4>
+<p>To obtain a proper probability, we normalize over <span class="math inline">\(j = 1, \dots, J\)</span>:</p>
+<p><span class="math display">\[
+p(Z_i = j \mid \mathbf{Y}, \mu, \sigma^2, \mathbf{V})
+\;=\;
+\frac{\pi_j(\mathbf{V})\, f\bigl(Y_i \mid \mu_j, \sigma^2\bigr)}%
+{\sum_{k=1}^J \pi_k(\mathbf{V})\, f\bigl(Y_i \mid \mu_k,
+\sigma^2\bigr)}.
+\]</span></p>
+</div>
+<div id="gibbs-sampling-step" class="section level4">
+<h4>3). Gibbs sampling step</h4>
+<p>In a Gibbs sampler, we update each <span class="math inline">\(Z_i\)</span> in turn (or all <span class="math inline">\(Z_i\)</span> in a block) by:</p>
+<p>i). <strong>Compute unnormalized weights</strong> for <span class="math inline">\(j = 1, \dots, J\)</span>: <span class="math display">\[
+   w_j
+   \;=\;
+   \pi_j(\mathbf{V}) \times f\bigl(Y_i \mid \mu_j, \sigma^2\bigr).
+   \]</span></p>
+<p>ii). <strong>Normalize</strong> to get the probabilities: <span class="math display">\[
+   p(Z_i = j \mid \dots)
+   \;=\;
+   \frac{w_j}{\sum_{k=1}^J w_k}.
+   \]</span></p>
+<p>iii). <strong>Sample</strong> <span class="math inline">\(Z_i\)</span> from the discrete distribution with
+the above probabilities.</p>
+<hr />
+</div>
+</div>
+<div id="b-construct-a-sampling-step-for-mathbfv-in-the-gibbs-sampler." class="section level3">
+<h3>(b) Construct a sampling step for <span class="math inline">\(\mathbf{V}\)</span> in the Gibbs sampler.</h3>
+<div id="prior-of-v_j" class="section level4">
+<h4>1). <strong>Prior of <span class="math inline">\(V_j\)</span></strong></h4>
+<p>For <span class="math inline">\(j = 1, \dots, J-1\)</span>:</p>
+<p><span class="math display">\[
+V_j \mid \alpha \sim \text{Beta}(1, \alpha),
+\]</span></p>
+<p>and <span class="math inline">\(V_J = 1\)</span> is fixed. The Beta
+density is as follows:</p>
+<p><span class="math display">\[
+p(V_j) = \frac{\Gamma(1 + \alpha)}{\Gamma(1)\Gamma(\alpha)} V_j^{0} (1 -
+V_j)^{\alpha - 1} = \alpha (1 - V_j)^{\alpha - 1}.
+\]</span></p>
+</div>
+<div id="likelihood-contribution" class="section level4">
+<h4>2). <strong>Likelihood Contribution</strong></h4>
+<p>The <strong>stick-breaking process</strong> defines the mixture
+weight for cluster <span class="math inline">\(j\)</span>:</p>
+<p><span class="math display">\[
+\pi_j(\mathbf{V}) = V_j \prod_{l&lt;j} (1 - V_l).
+\]</span></p>
+<p>Given the cluster assignment <span class="math inline">\(Z_i\)</span>, the likelihood contribution related
+to <span class="math inline">\(V_j\)</span> depends on how many
+observations are assigned to cluster <span class="math inline">\(j\)</span> <strong>and</strong> how many to
+clusters <strong>after</strong> <span class="math inline">\(j\)</span>.</p>
+<p>For each <span class="math inline">\(i\)</span>: - If <span class="math inline">\(Z_i = j\)</span>, the likelihood involves <span class="math inline">\(\pi_j(\mathbf{V}) = V_j \prod_{l&lt;j} (1 -
+V_l)\)</span>. - For clusters after <span class="math inline">\(j\)</span>, the <span class="math inline">\((1 -
+V_j)\)</span> term appears in their weights.</p>
+<p>Thus, the <strong>likelihood contribution</strong> of <span class="math inline">\(V_j\)</span> is: - <strong><span class="math inline">\(V_j\)</span> raised to the power of number of
+observations assigned to cluster <span class="math inline">\(j\)</span>.</strong> - <strong><span class="math inline">\((1 - V_j)\)</span> raised to the power of number
+of observations assigned to clusters after <span class="math inline">\(j\)</span>.</strong></p>
+</div>
+<div id="sufficient-statistics" class="section level4">
+<h4>3). <strong>Sufficient Statistics</strong></h4>
+<p>Define: - <span class="math inline">\(n_j = \sum_{i=1}^n
+\delta_j(Z_i)\)</span>: number of observations assigned to cluster <span class="math inline">\(j\)</span>. - <span class="math inline">\(m_j =
+\sum_{i=1}^n \sum_{k&gt;j} \delta_k(Z_i)\)</span>: number of
+observations assigned to clusters after <span class="math inline">\(j\)</span>.</p>
+</div>
+<div id="posterior-derivation" class="section level4">
+<h4>4). <strong>Posterior Derivation</strong></h4>
+<p>Combining the prior and likelihood:</p>
+<p><span class="math display">\[
+\begin{aligned}
+p(V_j \mid \mathbf{Z}=j)
+&amp;\propto p(V_j) \times p(\mathbf Z=j|V_j) \\
+&amp;\propto \left[ \alpha (1 - V_j)^{\alpha - 1} \right] \times
+V_j^{n_j} (1 - V_j)^{m_j} \\
+&amp;\propto V_j^{n_j} (1 - V_j)^{\alpha - 1 + m_j},
+\end{aligned}
+\]</span></p>
+<p>which is the <strong>Beta</strong> kernel. Thus,</p>
+<p><span class="math display">\[
+V_j \mid (\mathbf{Z}=j) \sim \text{Beta}(1 + n_j, \alpha + m_j).
+\]</span></p>
+</div>
+<div id="summary-gibbs-sampling-step" class="section level4">
+<h4>5). <strong>Summary: Gibbs Sampling Step</strong></h4>
+<p>For each <span class="math inline">\(j = 1, \dots, J-1\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Compute:</strong>
+<ul>
+<li><span class="math inline">\(n_j = \#\{i : Z_i = j\}\)</span></li>
+<li><span class="math inline">\(m_j = \#\{i : Z_i &gt; j\}\)</span></li>
+</ul></li>
+<li><strong>Sample:</strong></li>
+</ol>
+<p><span class="math display">\[
+V_j \sim \text{Beta}(1 + n_j, \alpha + m_j).
+\]</span></p>
+<p>Note that <span class="math inline">\(V_J = 1\)</span> is
+deterministic.</p>
+<hr />
+</div>
+</div>
+<div id="c-construct-a-sampling-step-for-mu-in-the-gibbs-sampler." class="section level3">
+<h3>(c) Construct a sampling step for <span class="math inline">\(\mu\)</span> in the Gibbs sampler.</h3>
+<div id="prior-of-mu_j" class="section level4">
+<h4>1). <strong>prior of <span class="math inline">\(\mu_j\)</span></strong></h4>
+<p>Each <span class="math inline">\(\mu_j\)</span> has</p>
+<p><span class="math display">\[
+\mu_j \mid \sigma^2 \sim N(0, \kappa \sigma^2), \quad j = 1, \dots, J.
+\]</span> That is, <span class="math display">\[p(\mu_j | \sigma^2)
+\propto \exp\left( -\frac{1}{2\kappa \sigma^2} \mu_j^2
+\right).\]</span></p>
+</div>
+<div id="likelihood-contribution-for-mu_j" class="section level4">
+<h4>2). <strong>Likelihood contribution for <span class="math inline">\(\mu_j\)</span></strong></h4>
+<p>Given the cluster assignment <span class="math inline">\(Z_i\)</span>, the observations in cluster <span class="math inline">\(j\)</span> are:</p>
+<p><span class="math display">\[
+Y_i \mid (Z_i = j, \mu_j, \sigma^2) \sim \mathcal N(\mu_j, \sigma^2).
+\]</span></p>
+<p>For all observations assigned to cluster <span class="math inline">\(j\)</span> (i.e., <span class="math inline">\(Z_i
+= j\)</span>), the joint likelihood is:</p>
+<p><span class="math display">\[
+\prod_{i: Z_i = j} \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left( -\frac{(Y_i
+- \mu_j)^2}{2\sigma^2} \right).
+\]</span></p>
+<p>Equivalently:</p>
+<p><span class="math display">\[
+p(Y_i \mid Z_i = j, \mu_j, \sigma^2) \propto \exp\left(
+-\frac{1}{2\sigma^2} \sum_{i: Z_i = j} (Y_i - \mu_j)^2 \right).
+\]</span></p>
+</div>
+<div id="combine-prior-and-likelihood" class="section level4">
+<h4>3). <strong>Combine prior and likelihood</strong></h4>
+<p>Multiplying prior and likelihood:</p>
+<p><span class="math display">\[\begin{aligned}
+\log p(\mu_j \mid \mathbf{Y}, \mathbf{Z}, \sigma^2)
+&amp;\propto -\frac{1}{2\kappa \sigma^2} \mu_j^2 - \frac{1}{2\sigma^2}
+\sum_{i: Z_i = j} (Y_i - \mu_j)^2 \\
+&amp;= -\frac{1}{2\kappa \sigma^2} \mu_j^2 - \frac{1}{2\sigma^2} \left(
+\sum_{i: Z_i = j} Y_i^2 - 2\mu_j \sum_{i: Z_i = j} Y_i + n_j \mu_j^2
+\right) \\
+&amp;\propto -\frac{1}{2\sigma^2} \left( \frac{1}{\kappa} + n_j \right)
+\mu_j^2 + \frac{1}{\sigma^2} \left( \sum_{i: Z_i = j} Y_i \right) \mu_j.
+\end{aligned}\]</span></p>
+<p>where <span class="math inline">\(n_j = \sum_{i=1}^n
+\delta_j(Z_i)\)</span> is the number of observations in cluster <span class="math inline">\(j\)</span>.</p>
+</div>
+<div id="posterior-distribution" class="section level4">
+<h4>4). <strong>Posterior distribution</strong></h4>
+<p>Define:</p>
+<p><span class="math display">\[
+S_j = \sum_{i: Z_i = j} Y_i.
+\]</span></p>
+<p>Then:</p>
+<p><span class="math display">\[
+\log p(\mu_j \mid \mathbf{Y}, \mathbf{Z}, \sigma^2)
+\propto -\frac{1}{2\sigma^2} \left( \frac{1}{\kappa} + n_j \right)
+\left( \mu_j^2 - 2 \frac{S_j}{\frac{1}{\kappa} + n_j} \mu_j \right).
+\]</span></p>
+<p>Completing the square:</p>
+<p><span class="math display">\[
+\propto -\frac{1}{2\sigma^2} \left( \frac{1}{\kappa} + n_j \right)
+\left( \mu_j - \frac{S_j}{\frac{1}{\kappa} + n_j} \right)^2.
+\]</span></p>
+<p>Thus, the conditional posterior is:</p>
+<p><span class="math display">\[
+\mu_j \mid \mathbf{Y}, \mathbf{Z}, \sigma^2 \sim N\left(
+\frac{S_j}{\frac{1}{\kappa} + n_j}, \;
+\frac{\sigma^2}{\frac{1}{\kappa} + n_j}
+\right).
+\]</span></p>
+</div>
+<div id="gibbs-sampling-step-1" class="section level4">
+<h4>5). <strong>Gibbs Sampling Step</strong></h4>
+<p>For each <span class="math inline">\(j = 1, \dots, J\)</span>:</p>
+<p>i). <strong>Compute:</strong> - <span class="math inline">\(n_j =
+\#\{i : Z_i = j\}\)</span>, - <span class="math inline">\(S_j = \sum_{i:
+Z_i = j} Y_i\)</span>.</p>
+<p>ii). <strong>Sample:</strong></p>
+<p><span class="math display">\[
+\mu_j \sim N\left(
+\frac{S_j}{\frac{1}{\kappa} + n_j}, \;
+\frac{\sigma^2}{\frac{1}{\kappa} + n_j}
+\right).
+\]</span></p>
+<hr />
+</div>
+</div>
+<div id="d-construct-a-sampling-step-for-sigma2-in-the-gibbs-sampler." class="section level3">
+<h3>(d) Construct a sampling step for <span class="math inline">\(\sigma^2\)</span> in the Gibbs sampler.</h3>
+<div id="prior-for-sigma2" class="section level4">
+<h4>1) Prior for <span class="math inline">\(\sigma^2\)</span></h4>
+<p>The prior is an Inverse-Gamma distribution:</p>
+<p><span class="math display">\[
+\sigma^2 \sim \text{Inv-Gamma}(\gamma, \beta).
+\]</span></p>
+<p>That is, the density:</p>
+<p><span class="math display">\[
+p(\sigma^2) \propto (\sigma^2)^{-(\gamma + 1)} \exp\left(
+-\frac{\beta}{\sigma^2} \right).
+\]</span></p>
+</div>
+<div id="likelihood-contributions-involving-sigma2" class="section level4">
+<h4>2) Likelihood contributions involving <span class="math inline">\(\sigma^2\)</span></h4>
+<p>There are two parts in the model where <span class="math inline">\(\sigma^2\)</span> appears:</p>
+<p>i). <strong>Likelihood of <span class="math inline">\(Y_i\)</span>:</strong></p>
+<p>For all observations:</p>
+<p><span class="math display">\[
+Y_i \mid (Z_i = j, \mu_j, \sigma^2) \sim N(\mu_j, \sigma^2).
+\]</span></p>
+<p>This gives the likelihood contribution:</p>
+<p><span class="math display">\[
+\prod_{i=1}^n \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left( -\frac{(Y_i -
+\mu_{Z_i})^2}{2\sigma^2} \right).
+\]</span></p>
+<p>ii). <strong>Prior of <span class="math inline">\(\mu_j\)</span>:</strong></p>
+<p>Each <span class="math inline">\(\mu_j\)</span> has:</p>
+<p><span class="math display">\[
+\mu_j \mid \sigma^2 \sim N(0, \kappa \sigma^2).
+\]</span></p>
+<p>This gives:</p>
+<p><span class="math display">\[
+\prod_{j=1}^J \frac{1}{\sqrt{2\pi \kappa \sigma^2}} \exp\left(
+-\frac{\mu_j^2}{2\kappa \sigma^2} \right).
+\]</span></p>
+</div>
+<div id="joint-likelihood-in-terms-of-sigma2" class="section level4">
+<h4>3) <strong>Joint likelihood in terms of <span class="math inline">\(\sigma^2\)</span></strong></h4>
+<p>Combining all terms:</p>
+<ul>
+<li>From the likelihood of <span class="math inline">\(Y_i\)</span>:</li>
+</ul>
+<p>The log-likelihood contribution is:</p>
+<p><span class="math display">\[
+-\frac{n}{2} \log(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n (Y_i -
+\mu_{Z_i})^2.
+\]</span></p>
+<ul>
+<li>From the prior of <span class="math inline">\(\mu_j\)</span>:</li>
+</ul>
+<p>There are <span class="math inline">\(J\)</span> terms:</p>
+<p><span class="math display">\[
+-\frac{J}{2} \log(\sigma^2) - \frac{1}{2\kappa \sigma^2} \sum_{j=1}^J
+\mu_j^2.
+\]</span></p>
+<ul>
+<li>From the Inverse-Gamma prior:</li>
+</ul>
+<p><span class="math display">\[
+-(\gamma + 1) \log(\sigma^2) - \frac{\beta}{\sigma^2}.
+\]</span></p>
+<p>The total log posterior of <span class="math inline">\(\sigma^2\)</span> is proportional to:</p>
+<p><span class="math display">\[
+-\left( \gamma + 1 + \frac{n}{2} + \frac{J}{2} \right) \log(\sigma^2)-
+\frac{1}{2\sigma^2} \left( \sum_{i=1}^n (Y_i - \mu_{Z_i})^2 +
+\frac{1}{\kappa} \sum_{j=1}^J \mu_j^2 + 2\beta \right).
+\]</span></p>
+</div>
+<div id="recognize-posterior-form" class="section level4">
+<h4>4) <strong>Recognize posterior form</strong></h4>
+<p>This is the kernel of an <strong>Inverse-Gamma distribution</strong>.
+Specifically, the posterior is:</p>
+<p><span class="math display">\[
+\sigma^2 \mid - \sim \text{Inv-Gamma}(\gamma_{\text{post}},
+\beta_{\text{post}}),
+\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[
+\gamma_{\text{post}} = \gamma + \frac{n}{2} + \frac{J}{2},
+\]</span></p>
+<p><span class="math display">\[
+\beta_{\text{post}} = \beta + \frac{1}{2} \sum_{i=1}^n (Y_i -
+\mu_{Z_i})^2 + \frac{1}{2\kappa} \sum_{j=1}^J \mu_j^2.
+\]</span></p>
+<hr />
+</div>
+<div id="gibbs-sampling-step-2" class="section level4">
+<h4>5) <strong>Gibbs Sampling Step</strong></h4>
+<ol style="list-style-type: decimal">
+<li>Compute:</li>
+</ol>
+<ul>
+<li>Residual sum of squares:</li>
+</ul>
+<p><span class="math display">\[
+S_1 = \sum_{i=1}^n (Y_i - \mu_{Z_i})^2.
+\]</span></p>
+<ul>
+<li>Prior sum:</li>
+</ul>
+<p><span class="math display">\[
+S_2 = \sum_{j=1}^J \mu_j^2.
+\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Update hyperparameters:</li>
+</ol>
+<p><span class="math display">\[
+\gamma_{\text{post}} = \gamma + \frac{n}{2} + \frac{J}{2},
+\]</span></p>
+<p><span class="math display">\[
+\beta_{\text{post}} = \beta + \frac{1}{2} S_1 + \frac{1}{2\kappa} S_2.
+\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Sample:</li>
+</ol>
+<p><span class="math display">\[
+\sigma^2 \sim \text{Inv-Gamma}(\gamma_{\text{post}},
+\beta_{\text{post}}).
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
+
+
+
+</div>
