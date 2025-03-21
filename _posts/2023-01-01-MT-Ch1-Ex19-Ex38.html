@@ -1,0 +1,1036 @@
+---
+title: "Ch1 Ex.19 ~ Ex.38"
+date: 2023-01-01 23:50:00
+categories: [Measure Theory]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+
+<!DOCTYPE html>
+
+<html>
+
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="ch1.-measure-theory-ex.19-ex.38" class="section level1">
+<h1>Ch1. Measure Theory (Ex.19 ~ Ex.38)</h1>
+<div id="a-b-is-defined-as-follows-a-b-a-b-a-in-a-text-and-b-in-b-subset-mathbbrd" class="section level2">
+<h2>19. <span class="math inline">\(A + B\)</span> is defined as
+follows: <span class="math inline">\(A + B = \{a + b : a \in A \text{
+and } b \in B \}\)</span> (<span class="math inline">\(\subset
+\mathbb{R}^d\)</span>)</h2>
+<div id="a-if-a-or-b-is-open-show-that-a-b-is-open." class="section level3">
+<h3>(a) If <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> is open, show that <span class="math inline">\(A + B\)</span> is open.</h3>
+<p><strong>proof</strong></p>
+<div id="b_ra-b_rx" class="section level4">
+<h4>① <span class="math inline">\(B_r(a)\)</span>, <span class="math inline">\(B_r(x)\)</span></h4>
+<p>Let <span class="math inline">\(A\)</span> be an open set
+(w.o.l.g.)<br />
+For <span class="math inline">\(x = a + b \in A + B\)</span> such that
+<span class="math inline">\(a \in A\)</span> and <span class="math inline">\(b \in B\)</span>, there is <span class="math inline">\(r &gt; 0\)</span> such that <span class="math inline">\(B_r(a) \subset A\)</span><br />
+Then <span class="math inline">\(B_r(a + b) = \{ y + b : y \in B_r(a)
+\}\)</span></p>
+</div>
+<div id="b_rx-subset-a-b" class="section level4">
+<h4>② <span class="math inline">\(B_r(x) \subset A + B\)</span></h4>
+<p>For <span class="math inline">\(z \in B_r(x)\)</span>, <span class="math inline">\(z = y + b\)</span> where <span class="math inline">\(y \in B_r(a)\)</span><br />
+Since <span class="math inline">\(B_r(a) \subset A\)</span>, <span class="math inline">\(y \in A\)</span> as well<br />
+Then, <span class="math inline">\(z = y + b \in A + B\)</span><br />
+This (<span class="math inline">\(z \in A + B\)</span>) holds for all
+<span class="math inline">\(z \in B_r(x)\)</span>, so <span class="math inline">\(B_r(x) \subset A + B\)</span><br />
+So, <span class="math inline">\(x\)</span> is an interior point of <span class="math inline">\(A + B\)</span><br />
+This holds for all <span class="math inline">\(x \in A + B\)</span>, so
+<span class="math inline">\(A + B\)</span> is open</p>
+</div>
+</div>
+<div id="b-a-and-b-are-closed-then-show-that-a-b-is-f_sigma" class="section level3">
+<h3>(b) <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are closed, then show that <span class="math inline">\(A + B\)</span> is <span class="math inline">\(F_\sigma\)</span></h3>
+<p><strong>proof</strong></p>
+<div id="k-is-compact-and-b-is-closed-then-k-b-is-closed." class="section level4">
+<h4>① <span class="math inline">\(K\)</span> is compact and <span class="math inline">\(B\)</span> is closed, then <span class="math inline">\(K + B\)</span> is closed.</h4>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(z_n = k_n + b_n \in K + B\)</span>,
+<span class="math inline">\(k_n \to k \in K\)</span><br />
+Consider a sequence <span class="math inline">\(\{ z_n \} \subset K +
+B\)</span>, where <span class="math inline">\(\lim_{n \to \infty} z_n =
+z \in \mathbb{R}^d\)</span>, <span class="math inline">\(z_n = k_n +
+b_n\)</span> and <span class="math inline">\(k_n \in K\)</span>, <span class="math inline">\(b_n \in B\)</span><br />
+<span class="math inline">\(\{ k_n \}\)</span> is a sequence in a
+compact set <span class="math inline">\(K\)</span>, then there is a
+subsequence <span class="math inline">\(\{ k_{n_k} \}\)</span> such that
+<span class="math inline">\(\lim_{k \to \infty} k_{n_k} = k \in
+K\)</span> (PMA 3.6(a))</p></li>
+<li><p><span class="math inline">\(z \in K + B\)</span>, so closed<br />
+It is obvious that <span class="math inline">\(z_{n_k} \to z\)</span>
+(<span class="math inline">\(\because z_n \to z\)</span>)<br />
+Then <span class="math inline">\(\lim_{k \to \infty} b_{n_k} = \lim_{k
+\to \infty} (z_{n_k} - k_{n_k}) = z - k\)</span><br />
+<span class="math inline">\(B\)</span> is closed, so <span class="math inline">\(z - k \in B\)</span><br />
+This means <span class="math inline">\(z = k + (z - k) \in K +
+B\)</span>, so a limit of a sequence in <span class="math inline">\(K +
+B\)</span> is in <span class="math inline">\(K + B\)</span><br />
+This holds for all <span class="math inline">\(\{ z_n \} \subset K +
+B\)</span>, so <span class="math inline">\(K + B\)</span> is
+closed</p></li>
+</ol>
+</div>
+<div id="bigcup_n-k_n-b-bigcup_n-k_n-b" class="section level4">
+<h4>② <span class="math inline">\(\bigcup_n K_n + B = \bigcup_n (K_n +
+B)\)</span></h4>
+<p>(<span class="math inline">\(\Rightarrow\)</span>) <span class="math inline">\(x \in \bigcup_n K_n + B\)</span>, so <span class="math inline">\(x = k + b\)</span> where <span class="math inline">\(k \in \bigcup_n K_n\)</span> and <span class="math inline">\(b \in B\)</span><br />
+Then there exists an integer <span class="math inline">\(N\)</span> such
+that <span class="math inline">\(k \in K_N\)</span><br />
+Naturally, <span class="math inline">\(k \in K_N + B\)</span><br />
+Thus, <span class="math inline">\(x \in \bigcup_n (K_n + B)\)</span></p>
+<p>(<span class="math inline">\(\Leftarrow\)</span>) <span class="math inline">\(x \in \bigcup_n (K_n + B)\)</span>, so <span class="math inline">\(x = k + b\)</span> where <span class="math inline">\(k \in K_n\)</span> and <span class="math inline">\(b \in B\)</span><br />
+Naturally, <span class="math inline">\(k \in \bigcup_n
+K_n\)</span><br />
+Thus, <span class="math inline">\(k + b \in \bigcup_n K_n +
+B\)</span></p>
+</div>
+<div id="a-b-is-measurable-conclusion." class="section level4">
+<h4>③ <span class="math inline">\(A + B\)</span> is measurable,
+conclusion.</h4>
+<p>A closed set <span class="math inline">\(A\)</span> can be expressed
+as <span class="math inline">\(\bigcup_n K_n\)</span>, where <span class="math inline">\(K_n\)</span> is compact<br />
+Since <span class="math inline">\(A + B = \bigcup_n (K_n + B)\)</span>
+and <span class="math inline">\(K_n + B\)</span> is closed, <span class="math inline">\(A + B\)</span> is a countable union of closed
+sets, which is measurable (<span class="math inline">\(F_\sigma\)</span>)</p>
+<p>cf) <span class="math inline">\(F\)</span> is closed iff every
+convergent sequence in <span class="math inline">\(F\)</span> converges
+to a point in <span class="math inline">\(F\)</span></p>
+</div>
+</div>
+<div id="c-show-that-a-b-might-not-be-closed-even-though-a-and-b-are-closed." class="section level3">
+<h3>(c) Show that <span class="math inline">\(A + B\)</span> might not
+be closed even though <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are closed.</h3>
+<p><strong>proof</strong></p>
+<div id="a--mathbbn-b-n-frac1n1-n-in-mathbbn-are-closed." class="section level4">
+<h4>① <span class="math inline">\(A = -\mathbb{N}\)</span>, <span class="math inline">\(B = \{ n + \frac{1}{n+1} : n \in \mathbb{N}
+\}\)</span> are closed.</h4>
+<p><span class="math inline">\(\{ (n+1) + \frac{1}{n+2} \} - \{ n +
+\frac{1}{n+1} \} = 1 - \frac{1}{n+1} + \frac{1}{n+2} - 1 = \frac{1}{n+2}
+- \frac{1}{n+1}\)</span><br />
+So, for all <span class="math inline">\(\epsilon\)</span> with <span class="math inline">\(0 &lt; \epsilon &lt; \frac{1}{n+1} -
+\frac{1}{n+2}\)</span>, <span class="math inline">\(B_\epsilon(n +
+\frac{1}{n+1})\)</span> does not contain any point of <span class="math inline">\(B\)</span><br />
+So, <span class="math inline">\(n + \frac{1}{n+1}\)</span> is not a
+limit point of <span class="math inline">\(B\)</span><br />
+This means <span class="math inline">\(B\)</span> has no limit point, so
+<span class="math inline">\(B\)</span> is closed</p>
+<p>It is trivial that <span class="math inline">\(A\)</span> is
+closed</p>
+</div>
+<div id="notin-a-b-so-not-closed." class="section level4">
+<h4>② <span class="math inline">\(0 \notin A + B\)</span>, so not
+closed.</h4>
+<p>Then, <span class="math inline">\(\{ -n + n \}_{n \in \mathbb{N}}
+\subset A + B\)</span> and <span class="math inline">\(0\)</span> is the
+limit point of <span class="math inline">\(K\)</span><br />
+However, <span class="math inline">\(0 \notin A + B\)</span> (<span class="math inline">\(\because\)</span> there is no such <span class="math inline">\(m, n \in \mathbb{N}\)</span> that <span class="math inline">\(-m + n + \frac{1}{n+1} = 0\)</span>)<br />
+Since the limit of <span class="math inline">\(\{ -n + n \}_{n \in
+\mathbb{N}} \subset A + B\)</span> is not in <span class="math inline">\(A + B\)</span>, <span class="math inline">\(A +
+B\)</span> is not closed</p>
+<hr />
+</div>
+</div>
+</div>
+<div id="show-that-there-exist-closed-sets-a-b-such-that-ma-mb-0-and-ma-b-0" class="section level2">
+<h2>20. Show that there exist closed sets <span class="math inline">\(A,
+B\)</span> such that <span class="math inline">\(m(A) = m(B) =
+0\)</span> and <span class="math inline">\(m(A + B) &gt; 0\)</span></h2>
+<div id="a-in-mathbbr-let-a-c-cantor-set-and-b-frac12c.-show-that-01-subset-a-b" class="section level3">
+<h3>(a) In <span class="math inline">\(\mathbb{R}\)</span>, let <span class="math inline">\(A = C\)</span> (Cantor set) and <span class="math inline">\(B = \frac{1}{2}C\)</span>. Show that <span class="math inline">\([0,1] \subset A + B\)</span></h3>
+<div id="binary-expansion" class="section level4">
+<h4>① binary expansion</h4>
+<p>Every element in <span class="math inline">\(A\)</span> can be
+represented as a binary expansion with 0 and 2. Then, every element in
+<span class="math inline">\(B\)</span> is a binary expansion with 0 and
+1.</p>
+</div>
+<div id="subset-a-b" class="section level4">
+<h4>② <span class="math inline">\([0,1] \subset A + B\)</span></h4>
+<p>For <span class="math inline">\(x \in [0,1]\)</span>, the ternary
+expansion of <span class="math inline">\(x\)</span> is <span class="math inline">\(0.x_1x_2x_3\dots\)</span>, where <span class="math inline">\(x_n = 0,1,\text{or }2\)</span>. Let <span class="math inline">\(a_n = 2\)</span> when <span class="math inline">\(x_n = 2\)</span>, and <span class="math inline">\(a_n = 0\)</span> o.w. Also, let <span class="math inline">\(b_n = 1\)</span> when <span class="math inline">\(x_n = 1\)</span>, and <span class="math inline">\(b_n = 0\)</span> o.w. Then, <span class="math inline">\(x = a + b\)</span>, where <span class="math inline">\(a = 0.a_1a_2a_3\dots\)</span> and <span class="math inline">\(b = 0.b_1b_2b_3\dots\)</span>. Since <span class="math inline">\(a \in A\)</span> and <span class="math inline">\(b
+\in B\)</span>, <span class="math inline">\(x \in A + B\)</span>. Thus,
+<span class="math inline">\([0,1] \subset A + B\)</span> and <span class="math inline">\(m(A + B) \geq 1\)</span>. Note that <span class="math inline">\(m(A) = m(B) = 0\)</span>.</p>
+</div>
+</div>
+<div id="b-a-i-times-0-and-b-0-times-i-i-01-then-a-b-i-times-i" class="section level3">
+<h3>(b) <span class="math inline">\(A = I \times \{0\}\)</span> and
+<span class="math inline">\(B = \{0\} \times I\)</span> (<span class="math inline">\(I = [0,1]\)</span>), then <span class="math inline">\(A + B = I \times I\)</span></h3>
+<div id="proof" class="section level4">
+<h4>proof</h4>
+<p><span class="math inline">\(x \in A + B \Leftrightarrow x = a +
+b\)</span> with <span class="math inline">\(a = (a_1, 0)\)</span> and
+<span class="math inline">\(b = (0, b_1)\)</span> (<span class="math inline">\(a_1, b_1 \in I\)</span>) <span class="math inline">\(\Leftrightarrow x = (a_1, b_1) \Leftrightarrow x
+\in I \times I\)</span>. Note that <span class="math inline">\(m(A) =
+m(I)m(\{0\}) = 0\)</span>, <span class="math inline">\(m(B) =
+0\)</span>, and <span class="math inline">\(m(I \times I) = (m(I))^2 =
+1\)</span> (Prop 2.3.6).</p>
+<hr />
+</div>
+</div>
+</div>
+<div id="show-that-there-is-a-continuous-function-that-maps-a-lebesgue-measurable-set-to-a-non-measurable-set" class="section level2">
+<h2>21. Show that there is a continuous function that maps a Lebesgue
+measurable set to a non-measurable set</h2>
+<p><strong>proof</strong></p>
+<p><strong>Q.32(b)</strong> says a set <span class="math inline">\(G\)</span> in <span class="math inline">\(\mathbb{R}\)</span> has <span class="math inline">\(m(G) &gt; 0\)</span>, then it has a non-measurable
+subset.<br />
+Let <span class="math inline">\(f\)</span> be a Cantor-Lebesgue function
+which is continuous.<br />
+If <span class="math inline">\(C\)</span> is a Cantor set, <span class="math inline">\(f(C)\)</span> is compact (<span class="math inline">\(\because f\)</span> is continuous).<br />
+<span class="math inline">\(f(C)\)</span> is measurable, so there is a
+subset <span class="math inline">\(E \subset f(C)\)</span> that is
+non-measurable.<br />
+Since <span class="math inline">\(f^{-1}(E) \subset C\)</span> and <span class="math inline">\(m(C) = 0\)</span>, <span class="math inline">\(f\)</span> maps <span class="math inline">\(f^{-1}(E)\)</span> (measure 0) to non-measurable
+<span class="math inline">\(E\)</span>.</p>
+<hr />
+</div>
+<div id="show-that-there-is-no-continuous-function-f-on-mathbbr1-such-that-fx-chi_01x-for-a.e.-x-in-mathbbr1." class="section level2">
+<h2>22. Show that there is no continuous function <span class="math inline">\(f\)</span> on <span class="math inline">\(\mathbb{R}^1\)</span> such that <span class="math inline">\(f(x) = \chi_{[0,1]}(x)\)</span> for a.e. <span class="math inline">\(x \in \mathbb{R}^1\)</span>.</h2>
+<p><strong>proof</strong></p>
+<div id="u-x-in-mathbbr-fx-neq-chi_01x" class="section level4">
+<h4>① <span class="math inline">\(U = \{x \in \mathbb{R} : f(x) \neq
+\chi_{[0,1]}(x)\}\)</span></h4>
+<p>The value of <span class="math inline">\(\chi_{[0,1]}(x)\)</span> is
+only 0 and 1.<br />
+Then, the set <span class="math inline">\(\{x \in \mathbb{R} : f(x) \neq
+0 \text{ and } f(x) \neq 1\} = \{x : f(x) \neq
+\chi_{[0,1]}(x)\}\)</span>. Let <span class="math inline">\(U\)</span>
+has measure zero.<br />
+Assume that <span class="math inline">\(f\)</span> is continuous.</p>
+</div>
+<div id="u-is-open" class="section level4">
+<h4>② <span class="math inline">\(U\)</span> is open</h4>
+<p><span class="math inline">\(U\)</span> can be expressed as follows:
+<span class="math inline">\(U = f^{-1}((-\infty, 0) \cup (0,1) \cup (1,
+\infty))\)</span>.<br />
+<span class="math inline">\(f\)</span> is continuous and <span class="math inline">\((-\infty,0) \cup (0,1) \cup (1, \infty)\)</span>
+is open, so <span class="math inline">\(U\)</span> is open. (PMA
+4.8)</p>
+</div>
+<div id="mu-0-contradiction-because-u-neq-emptyset" class="section level4">
+<h4>③ <span class="math inline">\(m(U) &gt; 0\)</span>, contradiction
+(<span class="math inline">\(\because U \neq \emptyset\)</span>)</h4>
+<p>Each point of <span class="math inline">\(U\)</span> is an interior
+point <span class="math inline">\(p\)</span>, so <span class="math inline">\(U\)</span> contains an open interval <span class="math inline">\(I\)</span> centered at <span class="math inline">\(p\)</span> with positive radius <span class="math inline">\(r\)</span>.<br />
+Since <span class="math inline">\(I \subset U\)</span> and <span class="math inline">\(|I| = 2r\)</span>, <span class="math inline">\(m(U) \geq m(I) = 2r &gt; 0\)</span>, which is a
+contradiction.</p>
+</div>
+<div id="nexists-continuous-f-s.t.-fx-chi_01x-a.e." class="section level4">
+<h4>④ <span class="math inline">\(\nexists\)</span> continuous <span class="math inline">\(f\)</span> s.t. <span class="math inline">\(f(x) =
+\chi_{[0,1]}(x)\)</span> a.e.</h4>
+<hr />
+</div>
+</div>
+<div id="fx-y-is-a-separately-continuous-function-on-mathbbr2-for-fixed-x-f-is-continuous-on-y-in-mathbbr1-and-vice-versa.-show-that-f-is-measurable." class="section level2">
+<h2>23. <span class="math inline">\(f(x, y)\)</span> is a separately
+continuous function on <span class="math inline">\(\mathbb{R}^2\)</span>; for fixed <span class="math inline">\(x\)</span>, <span class="math inline">\(f\)</span>
+is continuous on <span class="math inline">\(y \in
+\mathbb{R}^1\)</span>, and vice versa. Show that <span class="math inline">\(f\)</span> is measurable.</h2>
+<p><strong>proof</strong></p>
+<div id="def-of-f_n-f_n-a" class="section level4">
+<h4>① def of <span class="math inline">\(f_n\)</span>, <span class="math inline">\(\{f_n &gt; a\}\)</span></h4>
+<p>Let <span class="math inline">\(f_n(x, y) = f(\frac{k}{2^n},
+y)\)</span>, where <span class="math inline">\(\frac{k}{2^n} \leq x &lt;
+\frac{k+1}{2^n}\)</span>, <span class="math inline">\(n \in
+\mathbb{N}\)</span> and <span class="math inline">\(k \in
+\mathbb{Z}\)</span>.<br />
+For <span class="math inline">\(a \in \mathbb{R}\)</span>, <span class="math inline">\(\{f_n \geq a\} = \bigcup_{k=0}^{\infty} \{(x, y) :
+\frac{k}{2^n} \leq x &lt; \frac{k+1}{2^n}, f(\frac{k}{2^n}, y) \geq
+a\}\)</span>.<br />
+<span class="math inline">\(\{x \in \mathbb{R} : \frac{k}{2^n} \leq x
+&lt; \frac{k+1}{2^n}\} \times \{y \in \mathbb{R} : f(\frac{k}{2^n}, y)
+\geq a\}\)</span>.</p>
+</div>
+<div id="x_k-is-measurable" class="section level4">
+<h4>② <span class="math inline">\(X_k\)</span> is measurable</h4>
+<p><span class="math inline">\(X_k\)</span> can be expressed as <span class="math inline">\(\{x : \frac{k}{2^n} \leq x \leq \frac{k+1}{2^n}\}
+\cap \{\frac{k+1}{2^n}\}^c\)</span>.<br />
+<span class="math inline">\(\{x : \frac{k}{2^n} \leq x \leq
+\frac{k+1}{2^n}\}\)</span> is closed, and <span class="math inline">\(\{\frac{k+1}{2^n}\}^c\)</span> is a complement of
+closed set.<br />
+Then, <span class="math inline">\(X_k\)</span> is an intersection of
+measurable sets, which is measurable.</p>
+</div>
+<div id="y_k-is-measurable" class="section level4">
+<h4>③ <span class="math inline">\(Y_k\)</span> is measurable</h4>
+<p>For fixed <span class="math inline">\(\frac{k}{2^n}\)</span>, <span class="math inline">\(f\)</span> is continuous of <span class="math inline">\(y \in \mathbb{R}\)</span>.<br />
+Since <span class="math inline">\(\{f_n : f_n \geq a\}\)</span> is open,
+its inverse <span class="math inline">\(Y_k\)</span> is open, which is
+measurable.</p>
+</div>
+<div id="f_n-is-measurable" class="section level4">
+<h4>④ <span class="math inline">\(f_n\)</span> is measurable</h4>
+<p>By prop 2.3.6, <span class="math inline">\((X_k \times Y_k)\)</span>
+is measurable.<br />
+Also, <span class="math inline">\(\{f_n \geq a\}\)</span> is a countable
+union of measurable sets <span class="math inline">\((X_k \times
+Y_k)\)</span>, so <span class="math inline">\(f_n \geq a\)</span> is
+measurable.<br />
+This holds for all <span class="math inline">\(a \in
+\mathbb{R}\)</span>, so <span class="math inline">\(f_n\)</span> is
+measurable.</p>
+</div>
+<div id="forall-epsilon-exists-delta-s.t.-x---x_0-delta-rightarrow-fx-y---fx_0-y-epsilon" class="section level4">
+<h4>⑤ <span class="math inline">\(\forall \epsilon, \exists
+\delta\)</span> s.t. <span class="math inline">\(|x - x_0| &lt; \delta
+\Rightarrow |f(x, y) - f(x_0, y)| &lt; \epsilon\)</span></h4>
+<p>For fixed <span class="math inline">\(y \in \mathbb{R}\)</span>,
+<span class="math inline">\(f(x, y)\)</span> is continuous at <span class="math inline">\(x \in \mathbb{R}^1\)</span>.<br />
+Then, for given <span class="math inline">\(\epsilon &gt; 0\)</span>,
+there is <span class="math inline">\(\delta_\epsilon &gt; 0\)</span>
+such that <span class="math inline">\(|x - x_0| &lt;
+\delta_\epsilon\)</span> implies <span class="math inline">\(|f(x_0, y)
+- f(x, y)| &lt; \epsilon\)</span>.</p>
+</div>
+<div id="f_n-to-f-p.w." class="section level4">
+<h4>⑥ <span class="math inline">\(f_n \to f\)</span> p.w.</h4>
+<p>There is an integer <span class="math inline">\(N_\epsilon\)</span>
+such that <span class="math inline">\(n \geq N_\epsilon\)</span> implies
+<span class="math inline">\(\frac{1}{2^n} &lt;
+\delta_\epsilon\)</span>.<br />
+When <span class="math inline">\(\frac{k}{2^n} \leq x &lt;
+\frac{k+1}{2^n}\)</span> with such <span class="math inline">\(n \geq
+N_\epsilon\)</span>, <span class="math inline">\(|\frac{k}{2^n} - x|
+&lt; \delta_\epsilon\)</span>.<br />
+Putting <span class="math inline">\(\frac{k}{2^n}\)</span> into <span class="math inline">\(x_0\)</span>, <span class="math inline">\(n \geq
+N_\epsilon\)</span> implies <span class="math inline">\(|f_n(x, y) -
+f(x, y)| &lt; \epsilon\)</span>.<br />
+This holds for all <span class="math inline">\(\epsilon &gt; 0\)</span>,
+so <span class="math inline">\(f_n \to f\)</span> p.w.</p>
+</div>
+<div id="conclusion" class="section level4">
+<h4>⑦ conclusion</h4>
+<p><span class="math inline">\(f\)</span>, the limit of measurable
+functions, is measurable.</p>
+<hr />
+</div>
+</div>
+<div id="does-there-exist-an-enumeration-r_n-of-the-rationals-such-that-the-complement-of-bigcap_n1infty-r_n---frac1n-r_n-frac1n-in-mathbbr-is-non-empty" class="section level2">
+<h2>24. Does there exist an enumeration <span class="math inline">\(\{r_n\}\)</span> of the rationals such that the
+complement of <span class="math inline">\(\bigcap_{n=1}^{\infty} (r_n -
+\frac{1}{n}, r_n + \frac{1}{n})\)</span> in <span class="math inline">\(\mathbb{R}\)</span> is non-empty?</h2>
+<p><strong>proof</strong></p>
+<p>Let <span class="math inline">\(\alpha\)</span> be some irrational
+and <span class="math inline">\(\{q_n\}\)</span> be a sequence of all
+rationals. It is obvious that for <span class="math inline">\(n \in
+\mathbb{N}\)</span> there exists a rational <span class="math inline">\(q\)</span> such that <span class="math inline">\(|q - \alpha| \geq \frac{1}{n}\)</span>. Using this
+property, a sequence of rationals <span class="math inline">\(\{p_n\}\)</span> can be made.</p>
+<p>Let <span class="math inline">\(n_1 = \min\{n \in \mathbb{N} : |q_n -
+\alpha| \geq \frac{1}{1}\}\)</span>, <span class="math inline">\((p_1 =
+q_{n_1})\)</span>, and <span class="math inline">\(N_1 = \mathbb{N} -
+\{n_1\}\)</span>. Provided that <span class="math inline">\(n_m,
+p_m\)</span> and <span class="math inline">\(N_m\)</span> are defined
+<span class="math inline">\((m \geq 1, m \in \mathbb{N})\)</span>, let
+<span class="math inline">\(n_{m+1} = \min\{n \in N_m : |q_n - \alpha|
+\geq \frac{1}{m+1}\}\)</span>, <span class="math inline">\(p_{m+1} =
+q_{n_{m+1}}\)</span>, and <span class="math inline">\(N_{m+1} = N_m -
+\{n_{m+1}\}\)</span>. After repeating this inductively, a sequence of
+rationals <span class="math inline">\(\{p_n\}\)</span> is made, with the
+property that <span class="math inline">\(|p_n - \alpha| \geq
+\frac{1}{n}\)</span> for all <span class="math inline">\(n \in
+\mathbb{N}\)</span>.</p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\alpha \in \bigcap_{n=1}^{\infty} (p_n - \frac{1}{n}, p_n +
+\frac{1}{n})^c = \left( \bigcup_{n=1}^{\infty} (p_n - \frac{1}{n}, p_n +
+\frac{1}{n}) \right)^c.
+\]</span></p>
+<hr />
+</div>
+<div id="show-that-e-is-measurable-if-for-every-varepsilon-0-there-exists-a-closed-set-f-such-that-f-subset-e-and-me---f-varepsilon." class="section level2">
+<h2>25. Show that <span class="math inline">\(E\)</span> is measurable
+if for every <span class="math inline">\(\varepsilon &gt; 0\)</span>
+there exists a closed set <span class="math inline">\(F\)</span> such
+that <span class="math inline">\(F \subset E\)</span> and <span class="math inline">\(m^*(E - F) &lt; \varepsilon\)</span>.</h2>
+<p><strong>proof</strong></p>
+<p>Let <span class="math inline">\(\varepsilon &gt; 0\)</span> be fixed.
+<span class="math inline">\(F\)</span> is closed, so <span class="math inline">\(F^c \overset{def}{=} O\)</span> is open. Then,
+<span class="math inline">\(O - E^c = O \cap E = E \cap F^c = E -
+F\)</span>. So <span class="math inline">\(m_k(O - E^c) = m_k(E - F)
+&lt; \varepsilon\)</span>. This holds for all <span class="math inline">\(\varepsilon &gt; 0\)</span>, so <span class="math inline">\(E^c\)</span> is measurable. Thus, its complement
+<span class="math inline">\(E\)</span> is measurable.</p>
+<hr />
+</div>
+<div id="suppose-a-subset-e-subset-b-where-a-b-are-measurable-sets-of-finite-measure.-if-ma-mb-show-that-e-is-measurable-and-me-ma." class="section level2">
+<h2>26. Suppose <span class="math inline">\(A \subset E \subset
+B\)</span>, where <span class="math inline">\(A, B\)</span> are
+measurable sets of finite measure. If <span class="math inline">\(m(A) =
+m(B)\)</span>, show that <span class="math inline">\(E\)</span> is
+measurable (and <span class="math inline">\(m(E) = m(A)\)</span>).</h2>
+<p><strong>proof</strong></p>
+<div id="mb---a-0" class="section level4">
+<h4>① <span class="math inline">\(m(B - A) = 0\)</span></h4>
+<p><span class="math inline">\(B\)</span> is measurable and <span class="math inline">\(A^c\)</span> is measurable, so <span class="math inline">\(B - A = B \cap A^c\)</span> is measurable. Since
+<span class="math inline">\(m(B) = m(A) + m(B - A)\)</span>, <span class="math inline">\(m(B - A) = 0\)</span>.</p>
+</div>
+<div id="me---a-0-conclusion" class="section level4">
+<h4>② <span class="math inline">\(m(E - A) = 0\)</span>, conclusion</h4>
+<p>Since <span class="math inline">\(E - A \subset B - A\)</span>, <span class="math inline">\(m_k(E - A) \leq m_k(B - A) = 0\)</span>, so <span class="math inline">\(E - A\)</span> is measurable with measure 0. Thus,
+<span class="math inline">\(E = A \cup (E - A)\)</span> is a union of
+measurable sets, which is measurable, and <span class="math inline">\(m(E) = m(A) + m(E - A) = m(A)\)</span> (<span class="math inline">\(\because A \cap (E - A) =
+\varnothing\)</span>).</p>
+<hr />
+</div>
+</div>
+<div id="suppose-e_1-and-e_2-are-compact-sets-in-mathbbrd-with-e_1-subset-e_2-and-let-a-me_1-and-b-me_2.-show-that-for-any-c-with-a-c-b-there-is-a-compact-set-e-with-e_1-subset-e-subset-e_2-and-me-c." class="section level2">
+<h2>27. Suppose <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are compact sets in <span class="math inline">\(\mathbb{R}^d\)</span> with <span class="math inline">\(E_1 \subset E_2\)</span>, and let <span class="math inline">\(a = m(E_1)\)</span> and <span class="math inline">\(b = m(E_2)\)</span>. Show that for any <span class="math inline">\(c\)</span> with <span class="math inline">\(a &lt;
+c &lt; b\)</span>, there is a compact set <span class="math inline">\(E\)</span> with <span class="math inline">\(E_1
+\subset E \subset E_2\)</span> and <span class="math inline">\(m(E) =
+c\)</span>.</h2>
+<p>proof</p>
+<div id="for-a-compact-set-k-with-mk-mu-and-xi-in-mathbbr-with-0-xi-mu-there-is-a-compact-set-k-such-that-k-subset-k-and-mk-xi." class="section level4">
+<h4>① For a compact set <span class="math inline">\(K\)</span> with
+<span class="math inline">\(m(K) = \mu\)</span> and <span class="math inline">\(\xi \in \mathbb{R}\)</span> with <span class="math inline">\(0 &lt; \xi &lt; \mu\)</span>, there is a compact
+set <span class="math inline">\(K&#39;\)</span> such that <span class="math inline">\(K&#39; \subset K\)</span> and <span class="math inline">\(m(K&#39;) = \xi\)</span>.</h4>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(f(x) = m(K \cap
+B_{x}(0))\)</span><br />
+Let <span class="math inline">\(f(x) = m(K \cap B_{x}(0)) \quad (x \geq
+0)\)</span>.<br />
+It is obvious that <span class="math inline">\(f(0) = 0 \quad (\because
+\text{measure of a point})\)</span>.<br />
+<span class="math inline">\(K\)</span> is bounded, so there is a
+positive number <span class="math inline">\(M &gt; 0\)</span> such that
+<span class="math inline">\(K \subset B_{M}(0)\)</span>.<br />
+Let <span class="math inline">\(M_0\)</span> be the minimum of such
+<span class="math inline">\(M\)</span>, then <span class="math inline">\(f(x) = \mu\)</span> for all <span class="math inline">\(x \geq M_0\)</span>.</p></li>
+<li><p><span class="math inline">\(f\)</span> is continuous<br />
+<span class="math inline">\(m(B_{x}(0)) = \nu_d x^d\)</span> is
+continuous on <span class="math inline">\(\mathbb{R}^d\)</span>, so for
+given <span class="math inline">\(\varepsilon &gt; 0\)</span> there is
+<span class="math inline">\(\delta_{\varepsilon} &gt; 0\)</span> such
+that <span class="math inline">\(|x - x&#39;| &lt;
+\delta_{\varepsilon}\)</span> implies <span class="math inline">\(|m(B_{x}(0)) - m(B_{x&#39;}(0))| &lt;
+\varepsilon\)</span>.<br />
+Consider the case <span class="math inline">\(x \geq x&#39;\)</span>.
+Then, <span class="math display">\[
+\begin{aligned}
+|f(x) - f(x&#39;)| &amp;= m(K \cap B_{x}(0)) - m(K \cap B_{x&#39;}(0))
+\\
+&amp;= m\big( (K \cap B_{x}(0)) \setminus (K \cap B_{x&#39;}(0)) \big)
+\\
+&amp;= m\big( K \cap (B_{x}(0) \setminus B_{x&#39;}(0)) \big) \\
+&amp;\leq m\big( B_{x}(0) \setminus B_{x&#39;}(0) \big) \\
+&amp;&lt; \varepsilon.
+\end{aligned}
+\]</span> The opposite case <span class="math inline">\(x&#39; &gt;
+x\)</span> also leads to <span class="math inline">\(|f(x) - f(x&#39;)|
+&lt; \varepsilon\)</span>.<br />
+Thus, <span class="math inline">\(|x - x&#39;| &lt;
+\delta_{\varepsilon}\)</span> implies <span class="math inline">\(|f(x)
+- f(x&#39;)| &lt; \varepsilon\)</span>.<br />
+This holds for all <span class="math inline">\(\varepsilon &gt;
+0\)</span>, so <span class="math inline">\(f\)</span> is
+continuous.</p></li>
+<li><p>Intermediate Value Thm, conclusion<br />
+<span class="math inline">\(f(0) = 0\)</span>, <span class="math inline">\(f(M_0) = \mu\)</span>, and <span class="math inline">\(f\)</span> is continuous.<br />
+Thus, there is <span class="math inline">\(x_{\xi}\)</span> such that
+<span class="math inline">\(x_{\xi} \in (0, M_0)\)</span> and <span class="math inline">\(f(x_{\xi}) = \xi\)</span>.<br />
+Note that <span class="math inline">\(K \cap B_{x_{\xi}}(0)\)</span> is
+compact, since <span class="math inline">\(K\)</span> and <span class="math inline">\(B_{x_{\xi}}(0)\)</span> are compact.<br />
+Thus, <span class="math inline">\(K&#39; := K \cap
+B_{x_{\xi}}(0)\)</span>.</p></li>
+</ol>
+</div>
+<div id="there-is-a-compact-k_0-subset-e_2-cap-oc-and-thus-e-e_1-cup-k-conclusion" class="section level4">
+<h4>② There is a compact <span class="math inline">\(K_0 \subset (E_2
+\cap O^{c})\)</span>, and thus <span class="math inline">\(E = E_1 \cup
+K\)</span> : conclusion</h4>
+<p><span class="math inline">\(E_1\)</span> is measurable, so there is
+an open set <span class="math inline">\(O\)</span> such that <span class="math inline">\(E_1 \subset O\)</span> and <span class="math inline">\(m(O - E_1) &lt; \varepsilon\)</span> for given
+<span class="math inline">\(\varepsilon &gt; 0\)</span>.<br />
+When <span class="math inline">\(0 &lt; c \leq b - a\)</span>, <span class="math inline">\(0 \leq m(E_1 \cap O^{c}) &lt; b -
+a\)</span>.<br />
+Considering <span class="math inline">\(E_1 \cap O^{c}\)</span> is
+compact (<span class="math inline">\(\because O^{c}\)</span> is closed
+and bounded),<br />
+there is a compact set <span class="math inline">\(K_0\)</span> such
+that <span class="math inline">\(K_0 \subset (E_2 \cap O^{c})\)</span>
+and <span class="math inline">\(m(K_0) = c - a \quad (0 &lt; c - a &lt;
+b - a)\)</span>.<br />
+Let <span class="math inline">\(E = E_1 \cup K_0\)</span>, which is
+compact and disjoint.<br />
+Thus, <span class="math inline">\(m(E) = a + (c - a) = c\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="let-e-be-a-subset-of-mathbbr-with-m_e-0.-show-that-for-every-alpha-with-0-alpha-1-there-is-an-open-interval-i_alpha-such-that-m_e-cap-i_alpha-geq-alpha-cdot-m_i_alpha." class="section level2">
+<h2>28. Let <span class="math inline">\(E\)</span> be a subset of <span class="math inline">\(\mathbb{R}\)</span> with <span class="math inline">\(m_{*}(E) &gt; 0\)</span>. Show that for every
+<span class="math inline">\(\alpha\)</span> with <span class="math inline">\(0 &lt; \alpha &lt; 1\)</span>, there is an open
+interval <span class="math inline">\(I_{\alpha}\)</span> such that <span class="math inline">\(m_{*}(E \cap I_{\alpha}) \geq \alpha \cdot
+m_{*}(I_{\alpha})\)</span>.</h2>
+<p><strong>proof</strong></p>
+<div id="choose-o-s.t.-e-subset-o" class="section level4">
+<h4>① Choose <span class="math inline">\(O\)</span> s.t. <span class="math inline">\(E \subset O\)</span></h4>
+<p>Using the property <span class="math inline">\(m_{*}(E) = \inf\{m(O):
+E \subset O\}\)</span>, some open set <span class="math inline">\(O\)</span> can be chosen so that <span class="math inline">\(m_{*}(O) &lt; m_{*}(E) + \varepsilon\)</span> for
+some <span class="math inline">\(\varepsilon &gt; 0\)</span>.</p>
+</div>
+<div id="assume-rightarrow-m_e-alpha-cdot-m_o" class="section level4">
+<h4>② Assume <span class="math inline">\(\Rightarrow m_{*}(E) &lt;
+\alpha \cdot m_{*}(O)\)</span></h4>
+<p>Assume that none of the intervals satisfies the inequality: <span class="math inline">\(m_{*}(E \cap I) &lt; \alpha \cdot
+m_{*}(I)\)</span> for all open intervals in <span class="math inline">\(\mathbb{R}\)</span>.<br />
+Since <span class="math inline">\(O = \bigcup_{n} I_{n}\)</span> where
+<span class="math inline">\(I_{n} \cap I_{m} = \varnothing\)</span>
+<span class="math inline">\((m \neq n)\)</span>,</p>
+<ul>
+<li><span class="math inline">\(E = E \cap O = E \cap \left( \bigcup_{n}
+I_{n} \right) = \bigcup_{n} (E \cap I_{n})\)</span></li>
+<li><span class="math inline">\(m_{*}(E) \leq \sum_{n} m_{*}(E \cap
+I_{n}) &lt; \alpha \sum_{n} m_{*}(I_{n})\)</span></li>
+</ul>
+<p>Each <span class="math inline">\(I_{n}\)</span> is disjoint, so <span class="math inline">\(\sum_{n} m_{*}(I_{n}) = m(O)\)</span>.<br />
+Then, <span class="math inline">\(m_{*}(E) &lt; \alpha \cdot
+m_{*}(O)\)</span>.</p>
+</div>
+<div id="let-varepsilon-1---alpha-cdot-m_o-contradiction" class="section level4">
+<h4>③ Let <span class="math inline">\(\varepsilon = (1 - \alpha) \cdot
+m_{*}(O)\)</span>, contradiction</h4>
+<p><span class="math display">\[
+\begin{aligned}
+m_{*}(E) &amp;&gt; m_{*}(O) - \varepsilon \\
+&amp;= m_{*}(O) - (1 - \alpha) \cdot m_{*}(O) \\
+&amp;= \alpha \cdot m_{*}(O)
+\end{aligned}
+\]</span> <span class="math inline">\(\Rightarrow m_{*}(E) &gt; \alpha
+\cdot m_{*}(O)\)</span>, which is contradiction.</p>
+</div>
+<div id="therefore-exists-i_alpha-such-that-m_e-cap-i_alpha-geq-alpha-cdot-m_i_alpha" class="section level4">
+<h4>④ <span class="math inline">\(\therefore \exists I_{\alpha}\)</span>
+such that <span class="math inline">\(m_{*}(E \cap I_{\alpha}) \geq
+\alpha \cdot m_{*}(I_{\alpha})\)</span></h4>
+<hr />
+</div>
+</div>
+<div id="e-is-a-measurable-set-of-mathbbr-with-me-0.-the-difference-set-of-e-denoted-by-e---e-is-defined-as-e---e-x---y-x-y-in-e.-show-that-e---e-contains-an-open-interval-centered-at-the-origin." class="section level2">
+<h2>29. <span class="math inline">\(E\)</span> is a measurable set of
+<span class="math inline">\(\mathbb{R}\)</span> with <span class="math inline">\(m(E) &gt; 0\)</span>. The difference set of <span class="math inline">\(E\)</span>, denoted by <span class="math inline">\(E - E\)</span>, is defined as <span class="math inline">\(E - E = \{x - y: x, y \in E\}\)</span>. Show that
+<span class="math inline">\(E - E\)</span> contains an open interval
+centered at the origin.</h2>
+<p><strong>proof</strong></p>
+<div id="express-e-using-q.-28." class="section level4">
+<h4>① Express <span class="math inline">\(E\)</span> using Q. 28.</h4>
+<p>Let <span class="math inline">\(E_{0}\)</span> be a measurable subset
+with <span class="math inline">\(m(E_{0}) &gt; 0\)</span>.<br />
+Then, there is an open interval <span class="math inline">\(I\)</span>
+such that <span class="math inline">\(m(E_{0} \cap I) \geq \alpha \cdot
+m(I)\)</span> for every <span class="math inline">\(\alpha \in
+(0,1)\)</span> by <strong>Q. 28</strong>.<br />
+Let <span class="math inline">\(E = E_{0} \cap I\)</span>, which is
+still measurable.<br />
+The following statements are based on the assumption that <span class="math inline">\(E - E\)</span> has no open interval centered at
+zero.</p>
+</div>
+<div id="only-0-exists-around-it" class="section level4">
+<h4>② Only 0 exists around it</h4>
+<p>It is obvious that <span class="math inline">\(0 \in (E - E)\)</span>
+(since <span class="math inline">\(x \in E\)</span>, <span class="math inline">\(x - x = 0 \in (E - E)\)</span>).<br />
+The elements of <span class="math inline">\(E - E\)</span> is symmetric;
+if <span class="math inline">\(z \in E - E\)</span>, then <span class="math inline">\(-z \in E - E\)</span> as well.<br />
+So there is no open interval containing 0 even not centered at 0.<br />
+So only 0 exists around it; there exists <span class="math inline">\(R
+&gt; 0\)</span> such that <span class="math inline">\(B_{R}(0) \cap (E -
+E) = \varnothing\)</span> for all <span class="math inline">\(r &lt;
+R\)</span>.</p>
+</div>
+<div id="section" class="section level4">
+<h4>③</h4>
+<p><span class="math inline">\(E \cap (E + \delta) = \varnothing \quad
+\forall 0 &lt; \delta_1 &lt; R, x \in E \ \&amp; \ x \in E +
+\delta_1,\)</span><br />
+<span class="math inline">\(x - \delta \in E, \ \&amp; \ x \in E
+\Rightarrow \delta_1 \in E - E \Rightarrow\)</span> contradiction.</p>
+</div>
+<div id="section-1" class="section level4">
+<h4>④</h4>
+<p><span class="math inline">\(E\)</span> and <span class="math inline">\(E + \delta\)</span> are disjoint for some <span class="math inline">\(\delta\)</span>.<br />
+So, <span class="math inline">\(E \cap (E + \delta) =
+\varnothing\)</span> for all <span class="math inline">\(\delta \in
+\mathbb{R}\)</span> with <span class="math inline">\(0 &lt; \delta &lt;
+R\)</span>.</p>
+</div>
+<div id="e-cup-e-delta-subset-i-cup-i-delta-rightarrow-contradiction" class="section level4">
+<h4>⑤ <span class="math inline">\(E \cup (E + \delta) \subset I \cup (I
++ \delta) \Rightarrow\)</span> contradiction</h4>
+<p>Choose <span class="math inline">\(\delta &lt; \min(|\delta_1,
+(2\alpha - 1)|I|)\)</span> where <span class="math inline">\(\frac{1}{2}
+&lt; \alpha &lt; 1\)</span>.<br />
+<span class="math inline">\(E \subset I\)</span> (since <span class="math inline">\(E = E_{0} \cap I\)</span>) and <span class="math inline">\(E + \delta \subset I + \delta\)</span>,<br />
+so <span class="math inline">\((E \cup (E + \delta)) \subset (I \cup (I
++ \delta))\)</span>.<br />
+<span class="math inline">\(I \cup (I + \delta)\)</span> is an open
+interval with length <span class="math inline">\(|I| +
+\delta\)</span>,<br />
+and <span class="math inline">\(E \cap (E + \delta) =
+\varnothing\)</span>, so <span class="math inline">\(|I| + \delta \geq 2
+\cdot m(E)\)</span>.<br />
+Since <span class="math inline">\(m(E) \geq \alpha \cdot |I|\)</span> in
+<strong>Q28</strong>, then <span class="math inline">\(\delta \geq
+(2\alpha - 1)|I|\)</span>.<br />
+This is a contradiction because <span class="math inline">\(\delta &lt;
+(2\alpha - 1)|I|\)</span>.</p>
+</div>
+<div id="therefore-e---e-has-an-open-interval-centered-at-origin." class="section level4">
+<h4>⑥ <span class="math inline">\(\therefore E - E\)</span> has an open
+interval centered at origin.</h4>
+<hr />
+</div>
+</div>
+<div id="e-and-f-are-measurable-sets-in-mathbbr-and-0-me-mf-infty.-show-that-e-f-contains-an-open-interval." class="section level2">
+<h2>30. <span class="math inline">\(E\)</span> and <span class="math inline">\(F\)</span> are measurable sets in <span class="math inline">\(\mathbb{R}\)</span>, and <span class="math inline">\(0 &lt; m(E), m(F) &lt; \infty\)</span>. Show that
+<span class="math inline">\(E + F\)</span> contains an open
+interval.</h2>
+<p><strong>proof</strong></p>
+<div id="o-x-in-mathbbr-gx-0-then-i-subset-o" class="section level4">
+<h4>① <span class="math inline">\(O = \{x \in \mathbb{R} : g(x) &gt; 0
+\}\)</span>, then <span class="math inline">\(I \subset O\)</span></h4>
+<p>Let <span class="math inline">\(g(x) = \chi_{E} * \chi_{F}(x) =
+\int_{\mathbb{R}} \chi_{E}(x + t) \chi_{F}(t) dt\)</span>, which is
+continuous by <strong>ch2 ex 24</strong>.<br />
+Then, the set <span class="math inline">\(O = \{x \in \mathbb{R}: g(x)
+&gt; 0 \}\)</span> is open.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{\mathbb{R}} g(x) dx &amp;= \int_{\mathbb{R}} \int_{\mathbb{R}}
+\chi_{E}(x + t) \chi_{F}(t) dt dx \\
+&amp;= \int_{\mathbb{R}} \int_{\mathbb{R}} \chi_{E}(x + t) dx \cdot
+\chi_{F}(t) dt \quad (\text{by Fubini&#39;s Thm}) \\
+&amp;= m(E) \int_{\mathbb{R}} \chi_{F}(t) dt \quad (\text{by translation
+invariance}) \\
+&amp;= m(E) m(F) &gt; 0
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\((m(g) &gt; 0 \Rightarrow O \neq
+\varnothing)\)</span><br />
+This means <span class="math inline">\(m(O) &gt; 0\)</span>. So, there
+is an open interval <span class="math inline">\(I \subset
+O\)</span>.</p>
+</div>
+<div id="o-subset-e-f" class="section level4">
+<h4>② <span class="math inline">\(O \subset E + F\)</span></h4>
+<p>Consider <span class="math inline">\(x \notin E + F\)</span>. Assume
+there is <span class="math inline">\(y \in (-E + x) \cap
+F\)</span>.<br />
+Then <span class="math inline">\(y = f\)</span> for some <span class="math inline">\(f \in F\)</span> and <span class="math inline">\(y
+= -e + x\)</span> for some <span class="math inline">\(e \in
+E\)</span>.<br />
+Then <span class="math inline">\(x = e + f\)</span> and <span class="math inline">\(x \in E + F\)</span>, contradiction.<br />
+This leads to <span class="math inline">\((-E + x) \cap F =
+\varnothing\)</span>.</p>
+<p>So, for <span class="math inline">\(\forall x \in E\)</span>, <span class="math inline">\(x - t \notin E\)</span>.<br />
+Also, for all <span class="math inline">\(t\)</span> with <span class="math inline">\(x - t \in E\)</span>, <span class="math inline">\(x - (x - t) = t \notin F\)</span>.<br />
+Then, <span class="math inline">\(\chi_{E}(x - t) \chi_{F}(t) =
+0\)</span> for <span class="math inline">\(x \notin E + F\)</span> and
+<span class="math inline">\(g(x) = \int_{\mathbb{R}} \chi_{E}(x - t)
+\chi_{F}(t) dt = 0\)</span>, which means <span class="math inline">\(x
+\notin O\)</span>.<br />
+Thus, in converse, <span class="math inline">\(x \in O\)</span> implies
+<span class="math inline">\(x \in E + F\)</span>, so <span class="math inline">\(O \subset E + F\)</span>.</p>
+</div>
+<div id="exists-i-subset-e-f-conclusion" class="section level4">
+<h4>③ <span class="math inline">\(\exists I \subset E + F\)</span>,
+conclusion</h4>
+<p>In summary, <span class="math inline">\(I \subset O \subset E +
+F\)</span>. Thus, <span class="math inline">\(E + F\)</span> has an open
+interval <span class="math inline">\(I\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="let-v-denote-a-set-that-consists-of-only-one-element-in-each-equivalence-class-of-mathbbr-mathbbq-in-mathbbr.-show-that-v-is-non-measurable-using-q29." class="section level2">
+<h2>31. Let <span class="math inline">\(V&#39;\)</span> denote a set
+that consists of only one element in each equivalence class of <span class="math inline">\(\mathbb{R} / \mathbb{Q}\)</span> in <span class="math inline">\(\mathbb{R}\)</span>. Show that <span class="math inline">\(V&#39;\)</span> is non-measurable using Q29.</h2>
+<p><strong>proof</strong></p>
+<div id="v_n-v-g_n-then-v_n-cap-v_m-varnothing-for-n-neq-m" class="section level4">
+<h4>① <span class="math inline">\(V&#39;_n = V&#39; + g_n\)</span>, then
+<span class="math inline">\(V&#39;_n \cap V&#39;_m =
+\varnothing\)</span> for <span class="math inline">\(n \neq
+m\)</span></h4>
+<p>Assume that <span class="math inline">\(V&#39;\)</span> is
+measurable.<br />
+Then <span class="math inline">\(V&#39; + g\)</span> has same measure as
+<span class="math inline">\(V&#39;\)</span> for any <span class="math inline">\(g \in \mathbb{Q}\)</span>.<br />
+Let <span class="math inline">\(V&#39;_n = V&#39; + g_n\)</span>, where
+<span class="math inline">\(\{g_n\}\)</span> is an enumeration of <span class="math inline">\(\mathbb{Q}\)</span>.<br />
+If <span class="math inline">\(y \in V&#39;_n \cap V&#39;_m\)</span>,
+then <span class="math inline">\(y = x_1 + g_n = x_2 + g_m\)</span> for
+some <span class="math inline">\(x_1, x_2 \in V&#39;\)</span>.<br />
+This leads to <span class="math inline">\(x_1 - x_2 = g_m - g_n \in
+\mathbb{Q}\)</span>, contradiction to def of <span class="math inline">\(V&#39;\)</span>.<br />
+So <span class="math inline">\(V&#39;_n \cap V&#39;_m =
+\varnothing\)</span>.</p>
+</div>
+<div id="bigcup-v_n-mathbbr-so-mv-0" class="section level4">
+<h4>② <span class="math inline">\(\bigcup V&#39;_n =
+\mathbb{R}\)</span>, so <span class="math inline">\(m(V&#39;) &gt;
+0\)</span></h4>
+<p><span class="math inline">\(V&#39;_n \subset \mathbb{R}\)</span> for
+all <span class="math inline">\(n \in \mathbb{N}\)</span>, so it is
+obvious that <span class="math inline">\(\bigcup V&#39;_n \subset
+\mathbb{R}\)</span>.<br />
+Let <span class="math inline">\(x \in \mathbb{R}\)</span>. Then there is
+a rational <span class="math inline">\(g_n\)</span> such that <span class="math inline">\(x - g_n \in V&#39;\)</span>.<br />
+This means <span class="math inline">\(x \in V&#39; + g_n =
+V&#39;_n\)</span>, so <span class="math inline">\(x \in \bigcup
+V&#39;_n\)</span>.<br />
+So, <span class="math inline">\(\bigcup V&#39;_n =
+\mathbb{R}\)</span>.<br />
+If <span class="math inline">\(m(V&#39;) = m(V&#39;_n) = 0\)</span>,
+<span class="math inline">\(m(\bigcup V&#39;_n) = \sum
+m(V&#39;_n)\)</span> (since <span class="math inline">\(V&#39;_n\)</span> are disjoint) <span class="math inline">\(= 0\)</span>.<br />
+Then, <span class="math inline">\(m(\mathbb{R}) = 0\)</span>, which is a
+contradiction.<br />
+So <span class="math inline">\(m(V&#39;) &gt; 0\)</span>.</p>
+</div>
+<div id="v-has-an-open-interval-contradiction." class="section level4">
+<h4>③ <span class="math inline">\(V&#39;\)</span> has an open interval,
+contradiction.</h4>
+<p>Then, <strong>Q29</strong> says <span class="math inline">\(V&#39;\)</span> contains an open interval centered
+at the origin, say <span class="math inline">\(B(0, r)\)</span> where
+<span class="math inline">\(r\)</span> is the radius of the
+interval.<br />
+Due to the denseness of <span class="math inline">\(\mathbb{Q}\)</span>,
+there exists a rational <span class="math inline">\(g\)</span> with
+<span class="math inline">\(0 &lt; g &lt; r\)</span>.<br />
+This is a contradiction, because <span class="math inline">\(0\)</span>
+and <span class="math inline">\(g\)</span> are in <span class="math inline">\(V&#39;\)</span> and <span class="math inline">\(0
+\nsim g\)</span>.</p>
+</div>
+<div id="therefore-v-is-non-measurable." class="section level4">
+<h4>④ <span class="math inline">\(\therefore V&#39;\)</span> is
+non-measurable.</h4>
+<hr />
+</div>
+</div>
+<div id="let-v-denote-the-non-measurable-set-in-01-vitali-set." class="section level2">
+<h2>32. Let <span class="math inline">\(V\)</span> denote the
+non-measurable set in <span class="math inline">\([0,1]\)</span> (Vitali
+set).</h2>
+<div id="a-show-that-if-e-is-a-measurable-subset-of-v-then-me-0." class="section level3">
+<h3>(a) Show that if <span class="math inline">\(E\)</span> is a
+measurable subset of <span class="math inline">\(V\)</span>, then <span class="math inline">\(m(E) = 0\)</span>.</h3>
+<p><strong>proof</strong></p>
+<p>Let <span class="math inline">\(E_g = E + g\)</span>, where <span class="math inline">\(g\)</span> is a rational with <span class="math inline">\(-1 \leq g \leq 1\)</span>.<br />
+Since <span class="math inline">\(E \subset [0,1]\)</span>, <span class="math inline">\(E_g \subset [-1,2]\)</span> and this holds for all
+<span class="math inline">\(g \in \mathbb{Q} \cap [-1,1]\)</span>.<br />
+Then <span class="math inline">\(\bigcup_{g \in \mathbb{Q} \cap [-1,1]}
+E_g \subset [-1,2]\)</span>.<br />
+As previously mentioned, <span class="math inline">\(E_g \cap E_{g_m} =
+\varnothing\)</span> for <span class="math inline">\(g_n \neq
+g_m\)</span>.<br />
+This leads to <span class="math inline">\(\sum m(E_g) &lt;
+3\)</span>.<br />
+If <span class="math inline">\(m(E) = m(E_g) &gt; 0\)</span>, <span class="math inline">\(\sum m(E_g)\)</span> becomes infinite, which is
+contradiction.<br />
+Thus, <span class="math inline">\(m(E) = 0\)</span>.</p>
+</div>
+<div id="b-g-is-a-subset-of-mathbbr-with-mg-0.-show-that-there-is-a-subset-of-g-that-is-non-measurable." class="section level3">
+<h3>(b) <span class="math inline">\(G\)</span> is a subset of <span class="math inline">\(\mathbb{R}\)</span> with <span class="math inline">\(m(G) &gt; 0\)</span>. Show that there is a subset
+of <span class="math inline">\(G\)</span> that is non-measurable.</h3>
+<p><strong>proof</strong></p>
+<div id="mg-leq-sum_n1infty-mg-cap-v_n" class="section level4">
+<h4>① <span class="math inline">\(m(G) \leq \sum_{n=1}^\infty m(G \cap
+V&#39;_n)\)</span></h4>
+<p>We’ll use the same notation as #31: <span class="math inline">\(V&#39;\)</span>, <span class="math inline">\(V&#39;_n\)</span>.<br />
+Also, <span class="math inline">\(\bigcup V&#39;_n =
+\mathbb{R}\)</span>.<br />
+<span class="math inline">\(G\)</span> can be written as <span class="math inline">\(G \cap \mathbb{R} = G \cap (\bigcup V&#39;_n) =
+\bigcup (G \cap V&#39;_n)\)</span>.<br />
+By the sub-additivity, <span class="math inline">\(m(G) \leq \sum m(G
+\cap V&#39;_n)\)</span>.</p>
+<p>Assume that <span class="math inline">\(G \cap V&#39;_n\)</span> is
+measurable for all <span class="math inline">\(n \in
+\mathbb{N}\)</span>.</p>
+</div>
+<div id="g-cap-v_n-has-no-open-interval-centered-at-0." class="section level4">
+<h4>② <span class="math inline">\(G \cap V&#39;_n\)</span> has no open
+interval centered at <span class="math inline">\(0\)</span>.</h4>
+<p>Suppose <span class="math inline">\(G \cap V&#39;_n\)</span> has
+<span class="math inline">\(B(0,r)\)</span>.<br />
+By the denseness of <span class="math inline">\(\mathbb{Q}\)</span>,
+there exists <span class="math inline">\(g \in \mathbb{Q}\)</span> with
+<span class="math inline">\(0 &lt; g &lt; r\)</span>.<br />
+This means <span class="math inline">\(0\)</span> and <span class="math inline">\(g\)</span> are in <span class="math inline">\(G
+\cap V&#39;_n\)</span> simultaneously, but <span class="math inline">\(G
+\cap V&#39;_n\)</span> can have only one rational at most (<span class="math inline">\(G \cap V&#39;_n \subset V&#39;_n = V&#39; +
+g_n\)</span>).<br />
+This is impossible, so <span class="math inline">\(G \cap
+V&#39;_n\)</span> can’t have an open interval centered at <span class="math inline">\(0\)</span>.</p>
+</div>
+<div id="mg-cap-v_n-0-and" class="section level4">
+<h4>③ <span class="math inline">\(m(G \cap V&#39;_n) = 0\)</span>
+and</h4>
+<p>By #29, <span class="math inline">\(m(G \cap V&#39;_n) = 0\)</span>
+and <span class="math inline">\(m(G) = 0\)</span> (<span class="math inline">\(m(G) \leq \sum m(G \cap V&#39;_n)\)</span>), which
+is a contradiction.<br />
+Thus, there is <span class="math inline">\(N \in \mathbb{N}\)</span>
+such that <span class="math inline">\(G \cap V&#39;_N\)</span> is
+non-measurable.</p>
+</div>
+<div id="cf-if-every-subset-of-g-is-measurable-then-mg-0-converse" class="section level4">
+<h4>cf) If every subset of <span class="math inline">\(G\)</span> is
+measurable, then <span class="math inline">\(m(G) = 0\)</span>
+(converse)</h4>
+<hr />
+</div>
+</div>
+</div>
+<div id="show-that-vc-i---v-satisfies-m_kvc-1-i-01-and-thus-m_kv-cup-vc-m_kv-m_kvc" class="section level2">
+<h2>33. Show that <span class="math inline">\(V^c = I - V\)</span>
+satisfies <span class="math inline">\(m_k(V^c) = 1 \ (I =
+[0,1])\)</span> and thus <span class="math inline">\(m_k(V \cup V^c)
+&lt; m_k(V) + m_k(V^c)\)</span></h2>
+<p><strong>proof</strong></p>
+<div id="vc-is-non-measurable" class="section level4">
+<h4>① <span class="math inline">\(V^c\)</span> is non-measurable</h4>
+<p>Assume that <span class="math inline">\(V^c\)</span> is measurable,
+then <span class="math inline">\(V\)</span> is measurable,
+contradiction.</p>
+</div>
+<div id="m_kvc-1" class="section level4">
+<h4>② <span class="math inline">\(m_k(V^c) = 1\)</span></h4>
+<p>Since <span class="math inline">\(V^c \subset I\)</span>, <span class="math inline">\(m_k(V^c) \leq 1\)</span>. Assume that <span class="math inline">\(m_k(V^c) &lt; 1\)</span>.<br />
+Choose a measurable set <span class="math inline">\(U\)</span> such that
+<span class="math inline">\(V^c \cup U \subset I\)</span> and <span class="math inline">\(m_k(U) = \varepsilon\)</span> (<span class="math inline">\(0 &lt; \varepsilon &lt; 1\)</span>). <span class="math inline">\(U^c\)</span> is measurable, and <span class="math display">\[
+m(U^c) = 1 - m(U) = \varepsilon &gt; 0.
+\]</span> Since <span class="math inline">\(U^c \subset V\)</span>,
+<span class="math inline">\(m(U^c) = 0\)</span> by
+<strong>#32(a)</strong>, which is a contradiction. So <span class="math inline">\(m_k(V^c) = 1\)</span>.</p>
+</div>
+<div id="m_kv-m_kvc-1-conclusion." class="section level4">
+<h4>③ <span class="math inline">\(m_k(V) + m_k(V^c) &gt; 1\)</span>,
+conclusion.</h4>
+<p><span class="math inline">\(m_k(V) = 0\)</span> implies <span class="math inline">\(V\)</span> is measurable, so <span class="math inline">\(m_k(V) &gt; 0\)</span>.<br />
+Thus, <span class="math inline">\(m_k(V) + m_k(V^c) &gt; 1 = m_k(V \cup
+V^c) = m_k(I)\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="gamma-is-a-curve-or-graph-of-fx-gamma-x-fx-x-in-mathbbr-.-show-that-mgamma-0-if-f-is-continuous." class="section level2">
+<h2>37. <span class="math inline">\(\Gamma\)</span> is a curve (or
+graph) of <span class="math inline">\(f(x)\)</span>; <span class="math inline">\(\Gamma = \{ (x, f(x)) : x \in \mathbb{R}
+\}\)</span>. Show that <span class="math inline">\(m(\Gamma) =
+0\)</span> if <span class="math inline">\(f\)</span> is continuous.</h2>
+<p><strong>proof</strong></p>
+<div id="mgamma_g-0-for-continuous-g-a-b-to-mathbbr" class="section level3">
+<h3>① <span class="math inline">\(m(\Gamma_g) = 0\)</span> for
+continuous <span class="math inline">\(g: [a, b] \to
+\mathbb{R}\)</span></h3>
+<p>Let <span class="math inline">\(g: [a, b] \to \mathbb{R}\)</span> be
+a continuous function and <span class="math inline">\(\Gamma_g = \{ (x,
+g(x)) : x \in [a, b] \}\)</span> be its graph.<br />
+Due to PMA 4.19, <span class="math inline">\(g\)</span> is
+<strong>uniformly</strong> continuous (<span class="math inline">\(\because [a, b]\)</span> is compact).<br />
+Then, for every <span class="math inline">\(\varepsilon &gt; 0\)</span>
+there is <span class="math inline">\(\delta_\varepsilon &gt; 0\)</span>
+such that <span class="math inline">\(|g(x) - g(y)| &lt;
+\varepsilon\)</span> for all <span class="math inline">\(x, y \in [a,
+b]\)</span> with <span class="math inline">\(|x - y| &lt;
+\delta_\varepsilon\)</span> (PMA 4.18).<br />
+The following will prove <span class="math inline">\(m(\Gamma_g) =
+0\)</span>.</p>
+<div id="delta_varepsilon-b---a-partition-a-b" class="section level4">
+<h4>1) <span class="math inline">\(\delta_\varepsilon &lt; b -
+a\)</span>, partition <span class="math inline">\([a, b]\)</span></h4>
+<p>Consider the case <span class="math inline">\(\delta_\varepsilon &lt;
+b - a\)</span>.<br />
+Choose a smallest integer <span class="math inline">\(n \in
+\mathbb{N}\)</span> such that <span class="math inline">\(b - a &lt; n
+\delta_\varepsilon\)</span>.<br />
+That is, <span class="math inline">\((n - 1)\delta_\varepsilon \leq b -
+a &lt; n \delta_\varepsilon\)</span>.<br />
+Then, make a partition of <span class="math inline">\([a, b]\)</span>
+with same <span class="math inline">\(n\)</span> intervals:<br />
+<span class="math inline">\(a = x_0 &lt; x_1 &lt; \cdots &lt; x_n =
+b\)</span> such that <span class="math inline">\(\frac{b - a}{n} = x_i -
+x_{i - 1} &lt; \delta_\varepsilon\)</span>.</p>
+</div>
+<div id="gamma_g-subset-bigcup_i-1n-x_i---1-x_i-times-gx_i---varepsilon-gx_i-varepsilon" class="section level4">
+<h4>2) <span class="math inline">\(\Gamma_g \subset \bigcup_{i = 1}^{n}
+[x_{i - 1}, x_i] \times (g(x_i) - \varepsilon, g(x_i) +
+\varepsilon)\)</span></h4>
+<p>For every <span class="math inline">\(x \in [a, b]\)</span>, there is
+<span class="math inline">\(i\)</span> such that <span class="math inline">\(x \in [x_{i - 1}, x_i]\)</span> (<span class="math inline">\(i = 1, 2, \dots, n\)</span>).<br />
+<span class="math inline">\(|x - x_i| &lt; \delta_\varepsilon\)</span>,
+so this satisfies <span class="math inline">\(|g(x) - g(x_i)| &lt;
+\varepsilon\)</span> and <span class="math inline">\(g(x) \in (g(x_i) -
+\varepsilon, g(x_i) + \varepsilon)\)</span>.<br />
+Then, <span class="math inline">\((x, g(x)) \in [x_{i - 1}, x_i] \times
+(g(x_i) - \varepsilon, g(x_i) + \varepsilon)\)</span>.<br />
+This holds for all <span class="math inline">\(x \in [a, b]\)</span>, so
+<span class="math inline">\(\Gamma_g \subset \bigcup_{i = 1}^{n} [x_{i -
+1}, x_i] \times (g(x_i) - \varepsilon, g(x_i) +
+\varepsilon)\)</span>.</p>
+</div>
+<div id="mgamma_g-2b---avarepsilon" class="section level4">
+<h4>3) <span class="math inline">\(m(\Gamma_g) &lt; 2(b -
+a)\varepsilon\)</span></h4>
+<p>The above relation leads to: <span class="math display">\[
+m(\Gamma_g) \leq \sum_{i = 1}^{n} m([x_{i - 1}, x_i]) \cdot m((g(x_i) -
+\varepsilon, g(x_i) + \varepsilon)) &lt; n\delta_\varepsilon \cdot
+2\varepsilon
+\]</span> Since <span class="math inline">\((n - 1)\delta_\varepsilon
+\leq b - a\)</span>, <span class="math display">\[
+m(\Gamma_g) &lt; 2\varepsilon(b - a + \delta_\varepsilon) &lt;
+2\varepsilon(b - a + b - a) = 4(b - a)\varepsilon
+\]</span></p>
+</div>
+<div id="delta_varepsilon-geq-b---a" class="section level4">
+<h4>4) <span class="math inline">\(\delta_\varepsilon \geq b -
+a\)</span></h4>
+<p>When <span class="math inline">\(\delta_\varepsilon \geq b -
+a\)</span>, we can randomly <strong>choose <span class="math inline">\(\delta&#39;_\varepsilon\)</span> with <span class="math inline">\(\delta&#39;_\varepsilon &lt; b -
+a\)</span></strong> because the uniform continuity still works under
+<span class="math inline">\(\delta&#39;_\varepsilon\)</span>.<br />
+Let <span class="math inline">\(\delta&#39;_\varepsilon =
+\delta_\varepsilon\)</span> and follow the same procedure from 1), then
+the inequality <span class="math inline">\(m(\Gamma_g) &lt; 4(b -
+a)\varepsilon\)</span> still holds.</p>
+</div>
+<div id="mgamma_g-0." class="section level4">
+<h4>5) <span class="math inline">\(m(\Gamma_g) = 0\)</span>.</h4>
+<p>Since <span class="math inline">\(m(\Gamma_g) &lt; 4(b -
+a)\varepsilon\)</span> holds for all <span class="math inline">\(\varepsilon &gt; 0\)</span>,<br />
+<span class="math inline">\(m(\Gamma_g) = 0\)</span>.</p>
+</div>
+</div>
+<div id="extend-to-f-mathbbr-to-mathbbr" class="section level3">
+<h3>② extend to <span class="math inline">\(f: \mathbb{R} \to
+\mathbb{R}\)</span></h3>
+<p>Let <span class="math inline">\(f_n: [-n, n] \to \mathbb{R}\)</span>
+be a continuous function such that <span class="math inline">\(f_n(x) =
+f(x)\)</span> for <span class="math inline">\(x \in [-n,
+n]\)</span>.</p>
+<div id="gamma_f-bigcup_n-1infty-gamma_f_n" class="section level4">
+<h4>1) <span class="math inline">\(\Gamma_f = \bigcup_{n = 1}^{\infty}
+\Gamma_{f_n}\)</span></h4>
+<p><span class="math inline">\(z \in \bigcup_{n = 1}^{\infty}
+\Gamma_{f_n}\)</span>, then there is an integer <span class="math inline">\(N \in \mathbb{N}\)</span> such that<br />
+<span class="math inline">\(z \in \Gamma_{f_N} = \{ (x, f_N(x)) : x \in
+[-N, N] \}\)</span>.<br />
+For the <span class="math inline">\(z = (x, f_N(x))\)</span>, <span class="math inline">\(x \in [-N, N] \subset \mathbb{R}\)</span> and
+<span class="math inline">\(f_N(x) = f(x)\)</span>.<br />
+Then, <span class="math inline">\(z \in \Gamma_f\)</span> and thus <span class="math inline">\(\bigcup_{n = 1}^{\infty} \Gamma_{f_n} \subset
+\Gamma_f\)</span>.</p>
+<p><span class="math inline">\(y \in \Gamma_f\)</span>, then <span class="math inline">\(y = (x, f(x))\)</span> for some <span class="math inline">\(x \in \mathbb{R}\)</span>.<br />
+There exists a positive integer <span class="math inline">\(N\)</span>
+such that <span class="math inline">\(x \in [-N, N]\)</span>, then <span class="math inline">\(f(x) = f_N(x)\)</span>.<br />
+This leads to <span class="math inline">\(y \in \Gamma_{f_N}\)</span>
+and thus <span class="math inline">\(\Gamma_f \subset \bigcup_{n =
+1}^{\infty} \Gamma_{f_n}\)</span>.</p>
+<p>Thus, <span class="math inline">\(\Gamma_f = \bigcup_{n = 1}^{\infty}
+\Gamma_{f_n}\)</span>.</p>
+</div>
+<div id="conclusion-1" class="section level4">
+<h4>2) conclusion</h4>
+<p>Then,<br />
+<span class="math display">\[
+m(\Gamma_f) \leq \sum_{n = 1}^{\infty} m(\Gamma_{f_n}) = \sum 0 = 0.
+\]</span> Thus, <span class="math inline">\(m(\Gamma_f) =
+0\)</span>.</p>
+<hr />
+</div>
+</div>
+</div>
+<div id="show-that-abr-geq-ar-br-when-r-geq-1-and-abr-leq-ar-br-when-0-leq-r-leq-1-ab-0." class="section level2">
+<h2>38. Show that <span class="math inline">\((a+b)^r \geq a^r +
+b^r\)</span> when <span class="math inline">\(r \geq 1\)</span>, and
+<span class="math inline">\((a+b)^r \leq a^r + b^r\)</span> when <span class="math inline">\(0 \leq r \leq 1\)</span> (<span class="math inline">\(a,b &gt; 0\)</span>).</h2>
+<p><strong>proof</strong></p>
+<div id="r-geq-1" class="section level4">
+<h4>① <span class="math inline">\(r \geq 1\)</span></h4>
+<p>When <span class="math inline">\(t \geq 0\)</span>, <span class="math inline">\((a+t)^{r-1} \geq t^{r-1}\)</span>, so <span class="math display">\[\int_a^b (a+t)^{r-1} dt \geq \int_a^b t^{r-1}
+dt.\]</span> Then, <span class="math display">\[
+\frac{1}{r} \left( (a+b)^r - a^r \right) \geq \frac{1}{r} \left( b^r -
+a^r \right),
+\]</span> that is <span class="math inline">\((a+b)^r - a^r \geq
+b^r\)</span>. Thus, <span class="math inline">\((a+b)^r \geq a^r +
+b^r\)</span>.</p>
+</div>
+<div id="leq-r-leq-1" class="section level4">
+<h4>② <span class="math inline">\(0 \leq r \leq 1\)</span></h4>
+<p>When <span class="math inline">\(t \geq 0\)</span>, <span class="math inline">\((a+t)^{r-1} \leq t^{r-1}\)</span>, so <span class="math display">\[\int_a^b (a+t)^{r-1} dt \leq \int_a^b t^{r-1}
+dt.\]</span> Then, <span class="math display">\[
+\frac{1}{r} \left( (a+b)^r - a^r \right) \leq \frac{1}{r} \left( b^r -
+a^r \right),
+\]</span> that is <span class="math inline">\((a+b)^r - a^r \leq
+b^r\)</span>. Thus, <span class="math inline">\((a+b)^r \leq a^r +
+b^r\)</span>.</p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
+
+
+
+</div>
