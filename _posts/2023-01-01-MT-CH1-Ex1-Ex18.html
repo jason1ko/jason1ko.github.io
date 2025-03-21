@@ -1,0 +1,1269 @@
+---
+title: "CH1 Ex.1 ~ Ex.18"
+date: 2023-01-01 23:59:00
+categories: [Measure Theory]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<!DOCTYPE html>
+
+<html>
+
+
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="ch1.-measure-theory-ex.1-ex.18" class="section level1">
+<h1>Ch1. Measure Theory (Ex.1 ~ Ex.18)</h1>
+<div id="prove-the-following-properties-of-cantor-set-c-bigcap_n1infty-c_n" class="section level2">
+<h2>1. Prove the following properties of Cantor set <span class="math inline">\(C = \bigcap_{n=1}^{\infty} C_n\)</span></h2>
+<div id="ii-cantor-set-c-is-totally-disconnected" class="section level3">
+<h3>(ii) Cantor set <span class="math inline">\(C\)</span> is (totally)
+disconnected</h3>
+<p><strong>proof</strong></p>
+<div id="exists-n-s.t.-x---y-frac13n" class="section level4">
+<h4>① <span class="math inline">\(\exists N\)</span> s.t. <span class="math inline">\(|x - y| &gt; \frac{1}{3^N}\)</span></h4>
+<p>Let <span class="math inline">\(x, y \in C\)</span> and <span class="math inline">\(x &lt; y\)</span>. Then, there is an integer <span class="math inline">\(N \in \mathbb{N}\)</span> such that <span class="math inline">\(|x - y| &gt; \frac{1}{3^N}\)</span>.<br />
+If not, it means <span class="math inline">\(|x - y| \leq
+\frac{1}{3^k}\)</span> for all <span class="math inline">\(k \in
+\mathbb{N}\)</span>.<br />
+Since <span class="math inline">\(\frac{1}{3^k} \to 0\)</span>, for
+every <span class="math inline">\(\varepsilon &gt; 0\)</span> there is
+<span class="math inline">\(K_{\varepsilon}\)</span> such that <span class="math inline">\(k \geq K_{\varepsilon}\)</span> implies <span class="math inline">\(\frac{1}{3^k} &lt; \varepsilon\)</span>.<br />
+When <span class="math inline">\(\varepsilon \geq |x - y|\)</span>, then
+<span class="math inline">\(|x - y| &gt; \frac{1}{3^k}\)</span> for
+<span class="math inline">\(k \geq K_{\varepsilon}\)</span>.<br />
+This is a contradiction.</p>
+</div>
+<div id="exists-z-notin-c-such-that-x-z-y" class="section level4">
+<h4>② <span class="math inline">\(\exists z \notin C\)</span> such that
+<span class="math inline">\(x &lt; z &lt; y\)</span></h4>
+<p>Note that <span class="math inline">\(\frac{1}{3^N}\)</span> is a
+length of a closed interval in <span class="math inline">\(C_N\)</span>.<br />
+Then, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are in <strong>distinct
+intervals</strong>.<br />
+So, there is <span class="math inline">\(z \in [0, 1]\)</span> such that
+<span class="math inline">\(x &lt; z &lt; y\)</span>, <span class="math inline">\(z \notin C_N\)</span>, and hence <span class="math inline">\(z \notin C\)</span>.</p>
+</div>
+<div id="a-b-are-separated" class="section level4">
+<h4>③ <span class="math inline">\(A, B\)</span> are
+<strong>separated</strong></h4>
+<p>Let <span class="math inline">\(A = C \cap (-\infty, z)\)</span> and
+<span class="math inline">\(B = C \cap (z, \infty)\)</span>. <span class="math inline">\(\overline{A} = \overline {C \cap (-\infty, z]}
+\subset (-\infty, z]\)</span> and <span class="math inline">\((-\infty,
+z] \cap B = \emptyset\)</span> (<span class="math inline">\(\because b
+&gt; z\)</span> for <span class="math inline">\(\forall b \in
+B\)</span>), so <span class="math inline">\(\overline{A} \cap B =
+\emptyset\)</span>. Similarly, <span class="math inline">\(\overline{B}
+= \overline{C \cap [z, \infty)} \subset [z, \infty)\)</span> and <span class="math inline">\(A \cap [z, \infty) = \emptyset\)</span> (<span class="math inline">\(\because a &lt; z\)</span> for <span class="math inline">\(\forall a \in A\)</span>), so <span class="math inline">\(A \cap \overline{B} = \emptyset\)</span>. So,
+<span class="math inline">\(A, B\)</span> are separated.</p>
+</div>
+<div id="a-cup-b-c-conclusion." class="section level4">
+<h4>④ <span class="math inline">\(A \cup B = C\)</span>,
+conclusion.</h4>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(x \in A \cup B\)</span>: Since <span class="math inline">\(A \subset C\)</span> and <span class="math inline">\(B \subset C\)</span>, <span class="math inline">\(x \in C\)</span>.</p></li>
+<li><p><span class="math inline">\(\nexists z \in C\)</span>: If <span class="math inline">\(y &lt; z\)</span>, <span class="math inline">\(y
+\in A\)</span>.<br />
+If <span class="math inline">\(y &gt; z\)</span>, <span class="math inline">\(y \in B\)</span>. So, <span class="math inline">\(y \in A \cup B\)</span>.</p></li>
+</ol>
+<p>So, <span class="math inline">\(A \cup B = C\)</span>. Since <span class="math inline">\(C\)</span> is a union of separated sets, <span class="math inline">\(C\)</span> is disconnected.</p>
+</div>
+</div>
+<div id="ii-c-is-perfect." class="section level3">
+<h3>(ii) <span class="math inline">\(C\)</span> is perfect.</h3>
+<p><strong>proof</strong></p>
+<div id="x-in-i_ki-for-some-k-in-mathbbn-and-i-1-cdots-2k." class="section level4">
+<h4>① <span class="math inline">\(x \in I_{k,i}\)</span> for some <span class="math inline">\(k \in \mathbb{N}\)</span> and <span class="math inline">\(i = 1, \cdots, 2^k\)</span>.</h4>
+<p>Choose any <span class="math inline">\(x \in C\)</span>, then <span class="math inline">\(x \in C_k\)</span> for all <span class="math inline">\(k \in \mathbb{N}\)</span>. Each <span class="math inline">\(C_k\)</span> has <span class="math inline">\(2^k\)</span> closed intervals of same length
+(<span class="math inline">\(\forall k\)</span>): <span class="math inline">\(C_k = \bigcup_{i=1}^{2^k} I_{k,i}\)</span> where
+<span class="math inline">\(m(I_{k,i}) = \frac{1}{3^k}\)</span> and
+<span class="math inline">\(I_{k,i} \cap I_{k,j} = \emptyset\)</span>
+(<span class="math inline">\(i \neq j\)</span>). Then, <span class="math inline">\(x \in I_{k,i}\)</span> for some <span class="math inline">\(i = 1, \cdots, 2^k\)</span>.</p>
+</div>
+<div id="x-is-a-limit-point-of-c" class="section level4">
+<h4>② <span class="math inline">\(x\)</span> is a <strong>limit
+point</strong> of <span class="math inline">\(C\)</span></h4>
+<p>Let <span class="math inline">\(y_k\)</span> be an <strong>end
+point</strong> of the interval <span class="math inline">\(I_{k,i}\)</span> such that <span class="math inline">\(y_k \neq x\)</span> and <span class="math inline">\(|y_k - x| \leq |y_k&#39; - x|\)</span> (<span class="math inline">\(y_k&#39;\)</span> is the other end point).</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(r &gt; |y_k - x|\)</span>: the open
+ball <span class="math inline">\(B_r(x)\)</span> contains <span class="math inline">\(y_k\)</span>.</p></li>
+<li><p><span class="math inline">\(0 &lt; r \leq |y_k - x|\)</span>:
+<span class="math inline">\(B_r(x)\)</span> contains a point.<br />
+Then, <span class="math inline">\((x, x + r) \subset I_{k,i} \cap
+B_r(x)\)</span>. So <span class="math inline">\(B_r(x)\)</span> contains
+<span class="math inline">\(x_k \in (x, x + r) \subset I_{k,i}\)</span>
+or <span class="math inline">\((x - r, x)\)</span>.</p></li>
+</ol>
+<p>To sum up, <span class="math inline">\(B_r(x)\)</span> contains a
+point of <span class="math inline">\(C\)</span> not equal to <span class="math inline">\(x\)</span>. So, <span class="math inline">\(x\)</span> is a limit point of <span class="math inline">\(C\)</span>. This holds for <strong>all</strong>
+<span class="math inline">\(x \in C\)</span>, so <span class="math inline">\(C\)</span> is perfect.</p>
+<hr />
+</div>
+</div>
+</div>
+<div id="the-cantor-set-c-can-also-be-described-in-terms-of-ternary-expansions." class="section level2">
+<h2>2. The Cantor set <span class="math inline">\(C\)</span> can also be
+described in terms of ternary expansions.</h2>
+<div id="b-the-cantor-lebesgue-function-defined-on-c-is-as-follows-fx-sum-b_k-2-k-x-sum-a_k-3-k-b_k-a_k-2.-in-this-case-a_k-has-0-or-2.-show-that-f-is-continuous-on-c." class="section level3">
+<h3>(b) The Cantor-Lebesgue function defined on <span class="math inline">\(C\)</span> is as follows: <span class="math inline">\(F(x) = \sum b_k 2^{-k}, x = \sum a_k 3^{-k},  b_k
+= a_k / 2\)</span>. In this case, <span class="math inline">\(a_k\)</span> has 0 or 2. Show that <span class="math inline">\(F\)</span> is continuous on <span class="math inline">\(C\)</span>.</h3>
+<p><strong>proof</strong></p>
+<div id="delta-frac13n-with-frac12n-varepsilon" class="section level4">
+<h4>① <span class="math inline">\(\delta = \frac{1}{3^N}\)</span> with
+<span class="math inline">\(\frac{1}{2^N} &lt; \varepsilon\)</span></h4>
+<p>For given <span class="math inline">\(\varepsilon &gt; 0\)</span>,
+choose <span class="math inline">\(\delta = \frac{1}{3^N}\)</span> with
+<span class="math inline">\(\frac{1}{2^N} &lt; \varepsilon\)</span>. For
+<span class="math inline">\(x, y \in C\)</span>, if <span class="math inline">\(|x - y| &lt; \delta\)</span>, this means <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are in the same interval of <span class="math inline">\(C_N\)</span>. Let <span class="math inline">\(x =
+\sum a_{x,k} 3^{-k}\)</span> and <span class="math inline">\(y = \sum
+a_{y,k} 3^{-k}\)</span> with a unique binary form.</p>
+</div>
+<div id="b_xk-b_yk-for-k-leq-n" class="section level4">
+<h4>② <span class="math inline">\(b_{x,k} = b_{y,k}\)</span> for <span class="math inline">\(k \leq N\)</span></h4>
+<p>Assume that there exists <span class="math inline">\(k \leq
+N\)</span> such that <span class="math inline">\(a_{x,k} \neq
+a_{y,k}\)</span>, and let <span class="math inline">\(K\)</span> be the
+first integer with the property: <span class="math inline">\(a_{x,K} =
+0\)</span>, <span class="math inline">\(a_{y,K} = 2\)</span>. Then,
+<span class="math inline">\(\sum a_{x,k} 3^{-k} \leq \sum a_{y,k}
+3^{-k}\)</span> and <span class="math inline">\(\sum a_{y,k} 3^{-k} \geq
+0\)</span>.<br />
+So,<br />
+<span class="math display">\[
+\begin{aligned}
+|y - x| &amp;= \sum (a_{y,k} - a_{x,k}) 3^{-k} = \sum_{k = K}^{\infty} 2
+\cdot 3^{-k} = 2 \cdot 3^{-K} \sum_{k = 0}^{\infty} 3^{-k} = 2 \cdot
+3^{-K} \cdot \frac{1}{1 - \frac{1}{3}} = \frac{3}{3^K}.
+\end{aligned}
+\]</span><br />
+Since <span class="math inline">\(K \leq N\)</span>, <span class="math inline">\(\delta = \frac{1}{3^N} \leq \frac{1}{3^K} \leq |y
+- x|\)</span>, which is a contradiction.<br />
+So, <span class="math inline">\(a_{x,k} = a_{y,k}\)</span> for all <span class="math inline">\(k \leq N\)</span>, and consequently <span class="math inline">\(b_{x,k} = b_{y,k}\)</span> (<span class="math inline">\(k \leq N\)</span>).</p>
+</div>
+<div id="x---y-delta-implies-fx---fy-varepsilon" class="section level4">
+<h4>③ <span class="math inline">\(|x - y| &lt; \delta \implies |F(x) -
+F(y)| &lt; \varepsilon\)</span></h4>
+<p>Then,<br />
+<span class="math display">\[
+\begin{aligned}
+|F(x) - F(y)| &amp;= \left| \sum (b_{x,k} - b_{y,k}) 2^{-k} \right| =
+\sum_{k = N + 1}^{\infty} |b_{x,k} - b_{y,k}| 2^{-k} \leq \sum_{k = N +
+1}^{\infty} 2^{-k} = \frac{1}{2^N}.
+\end{aligned}
+\]</span><br />
+This holds for all <span class="math inline">\(\varepsilon &gt;
+0\)</span>, so <span class="math inline">\(F\)</span> is continuous on
+<span class="math inline">\(C\)</span>.</p>
+</div>
+</div>
+<div id="c-prove-that-f-c-to-01-is-surjective-onto." class="section level3">
+<h3>(c) Prove that <span class="math inline">\(F: C \to [0,1]\)</span>
+is surjective (onto).</h3>
+<p><strong>proof</strong></p>
+<p>It is identical to show that there is a <strong>unique binary
+expansion</strong> for every <span class="math inline">\(y \in
+(0,1)\)</span> (<span class="math inline">\(F(1) = 1\)</span>, so <span class="math inline">\(1 = \sum b_k\)</span>, <span class="math inline">\(F(0) = 0\)</span>, so <span class="math inline">\(0 = \sum b_k\)</span>). For the first step, let
+<span class="math inline">\(b_1 = 1\)</span> and <span class="math inline">\(y_1 = y_0 - \frac{1}{2}\)</span> if <span class="math inline">\(\frac{1}{2} \leq y_0 &lt; 1\)</span>, and <span class="math inline">\(b_1 = 0\)</span> and <span class="math inline">\(y_1 = y_0\)</span> if <span class="math inline">\(0 \leq y_0 &lt; \frac{1}{2}\)</span>.<br />
+Next, let <span class="math inline">\(b_2 = 1\)</span> and <span class="math inline">\(y_2 = y_1 - \frac{1}{2^2}\)</span> if <span class="math inline">\(\frac{1}{2^2} \leq y_1 &lt; \frac{1}{2}\)</span>,
+and <span class="math inline">\(b_2 = 0\)</span> and <span class="math inline">\(y_2 = y_1\)</span> if <span class="math inline">\(0 \leq y_1 &lt; \frac{1}{2^2}\)</span>. Repeat
+this process indefinitely, then <span class="math inline">\(y = \sum b_k
+2^{-k}\)</span>.<br />
+Using the obtained <span class="math inline">\(b_k\)</span>, <span class="math inline">\(x \in C\)</span> can be expressed as <span class="math inline">\(\sum a_k 3^{-k}\)</span> where <span class="math inline">\(a_k = 2 b_k\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="consider-01-and-let-varphi-be-a-fixed-real-number-with-0-varphi-1.-in-the-first-stage-remove-a-centrally-situated-open-interval-in-01-of-length-varphi.-in-the-2nd-stage-remove-2-central-open-intervals-of-relative-length-varphi.-let-c_varphi-denote-the-set-after-applying-the-above-procedure-indefinitely." class="section level2">
+<h2>3. Consider <span class="math inline">\([0,1]\)</span> and let <span class="math inline">\(\varphi\)</span> be a fixed real number with <span class="math inline">\(0 &lt; \varphi &lt; 1\)</span>. In the first
+stage, remove a centrally situated open interval in <span class="math inline">\([0,1]\)</span> of length <span class="math inline">\(\varphi\)</span>. In the 2nd stage, remove 2
+central open intervals of relative length <span class="math inline">\(\varphi\)</span>. Let <span class="math inline">\(C_{\varphi}\)</span> denote the set after applying
+the above procedure indefinitely.</h2>
+<div id="a-show-that-c_varphi-is-the-union-of-open-intervals-with-total-length-1." class="section level3">
+<h3>(a) Show that <span class="math inline">\(C_{\varphi}\)</span> is
+the union of open intervals with total length 1.</h3>
+<p><strong>proof</strong></p>
+<p>1st step, the total length of the bisected interval is <span class="math inline">\(\varphi\)</span>.<br />
+At the 2nd step, the total length of bisected intervals is <span class="math inline">\(2 \cdot \varphi \left( \frac{1 - \varphi}{2}
+\right)\)</span>.<br />
+At the 3rd step, the total length of bisected intervals is <span class="math inline">\(2^2 \cdot \varphi \left( \frac{1 - \varphi}{2}
+\right)^2\)</span>.<br />
+Then, the total length of the bisected intervals at the <span class="math inline">\(n\)</span>th step is <span class="math inline">\(2^{n - 1} \varphi \left( \frac{1 - \varphi}{2}
+\right)^{n - 1}\)</span>.<br />
+So,<br />
+<span class="math display">\[
+\sum_{n=1}^{\infty} 2^{n-1} \varphi \left( \frac{1 - \varphi}{2}
+\right)^{n-1} = \varphi \sum_{n=1}^{\infty} (1 - \varphi)^{n-1} =
+\frac{\varphi}{1 - (1 - \varphi)} = 1.
+\]</span></p>
+</div>
+<div id="b-show-that-mc_varphi-0." class="section level3">
+<h3>(b) Show that <span class="math inline">\(m(C_{\varphi}) =
+0\)</span>.</h3>
+<p><strong>proof</strong></p>
+<p>Let <span class="math inline">\(C_n\)</span> be the remaining closed
+intervals at <span class="math inline">\(n\)</span>th step.<br />
+It is obvious that <span class="math inline">\(m(C_n) = (1 -
+\varphi)^n\)</span>.<br />
+<span class="math inline">\(C_n \supset C_{\varphi}\)</span> and <span class="math inline">\(m(C_1) &lt; \infty\)</span>, so <span class="math inline">\(m(C_{\varphi}) = \lim_{n \to \infty}
+m(C_n)\)</span>.<br />
+Since <span class="math inline">\(0 &lt; (1 - \varphi) &lt; 1\)</span>,
+<span class="math inline">\(\lim_{n \to \infty} m(C_n) =
+0\)</span>.<br />
+Thus, <span class="math inline">\(m(C_{\varphi}) = 0\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="construct-a-cantor-like-set-hatc-so-that-at-the-kth-stage-of-the-construction-one-removes-2k-centrally-situated-open-intervals-of-length-l_k-with-l_1-2l_2-cdots-2k-l_k-1-for-all-k." class="section level2">
+<h2>4. Construct a “Cantor-like set” <span class="math inline">\(\hat{C}\)</span> so that at the <span class="math inline">\(k\)</span>th stage of the construction, one
+removes <span class="math inline">\(2^k\)</span> centrally situated open
+intervals of length <span class="math inline">\(l_k\)</span> with <span class="math inline">\(l_1 + 2l_2 + \cdots + 2^k l_k &lt; 1\)</span> for
+all <span class="math inline">\(k\)</span>.</h2>
+<div id="a-show-that-mhatc-0-1---sum_k1infty-2k-l_k-0." class="section level3">
+<h3>(a) Show that <span class="math inline">\(m(\hat{C}) &gt;
+0\)</span>: <span class="math inline">\(1 - \sum_{k=1}^{\infty} 2^k l_k
+&gt; 0\)</span>.</h3>
+<p><strong>proof</strong></p>
+<p>Let <span class="math inline">\(C_k\)</span> denote the remaining set
+after <span class="math inline">\(k\)</span>th iteration of removal
+(<span class="math inline">\(C_0 = [0,1]\)</span>), and let <span class="math inline">\(L_k\)</span> denote the union of the
+<strong>removed open intervals</strong> until <span class="math inline">\(k\)</span>th stage: <span class="math inline">\(C_0 = C_k \cup L_k\)</span> and <span class="math inline">\(C_k \cap L_k = \emptyset\)</span>.<br />
+Since <span class="math inline">\(m(L_k) = \sum_{j=1}^{k} 2^j
+l_j\)</span>, <span class="math inline">\(m(C_k) = 1 - \sum_{j=1}^{k}
+2^j l_j\)</span>.<br />
+Since <span class="math inline">\(C_{k} \supseteq C\)</span>, <span class="math inline">\(m(\hat{C}) = \lim_{k \to \infty} m(C_k) = 1 -
+\sum_{j=1}^{\infty} 2^j l_j\)</span>.<br />
+The condition says <span class="math inline">\(\sum_{k=1}^{\infty} 2^k
+l_k &lt; 1\)</span>, so <span class="math inline">\(m(\hat{C}) &gt;
+0\)</span>.</p>
+</div>
+<div id="b-for-x-in-hatc-show-that-there-exists-a-sequence-x_n-of-points-such-that-x_n-in-i_n-where-i_n-is-an-open-interval-bisected-at-the-nth-removal-with-lim_n-to-infty-i_n-0-and-lim_n-to-infty-x_n-x.-i_n-subset-l_k-for-some-k" class="section level3">
+<h3>(b) For <span class="math inline">\(x \in \hat{C}\)</span>, show
+that there exists a sequence <span class="math inline">\(\{x_n\}\)</span> of points such that <span class="math inline">\(x_n \in I_n\)</span> where <span class="math inline">\(I_n\)</span> is an open interval bisected at the
+<span class="math inline">\(n\)</span>th removal with <span class="math inline">\(\lim_{n \to \infty} |I_n| = 0\)</span>, and <span class="math inline">\(\lim_{n \to \infty} x_n = x\)</span>. (<span class="math inline">\(I_n \subset L_k\)</span> for some <span class="math inline">\(k\)</span>)</h3>
+<p><strong>proof</strong></p>
+<div id="def-of-i_n-x_n-x_n---x-leq-mi_n" class="section level4">
+<h4>① Def of <span class="math inline">\(I_n\)</span> &amp; <span class="math inline">\(x_n\)</span>, <span class="math inline">\(|x_n -
+x| \leq m(I_n)\)</span></h4>
+<p>Let <span class="math inline">\(J_n\)</span> be one of the closed
+intervals in <span class="math inline">\(C_n\)</span> such that <span class="math inline">\(x \in C_n\)</span>, and let <span class="math inline">\(x_n\)</span> be a point in <span class="math inline">\(I_n\)</span>. Then <span class="math inline">\(|x_n - x| \leq m(J_n)\)</span> because both <span class="math inline">\(x\)</span> and <span class="math inline">\(x_n\)</span> are in <span class="math inline">\(J_n\)</span>.</p>
+</div>
+<div id="lim_n-to-infty-i_n-0" class="section level4">
+<h4>② <span class="math inline">\(\lim_{n \to \infty} |I_n| =
+0\)</span></h4>
+<p>An open interval of length <span class="math inline">\(l_1\)</span>
+is bisected from <span class="math inline">\(C_0\)</span> of length 1,
+so <span class="math inline">\(l_1 &lt; 1\)</span>. Each closed interval
+of <span class="math inline">\(C_1\)</span> has length less than <span class="math inline">\(1/2\)</span>, so an open interval of length <span class="math inline">\(l_2\)</span> is bisected from one piece of <span class="math inline">\(C_1\)</span> with length <strong>less than <span class="math inline">\(1/2\)</span></strong>.<br />
+Each closed interval of <span class="math inline">\(C_2\)</span> has a
+length <span class="math inline">\(&lt; 1/4\)</span>, so an open
+interval of length <span class="math inline">\(l_3 &lt; 1/4\)</span> is
+bisected. Repeating this countably, <span class="math inline">\(0 &lt;
+l_k &lt; \frac{1}{2^n}\)</span>. <span class="math inline">\(|I_n| =
+l_n\)</span>, so <span class="math inline">\(\lim_{n \to \infty} |I_n| =
+0\)</span>.</p>
+</div>
+<div id="lim_n-to-infty-x_n-x" class="section level4">
+<h4>③ <span class="math inline">\(\lim_{n \to \infty} x_n =
+x\)</span></h4>
+<p><span class="math inline">\(C_n\)</span> has <span class="math inline">\(2^n\)</span> <strong>closed intervals</strong>
+including <span class="math inline">\(J_n\)</span>, so <span class="math inline">\(m(J_n) &lt; \frac{1}{2^n}\)</span>.<br />
+This means <span class="math inline">\(\lim_{n \to \infty} m(J_n) =
+0\)</span>. Since <span class="math inline">\(|x_n - x| &lt;
+m(J_n)\)</span>, <span class="math inline">\(\lim_{n \to \infty} |x_n -
+x| = 0\)</span>.<br />
+Thus, <span class="math inline">\(\lim_{n \to \infty} x_n =
+x\)</span>.</p>
+</div>
+</div>
+<div id="c-show-that-hatc-is-perfect-and-contains-no-open-interval." class="section level3">
+<h3>(c) Show that <span class="math inline">\(\hat{C}\)</span> is
+perfect, and contains no open interval.</h3>
+<p><strong>proof</strong></p>
+<div id="perfect" class="section level4">
+<h4>① perfect</h4>
+<p>Let <span class="math inline">\(x_n\)</span> be an end point of <span class="math inline">\(J_n\)</span> such that <span class="math inline">\(x_n \neq x\)</span>. <span class="math inline">\(x_n\)</span> is not removed in every iteration, so
+<span class="math inline">\(x_n \in \hat{C}\)</span> for all <span class="math inline">\(n\)</span>. <span class="math inline">\(|x_n - x|
+\leq |J_n| \to 0\)</span>, so <span class="math inline">\(\lim_{n \to
+\infty} x_n = x\)</span>. Then, every neighborhood of <span class="math inline">\(x\)</span> contains all but finitely many points
+of <span class="math inline">\(\{x_n\}\)</span>. So <span class="math inline">\(x\)</span> is a limit point of <span class="math inline">\(\hat{C}\)</span>, and thus the closed <span class="math inline">\(\hat{C}\)</span> is perfect.</p>
+</div>
+<div id="no-open-interval" class="section level4">
+<h4>② no open interval</h4>
+<ol style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(\exists O \subset
+\hat{C}\)</span>, <span class="math inline">\(\exists\)</span> at least
+two points of <span class="math inline">\(\hat{C}\)</span> in <span class="math inline">\(O\)</span>.<br />
+Assume there exists an open interval <span class="math inline">\(O
+\subset \hat{C}\)</span>. Since <span class="math inline">\(\hat{C}\)</span> is perfect, <span class="math inline">\(O\)</span> should contain at least two distinct
+points of <span class="math inline">\(\hat{C}\)</span>, say <span class="math inline">\(x &lt; y\)</span>, such that <span class="math inline">\(x, y \in O\)</span>. (If <span class="math inline">\(O\)</span> contains only one point <span class="math inline">\(x\)</span>, <span class="math inline">\(\exists
+r\)</span> s.t. <span class="math inline">\(B_r(x) \cap \hat{C} =
+\emptyset\)</span>, contradiction.)</p></li>
+<li><p><strong>contradiction</strong><br />
+There exists <span class="math inline">\(N \in \mathbb{N}\)</span> such
+that <span class="math inline">\(l_N &lt; \frac{1}{2^N} &lt; \frac{1}{4}
+|x - y|\)</span>. Then, <span class="math inline">\(x, y \in
+J_N\)</span>, <span class="math inline">\(x \in I_{x,N}\)</span>, and
+<span class="math inline">\(y \in I_{y,N}\)</span>. Let <span class="math inline">\(x_N\)</span> be a right end point of <span class="math inline">\(J_{x,N}\)</span>, <span class="math inline">\(y_N\)</span> be a left end point of <span class="math inline">\(J_{y,N}\)</span>, and <span class="math inline">\(z = \frac{1}{2}(x_N + y_N)\)</span>. <span class="math inline">\(x &lt; z &lt; y\)</span> implies <span class="math inline">\(z \in O\)</span>. Also, <span class="math inline">\(z\)</span> is in a bisected open interval, so
+<span class="math inline">\(z \notin \hat{C}\)</span> and thus <span class="math inline">\(z \notin O\)</span>. This is a
+contradiction.</p></li>
+</ol>
+</div>
+</div>
+<div id="d-show-that-hatc-is-uncountable." class="section level3">
+<h3>(d) Show that <span class="math inline">\(\hat{C}\)</span> is
+uncountable.</h3>
+<p><strong>proof</strong></p>
+<p>Let us denote the subinterval of <span class="math inline">\(C_k\)</span> with binary numbers. For example,
+<span class="math inline">\(I_{00}, I_{01}, I_{10}, I_{11}\)</span> are
+the closed subintervals of <span class="math inline">\(C_2\)</span>,
+<span class="math inline">\(I_{000}, I_{001}, \cdots, I_{110},
+I_{111}\)</span> are the subintervals of <span class="math inline">\(C_3\)</span>, and so on.</p>
+<p><span class="math inline">\(a = 0.a_1 a_2 a_3 \cdots =
+\sum_{k=1}^{\infty} a_k 2^{-k}\)</span> with <span class="math inline">\(a_k = 0\)</span> or <span class="math inline">\(1\)</span>, then <span class="math inline">\(\{a\}\)</span> is uncountable set.<br />
+Let <span class="math inline">\(I_n^a\)</span> denote an interval of
+<span class="math inline">\(C_n\)</span> whose subscript matches with
+the first <span class="math inline">\(n\)</span> terms of <span class="math inline">\(a\)</span> (e.g., <span class="math inline">\(a =
+0.101 \cdots\)</span>, then <span class="math inline">\(I_3^a = I_{101}
+\subset C_3\)</span>).</p>
+<p>Consider <span class="math inline">\(\bigcap_{n=1}^{\infty}
+I_n^a\)</span>. Since <span class="math inline">\(I_n^a \subset
+I_{n-1}^a\)</span> for all <span class="math inline">\(n\)</span>, <span class="math inline">\(\bigcap_{n=1}^{\infty} I_n^a\)</span> is not
+empty. Since <span class="math inline">\(|I_n^a| &lt;
+\frac{1}{2^n}\)</span> and <span class="math inline">\(\lim_{n \to
+\infty} |I_n^a| = 0\)</span>, <span class="math inline">\(\bigcap_{n=1}^{\infty} I_n^a\)</span> contains
+only one point, say <span class="math inline">\(x_a \in
+\hat{C}\)</span>. Thus shows a 1-1 correspondence between <span class="math inline">\(\hat{C}\)</span> and <span class="math inline">\(A\)</span>, so <span class="math inline">\(\hat{C}\)</span> is uncountable.</p>
+<hr />
+</div>
+</div>
+<div id="e-is-a-compact-set-and-o_n-x-dx-e-1n-is-an-open-set." class="section level2">
+<h2>5. <span class="math inline">\(E\)</span> is a compact set and <span class="math inline">\(O_n = \{ x : d(x, E) &lt; 1/n \}\)</span> is an
+open set.</h2>
+<div id="a-show-that-me-lim_n-to-infty-mo_n." class="section level3">
+<h3>(a) Show that <span class="math inline">\(m(E) = \lim_{n \to \infty}
+m(O_n)\)</span>.</h3>
+<p><strong>proof</strong></p>
+<div id="x-in-overlinea-iff-dx-a-0" class="section level4">
+<h4>① <span class="math inline">\(x \in \overline{A}\)</span> iff <span class="math inline">\(d(x, A) = 0\)</span></h4>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\Rightarrow\)</span><br />
+It is trivial when <span class="math inline">\(x \in A\)</span>, so the
+following proof covers the case <span class="math inline">\(x \in
+A&#39;\)</span>. <span class="math inline">\(x\)</span> is a limit point
+of <span class="math inline">\(A\)</span>, so for given <span class="math inline">\(\varepsilon &gt; 0\)</span> there is a point <span class="math inline">\(a_{\varepsilon} \in A\)</span> such that <span class="math inline">\(a_{\varepsilon} \neq x\)</span> and <span class="math inline">\(d(x, a_{\varepsilon}) &lt; \varepsilon\)</span>.
+By the def of <span class="math inline">\(d(x, A) = \inf \{ d(x, a) : a
+\in A \}\)</span>, <span class="math inline">\(d(x, A) \leq d(x,
+a_{\varepsilon}) &lt; \varepsilon\)</span>, so <span class="math inline">\(d(x, A) &lt; \varepsilon\)</span>. This holds for
+all <span class="math inline">\(\varepsilon &gt; 0\)</span>, so <span class="math inline">\(d(x, A) = 0\)</span>.</p></li>
+<li><p><span class="math inline">\(\Leftarrow\)</span><br />
+<span class="math inline">\(d(x, A) = 0\)</span> so <span class="math inline">\(\inf \{ d(x, a) : a \in A \} = 0\)</span>. Then,
+for given <span class="math inline">\(\varepsilon &gt; 0\)</span>, there
+is <span class="math inline">\(a_{\varepsilon} \in A\)</span> such that
+<span class="math inline">\(d(x, a_{\varepsilon}) &lt; 0 + \varepsilon =
+\varepsilon\)</span>.<br />
+</p></li>
+</ol>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(x \notin A\)</span>: <span class="math inline">\(B_{\varepsilon}(x)\)</span> contains a point of
+<span class="math inline">\(A\)</span> for all <span class="math inline">\(\varepsilon &gt; 0\)</span>, so <span class="math inline">\(x \in A&#39;\)</span>.<br />
+</li>
+<li><span class="math inline">\(x \in A\)</span>: nothing to
+prove.<br />
+So, <span class="math inline">\(x \in \overline{A}\)</span>.</li>
+</ol>
+</div>
+<div id="overlinee-bigcap-o_n" class="section level4">
+<h4>② <span class="math inline">\(\overline{E} = \bigcap
+O_n\)</span></h4>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(x \in E\)</span>: <span class="math inline">\(d(x, E) = 0\)</span> so <span class="math inline">\(x \in O_n\)</span> for all <span class="math inline">\(n\)</span>. So, <span class="math inline">\(x \in
+\bigcap O_n\)</span>.<br />
+</li>
+<li><span class="math inline">\(x \in O_n\)</span> for all <span class="math inline">\(n\)</span>, so <span class="math inline">\(d(x, E)
+&lt; \frac{1}{n}\)</span> <span class="math inline">\(\forall
+n\)</span>. This means <span class="math inline">\(d(x, E) = 0\)</span>,
+so <span class="math inline">\(x \in \overline{E}\)</span>.</li>
+</ol>
+</div>
+<div id="me-lim_n-to-infty-mo_n" class="section level4">
+<h4>③ <span class="math inline">\(m(E) = \lim_{n \to \infty}
+m(O_n)\)</span></h4>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(E = \overline{E}\)</span>, <span class="math inline">\(O_{n+1} \subset O_n\)</span>.<br />
+<span class="math inline">\(E\)</span> is closed, so <span class="math inline">\(\overline{E} = E\)</span>. It is obvious that
+<span class="math inline">\(O_n \supset O_{n+1}\)</span> for all <span class="math inline">\(n\)</span>.</p></li>
+<li><p><span class="math inline">\(m(O_1) &lt; \infty\)</span>,
+compact.<br />
+<span class="math inline">\(E\)</span> is bounded, so there is an open
+ball <span class="math inline">\(B_R(o) \supset E\)</span>. For <span class="math inline">\(x \in O_1\)</span> and <span class="math inline">\(e \in E\)</span>, <span class="math inline">\(d(x,
+o) \leq d(x, e) + d(e, o) &lt; 1 + d(e, o)\)</span> (<span class="math inline">\(\because e \in E&#39;\)</span>) <span class="math inline">\(\leq 1 + R\)</span> (<span class="math inline">\(\because e \in B_R(o)\)</span>). So <span class="math inline">\(|x| &lt; R + 1\)</span> and <span class="math inline">\(x \in B_{R+1}(o)\)</span>. This holds for all
+<span class="math inline">\(x \in O_1\)</span>, so <span class="math inline">\(m(O_1) &lt; \infty\)</span>.</p></li>
+<li><p><span class="math inline">\(\therefore m(E) = \lim_{n \to \infty}
+m(O_n)\)</span> (Cor 1.3.3)</p></li>
+</ol>
+</div>
+</div>
+<div id="b-however-a-may-be-false-for-closed-and-unbounded-e-or-open-and-bounded-e." class="section level3">
+<h3>(b) However, (a) may be false for closed and unbounded <span class="math inline">\(E\)</span>, or open and bounded <span class="math inline">\(E\)</span>.</h3>
+<p><strong>proof</strong></p>
+<div id="e-is-unbounded-closed" class="section level4">
+<h4>① <span class="math inline">\(E\)</span> is unbounded &amp;
+closed</h4>
+<p>Let <span class="math inline">\(E = \mathbb{Z}\)</span>. For <span class="math inline">\(k \in \mathbb{Z}\)</span>, <span class="math inline">\(O_n = \bigcup_{k \in \mathbb{Z}}
+B_{1/k}(k)\)</span>, where <span class="math inline">\(m(B_{1/k}(k)) =
+\frac{2}{k}\)</span>. So <span class="math inline">\(m(O_1) = \sum_{k
+\in \mathbb{Z}} \frac{2}{k} = \infty\)</span>, and <span class="math inline">\(\lim_{n \to \infty} m(O_n) = \infty\)</span>.
+However, <span class="math inline">\(m(E) = 0\)</span>. (Note that <span class="math inline">\(E\)</span> is closed)</p>
+</div>
+<div id="e-is-open-bounded" class="section level4">
+<h4>② <span class="math inline">\(E\)</span> is open &amp; bounded</h4>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(E = \bigcup_{k=1}^{\infty} \left( q_k
+- \frac{1}{k}, q_k + \frac{1}{k} \right)\)</span>, <span class="math inline">\(m(E)\)</span><br />
+Let <span class="math inline">\(\{q_k\}\)</span> be an enumeration of
+<span class="math inline">\(\mathbb{Q}\)</span> in <span class="math inline">\([0,1]\)</span> and <span class="math inline">\(E =
+\bigcup_{k=1}^{\infty} \left( q_k - \frac{1}{k}, q_k + \frac{1}{k}
+\right)\)</span>. Each <span class="math inline">\(\left( q_k -
+\frac{1}{k}, q_k + \frac{1}{k} \right)\)</span> is open, so <span class="math inline">\(E\)</span> (countable union of open sets) is open.
+Since <span class="math inline">\(q_k \in [0,1]\)</span> for all <span class="math inline">\(k \in \mathbb{N}\)</span>, <span class="math inline">\(E \subset \left( -1, 1 + \frac{1}{1}
+\right)\)</span>.</p></li>
+<li><p>Then,<br />
+<span class="math display">\[
+m(E) \leq \sum_{k=1}^{\infty} m \left( \left( q_k - \frac{1}{k}, q_k +
+\frac{1}{k} \right) \right) = \sum_{k=1}^{\infty} \frac{2}{k} = 2
+\sum_{k=1}^{\infty} \frac{1}{k} = \frac{1}{2}.
+\]</span></p></li>
+<li><p><span class="math inline">\(\lim_{n \to \infty} m(O_n) \geq
+1\)</span><br />
+If <span class="math inline">\(x \in \mathbb{Q} \cap [0,1]\)</span>, it
+is obvious that <span class="math inline">\(x \in E\)</span> and <span class="math inline">\(d(x, E) = 0\)</span>. Consider the case <span class="math inline">\(x \in (\mathbb{R} - \mathbb{Q}) \cap
+[0,1]\)</span>, which is irrational in <span class="math inline">\((0,1)\)</span>. Since <span class="math inline">\(E\)</span> contains all rationals in <span class="math inline">\([0,1]\)</span> and <span class="math inline">\(\mathbb{Q}\)</span> is dense in <span class="math inline">\(\mathbb{R}\)</span>, <span class="math inline">\(x
+\in E\)</span> and <span class="math inline">\(d(x, E) = 0\)</span>
+(<span class="math inline">\(\because \mathbb{Q}\)</span> dense). Since
+<span class="math inline">\(d(x, E) = 0\)</span> for all <span class="math inline">\(x \in [0,1]\)</span>, <span class="math inline">\(O_n\)</span> contains <span class="math inline">\([0,1]\)</span> for all <span class="math inline">\(n \in \mathbb{N}\)</span>. This means <span class="math inline">\(m(O_n) \geq 1\)</span> for all <span class="math inline">\(n \in \mathbb{N}\)</span>, so <span class="math inline">\(\lim_{n \to \infty} m(O_n) \geq
+1\)</span>.</p></li>
+<li><p><span class="math inline">\(\therefore m(E) \neq \lim_{n \to
+\infty} m(O_n)\)</span></p></li>
+</ol>
+<hr />
+</div>
+</div>
+</div>
+<div id="let-b-be-a-ball-in-mathbbrd-of-radius-r-0.-then-mb-v_d-rd-where-v_d-mb_1-and-b_1-x-in-mathbbrd-x-1-." class="section level2">
+<h2>6. Let <span class="math inline">\(B\)</span> be a ball in <span class="math inline">\(\mathbb{R}^d\)</span> of radius <span class="math inline">\(r &gt; 0\)</span>. Then, <span class="math inline">\(m(B) = v_d r^d\)</span> where <span class="math inline">\(v_d = m(B_1)\)</span> and <span class="math inline">\(B_1 = \{ x \in \mathbb{R}^d : |x| &lt; 1
+\}\)</span>.</h2>
+<p><strong>proof</strong></p>
+<p><span class="math inline">\(B_r = \{ x \in \mathbb{R}^d : |x| &lt; r
+\} = r B_1 = \{ r y : y \in \mathbb{R}^d, |y| &lt; 1 \}\)</span>. Then
+<span class="math inline">\(m(B_r) = r^d m(B_1)\)</span>.</p>
+<hr />
+</div>
+<div id="delta-delta_1-delta_2-dots-delta_d-is-a-d-tuple-of-positive-numbers-delta_i-0.-for-e-subset-mathbbrd-delta-e-delta_1-x_1-dots-delta_d-x_d-x_1-dots-x_d-in-e-.-if-e-is-measurable-show-that-delta-e-is-measurable-and-mdelta-e-delta_1-cdots-delta_d-me." class="section level2">
+<h2>7. <span class="math inline">\(\delta = (\delta_1, \delta_2, \dots,
+\delta_d)\)</span> is a <span class="math inline">\(d\)</span>-tuple of
+positive numbers <span class="math inline">\(\delta_i &gt; 0\)</span>.
+For <span class="math inline">\(E \subset \mathbb{R}^d\)</span>, <span class="math inline">\(\delta E = \{ (\delta_1 x_1, \dots, \delta_d x_d)
+: (x_1, \dots, x_d) \in E \}\)</span>. If <span class="math inline">\(E\)</span> is measurable, show that <span class="math inline">\(\delta E\)</span> is measurable and <span class="math inline">\(m(\delta E) = \delta_1 \cdots \delta_d
+m(E)\)</span>.</h2>
+<p><strong>proof</strong></p>
+<div id="delta-q-is-a-rectangle-and-delta-q-delta_1-cdots-delta_d-q" class="section level4">
+<h4>① <span class="math inline">\(\delta Q\)</span> is a rectangle, and
+<span class="math inline">\(|\delta Q| = \delta_1 \cdots \delta_d
+|Q|\)</span></h4>
+<p><span class="math inline">\(Q\)</span> is a cube with each side of
+length <span class="math inline">\(l\)</span>: <span class="math inline">\(Q = [a_1, a_1 + l) \times \cdots \times [a_d, a_d
++ l)\)</span>. Let <span class="math inline">\(y = (\delta_1 y_1, \dots,
+\delta_d y_d) \in \delta Q\)</span>, then <span class="math inline">\(a_i \leq y_i/\delta_i \leq a_i + l\)</span> and
+thus <span class="math inline">\(\delta_i a_i \leq y_i \leq \delta_i a_i
++ \delta_i l\)</span>. So, <span class="math inline">\(\delta Q\)</span>
+is a rectangle: <span class="math inline">\(\delta Q = [\delta_1 a_1,
+\delta_1 a_1 + \delta_1 l) \times \cdots \times [\delta_d a_d, \delta_d
+a_d + \delta_d l)\)</span> and <span class="math inline">\(|\delta Q| =
+\delta_1 \cdots \delta_d l^d = \delta_1 \cdots \delta_d
+|Q|\)</span>.</p>
+</div>
+<div id="delta-bigcup-a_i-bigcup-delta-a_i-delta-bigcap-a_i-bigcap-delta-a_i-a-subset-b-leftrightarrow-delta-a-subset-delta-b-acdelta-delta-ac" class="section level4">
+<h4>② <span class="math inline">\(\delta \bigcup A_i = \bigcup \delta
+A_i\)</span>, <span class="math inline">\(\delta \bigcap A_i = \bigcap
+\delta A_i\)</span>, <span class="math inline">\(A \subset B
+\Leftrightarrow \delta A \subset \delta B\)</span>, <span class="math inline">\((A^c)^{\delta} = (\delta A)^c\)</span></h4>
+<p><span class="math inline">\(y \in \delta \bigcup A_i \Leftrightarrow
+\exists i\)</span> s.t. <span class="math inline">\(y/\delta \in A_i
+\Leftrightarrow \exists i\)</span> s.t. <span class="math inline">\(y
+\in \delta A_i \Leftrightarrow y \in \bigcup \delta A_i\)</span>.<br />
+<span class="math inline">\(z \in \delta \bigcap A_i \Leftrightarrow
+z/\delta \in \bigcap A_i \Leftrightarrow z \in \delta A_i\)</span> for
+all <span class="math inline">\(i \Leftrightarrow z \in \bigcap \delta
+A_i\)</span>.<br />
+If <span class="math inline">\(A \subset B\)</span>, <span class="math inline">\(x \in A \Rightarrow \delta x \in \delta
+A\)</span>. Since <span class="math inline">\(\delta x \in \delta
+B\)</span>, <span class="math inline">\(\delta A \subset \delta
+B\)</span>.<br />
+<span class="math inline">\(y \in (\delta A)^c \Leftrightarrow y \notin
+\delta A \Leftrightarrow y/\delta \notin A \Leftrightarrow y \in (\delta
+A^c)\)</span>.</p>
+</div>
+<div id="m_kdelta-e-delta_1-cdots-delta_d-m_ke-e-subset-mathbbqd" class="section level4">
+<h4>③ <span class="math inline">\(m_k(\delta E) = \delta_1 \cdots
+\delta_d m_k(E)\)</span> (<span class="math inline">\(E \subset
+\mathbb{Q}^d\)</span>)</h4>
+<p>There exists a collection of cubes <span class="math inline">\(\{ Q_i
+\}\)</span> such that <span class="math inline">\(\sum_{i} |Q_i| &lt;
+m_k(E) + \varepsilon\)</span>. Then, <span class="math inline">\(\sum_{i} |\delta Q_i| = \delta_1 \cdots \delta_d
+\sum_{i} |Q_i| &lt; \delta_1 \cdots \delta_d (m_k(E) +
+\varepsilon)\)</span>. Since <span class="math inline">\(\delta E
+\subset \bigcup \delta Q_i = \delta \bigcup Q_i\)</span>, <span class="math display">\[m_k(\delta E) \leq \sum_{i} |\delta Q_i| =
+\delta_1 \cdots \delta_d \sum_{i} |Q_i| &lt; \delta_1 \cdots \delta_d
+m_k(E) + \varepsilon\]</span>. This holds for all <span class="math inline">\(\varepsilon &gt; 0\)</span>, so <span class="math inline">\(m_k(\delta E) \leq \delta_1 \cdots \delta_d
+m_k(E)\)</span>.</p>
+<p>There exists a collection of cubes <span class="math inline">\(\{ P_i
+\}\)</span> such that <span class="math inline">\(\sum_{i} |P_i| &lt;
+m_k(\delta E) + \delta_1 \cdots \delta_d \varepsilon\)</span>. Let <span class="math inline">\(\delta^{-1} = (\delta_1^{-1}, \dots,
+\delta_d^{-1})\)</span>. Then, <span class="math inline">\(\sum_{i} |
+\delta^{-1} P_i | = \delta_1^{-1} \cdots \delta_d^{-1} \sum_{i} |P_i|
+&lt; m_k(E) + \varepsilon\)</span>. Using <span class="math inline">\(E
+= \delta^{-1} (\delta E) \subset \bigcup \delta^{-1} P_i = \delta^{-1}
+\bigcup P_i\)</span>, <span class="math display">\[m_k(E) \leq \sum_{i}
+|\delta^{-1} P_i| = \delta_1^{-1} \cdots \delta_d^{-1} \sum_{i} |P_i|
+&lt; m_k(\delta E) + \varepsilon\]</span>This holds for all <span class="math inline">\(\varepsilon &gt; 0\)</span>, so <span class="math inline">\(m_k(E) \leq \delta_1^{-1} \cdots \delta_d^{-1}
+m_k(\delta E)\)</span>.</p>
+<p>Combining the two results, <span class="math inline">\(m_k(\delta E)
+= \delta_1 \cdots \delta_d m_k(E)\)</span>.</p>
+</div>
+<div id="o-is-open-then-delta-o-is-open" class="section level4">
+<h4>④ <span class="math inline">\(O\)</span> is open, then <span class="math inline">\(\delta O\)</span> is open</h4>
+<p><span class="math inline">\(x \in O\)</span>, then there exists <span class="math inline">\(r &gt; 0\)</span> such that <span class="math inline">\(B_r(x) \subset O\)</span>. Naturally <span class="math inline">\(\delta B_r(x) \subset \delta O\)</span>. Let <span class="math inline">\(\delta_m = \min \{ \delta_1, \dots, \delta_d
+\}\)</span>, then <span class="math inline">\(B_{\delta_m r} (\delta x)
+\subset \delta B_r(x) \subset \delta O\)</span>, so <span class="math inline">\(\delta x\)</span> is an interior point of <span class="math inline">\(\delta O\)</span>. This holds for all <span class="math inline">\(x \in O\)</span>, so <span class="math inline">\(\delta O\)</span> is open.</p>
+</div>
+<div id="delta-e-is-measurable" class="section level4">
+<h4>⑤ <span class="math inline">\(\delta E\)</span> is measurable</h4>
+<p>For given <span class="math inline">\(\varepsilon &gt; 0\)</span>,
+there is an open set <span class="math inline">\(O\)</span> such that
+<span class="math inline">\(E \subset O\)</span> and <span class="math inline">\(m_k(O - E) &lt; \varepsilon\)</span>. <span class="math display">\[\delta O - \delta E = \delta O \cap (\delta E)^c
+= \delta O \cap \delta E^c = \delta(O \cap E^c) = \delta(O -
+E)\]</span>Then, <span class="math inline">\(m_k(\delta O - \delta E) =
+m_k(\delta(O - E)) = \delta_1 \cdots \delta_d m(O - E) &lt; \delta_1
+\cdots \delta_d \varepsilon\)</span>. This holds for all <span class="math inline">\(\varepsilon &gt; 0\)</span>, so <span class="math inline">\(\delta E\)</span> is measurable.</p>
+<hr />
+</div>
+</div>
+<div id="l-is-a-linear-transformation-of-mathbbrd-to-mathbbrd." class="section level2">
+<h2>8. <span class="math inline">\(L\)</span> is a linear transformation
+of <span class="math inline">\(\mathbb{R}^d\)</span> (to <span class="math inline">\(\mathbb{R}^{d&#39;}\)</span>).</h2>
+<div id="a-1.-e-is-a-compact-set-in-mathbbrd.-then-le-is-also-compact." class="section level3">
+<h3>(a)-1. <span class="math inline">\(E\)</span> is a compact set in
+<span class="math inline">\(\mathbb{R}^d\)</span>. Then, <span class="math inline">\(L(E)\)</span> is also compact.</h3>
+<p><strong>proof</strong></p>
+<div id="lx-leq-m-x-for-some-m-0-x-in-mathbbrd" class="section level4">
+<h4>① <span class="math inline">\(\| L(x) \| \leq M |x|\)</span> for
+some <span class="math inline">\(M &gt; 0\)</span>, <span class="math inline">\(x \in \mathbb{R}^d\)</span></h4>
+<p>Let <span class="math inline">\(x = x_1 e_1 + x_2 e_2 + \cdots + x_d
+e_d\)</span>, <span class="math inline">\(x_i \in \mathbb{R}\)</span>
+and <span class="math inline">\(e_i\)</span> is a unit vector. Then
+<span class="math inline">\(L(x) = x_1 L(e_1) + \cdots + x_d
+L(e_d)\)</span> and <span class="math display">\[\| L(x) \| \leq |x_1|
+\| L(e_1) \| + \cdots + |x_d| \| L(e_d) \| \leq (x_1^2 + \cdots +
+x_d^2)^{1/2} ( \| L(e_1) \|^2 + \cdots + \| L(e_d) \|^2 )^{1/2}\]</span>
+(<span class="math inline">\(\because\)</span> Cauchy-Schwartz ineq)
+<span class="math inline">\(\triangleq M |x|\)</span>.</p>
+</div>
+<div id="l-is-continuous" class="section level4">
+<h4>② <span class="math inline">\(L\)</span> is continuous</h4>
+<p>For <span class="math inline">\(x, y \in \mathbb{R}^d\)</span> with
+<span class="math inline">\(|x - y| &lt; \delta = \varepsilon /
+M\)</span>, <span class="math display">\[\| L(x) - L(y) \| = \| L(x - y)
+\| \leq M |x - y| &lt; \varepsilon.\]</span> This holds for all <span class="math inline">\(\varepsilon &gt; 0\)</span>, so <span class="math inline">\(L\)</span> is (uniformly) continuous.</p>
+</div>
+<div id="le-is-compact-conclusion" class="section level4">
+<h4>③ <span class="math inline">\(L(E)\)</span> is compact,
+conclusion</h4>
+<p>Since <span class="math inline">\(L\)</span> is continuous, <span class="math inline">\(L(E)\)</span> is compact. (PMA 4.1A)</p>
+</div>
+</div>
+<div id="a-2.-e-is-f_sigma-then-le-is-also-f_sigma." class="section level3">
+<h3>(a)-2. <span class="math inline">\(E\)</span> is <span class="math inline">\(F_\sigma\)</span>, then <span class="math inline">\(L(E)\)</span> is also <span class="math inline">\(F_\sigma\)</span>.</h3>
+<p><strong>proof</strong></p>
+<div id="f-bigcup_n1infty-k_n-where-f-is-closed-set-and-k_n-is-a-compact-set-in-mathbbrd" class="section level4">
+<h4>① <span class="math inline">\(F = \bigcup_{n=1}^{\infty}
+K_n\)</span>, where <span class="math inline">\(F\)</span> is closed set
+and <span class="math inline">\(K_n\)</span> is a compact set in <span class="math inline">\(\mathbb{R}^d\)</span></h4>
+<p><span class="math inline">\(\overline{B_n(0)}\)</span> is closed and
+bounded, so it is compact. Let <span class="math inline">\(K_n = F \cap
+\overline{B_n(0)}\)</span>, which is an intersection of closed and
+compact sets. So, <span class="math inline">\(K_n\)</span> is
+compact.<br />
+When <span class="math inline">\(x \in \bigcup K_n\)</span>, there is
+<span class="math inline">\(N \in \mathbb{N}\)</span> such that <span class="math inline">\(x \in K_N\)</span>. Since <span class="math inline">\(K_N \subset F\)</span>, <span class="math inline">\(x \in F\)</span>. <span class="math inline">\(\forall x \in F\)</span> : there is <span class="math inline">\(N \in \mathbb{N}\)</span> with <span class="math inline">\(N \geq |x|\)</span>, which means <span class="math inline">\(x \in \overline{B_N(0)}\)</span>. Since <span class="math inline">\(x \in K_N\)</span>, <span class="math inline">\(x
+\in \bigcup K_n\)</span>. Thus, <span class="math inline">\(F = \bigcup
+K_n\)</span>.</p>
+</div>
+<div id="le-is-f_sigma" class="section level4">
+<h4>② <span class="math inline">\(L(E)\)</span> is <span class="math inline">\(F_\sigma\)</span></h4>
+<p>Let <span class="math inline">\(E = \bigcup_{n=1}^{\infty}
+F_n\)</span>, where <span class="math inline">\(F_n\)</span> is closed.
+Then, <span class="math inline">\(L(E) = L( \bigcup F_n ) = \bigcup
+L(F_n)\)</span>. Each <span class="math inline">\(F_n\)</span> can be
+written as <span class="math inline">\(F_n = \bigcup_{k=1}^{\infty}
+K_{n,k}\)</span> where <span class="math inline">\(K_{n,k}\)</span> is
+compact. Then, <span class="math inline">\(L(F_n) =
+\bigcup_{k=1}^{\infty} L(K_{n,k})\)</span> and thus, <span class="math inline">\(L(E) = \bigcup_{n=1}^{\infty}
+\bigcup_{k=1}^{\infty} L(K_{n,k})\)</span>. <span class="math inline">\(L(K_{n,k})\)</span> is compact, which is closed as
+well. Thus, <span class="math inline">\(L(E)\)</span> is an <span class="math inline">\(F_\sigma\)</span> set.</p>
+</div>
+</div>
+<div id="b-1.-for-a-cube-q-subset-mathbbrd-lq-subset-q-for-some-cube-q-in-mathbbrn." class="section level3">
+<h3>(b)-1. For a cube <span class="math inline">\(Q \subset
+\mathbb{R}^d\)</span>, <span class="math inline">\(L(Q) \subset
+Q&#39;\)</span> for some cube <span class="math inline">\(Q&#39;\)</span> in <span class="math inline">\(\mathbb{R}^n\)</span>.</h3>
+<p><strong>proof</strong></p>
+<div id="lx---ly-leq-sqrtd-m-ell" class="section level4">
+<h4>① <span class="math inline">\(\|L(x) - L(y)\| \leq \sqrt{d} M
+\ell\)</span></h4>
+<p>Let <span class="math inline">\(Q\)</span> be a cube of length <span class="math inline">\(\ell\)</span> in <span class="math inline">\(\mathbb{R}^d\)</span> and let <span class="math inline">\(x\)</span> be a corner of the <span class="math inline">\(Q\)</span>. For <span class="math inline">\(y \in
+Q\)</span>, <span class="math inline">\(|y - x| \leq \sqrt{d}
+\ell\)</span>. So, <span class="math inline">\(\|L(x) - L(y)\| \leq M |x
+- y| \leq \sqrt{d} M \ell\)</span>.</p>
+</div>
+<div id="lq-subset-q-with-length-2-sqrtd-m-ell" class="section level4">
+<h4>② <span class="math inline">\(L(Q) \subset Q&#39;\)</span> with
+length <span class="math inline">\(2 \sqrt{d} M \ell\)</span></h4>
+<p>Let <span class="math inline">\(Q&#39;\)</span> be a cube in <span class="math inline">\(\mathbb{R}^n\)</span> with length <span class="math inline">\(2 \sqrt{d} M \ell\)</span> centered at <span class="math inline">\(L(x)\)</span>. The minimum distance between <span class="math inline">\(L(x)\)</span> and the exterior of the <span class="math inline">\(Q&#39;\)</span> is <span class="math inline">\(\sqrt{d} M \ell\)</span>. Since <span class="math inline">\(\|L(x) - L(y)\| \leq \sqrt{d} M \ell\)</span> for
+all <span class="math inline">\(y \in Q\)</span>, <span class="math inline">\(L(Q) \subset Q&#39;\)</span>. Let <span class="math inline">\(|Q&#39;| = (2 \sqrt{d} M)^n |Q| \triangleq c
+|Q|\)</span>.</p>
+</div>
+</div>
+<div id="b-2.-ma-0-then-mla-0." class="section level3">
+<h3>(b)-2. <span class="math inline">\(m(A) = 0\)</span>, then <span class="math inline">\(m(L(A)) = 0\)</span>.</h3>
+<p><strong>proof</strong></p>
+<p>For given <span class="math inline">\(\varepsilon &gt; 0\)</span>,
+there is a collection of cubes <span class="math inline">\(\{ Q_i \}
+\subset \mathbb{R}^d\)</span> such that <span class="math inline">\(\sum_{i} |Q_i| &lt; \varepsilon\)</span>. Let
+<span class="math inline">\(Q_i&#39;\)</span> be a cube in <span class="math inline">\(\mathbb{R}^n\)</span> with the same property in ①.
+Since <span class="math inline">\(A \subset \bigcup Q_i\)</span>, <span class="math inline">\(L(A) \subset \bigcup L(Q_i) \subset \bigcup
+Q_i&#39;\)</span> and <span class="math inline">\(m_k(L(A)) \leq
+\sum_{i} |Q_i&#39;| = c \sum_{i} |Q_i| &lt; c \varepsilon\)</span>. This
+holds for all <span class="math inline">\(\varepsilon &gt; 0\)</span>,
+so <span class="math inline">\(m_k(L(A)) = m(L(A)) = 0\)</span>.</p>
+</div>
+<div id="c-e-is-measurable-then-le-is-measurable." class="section level3">
+<h3>(c) <span class="math inline">\(E\)</span> is measurable, then <span class="math inline">\(L(E)\)</span> is measurable.</h3>
+<p><strong>proof</strong></p>
+<p><span class="math inline">\(E\)</span> is measurable, so it can be
+written as <span class="math inline">\(E = F \cup (E - F)\)</span>,
+where <span class="math inline">\(F\)</span> is a set of <span class="math inline">\(F_\sigma\)</span> and <span class="math inline">\(m(E - F) = 0\)</span>. We’ve shown that <span class="math inline">\(L(F)\)</span> is a countable union of closed sets,
+which is measurable. Since <span class="math inline">\(m(E - F) =
+0\)</span>, <span class="math inline">\(m(L(E - F)) = 0\)</span> (by
+(b)-2). Then, <span class="math inline">\(L(E)\)</span> is a union of
+measurable sets. Thus, <span class="math inline">\(L(E)\)</span> is
+measurable.</p>
+<hr />
+</div>
+</div>
+<div id="let-a-be-a-subset-of-01-which-consists-of-all-numbers-without-the-digit-4-appearing-in-their-decimal-expansion.-show-that-ma-0." class="section level2">
+<h2>11. Let <span class="math inline">\(A\)</span> be a subset of <span class="math inline">\([0,1]\)</span> which consists of all numbers
+without the digit ‘4’ appearing in their decimal expansion. Show that
+<span class="math inline">\(m(A) = 0\)</span>.</h2>
+<p><strong>proof</strong></p>
+<p>For any <span class="math inline">\(a \in [0,1]\)</span>, we’ll
+express as <span class="math inline">\(a = 0.a_1 a_2 a_3 \dots\)</span>,
+where <span class="math inline">\(a_i = 0,1, \dots, 9\)</span> (<span class="math inline">\(i \in \mathbb{N}\)</span>).<br />
+At the first step, the number <span class="math inline">\(a\)</span>
+with <span class="math inline">\(0.4 \leq a &lt; 0.5\)</span> will be
+removed, so <span class="math inline">\(m(A_1) =
+\frac{9}{10}\)</span>.<br />
+At the second step, the number with <span class="math inline">\(0.a_1 4
+\leq a &lt; 0.a_1 5\)</span> (<span class="math inline">\(a_1 =
+0,1,2,3,5,6,7,8,9\)</span>) will be removed.<br />
+So <span class="math inline">\(m(A_2) = \frac{9}{10} \times \frac{9}{10}
+= \left( \frac{9}{10} \right)^2\)</span>.<br />
+After <span class="math inline">\(n\)</span>th step, <span class="math inline">\(m(A_n) = \left( \frac{9}{10}
+\right)^n\)</span>.<br />
+Since <span class="math inline">\(\lim_{n \to \infty} m(A_n) =
+0\)</span>, <span class="math inline">\(m(A_1) &lt; \infty\)</span>, and
+<span class="math inline">\(\bigcap_{n} A_n = A\)</span>, <span class="math inline">\(m(A) = 0\)</span>.</p>
+<hr />
+</div>
+<div id="in-mathbbrn-show-that" class="section level2">
+<h2>12. In <span class="math inline">\(\mathbb{R}^n\)</span>, show
+that</h2>
+<div id="a-an-open-disc-b-is-not-a-disjoint-countable-union-of-open-rectangles." class="section level3">
+<h3>(a) an open disc <span class="math inline">\(B\)</span> is not a
+disjoint (countable) union of open rectangles.</h3>
+<p><strong>proof</strong></p>
+<p>Assume <span class="math inline">\(B = \bigcup_{i=1}^{\infty}
+R_i\)</span>, where <span class="math inline">\(R_i\)</span> is an open
+rectangle and <span class="math inline">\(R_i \cap R_j =
+\emptyset\)</span> for <span class="math inline">\(i \neq
+j\)</span><br />
+Consider <span class="math inline">\(x \in \partial R_i\)</span><br />
+<span class="math inline">\(x\)</span> is a limit point of <span class="math inline">\(R_i\)</span>, so <span class="math inline">\(B_r(x)\)</span> contains a point <span class="math inline">\(y \in R_i\)</span> for all <span class="math inline">\(r &gt; 0\)</span><br />
+Since <span class="math inline">\(x \in B\)</span>, this means <span class="math inline">\(x \in \overline{B}\)</span></p>
+<p>When <span class="math inline">\(x \in (\overline{R_i} \cap
+B)\)</span>, <span class="math inline">\(x\)</span> is a point of <span class="math inline">\(B\)</span> but not in <span class="math inline">\(R_i\)</span><br />
+Then, there is some <span class="math inline">\(R_N\)</span> such that
+<span class="math inline">\(x \in R_N\)</span><br />
+<span class="math inline">\(R_N\)</span> is open, so there is <span class="math inline">\(r &gt; 0\)</span> such that <span class="math inline">\(B_r(x) \subset R_N\)</span><br />
+Since <span class="math inline">\(B_r(x)\)</span> contains a point of
+<span class="math inline">\(R_i\)</span> (<span class="math inline">\(\because\)</span> <span class="math inline">\(x\)</span> is a limit point of <span class="math inline">\(R_i\)</span>), <span class="math inline">\(R_i
+\cap R_N\)</span> is not empty</p>
+<p>This leads to a contradiction</p>
+</div>
+<div id="b-an-open-connected-set-omega-is-the-disjoint-union-of-open-rectangles-iff-omega-itself-is-an-open-rectangle." class="section level3">
+<h3>(b) an open connected set <span class="math inline">\(\Omega\)</span> is the disjoint union of open
+rectangles iff <span class="math inline">\(\Omega\)</span> itself is an
+open rectangle.</h3>
+<p><strong>proof</strong></p>
+<div id="leftarrow-r-r-cup-emptyset.-let-omega-r." class="section level4">
+<h4><span class="math inline">\(\Leftarrow\)</span>: <span class="math inline">\(R = R \cup \emptyset\)</span>. Let <span class="math inline">\(\Omega = R\)</span>.</h4>
+</div>
+<div id="rightarrow-omega-r_1" class="section level4">
+<h4><span class="math inline">\(\Rightarrow\)</span> (<span class="math inline">\(\Omega = R_1\)</span>)</h4>
+<p><span class="math inline">\(\Omega = \bigcup_{i=1}^{\infty}
+R_i\)</span>, where <span class="math inline">\(R_i\)</span> is open
+rectangle and <span class="math inline">\(R_i \cap R_j =
+\emptyset\)</span> for all <span class="math inline">\(i \neq
+j\)</span>. Let <span class="math inline">\(R_1\)</span> be a non-empty
+subset (wlog): <span class="math inline">\(R_1 \subset
+\Omega\)</span>.</p>
+<p>Assume that <span class="math inline">\(R_1 \neq \Omega\)</span>
+(<span class="math inline">\(\exists j &gt; 1\)</span> s.t. <span class="math inline">\(R_j \neq \emptyset\)</span>).<br />
+<span class="math inline">\(\Omega = R_1 \cup \left(
+\bigcup_{j=2}^{\infty} R_j \right)\)</span>.<br />
+Since <span class="math inline">\(R_i \cap R_j = \emptyset\)</span>
+(<span class="math inline">\(\forall i \neq j\)</span>), <span class="math inline">\(R_1 \cap \left( \bigcup_{j=2}^{\infty} R_j \right)
+= \emptyset\)</span>.<br />
+Then <span class="math inline">\(\Omega\)</span> is a union of two
+non-empty disjoint open sets, so <span class="math inline">\(\Omega\)</span> is disconnected.<br />
+This is a contradiction.<br />
+Thus, <span class="math inline">\(R_1 = \Omega\)</span>.</p>
+<hr />
+</div>
+</div>
+</div>
+<div id="the-following-deals-with-g_delta-and-f_sigma." class="section level2">
+<h2>13. The following deals with <span class="math inline">\(G_\delta\)</span> and <span class="math inline">\(F_\sigma\)</span>.</h2>
+<div id="a-show-that-a-closed-set-is-g_delta-and-an-open-set-is-f_sigma." class="section level3">
+<h3>(a) Show that a closed set is <span class="math inline">\(G_\delta\)</span>, and an open set is <span class="math inline">\(F_\sigma\)</span>.</h3>
+<p><strong>proof</strong></p>
+<div id="o_n-x-dx-f-frac1n-is-open" class="section level4">
+<h4>① <span class="math inline">\(O_n = \{ x : d(x, F) &lt; \frac{1}{n}
+\}\)</span> is open</h4>
+<p>Let <span class="math inline">\(y \in O_n\)</span> and <span class="math inline">\(\varepsilon = \frac{1}{n} - d(y, F) &gt;
+0\)</span><br />
+For <span class="math inline">\(z \in B_\varepsilon(y)\)</span>, <span class="math inline">\(d(z, F) \leq d(z, y) + d(y, F) &lt; \varepsilon +
+d(y, F) = \frac{1}{n}\)</span><br />
+This means <span class="math inline">\(z \in O_n\)</span>, and this
+holds for all <span class="math inline">\(z \in
+B_\varepsilon(y)\)</span><br />
+So, <span class="math inline">\(B_\varepsilon(y) \subset
+O_n\)</span><br />
+Since this holds for all <span class="math inline">\(y \in O_n\)</span>,
+<span class="math inline">\(O_n\)</span> is open</p>
+</div>
+<div id="f-bigcap_n1infty-o_n-sim-g_delta" class="section level4">
+<h4>② <span class="math inline">\(F = \bigcap_{n=1}^{\infty} O_n \sim
+G_\delta\)</span></h4>
+<p><span class="math inline">\(d(y, F) = 0\)</span> for <span class="math inline">\(y \in F\)</span>, so <span class="math inline">\(y
+\in O_n\)</span> for all <span class="math inline">\(n\)</span> and
+<span class="math inline">\(y \in \bigcap_{n=1}^{\infty}
+O_n\)</span><br />
+So, <span class="math inline">\(F \subset \bigcap O_n\)</span><br />
+If <span class="math inline">\(z \in \bigcap O_n\)</span>: <span class="math inline">\(d(z, F) &lt; \frac{1}{n}\)</span> for all <span class="math inline">\(n\)</span><br />
+Since <span class="math inline">\(d(z, F) = 0\)</span>, <span class="math inline">\(z \in F = F\)</span><br />
+Thus, <span class="math inline">\(\bigcap O_n = F\)</span></p>
+</div>
+<div id="u-f_sigma-for-open-set-u-therefore-fc-bigcup-o_nc" class="section level4">
+<h4>③ <span class="math inline">\(U = F_\sigma\)</span> for open set
+<span class="math inline">\(U\)</span> <span class="math inline">\(\therefore F^c = \bigcup O_n^c\)</span></h4>
+</div>
+</div>
+<div id="b-give-an-example-of-f_sigma-which-is-not-g_delta." class="section level3">
+<h3>(b) Give an example of <span class="math inline">\(F_\sigma\)</span>
+which is not <span class="math inline">\(G_\delta\)</span>.</h3>
+<p><strong>proof</strong></p>
+<p><span class="math inline">\(\mathbb{Q}\)</span>, the set of all
+rationals, can be represented as a countable union of closed sets, so
+<span class="math inline">\(\mathbb{Q}\)</span> is <span class="math inline">\(F_\sigma\)</span>.</p>
+<div id="mathbbr---mathbbq" class="section level4">
+<h4>① <span class="math inline">\(\mathbb{R} - \mathbb{Q}\)</span></h4>
+<p>The set of all irrationals is <span class="math inline">\(\mathbb{R}
+- \mathbb{Q} = \mathbb{R} - \bigcup \{ q_i \}\)</span><br />
+<span class="math inline">\(= \mathbb{R} \cap \bigcap ( \{ q_i \}^c ) =
+\mathbb{R} \cap \bigcap ( \mathbb{R} \setminus \{ q_i \}
+)\)</span><br />
+Each <span class="math inline">\(\mathbb{R} \setminus \{ q_i
+\}^c\)</span> is dense in <span class="math inline">\(\mathbb{R}\)</span> (<span class="math inline">\(\because q_i\)</span> is a limit point of <span class="math inline">\(\mathbb{R} \setminus \{ q_i \}^c\)</span>)<br />
+So <span class="math inline">\(\mathbb{R} - \mathbb{Q}\)</span> is a
+countable intersection of open and dense subsets</p>
+</div>
+<div id="mathbbq" class="section level4">
+<h4>② <span class="math inline">\(\mathbb{Q}\)</span></h4>
+<p>Assume that <span class="math inline">\(\mathbb{Q} = \bigcap
+O_n\)</span> for some open sets <span class="math inline">\(O_n\)</span><br />
+Naturally, <span class="math inline">\(\mathbb{Q} \subset O_n\)</span>
+for all <span class="math inline">\(n\)</span><br />
+The point <span class="math inline">\(x \in \mathbb{R} \setminus
+\mathbb{Q}\)</span> is a limit point of <span class="math inline">\(\mathbb{Q}\)</span><br />
+Since <span class="math inline">\(O_n^c \cap \mathbb{Q} =
+\emptyset\)</span>, <span class="math inline">\(x\)</span> is a limit
+point of <span class="math inline">\(\mathbb{Q} \subset
+\mathbb{R}\)</span><br />
+This implies <span class="math inline">\(O_n\)</span> is dense in <span class="math inline">\(\mathbb{R}\)</span>, and <span class="math inline">\(\mathbb{Q}\)</span> is a countable intersection of
+open &amp; dense sets, which isn’t empty</p>
+</div>
+<div id="concl." class="section level4">
+<h4>③ concl.</h4>
+<p>Then, Baire’s thm (PMA ex 3-22) says <span class="math inline">\((\mathbb{R} - \mathbb{Q}) \cap \mathbb{Q}\)</span>
+is not empty<br />
+However, <span class="math inline">\((\mathbb{R} - \mathbb{Q}) \cap
+\mathbb{Q} = \emptyset\)</span>, which is a contradiction</p>
+</div>
+</div>
+<div id="c-give-an-example-of-a-borel-set-which-is-not-g_delta-nor-f_sigma." class="section level3">
+<h3>(c) Give an example of a Borel set which is not <span class="math inline">\(G_\delta\)</span> nor <span class="math inline">\(F_\sigma\)</span>.</h3>
+<p><strong>proof</strong></p>
+<div id="mathbbq-cup-mathbbr---mathbbq-is-a-borel-set" class="section level4">
+<h4>① <span class="math inline">\(\mathbb{Q} \cup (\mathbb{R} -
+\mathbb{Q})\)</span> is a Borel set</h4>
+<p>Since a closed subset is a Borel set, <span class="math inline">\(\{
+q_i \}\)</span> is a Borel set for all <span class="math inline">\(q_i
+\in \mathbb{Q}\)</span><br />
+The Borel <span class="math inline">\(\sigma\)</span>-algebra is closed
+under countable union, so <span class="math inline">\(\bigcup \{ q_i
+\}\)</span> is a Borel set<br />
+Since Borel <span class="math inline">\(\sigma\)</span>-algebra is
+closed under complement, <span class="math inline">\(\mathbb{Q}^c =
+\mathbb{R} - \mathbb{Q}\)</span> is a Borel set</p>
+</div>
+<div id="a-mathbbq-cap-01-cup-mathbbr---mathbbq-cap-23-is-not-g_delta-f_sigma" class="section level4">
+<h4>② <span class="math inline">\(A = (\mathbb{Q} \cap (0,1)) \cup
+((\mathbb{R} - \mathbb{Q}) \cap (2,3))\)</span> is not <span class="math inline">\(G_\delta\)</span>, <span class="math inline">\(F_\sigma\)</span></h4>
+<div id="a-neq-f_sigma" class="section level5">
+<h5>1) <span class="math inline">\(A \neq F_\sigma\)</span></h5>
+<p>Assume that <span class="math inline">\(A = \bigcup F_n\)</span>,
+where <span class="math inline">\(F_n\)</span> is a closed set in <span class="math inline">\(\mathbb{R}\)</span><br />
+Then <span class="math inline">\((\mathbb{R} - \mathbb{Q}) \cap (2,3) =
+A \cap (2,3) = \bigcup (F_n \cap (2,3))\)</span><br />
+The rationals in <span class="math inline">\((2,3)\)</span> is then
+<span class="math inline">\((2,3) \cap A^c = \bigcap (F_n^c \cap
+(2,3))\)</span><br />
+Which is a countable intersection of open sets <span class="math inline">\(F_n^c \cap (2,3)\)</span><br />
+Each <span class="math inline">\(F_n \cap (2,3)\)</span> contains all
+rationals in <span class="math inline">\((2,3)\)</span> and possibly
+some irrationals in <span class="math inline">\((2,3)\)</span><br />
+So <span class="math inline">\(F_n \cap (2,3)\)</span> is dense in <span class="math inline">\((2,3)\)</span></p>
+<p>Let <span class="math inline">\(q_n\)</span> be a rational in <span class="math inline">\((2,3)\)</span><br />
+<span class="math inline">\(q_n\)</span> is a limit point of <span class="math inline">\(F_n \cap (2,3)\)</span><br />
+So <span class="math inline">\((F_n \cap (2,3)) - \{ q_n \}\)</span> is
+also dense in <span class="math inline">\((2,3)\)</span><br />
+Then <span class="math inline">\(\bigcap (F_n \cap (2,3)) \cap \bigcap
+\{ q_n \}^c = \bigcap (F_n \cap (2,3) - \{ q_n \})\)</span> is not empty
+by Baire’s thm<br />
+Since <span class="math inline">\(\bigcap \{ q_n \}^c\)</span> does not
+contain any rationals in <span class="math inline">\((2,3)\)</span> and
+<span class="math inline">\(\bigcap (F_n \cap (2,3))\)</span> is all
+rationals in <span class="math inline">\((2,3)\)</span><br />
+Their intersection should be empty, which is a contradiction</p>
+</div>
+<div id="a-neq-g_delta" class="section level5">
+<h5>2) <span class="math inline">\(A \neq G_\delta\)</span></h5>
+<p>Also assume that <span class="math inline">\(A = \bigcap
+O_n\)</span>, where <span class="math inline">\(O_n\)</span> is an open
+set in <span class="math inline">\(\mathbb{R}\)</span><br />
+Then, the rationals in <span class="math inline">\((0,1)\)</span> can be
+expressed as <span class="math inline">\(\mathbb{Q} \cap (0,1) = A \cap
+(0,1) = \bigcap (O_n \cap (0,1))\)</span><br />
+Which is a countable intersection of open sets<br />
+<span class="math inline">\(O_n \cap (0,1)\)</span> contains all
+rationals in <span class="math inline">\((0,1)\)</span> and possibly
+some irrationals in <span class="math inline">\((0,1)\)</span><br />
+So <span class="math inline">\(O_n \cap (0,1)\)</span> is dense in <span class="math inline">\((0,1)\)</span></p>
+<p>Let <span class="math inline">\(q_n\)</span> be a rational in <span class="math inline">\((0,1)\)</span><br />
+Then <span class="math inline">\(O_n \cap (0,1) - \{ q_n \}\)</span> is
+also open and dense in <span class="math inline">\((0,1)\)</span><br />
+Then <span class="math inline">\(\bigcap (O_n \cap (0,1)) \cap \bigcap
+\{ q_n \}^c\)</span> is not empty by Baire’s thm<br />
+<span class="math inline">\(\bigcap \{ q_n \}^c\)</span> does not have
+any rational in <span class="math inline">\((0,1)\)</span>, so <span class="math inline">\(\bigcap (O_n \cap (0,1)) = \emptyset\)</span>,
+which is contradiction</p>
+<hr />
+</div>
+</div>
+</div>
+</div>
+<div id="the-outer-jordan-content-j_e-in-mathbbr-is-defined-as-j_e-inf-sum_i1n-i_i-where-inf-is-taken-over-every-finite-covering-e-subset-bigcup_i1n-i_i-by-intervals-i_i." class="section level2">
+<h2>14. The outer Jordan content <span class="math inline">\(J_*(E)\)</span> in <span class="math inline">\(\mathbb{R}\)</span> is defined as <span class="math inline">\(J_*(E) = \inf \sum_{i=1}^{n} |I_i|\)</span> where
+inf is taken over every finite covering <span class="math inline">\(E
+\subset \bigcup_{i=1}^{n} I_i\)</span> by intervals <span class="math inline">\(I_i\)</span>.</h2>
+<div id="a-prove-that-j_e-j_overlinee-for-every-set-e-in-mathbbr." class="section level3">
+<h3>(a) Prove that <span class="math inline">\(J_*(E) =
+J_*(\overline{E})\)</span> for every set <span class="math inline">\(E\)</span> in <span class="math inline">\(\mathbb{R}\)</span>.</h3>
+<p><strong>proof</strong></p>
+<div id="j_e-leq-j_overlinee-for-e-subset-overlinee-and-thus-j_e-leq-j_overlinee" class="section level4">
+<h4>① <span class="math inline">\(J_*(E) \leq J_*(\overline{E})\)</span>
+for <span class="math inline">\(E \subset \overline{E}\)</span> and thus
+<span class="math inline">\(J_*(E) \leq J_*(\overline{E})\)</span></h4>
+<p>Let <span class="math inline">\(\widetilde{C_1} = \{ \sum |I_i| : E
+\subset \bigcup I_i \}\)</span> and <span class="math inline">\(\widetilde{C_2} = \{ \sum |I_i| : \overline{E}
+\subset \bigcup I_i \}\)</span><br />
+Then <span class="math inline">\(J_*(E) = \inf \widetilde{C_1}\)</span>
+and <span class="math inline">\(J_*(\overline{E}) = \inf
+\widetilde{C_2}\)</span><br />
+Since <span class="math inline">\(E \subset \overline{E}\)</span>, the
+covering of <span class="math inline">\(\overline{E}\)</span> also
+covers <span class="math inline">\(E\)</span><br />
+If <span class="math inline">\(C \in \widetilde{C_2}\)</span>, then
+<span class="math inline">\(C \in \widetilde{C_1}\)</span><br />
+This means <span class="math inline">\(\widetilde{C_2} \subset
+\widetilde{C_1}\)</span><br />
+Thus, <span class="math inline">\(\inf \widetilde{C_2} =
+J_*(\overline{E}) \geq \inf \widetilde{C_1} = J_*(E)\)</span></p>
+</div>
+<div id="j_e-geq-j_overlinee" class="section level4">
+<h4>② <span class="math inline">\(J_*(E) \geq
+J_*(\overline{E})\)</span></h4>
+<p>Let <span class="math inline">\(I = \bigcup_{i=1}^{n} I_i\)</span>
+covers <span class="math inline">\(E\)</span>: <span class="math inline">\(E \subset I\)</span><br />
+Since <span class="math inline">\(E \subset I\)</span> implies <span class="math inline">\(\overline{E} \subset \overline{I} = \bigcup
+\overline{I_i}\)</span><br />
+Let <span class="math inline">\(S_E = \sum_{i=1}^{n} |I_i|: E \subset
+\bigcup I_i\)</span><br />
+Since <span class="math inline">\(|\overline{I_i}| = |I_i|\)</span>,
+<span class="math inline">\(\sum |I_i| = \sum |\overline{I_i}|\)</span>
+and thus <span class="math inline">\(S_E \leq
+S_{\overline{E}}\)</span><br />
+So, <span class="math inline">\(\inf S_E = J_*(E) \leq J_*(\overline{E})
+= \inf S_{\overline{E}}\)</span> (<span class="math inline">\(\because
+\sum |I_i| \leq S_{\overline{E}}\)</span>)</p>
+</div>
+</div>
+<div id="b-exhibit-a-countable-subset-e-subset-01-such-that-j_e-1-and-m_ke-0." class="section level3">
+<h3>(b) Exhibit a countable subset <span class="math inline">\(E \subset
+[0,1]\)</span> such that <span class="math inline">\(J_*(E) = 1\)</span>
+and <span class="math inline">\(m_k(E) = 0\)</span>.</h3>
+<p><strong>proof</strong></p>
+<p>Let <span class="math inline">\(E = \mathbb{Q} \cap [0,1]\)</span>,
+the rationals between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span><br />
+Since <span class="math inline">\(E\)</span> is dense in <span class="math inline">\([0,1]\)</span>, <span class="math inline">\(\overline{E} = [0,1]\)</span><br />
+Then, <span class="math inline">\(J_*(E) = J_*([0,1]) = 1\)</span>,
+since <span class="math inline">\([0,1]\)</span> is the minimum interval
+that covers <span class="math inline">\([0,1]\)</span></p>
+<p>For each rational <span class="math inline">\(q_n\)</span>, <span class="math inline">\(m_k(\{ q_n \}) = 0\)</span><br />
+So, <span class="math inline">\(m_k(E) = \sum_{n} m_k(\{ q_n \}) =
+0\)</span></p>
+<hr />
+</div>
+</div>
+<div id="m_kre-is-defined-as-follows-m_kre-inf-sum_i-r_i-e-subset-bigcup_i-r_i.-show-that-m_kre-m_ke." class="section level2">
+<h2>15. <span class="math inline">\(m_k^R(E)\)</span> is defined as
+follows: <span class="math inline">\(m_k^R(E) = \inf \sum_{i} |R_i| : E
+\subset \bigcup_{i} R_i\)</span>. Show that <span class="math inline">\(m_k^R(E) = m_k(E)\)</span>.</h2>
+<p><strong>proof</strong></p>
+<div id="m_kre-leq-m_ke" class="section level4">
+<h4>① <span class="math inline">\(m_k^R(E) \leq m_k(E)\)</span></h4>
+<p>Let <span class="math inline">\(C_R = \{ \sum |R_i| : E \subset
+\bigcup R_i \}\)</span> and <span class="math inline">\(C_Q = \{ \sum
+|Q_i| : E \subset \bigcup Q_i \}\)</span>.<br />
+Consider a covering by cubes: <span class="math inline">\(E \subset
+\bigcup Q_i\)</span>.<br />
+A cube is a kind of rectangle, so <span class="math inline">\(\bigcup
+Q_i\)</span> can be viewed as a covering by rectangles.<br />
+Then <span class="math inline">\(\sum |Q_i|\)</span>, which is an
+element of <span class="math inline">\(C_Q\)</span>, is also an element
+of <span class="math inline">\(C_R\)</span>: <span class="math inline">\(C_Q \subset C_R\)</span>.<br />
+Thus, <span class="math inline">\(\inf C_R = m_k^R(E) \leq m_k(E) = \inf
+C_Q\)</span>.</p>
+</div>
+<div id="m_kre-geq-m_ke" class="section level4">
+<h4>② <span class="math inline">\(m_k^R(E) \geq m_k(E)\)</span></h4>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\sum |R_i| \leq m_k^R(E) +
+\varepsilon\)</span>, by def.<br />
+For given <span class="math inline">\(\varepsilon &gt; 0\)</span>, there
+exists a covering of <span class="math inline">\(E \subset \bigcup
+R_i\)</span> such that <span class="math inline">\(\sum |R_i| \leq
+m_k^R(E) + \varepsilon\)</span>.</p></li>
+<li><p><span class="math inline">\(R_i = \bigcup Q_i^{(m)}\)</span>, so
+<span class="math inline">\(\sum |R_i| = \sum |Q_i^{(m)}|\)</span><br />
+Using the similar process in thm 14.4, a rectangle can be represented as
+a countable union of almost disjoint closed cubes: <span class="math inline">\(R_i = \bigcup Q_i^{(m)}\)</span>.<br />
+So, <span class="math inline">\(m_k(R_i) = \sum m_k(Q_i^{(m)}) = \sum
+|Q_i^{(m)}| = \sum |R_i|\)</span>.</p></li>
+<li><p><span class="math inline">\(m_k(E) \leq \sum
+|Q_i^{(m)}|\)</span>, and <span class="math inline">\(m_k(E) \leq
+m_k^R(E)\)</span>, conclusion.<br />
+The covering <span class="math inline">\(\bigcup Q_i^{(m)}\)</span> also
+covers <span class="math inline">\(E\)</span> (<span class="math inline">\(\because E \subset \bigcup R_i = \bigcup
+Q_i^{(m)}\)</span>), so <span class="math inline">\(m_k(E) \leq \sum
+|Q_i^{(m)}|\)</span>.<br />
+Then, <span class="math inline">\(m_k(E) \leq \sum |Q_i^{(m)}| = \sum
+|R_i| \leq m_k^R(E) + \varepsilon\)</span>.<br />
+This holds for all <span class="math inline">\(\varepsilon &gt;
+0\)</span>, so <span class="math inline">\(m_k(E) \leq
+m_k^R(E)\)</span>.</p></li>
+</ol>
+</div>
+<div id="therefore-m_kre-m_ke" class="section level4">
+<h4>③ <span class="math inline">\(\therefore m_k^R(E) =
+m_k(E)\)</span></h4>
+<hr />
+</div>
+</div>
+<div id="borel-cantelli-lemma-e_k-is-a-countable-family-of-measurable-sets-in-mathbbrd-such-that-sum-me_k-infty.-let-e-limsup-e_k-bigcap_n1infty-bigcup_kninfty-e_k." class="section level2">
+<h2>16. (Borel-Cantelli Lemma) <span class="math inline">\(\{ E_k
+\}\)</span> is a countable family of measurable sets in <span class="math inline">\(\mathbb{R}^d\)</span> such that <span class="math inline">\(\sum m(E_k) &lt; \infty\)</span>. Let <span class="math inline">\(E = \limsup E_k = \bigcap_{n=1}^{\infty}
+\bigcup_{k=n}^{\infty} E_k\)</span>.</h2>
+<div id="cf.-set-theory-show-that-e-x-in-mathbbrd-x-in-e_k-text-for-infinitely-many-k-bigcap_n1infty-b_n." class="section level3">
+<h3>cf. (Set Theory) Show that <span class="math display">\[E = \{ x \in
+\mathbb{R}^d : x \in E_k \text{ for infinitely many } k \} =
+\bigcap_{n=1}^{\infty} B_n.\]</span></h3>
+<p><strong>proof</strong></p>
+<div id="let-b_n-bigcup_kninfty-e_k-bigcap_n1infty-b_n-subset-e" class="section level4">
+<h4>① (let <span class="math inline">\(B_n = \bigcup_{k=n}^{\infty}
+E_k\)</span>) <span class="math inline">\(\bigcap_{n=1}^{\infty} B_n
+\subset E\)</span></h4>
+<p><span class="math inline">\(x \in E^c\)</span>, then <span class="math inline">\(x \in E_k\)</span> for (at most) finitely many
+<span class="math inline">\(k\)</span><br />
+Let <span class="math inline">\(K-1\)</span> be the maximum of such
+<span class="math inline">\(k\)</span>’s, then <span class="math inline">\(x \in E_k^c\)</span> for all <span class="math inline">\(k \geq K\)</span><br />
+Then, <span class="math inline">\(x \in \bigcap_{k=K}^{\infty} E_k^c =
+(\bigcup_{k=K}^{\infty} E_k)^{c} = B_K^{c}\)</span><br />
+Since <span class="math inline">\(x \in B_K^c\)</span>, <span class="math inline">\(x \in \bigcap_{n=1}^{\infty} B_n^c\)</span><br />
+Thus, in reverse, <span class="math inline">\(\bigcap_{n=1}^{\infty} B_n
+\subset E\)</span></p>
+</div>
+<div id="e-subset-bigcap_n1infty-b_n" class="section level4">
+<h4>② <span class="math inline">\(E \subset \bigcap_{n=1}^{\infty}
+B_n\)</span></h4>
+<p><span class="math inline">\(x \in (\bigcap_{n=1}^{\infty} B_n)^{c} =
+\bigcup_{n=1}^{\infty} B_n^c\)</span><br />
+Then, there is a positive integer <span class="math inline">\(M\)</span>
+such that <span class="math inline">\(x \in B_M^c =
+\bigcap_{k=M}^{\infty} E_k^c\)</span><br />
+Since <span class="math inline">\(x \in E_k^c\)</span> for all <span class="math inline">\(k \geq M\)</span>, <span class="math inline">\(x
+\in E_k\)</span> for at most finitely many <span class="math inline">\(k\)</span><br />
+Thus, <span class="math inline">\(x \notin E\)</span> and <span class="math inline">\(E \subset \bigcap_{n=1}^{\infty} B_n\)</span></p>
+</div>
+<div id="therefore-e-bigcap_n1infty-b_n" class="section level4">
+<h4>③ <span class="math inline">\(\therefore E = \bigcap_{n=1}^{\infty}
+B_n\)</span></h4>
+</div>
+</div>
+<div id="a-show-that-e-is-measurable" class="section level3">
+<h3>(a) Show that <span class="math inline">\(E\)</span> is
+measurable</h3>
+<p><strong>proof</strong></p>
+<p><span class="math inline">\(E_k\)</span> is measurable for all <span class="math inline">\(k\)</span>, so <span class="math inline">\(B_n =
+\bigcup_{k=n}^{\infty} E_k\)</span> is a countable union of measurable
+sets, which is measurable<br />
+Thus, <span class="math inline">\(E = \bigcap_{n=1}^{\infty}
+B_n\)</span> is a countable intersection of measurable sets, which is
+measurable</p>
+</div>
+<div id="b-show-that-me-0" class="section level3">
+<h3>(b) Show that <span class="math inline">\(m(E) = 0\)</span></h3>
+<p><strong>proof</strong></p>
+<p>Since <span class="math inline">\(E \subset B_n\)</span>, <span class="math inline">\(m(E) \leq m(B_n)\)</span> by monotonicity<br />
+<span class="math inline">\(B_n = \bigcup_{k=n}^{\infty} E_k\)</span>,
+so <span class="math inline">\(m(B_n) \leq \sum_{k=n}^{\infty}
+m(E_k)\)</span> by sub-additivity<br />
+Since <span class="math inline">\(\sum_{k=1}^{\infty} m(E_k)\)</span> is
+finite (converges), there is a positive integer <span class="math inline">\(N_\varepsilon\)</span> such that <span class="math inline">\(n \geq N_\varepsilon\)</span> implies <span class="math inline">\(\sum_{k=n}^{\infty} m(E_k) &lt;
+\varepsilon\)</span> for given <span class="math inline">\(\varepsilon
+&gt; 0\)</span> (Cauchy criterion)<br />
+Then, <span class="math inline">\(\sum_{k=n}^{\infty} m(E_k) &lt;
+\varepsilon\)</span><br />
+So, <span class="math inline">\(m(E) \leq m(B_n) \leq
+\sum_{k=n}^{\infty} m(E_k) &lt; \varepsilon\)</span><br />
+Since <span class="math inline">\(m(E) &lt; \varepsilon\)</span> holds
+for all <span class="math inline">\(\varepsilon &gt; 0\)</span>, <span class="math inline">\(m(E) = 0\)</span></p>
+</div>
+</div>
+<div id="let-f_n-be-a-sequence-of-measurable-functions-on-01-with-f_nx-infty-a.e.-x.-show-that-there-is-a-sequence-c_n-of-positive-real-numbers-such-that-lim_n-to-infty-fracf_nxc_n-0-a.e.-x." class="section level2">
+<h2>17. Let <span class="math inline">\(\{f_n\}\)</span> be a sequence
+of measurable functions on <span class="math inline">\([0,1]\)</span>
+with <span class="math inline">\(|f_n(x)| &lt; \infty\)</span> a.e.
+<span class="math inline">\(x\)</span>. Show that there is a sequence
+<span class="math inline">\(\{c_n\}\)</span> of positive real numbers
+such that <span class="math inline">\(\lim_{n \to \infty}
+\frac{f_n(x)}{c_n} = 0\)</span> a.e. <span class="math inline">\(x\)</span>.</h2>
+<p><strong>proof</strong></p>
+<div id="e_ninfty-bigcup_kninfty-e_nk-fixed-n" class="section level4">
+<h4>① <span class="math inline">\(E_{n,\infty} = \bigcup_{k=n}^{\infty}
+E_{nk}\)</span> (fixed <span class="math inline">\(n\)</span>)</h4>
+<p>Let <span class="math inline">\(E_{nk} = \{ x \in [0,1] : |f_n(x)|
+&gt; \frac{k}{n} \}\)</span> and <span class="math inline">\(E_{n,\infty} = \{ x \in [0,1] : |f_n(x)| = \infty
+\}\)</span><br />
+If <span class="math inline">\(x \in E_{n,\infty}\)</span>, <span class="math inline">\(|f_n(x)| &gt; \frac{k}{n}\)</span> for all <span class="math inline">\(k \in \mathbb{N}\)</span>, which leads to <span class="math inline">\(x \in E_{nk}\)</span><br />
+If <span class="math inline">\(|f_n(x)| &gt; \frac{k}{n}\)</span> for
+all <span class="math inline">\(k \in \mathbb{N}\)</span>, <span class="math inline">\(|f_n(x)| \geq \frac{k}{n}\)</span> for all <span class="math inline">\(k \in \mathbb{N}\)</span>, <span class="math inline">\(\lim_{k \to \infty} \frac{k}{n} =
+\infty\)</span><br />
+This means <span class="math inline">\(x \in E_{n,\infty}\)</span><br />
+Thus, <span class="math inline">\(E_{n,\infty} = \bigcup_{k=1}^{\infty}
+E_{nk}\)</span></p>
+</div>
+<div id="me_ninfty-lim_k-to-infty-me_nk" class="section level4">
+<h4>② <span class="math inline">\(m(E_{n,\infty}) = \lim_{k \to \infty}
+m(E_{nk})\)</span></h4>
+<p>When <span class="math inline">\(x \in E_{n,k+1}\)</span>, <span class="math inline">\(|f_n(x)| &gt; \frac{k+1}{n} &gt;
+\frac{k}{n}\)</span><br />
+Thus, <span class="math inline">\(x \in E_{nk}\)</span> and <span class="math inline">\(E_{n,k+1} \subset E_{nk}\)</span><br />
+<span class="math inline">\(m(E_{n,1}) &lt; \infty\)</span> (<span class="math inline">\(\because E_{n,1} \subset [0,1]\)</span>)<br />
+Thus, <span class="math inline">\(m(E_{n,\infty}) = \lim_{k \to \infty}
+m(E_{nk})\)</span> (<span class="math inline">\(= 0\)</span>: <span class="math inline">\(|f_n(x)| &lt; \infty\)</span> a.e.)</p>
+</div>
+<div id="exists-k-s.t.-me_nk-frac12n-let-c_n-be-such-k" class="section level4">
+<h4>③ <span class="math inline">\(\exists k\)</span> s.t. <span class="math inline">\(m(E_{nk}) &lt; \frac{1}{2^n}\)</span>, let <span class="math inline">\(c_n\)</span> be such <span class="math inline">\(k\)</span></h4>
+<p>Assume that there is no such <span class="math inline">\(k \in
+\mathbb{N}\)</span> that <span class="math inline">\(m(E_{nk}) &lt;
+\frac{1}{2^n}\)</span><br />
+In other words, <span class="math inline">\(m(E_{nk}) \geq
+\frac{1}{2^n}\)</span> for all <span class="math inline">\(k \in
+\mathbb{N}\)</span><br />
+Then, <span class="math inline">\(\lim_{k \to \infty} m(E_{nk}) =
+m(E_{n,\infty}) = \frac{1}{2^n}\)</span>, which is a contradiction
+(<span class="math inline">\(\because m(E_{n,\infty}) =
+0\)</span>)<br />
+Let <span class="math inline">\(c_n\)</span> be such <span class="math inline">\(k\)</span>, and let <span class="math inline">\(E_n = \{ x \in [0,1] : \frac{|f_n(x)|}{c_n} &gt; 1
+\} = E_{nc_n}\)</span></p>
+</div>
+<div id="me-0-where-e-limsup_n-to-infty-e_n" class="section level4">
+<h4>④ <span class="math inline">\(m(E) = 0\)</span>, where <span class="math inline">\(E = \limsup_{n \to \infty} E_n\)</span></h4>
+<p><span class="math inline">\(E_n = \{ x : f_n(x) &gt; c_n \} \cup \{ x
+: -f_n(x) &gt; c_n \}\)</span>, which is a union of measurable sets
+(<span class="math inline">\(\because f_n\)</span> is a measurable
+function)<br />
+We’ve defined <span class="math inline">\(m(E_n) &lt;
+\frac{1}{2^n}\)</span>, so <span class="math inline">\(\sum_{n=1}^{\infty} m(E_n) &lt; 1\)</span>, which
+is finite<br />
+Then, <span class="math inline">\(m(E) = 0\)</span> by Borel-Cantelli
+lemma</p>
+</div>
+<div id="lim_n-to-infty-fracf_nxc_n-0-conclusion" class="section level4">
+<h4>⑤ <span class="math inline">\(\lim_{n \to \infty} \frac{f_n(x)}{c_n}
+= 0\)</span>, conclusion</h4>
+<p><span class="math inline">\(E = \{ x \in [0,1] : x \in E_n \text{ for
+infinitely many } n \}\)</span><br />
+So <span class="math inline">\(x \in E^c\)</span> implies <span class="math inline">\(x \in E_n\)</span> for at most finitely many <span class="math inline">\(n\)</span><br />
+This means there is an integer <span class="math inline">\(N\)</span>
+such that <span class="math inline">\(n \geq N\)</span> implies <span class="math inline">\(x \notin E_n\)</span><br />
+Then, <span class="math inline">\(n \geq N\)</span> implies <span class="math inline">\(\left| \frac{f_n(x)}{c_n} \right| \leq
+1\)</span><br />
+Since <span class="math inline">\(\frac{f_n(x)}{c_n} \to 0\)</span>,
+<span class="math inline">\(\lim_{n \to \infty} \frac{f_n(x)}{c_n} =
+0\)</span></p>
+<hr />
+</div>
+</div>
+<div id="show-that-every-measurable-function-is-the-limit-of-a-sequence-of-continuous-functions-a.e." class="section level2">
+<h2>18. Show that every measurable function is the limit of a sequence
+of continuous functions a.e.</h2>
+<p><strong>proof</strong></p>
+<div id="continuous-f_n-on-e" class="section level4">
+<h4>① continuous <span class="math inline">\(f_n\)</span> on <span class="math inline">\(E\)</span></h4>
+<p>Let <span class="math inline">\(f\)</span> be a measurable function
+on <span class="math inline">\(E\)</span> with <span class="math inline">\(m(E) &lt; \infty\)</span><br />
+Let <span class="math inline">\(F_n\)</span> be a closed subset of <span class="math inline">\(\mathbb{R}^d\)</span> such that <span class="math inline">\(F_n \subset E\)</span>, <span class="math inline">\(m(E - F_n) &lt; \frac{1}{2^n}\)</span>, and <span class="math inline">\(f\)</span> is continuous on <span class="math inline">\(F_n\)</span> (by Lusin’s thm 1.4-(7))<br />
+Let <span class="math inline">\(f_n(x)\)</span> be a continuous function
+on <span class="math inline">\(E\)</span> such that <span class="math inline">\(f_n(x) = f(x)\)</span> for all <span class="math inline">\(x \in F_n\)</span> (Tietze’s extension thm PMA ex
+4-(7))</p>
+</div>
+<div id="b-x-in-e-f_nx-notto-fx-limsup_n-to-infty-b_n" class="section level4">
+<h4>② <span class="math inline">\(B := \{ x \in E : f_n(x) \not\to f(x)
+\} = \limsup_{n \to \infty} B_n\)</span></h4>
+<p>Let <span class="math inline">\(B_n = E - F_n\)</span><br />
+For <span class="math inline">\(x \in B\)</span>, assume that <span class="math inline">\(x \in B_n\)</span> for at most finitely many <span class="math inline">\(n\)</span>’s<br />
+Then there exists an integer <span class="math inline">\(N\)</span> such
+that <span class="math inline">\(x \notin B_n\)</span> for all <span class="math inline">\(n \geq N\)</span><br />
+This means <span class="math inline">\(x \in F_n\)</span> for all <span class="math inline">\(n \geq N\)</span> (<span class="math inline">\(\because E = B_n \cup F_n\)</span>, <span class="math inline">\(B_n \cap F_n = \emptyset\)</span>)<br />
+So <span class="math inline">\(f_n(x) = f(x)\)</span> for <span class="math inline">\(n \geq N\)</span> and <span class="math inline">\(\lim_{n \to \infty} f_n(x) = f(x)\)</span><br />
+This means <span class="math inline">\(x \notin B\)</span>, which is a
+contradiction</p>
+<p>So, <span class="math inline">\(B = \{ x \in E : x \in B_n \text{ for
+infinitely many } n \}\)</span> and thus <span class="math inline">\(B =
+\limsup_{n \to \infty} B_n\)</span></p>
+</div>
+<div id="mb-0-conclusion" class="section level4">
+<h4>③ <span class="math inline">\(m(B) = 0\)</span>, conclusion</h4>
+<p>Since <span class="math inline">\(m(B_n) &lt; \frac{1}{2^n}\)</span>,
+which leads to <span class="math inline">\(\sum_{n=1}^{\infty} m(B_n)
+&lt; 1\)</span> (finite), <span class="math inline">\(B = \limsup_{n}
+B_n\)</span> has measure zero<br />
+Thus, <span class="math inline">\(\lim_{n \to \infty} f_n(x) =
+f(x)\)</span> for a.e. <span class="math inline">\(x \in E\)</span></p>
+<hr />
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
+
+
+
+</div>
