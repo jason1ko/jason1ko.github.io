@@ -75,38 +75,18 @@ search: false
 }
 
 
-/* Rouge 코드 블록용 */
-.highlight pre, .highlight code {
-  background-color: #2d2d2d;
-  padding: 10px;
-  border-radius: 5px;
-  overflow-x: auto;
-}
-
-/* Rmarkdown 변환용 (Highlight.js) */
-.hljs {
-  background-color: #2d2d2d;
-  padding: 10px;
+pre {
+  background-color: #2d2d2d; /* 어두운 배경 유지 */
+  color: #b0b0b0; /* 코드 글자 색을 연한 회색으로 변경 */
+  padding: 15px;
   border-radius: 5px;
   overflow-x: auto;
 }
 
 
-.hljs-literal {
-  color: #990073;
+code {
+  background-color: #2d2d2d; /* 어두운 배경 유지 */
+  color: #b0b0b0; /* 회색 코드 텍스트 */
+  padding: 2px 5px;
+  border-radius: 3px;
 }
-.hljs-number {
-  color: #099;
-}
-.hljs-comment {
-  color: #998;
-  font-style: italic;
-}
-.hljs-keyword {
-  color: #900;
-  font-weight: bold;
-}
-.hljs-string {
-  color: #d14;
-}
-
