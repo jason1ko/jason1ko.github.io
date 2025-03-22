@@ -78,6 +78,12 @@ search: false
   text-align: justify;
 }
 
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap; /* 표 안의 내용이 줄바꿈 없이 가로로 유지됨 */
+}
+
 
 pre {
   background-color: #2d2d2d; /* 어두운 배경 유지 */
