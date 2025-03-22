@@ -2,6 +2,21 @@
 layout: archive
 ---
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const tables = document.querySelectorAll("table");
+  tables.forEach(table => {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('table-wrapper');
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  });
+});
+</script>
+
+
+
+
 {{ content }}
 
 <ul class="taxonomy__index">
