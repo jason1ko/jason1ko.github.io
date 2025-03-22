@@ -78,10 +78,15 @@ search: false
   text-align: justify;
 }
 
-table {
-  display: block;
+.table-wrapper {
   overflow-x: auto;
-  white-space: nowrap; /* 표 안의 내용이 줄바꿈 없이 가로로 유지됨 */
+  margin-bottom: 1rem;
+}
+
+/* 테이블 자체 스타일은 유지 */
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
 
