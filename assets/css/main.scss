@@ -45,27 +45,13 @@ search: false
 }
 
 /* 본문 내용 위치 조정 */
-.main-content {
-  /*margin-top: 90px;*/
-  margin-left: 250px;
-  margin-right: auto;
-  margin-left: auto;
+.main-content, .home-content {
+  margin-left: calc(250px + 10%); /* 왼쪽 마진: 사이드바 + 나머지의 10% */
+  margin-right: 10%;              /* 오른쪽 마진: 10% */
+  width: 80%;                     /* 글 영역: 80% */
+  padding: 20px;
   max-width: 1000px;
-  width: 80%;
-  padding: 2%;
-  font-size: 14px; 
-}
-
-/* 메인 화면에서만 적용 */
-.home-content {
-  /*margin-top: 90px;*/
-  margin-left: 250px;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 1000px;
-  width: 80%;
-  padding: 2%;
-  font-size: 14px; 
+  font-size: 14px;
 }
 
 .page__footer {
