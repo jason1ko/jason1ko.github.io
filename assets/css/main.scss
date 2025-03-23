@@ -44,26 +44,13 @@ search: false
   margin-left: 10px; /* 제목을 오른쪽으로 이동 */
 }
 
-
-
-/* 본문 내용 위치 조정 */
-.main-content {
+.main-content, .home-content {
   /*margin-top: 90px;*/
-  margin-left:  350px; /* 사이드바 너비 + 여백 */
-  margin-right: 100px; /* 오른쪽 여백 추가 */
+  margin-left: 250px; /* 사이드바 너비 */
+  margin-right: auto; /* 나머지 공간 자동 */
+  max-width: 1000px;  /* 고정 폭 */
   padding: 20px;
-  max-width: 1000px;
-  font-size: 14px; 
-}
-
-/* 메인 화면에서만 적용 */
-.home-content {
-  /*margin-top: 90px;*/
-  margin-left:  350px; /* 사이드바 너비 + 여백 */
-  margin-right: 50px; /* 오른쪽 여백 추가 */
-  padding: 20px;
-  max-width: 1000px;
-  font-size: 14px; 
+  font-size: 14px;
 }
 
 
