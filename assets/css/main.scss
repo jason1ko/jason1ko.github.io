@@ -47,20 +47,24 @@ search: false
 /* 본문 내용 위치 조정 */
 .main-content {
   /*margin-top: 90px;*/
-  margin-left: 250px; /* 사이드바 고정 */
-  padding: 5%;        /* 왼쪽, 오른쪽 여백을 비율로 */
-  width: calc(100% - 250px - 10%); /* 전체에서 사이드바와 패딩 제외 */
-  max-width: 1000px;   /* 최대 너비 */
+  margin-left: 250px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1000px;
+  width: 80%;
+  padding: 2%;
   font-size: 14px; 
 }
 
 /* 메인 화면에서만 적용 */
 .home-content {
   /*margin-top: 90px;*/
-  margin-left: 250px; /* 사이드바 고정 */
-  padding: 5%;        /* 왼쪽, 오른쪽 여백을 비율로 */
-  width: calc(100% - 250px - 10%); /* 전체에서 사이드바와 패딩 제외 */
-  max-width: 1000px;   /* 최대 너비 */
+  margin-left: 250px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1000px;
+  width: 80%;
+  padding: 2%;
   font-size: 14px; 
 }
 
