@@ -45,10 +45,10 @@ search: false
 }
 
 .main-content, .home-content {
-  /*margin-top: 90px;*/
-  margin-left: 250px; /* 사이드바 너비 */
-  margin-right: auto; /* 나머지 공간 자동 */
-  max-width: 1000px;  /* 고정 폭 */
+  position: relative;
+  left: 250px;      /* 사이드바 크기만큼 오른쪽 이동 */
+  max-width: 1000px;
+  margin: 0 auto;   /* 좌우 중앙 정렬 */
   padding: 20px;
   font-size: 14px;
 }
