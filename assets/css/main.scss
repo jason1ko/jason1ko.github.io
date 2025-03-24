@@ -29,7 +29,7 @@ search: false
   width: 250px; /* 사이드바 너비 */
   height: 100vh; /* 전체 높이에서 상단 바 높이를 빼서 맞춤 calc(100vh - 90px); */
   background-color: #ffffff;
-  padding: 10px 20px; /* 위쪽에 여백 추가 */
+  padding: 10px 20px 10px 10px; /* padding: top right bottom left 순서 */
   overflow-y: auto; /* 스크롤 가능하도록 설정 */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
