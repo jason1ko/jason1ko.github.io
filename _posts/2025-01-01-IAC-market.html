@@ -1,0 +1,3073 @@
+---
+title : "Marketing Data Analysis"
+date : 2025-01-01 23:50:00
+categories : [Industrial Academic Cooperation Big Data Analysis]
+layout : post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<!DOCTYPE html>
+<html>
+
+  <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="0.-Purpose-of-the-Project">0. Purpose of the Project<a class="anchor-link" href="#0.-Purpose-of-the-Project">&#182;</a></h2><p>This analysis uses real-world data provided by a digital advertising agency, who shared an anonymized version of the dataset they are actively analyzing, with the goal of proposing more effective marketing strategies based on actual customer behavior. The dataset (available at <a href="https://drive.google.com/file/d/1fnk_kikjzFStVALSCmxYWHz-gWOyjCmL/view">this link</a>) contains detailed event logs from an online shopping mall, including visit timestamps, advertising media, device type, and purchase-related actions. Using this data, we construct user-level features from raw logs, compare conversion performance across media and devices, segment customers via K-means clustering, and model cart-stage conversion with logistic regression, ultimately deriving actionable insights for retargeting, onboarding, and loyalty-focused campaigns.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="1.-Intro">1. Intro<a class="anchor-link" href="#1.-Intro">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>In this project, we work with an online shopping mall visit dataset that records each customer’s interactions with the site. The data <code>eMFORCE_GA_yonsei.csv</code> include information such as purchase counts, purchase amounts, visit timestamps, advertising media, and behavioral event types (event_name). Using these variables, we aim to analyze which factors influence customers’ purchasing activities and to classify customers into groups based on their purchase patterns.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;eMFORCE_GA_yonsei.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;euc-kr&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>event_date</th>
+      <th>user_pseudo_id</th>
+      <th>event_timestamp</th>
+      <th>event_name</th>
+      <th>purchase_value</th>
+      <th>device</th>
+      <th>media</th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20241206</td>
+      <td>1.000002e+09</td>
+      <td>2024-12-06 12:27:01.140054+00:00</td>
+      <td>first_visit</td>
+      <td>NaN</td>
+      <td>desktop</td>
+      <td>criteo</td>
+      <td>광고</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20241216</td>
+      <td>1.000004e+09</td>
+      <td>2024-12-15 15:48:17.412486+00:00</td>
+      <td>first_visit</td>
+      <td>NaN</td>
+      <td>desktop</td>
+      <td>referral</td>
+      <td>비광고</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>20241012</td>
+      <td>1.000006e+09</td>
+      <td>2024-10-12 08:12:44.957241+00:00</td>
+      <td>first_visit</td>
+      <td>NaN</td>
+      <td>desktop</td>
+      <td>organic</td>
+      <td>비광고</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>20241221</td>
+      <td>1.000009e+09</td>
+      <td>2024-12-20 22:00:06.601354+00:00</td>
+      <td>first_visit</td>
+      <td>NaN</td>
+      <td>desktop</td>
+      <td>naver_bs</td>
+      <td>광고</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20240710</td>
+      <td>1.000012e+09</td>
+      <td>2024-07-10 13:59:21.352197+00:00</td>
+      <td>first_visit</td>
+      <td>NaN</td>
+      <td>desktop</td>
+      <td>not set</td>
+      <td>비광고</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>20240817</td>
+      <td>1.000024e+09</td>
+      <td>2024-08-16 17:24:35.989460+00:00</td>
+      <td>first_visit</td>
+      <td>NaN</td>
+      <td>desktop</td>
+      <td>RTB</td>
+      <td>광고</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>20241115</td>
+      <td>1.000028e+09</td>
+      <td>2024-11-15 04:54:52.075057+00:00</td>
+      <td>first_visit</td>
+      <td>NaN</td>
+      <td>desktop</td>
+      <td>direct</td>
+      <td>비광고</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>20241124</td>
+      <td>1.000028e+09</td>
+      <td>2024-11-24 06:23:23.606165+00:00</td>
+      <td>session_start</td>
+      <td>NaN</td>
+      <td>desktop</td>
+      <td>referral</td>
+      <td>비광고</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>20241125</td>
+      <td>1.000028e+09</td>
+      <td>2024-11-25 06:13:43.886572+00:00</td>
+      <td>session_start</td>
+      <td>NaN</td>
+      <td>desktop</td>
+      <td>referral</td>
+      <td>비광고</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>20240723</td>
+      <td>1.000034e+09</td>
+      <td>2024-07-23 08:31:43.145137+00:00</td>
+      <td>first_visit</td>
+      <td>NaN</td>
+      <td>desktop</td>
+      <td>naver_bs</td>
+      <td>광고</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 25597319 entries, 0 to 25597318
+Data columns (total 8 columns):
+ #   Column           Dtype  
+---  ------           -----  
+ 0   event_date       int64  
+ 1   user_pseudo_id   float64
+ 2   event_timestamp  object 
+ 3   event_name       object 
+ 4   purchase_value   float64
+ 5   device           object 
+ 6   media            object 
+ 7   type             object 
+dtypes: float64(2), int64(1), object(5)
+memory usage: 1.5+ GB
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>type
+광고     18782137
+비광고     6815182
+Name: count, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;media&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>media
+criteo                       5391896
+advertiser_apppush           4980346
+direct                       3655698
+kakao_alimtok                2443547
+not set                      2048257
+RTB                          1734349
+advertiser_sms                932248
+organic                       636282
+kakao_dm                      594582
+TOSS                          523974
+referral                      474945
+ADN                           468558
+naver_bs                      365534
+advertiser_affiliate          352999
+advertiser_homeshopping       290720
+naver_search                  268378
+advertiser_ars                113569
+instagram                      89736
+facebook                       79828
+google_DA                      45418
+kakao_share                    41636
+payco                          34540
+google_SA                       9827
+advertiser_tv                   7388
+advertiser_braze                4328
+appier                          3801
+kakao_SA                        3634
+advertiser_naver                 728
+advertiser_wondershopping        573
+Name: count, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;device&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>device
+mobile     24807072
+desktop      790247
+Name: count, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;event_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>event_name
+session_start     15710066
+first_visit        3803531
+begin_checkout     3720879
+purchase            987648
+add_to_cart         846926
+login               491079
+회원가입완료               37190
+Name: count, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>event_date</th>
+      <th>user_pseudo_id</th>
+      <th>purchase_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>2.559732e+07</td>
+      <td>2.559732e+07</td>
+      <td>9.876480e+05</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2.024098e+07</td>
+      <td>1.070312e+09</td>
+      <td>5.317989e+04</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.719961e+02</td>
+      <td>6.212570e+08</td>
+      <td>5.670244e+04</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>2.024070e+07</td>
+      <td>1.817237e+01</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2.024082e+07</td>
+      <td>5.302507e+08</td>
+      <td>2.990000e+04</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2.024100e+07</td>
+      <td>1.072703e+09</td>
+      <td>4.111000e+04</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2.024112e+07</td>
+      <td>1.609010e+09</td>
+      <td>5.997000e+04</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2.024123e+07</td>
+      <td>2.147484e+09</td>
+      <td>6.278400e+06</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="2.-Data-Preprocessing">2. Data Preprocessing<a class="anchor-link" href="#2.-Data-Preprocessing">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="(1)-row-:-id-&amp;-col-:-event-names,-media,-device">(1) row : id &amp; col : event names, media, device<a class="anchor-link" href="#(1)-row-:-id-&amp;-col-:-event-names,-media,-device">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We transforms the raw log-level access records into a user-level dataset. First, we create a crosstab so that each row corresponds to a user and each column represents an event_name, summarizing how often each event occurs for that user. Then, for each user, we extract their most frequently used media channel and device. These variables, together with a later-defined purchase conversion indicator (converted), will form a structured table where each user is described by their main media, device, and event-based behavior.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># One-hot encoding</span>
+<span class="n">pivot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;user_pseudo_id&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;event_name&#39;</span><span class="p">])</span>
+<span class="c1"># each users most frequently used media</span>
+<span class="n">media</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;user_pseudo_id&#39;</span><span class="p">)[</span><span class="s1">&#39;media&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">idxmax</span><span class="p">())</span>
+<span class="c1"># each users most frequently used device</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;user_pseudo_id&#39;</span><span class="p">)[</span><span class="s1">&#39;device&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">idxmax</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>This code merges the event-based features with each user’s main media and device to create a single user-level table. It then defines a binary conversion variable, converted, which is set to 1 if the user has at least one purchase event and 0 otherwise, and displays the first five rows of the resulting dataset.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">user_df</span> <span class="o">=</span> <span class="n">pivot</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">media</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">user_df</span> <span class="o">=</span> <span class="n">user_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">user_df</span><span class="p">[</span><span class="s1">&#39;converted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">user_df</span><span class="p">[</span><span class="s1">&#39;purchase&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">user_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>add_to_cart</th>
+      <th>begin_checkout</th>
+      <th>first_visit</th>
+      <th>login</th>
+      <th>purchase</th>
+      <th>session_start</th>
+      <th>회원가입완료</th>
+      <th>media</th>
+      <th>device</th>
+      <th>converted</th>
+    </tr>
+    <tr>
+      <th>user_pseudo_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>18.172369</th>
+      <td>0</td>
+      <td>21</td>
+      <td>1</td>
+      <td>1</td>
+      <td>17</td>
+      <td>93</td>
+      <td>0</td>
+      <td>advertiser_apppush</td>
+      <td>mobile</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>23.172043</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>not set</td>
+      <td>mobile</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1298.162548</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>direct</td>
+      <td>mobile</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1678.173362</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>kakao_dm</td>
+      <td>mobile</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2574.172079</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>criteo</td>
+      <td>mobile</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="(2)-time">(2) time<a class="anchor-link" href="#(2)-time">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Now, we calculates how long each user stayed on the site in total by defining and aggregating sessions. First, it converts <code>event_timestamp</code> to a proper datetime format and sorts all records by user and time. Then, for each user, it computes the time difference between consecutive events and starts a new session whenever the gap exceeds 24 hours (or when there is no previous event). Using these session IDs, it measures each session’s duration as the difference between the first and last timestamp. Finally, it sums the session durations for each user to obtain <code>total_stay_time_sec</code>, and displays the first 10 users’ results.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># convert event_timestamp to datetime format</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;event_timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;event_timestamp&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;mixed&#39;</span><span class="p">)</span>
+
+<span class="c1"># sort data by user</span>
+<span class="n">df_sample_sorted</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;user_pseudo_id&#39;</span><span class="p">,</span> <span class="s1">&#39;event_timestamp&#39;</span><span class="p">])</span>
+
+<span class="c1"># define sessions: if the gap is more than 24 hours, start a new session</span>
+<span class="n">df_sample_sorted</span><span class="p">[</span><span class="s1">&#39;prev_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sample_sorted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;user_pseudo_id&#39;</span><span class="p">)[</span><span class="s1">&#39;event_timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">()</span>
+<span class="n">df_sample_sorted</span><span class="p">[</span><span class="s1">&#39;time_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_sample_sorted</span><span class="p">[</span><span class="s1">&#39;event_timestamp&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_sample_sorted</span><span class="p">[</span><span class="s1">&#39;prev_time&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+
+<span class="c1"># session ID: mark a new session when the gap is at least 1 day (86,400 seconds)</span>
+<span class="n">df_sample_sorted</span><span class="p">[</span><span class="s1">&#39;new_session&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_sample_sorted</span><span class="p">[</span><span class="s1">&#39;time_diff&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">86400</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df_sample_sorted</span><span class="p">[</span><span class="s1">&#39;time_diff&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">())</span>
+<span class="n">df_sample_sorted</span><span class="p">[</span><span class="s1">&#39;session_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sample_sorted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;user_pseudo_id&#39;</span><span class="p">)[</span><span class="s1">&#39;new_session&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+
+<span class="c1"># session duration: last timestamp - first timestamp</span>
+<span class="n">session_time</span> <span class="o">=</span> <span class="n">df_sample_sorted</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;user_pseudo_id&#39;</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">])[</span><span class="s1">&#39;event_timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">])</span>
+<span class="n">session_time</span><span class="p">[</span><span class="s1">&#39;session_duration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">session_time</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">session_time</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+
+<span class="c1"># compute total stay time per user</span>
+<span class="n">total_session_time</span> <span class="o">=</span> <span class="n">session_time</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;user_pseudo_id&#39;</span><span class="p">)[</span><span class="s1">&#39;session_duration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">total_session_time</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_pseudo_id&#39;</span><span class="p">,</span> <span class="s1">&#39;total_stay_time_sec&#39;</span><span class="p">]</span>
+
+<span class="n">total_session_time</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>user_pseudo_id</th>
+      <th>total_stay_time_sec</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>18.172369</td>
+      <td>2.066662e+06</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>23.172043</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1298.162548</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1678.173362</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2574.172079</td>
+      <td>1.302182e+04</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2784.172733</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>3482.172334</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>3614.173000</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>3877.172713</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>4281.172137</td>
+      <td>3.981211e+03</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>This code sets user_pseudo_id as the index of the total session time table and then left-joins it to user_df so that each user’s total stay time (<code>total_stay_time_sec</code>) is added as a new column to the user-level dataset.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">total_session_time</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;user_pseudo_id&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">user_df</span> <span class="o">=</span> <span class="n">user_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">total_session_time</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="n">user_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>add_to_cart</th>
+      <th>begin_checkout</th>
+      <th>first_visit</th>
+      <th>login</th>
+      <th>purchase</th>
+      <th>session_start</th>
+      <th>회원가입완료</th>
+      <th>media</th>
+      <th>device</th>
+      <th>converted</th>
+      <th>total_stay_time_sec</th>
+    </tr>
+    <tr>
+      <th>user_pseudo_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>18.172369</th>
+      <td>0</td>
+      <td>21</td>
+      <td>1</td>
+      <td>1</td>
+      <td>17</td>
+      <td>93</td>
+      <td>0</td>
+      <td>advertiser_apppush</td>
+      <td>mobile</td>
+      <td>1</td>
+      <td>2.066662e+06</td>
+    </tr>
+    <tr>
+      <th>23.172043</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>not set</td>
+      <td>mobile</td>
+      <td>0</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>1298.162548</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>direct</td>
+      <td>mobile</td>
+      <td>0</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>1678.173362</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>kakao_dm</td>
+      <td>mobile</td>
+      <td>0</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>2574.172079</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>criteo</td>
+      <td>mobile</td>
+      <td>0</td>
+      <td>1.302182e+04</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="3.-Conversion-rate-per-media">3. Conversion rate per media<a class="anchor-link" href="#3.-Conversion-rate-per-media">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>In this section, we examine how conversion performance differs across advertising media. By grouping users by <code>media</code> and calculating the mean of the binary <code>converted</code> variable, we obtain the conversion rate for each channel and sort them in descending order to see which media sources are most effective at driving purchases. We broadly divided them into four groups and analyzed the characteristics of each group.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conv_rate_media</span> <span class="o">=</span> <span class="n">user_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;media&#39;</span><span class="p">)[</span><span class="s1">&#39;converted&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">conv_rate_media</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>media
+advertiser_apppush           0.577218
+advertiser_braze             0.359855
+direct                       0.231584
+advertiser_naver             0.201439
+advertiser_homeshopping      0.198375
+RTB                          0.175623
+advertiser_sms               0.149249
+advertiser_tv                0.145849
+advertiser_affiliate         0.140076
+advertiser_ars               0.117240
+naver_bs                     0.116568
+kakao_alimtok                0.116206
+payco                        0.086591
+not set                      0.084513
+naver_search                 0.080671
+advertiser_wondershopping    0.069106
+kakao_dm                     0.061338
+referral                     0.053047
+organic                      0.047328
+TOSS                         0.044170
+kakao_share                  0.040191
+google_SA                    0.039424
+kakao_SA                     0.033316
+criteo                       0.014931
+facebook                     0.001398
+instagram                    0.001129
+google_DA                    0.000149
+ADN                          0.000016
+appier                       0.000000
+Name: converted, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="(1)-High-conversion-rate-(%3E-30%25)">(1) High conversion rate (&gt; 30%)<a class="anchor-link" href="#(1)-High-conversion-rate-(%3E-30%25)">&#182;</a></h3><ul>
+<li>advertiser_apppush: 57.7%, advertiser_braze: 35.9%</li>
+<li>App Push: notification messages sent to app users</li>
+<li>Braze: a CRM marketing platform that automates and personalizes app push, email, and SMS campaigns</li>
+<li>CRM (Customer Relationship Management)–based retargeting channels show outstanding conversion performance.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="(2)-Moderate-conversion-rate">(2) Moderate conversion rate<a class="anchor-link" href="#(2)-Moderate-conversion-rate">&#182;</a></h3><ul>
+<li>direct: 23.1%, advertiser_naver: 20.0%, advertiser_homeshopping: 19.8%</li>
+<li>Because these users already know the brand and visit directly, they have a higher likelihood of purchasing.</li>
+<li>Other advertisers (e.g., advertiser_sms, advertiser_tv, etc.) also show conversion rates of around 14%.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="(3)-Low-conversion-rate">(3) Low conversion rate<a class="anchor-link" href="#(3)-Low-conversion-rate">&#182;</a></h3><ul>
+<li>Finance/payment-related channels (payco: 8.6%, TOSS: 4.4%)</li>
+<li>Search-related channels (naver_search: 8.0%, google_SA: 3.9%)</li>
+<li>Kakao channels (kakao_dm: 6.3%, kakao_share: 4.0%, kakao_SA: 3.3%)</li>
+<li>Advertising strategies in these areas need to be re-evaluated.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="(4)-Extremely-low-conversion-rate-(%E2%89%AA-0.1%25)">(4) Extremely low conversion rate (&#8810; 0.1%)<a class="anchor-link" href="#(4)-Extremely-low-conversion-rate-(%E2%89%AA-0.1%25)">&#182;</a></h3><ul>
+<li>google_DA (Google Display Ads), ADN, appier (AI-based targeting ads), Facebook, Instagram</li>
+<li>These channels are mainly visual and click-oriented, so users tend to browse, show interest, or click lightly for fun rather than proceed to purchase.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="4.-Device">4. Device<a class="anchor-link" href="#4.-Device">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>In this section, we investigate whether conversion behavior differs by device type. We first construct a contingency table that cross-tabulates <code>device</code> and the binary <code>converted</code> variable, which summarizes how many users on each device did or did not convert. The conversion rates are approximately 11.28% for mobile users (460,497 / (3,621,810 + 460,497)) and 2.28% for desktop users (9,091 / (390,444 + 9,091)). We next examine whether this substantial difference in conversion rates between mobile and desktop is statistically significant. This table will then be used to statistically test the association between device and conversion.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2_contingency</span>
+
+<span class="n">contingency_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">user_df</span><span class="p">[</span><span class="s1">&#39;device&#39;</span><span class="p">],</span> <span class="n">user_df</span><span class="p">[</span><span class="s1">&#39;converted&#39;</span><span class="p">])</span>
+
+<span class="n">contingency_table</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>converted</th>
+      <th>0</th>
+      <th>1</th>
+    </tr>
+    <tr>
+      <th>device</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>desktop</th>
+      <td>390444</td>
+      <td>9091</td>
+    </tr>
+    <tr>
+      <th>mobile</th>
+      <td>3621810</td>
+      <td>460497</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="(1)-chi-squared-test">(1) chi squared test<a class="anchor-link" href="#(1)-chi-squared-test">&#182;</a></h3><p>To formally test whether conversion is independent of device type, we perform a chi-square test of independence with the null hypothesis that conversion rate does not differ by device (H₀: device and conversion are independent) and the alternative that it does (H₁: not independent). The resulting chi-square statistic (≈ 31,459.94) and p-value (≈ 0.0) lead us to reject the null hypothesis, indicating that conversion behavior differs significantly between mobile and desktop users.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">contingency_table</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Chi-square statistic: </span><span class="si">{</span><span class="n">chi2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p-value: </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Chi-square statistic: 31459.938266787663
+p-value: 0.0
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="(2)-t---test">(2) t - test<a class="anchor-link" href="#(2)-t---test">&#182;</a></h3><p>To further compare conversion performance by device, we conduct Welch’s t-test on the binary <code>converted</code> variable for mobile and desktop users. Under the null hypothesis that the two groups have the same mean conversion rate and the alternative that they differ, the test yields a very large t-statistic (≈ 318.03) and a p-value close to 0, so we reject the null and conclude that the average conversion rate for mobile users is significantly higher than that for desktop users.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">ttest_ind</span>
+
+<span class="n">mobile</span> <span class="o">=</span> <span class="n">user_df</span><span class="p">[</span><span class="n">user_df</span><span class="p">[</span><span class="s1">&#39;device&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;mobile&#39;</span><span class="p">][</span><span class="s1">&#39;converted&#39;</span><span class="p">]</span>
+<span class="n">desktop</span> <span class="o">=</span> <span class="n">user_df</span><span class="p">[</span><span class="n">user_df</span><span class="p">[</span><span class="s1">&#39;device&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;desktop&#39;</span><span class="p">][</span><span class="s1">&#39;converted&#39;</span><span class="p">]</span>
+
+<span class="n">t_stat</span><span class="p">,</span> <span class="n">p_val</span> <span class="o">=</span> <span class="n">ttest_ind</span><span class="p">(</span><span class="n">mobile</span><span class="p">,</span> <span class="n">desktop</span><span class="p">,</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Welch&#39;s t-test</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-statistic: </span><span class="si">{</span><span class="n">t_stat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p-value: </span><span class="si">{</span><span class="n">p_val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>t-statistic: 318.0330553859352
+p-value: 0.0
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="(3)-conclusion">(3) conclusion<a class="anchor-link" href="#(3)-conclusion">&#182;</a></h3><p>Both the chi-square test and Welch’s t-test consistently show that conversion behavior differs significantly by device, with mobile users exhibiting a much higher conversion rate than desktop users. This gap is likely related to the strong performance of mobile-focused channels such as App Push, which drive especially high conversion among app users.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="5.-K-means">5. K-means<a class="anchor-link" href="#5.-K-means">&#182;</a></h2><p>In this section, we analyze how customers move through the shopping journey—from visiting and browsing the site to making a purchase—by applying K-means clustering to group users with similar behavioral patterns. To focus the clustering purely on event-based activity features, we remove <code>media</code> and <code>device</code> (categorical attributes used later for interpretation) as well as <code>converted</code>, which is an outcome variable rather than an input feature for unsupervised clustering.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_score</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">user_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;media&#39;</span><span class="p">,</span> <span class="s1">&#39;device&#39;</span><span class="p">,</span><span class="s1">&#39;converted&#39;</span><span class="p">])</span>
+<span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>add_to_cart</th>
+      <th>begin_checkout</th>
+      <th>first_visit</th>
+      <th>login</th>
+      <th>purchase</th>
+      <th>session_start</th>
+      <th>회원가입완료</th>
+      <th>total_stay_time_sec</th>
+    </tr>
+    <tr>
+      <th>user_pseudo_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>18.172369</th>
+      <td>0</td>
+      <td>21</td>
+      <td>1</td>
+      <td>1</td>
+      <td>17</td>
+      <td>93</td>
+      <td>0</td>
+      <td>2.066662e+06</td>
+    </tr>
+    <tr>
+      <th>23.172043</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>1298.162548</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>1678.173362</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>2574.172079</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1.302182e+04</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We standardize all features using <code>StandardScaler</code> so that each variable has mean 0 and unit variance, ensuring that no single feature dominates the K-means clustering due to its scale.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We determine the number of clusters <em>k</em> using the <code>elbow method</code>:</p>
+<ul>
+<li>We examine how inertia (within-cluster sum of squares) decreases as <em>k</em> increases.</li>
+<li>The optimal <em>k</em> is where the rate of decrease starts to level off.</li>
+<li>After <em>k = 6</em>, the reduction in inertia becomes relatively small, suggesting diminishing returns.</li>
+<li>With <em>k = 3</em>, clusters mainly separate users into high-conversion, low-conversion, and outlier groups, which provides limited behavioral insight.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Elbow Method</span>
+<span class="n">inertia</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">K_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">K_range</span><span class="p">:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+    <span class="n">inertia</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K_range</span><span class="p">,</span> <span class="n">inertia</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters (k)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Inertia (within-cluster sum of squares)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Elbow Method For Optimal k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedImage jp-OutputArea-output ">
+<img src="data:image/png;base64,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"
+class="
+"
+>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We fit a K-means model with <code>k = 6</code> clusters on the standardized features and assign each user to one of the six clusters. Then, we compute the mean of all numeric variables by cluster to summarize and compare the characteristic behavior of each customer group.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">clusters</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+
+<span class="n">user_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clusters</span>
+<span class="n">cluster_summary</span> <span class="o">=</span> <span class="n">user_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cluster&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cluster_summary</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>add_to_cart</th>
+      <th>begin_checkout</th>
+      <th>first_visit</th>
+      <th>login</th>
+      <th>purchase</th>
+      <th>session_start</th>
+      <th>회원가입완료</th>
+      <th>converted</th>
+      <th>total_stay_time_sec</th>
+    </tr>
+    <tr>
+      <th>cluster</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.042468</td>
+      <td>0.253800</td>
+      <td>1.004776</td>
+      <td>0.080826</td>
+      <td>0.092383</td>
+      <td>1.452441</td>
+      <td>0.000000</td>
+      <td>0.069311</td>
+      <td>2.496098e+04</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>49.525810</td>
+      <td>156.056903</td>
+      <td>0.217767</td>
+      <td>8.898679</td>
+      <td>22.225450</td>
+      <td>406.663625</td>
+      <td>0.007203</td>
+      <td>0.990876</td>
+      <td>1.048004e+07</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.000000</td>
+      <td>15612.666667</td>
+      <td>6.333333</td>
+      <td>16072.666667</td>
+      <td>0.000000</td>
+      <td>20.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.530436e+07</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8.969625</td>
+      <td>40.070478</td>
+      <td>0.353236</td>
+      <td>0.875223</td>
+      <td>7.354378</td>
+      <td>191.998610</td>
+      <td>0.007792</td>
+      <td>0.843955</td>
+      <td>5.090688e+06</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.429219</td>
+      <td>1.776358</td>
+      <td>0.000345</td>
+      <td>0.116009</td>
+      <td>0.558161</td>
+      <td>6.752564</td>
+      <td>0.000000</td>
+      <td>0.254752</td>
+      <td>7.507292e+04</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.308470</td>
+      <td>1.930986</td>
+      <td>0.928781</td>
+      <td>0.207768</td>
+      <td>0.701767</td>
+      <td>3.990078</td>
+      <td>1.165559</td>
+      <td>0.503670</td>
+      <td>6.956890e+04</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Cluster-0-:-long-term-dormant-users">Cluster 0 : long-term dormant users<a class="anchor-link" href="#Cluster-0-:-long-term-dormant-users">&#182;</a></h3><ul>
+<li>Behavioral indicators (excluding outliers) are generally the lowest among all clusters.  </li>
+<li>Both login rate (0.08) and conversion rate (0.069) are low, and total stay time is also short.  </li>
+<li>Interpretation: customers who showed only minimal interest without purchasing → candidates for retargeting campaigns.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Cluster-1-:-VIP-customers-(big-spenders)">Cluster 1 : VIP customers (big spenders)<a class="anchor-link" href="#Cluster-1-:-VIP-customers-(big-spenders)">&#182;</a></h3><ul>
+<li>Very high activity levels: add_to_cart ≈ 49.5, purchase ≈ 22.2, and extremely long stay_time (over 10 million seconds).  </li>
+<li>Number of sessions (≈ 406) and logins (≈ 8.9) are very high, indicating highly engaged users.  </li>
+<li>Conversion rate <code>converted ≈ 0.99</code>, meaning almost all users in this cluster make a purchase.  </li>
+<li>Interpretation: core revenue-driving customers → strong candidates for loyalty programs and premium benefits.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Cluster-2-:-Outliers-or-abnormal-behavior">Cluster 2 : Outliers or abnormal behavior<a class="anchor-link" href="#Cluster-2-:-Outliers-or-abnormal-behavior">&#182;</a></h3><ul>
+<li>Extremely high activity counts, e.g., login ≈ 16,072 and begin_checkout ≈ 15,612.  </li>
+<li>Despite the large number of actions, <code>converted = 0</code> and <code>purchase = 0</code>, showing a highly imbalanced pattern.  </li>
+<li>Interpretation: likely bot traffic or logging errors → should be considered as outliers and potentially removed from analysis.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Cluster-3-:-Loyal-regular-buyers">Cluster 3 : Loyal regular buyers<a class="anchor-link" href="#Cluster-3-:-Loyal-regular-buyers">&#182;</a></h3><ul>
+<li>Solid activity levels: add_to_cart ≈ 8.96, purchase ≈ 7.35, with around 191 sessions and relatively long total stay_time.  </li>
+<li>High conversion rate <code>converted ≈ 0.84</code>, meaning most users in this cluster end up purchasing.  </li>
+<li>Interpretation: valuable customers who visit frequently and make repeat purchases → key targets for retention strategies.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Cluster-4-:-Low-loyalty-general-customers">Cluster 4 : Low-loyalty general customers<a class="anchor-link" href="#Cluster-4-:-Low-loyalty-general-customers">&#182;</a></h3><ul>
+<li>Relatively low activity levels: add_to_cart ≈ 0.42, purchase ≈ 1.77, about 6.75 sessions, and short total stay_time.  </li>
+<li>Conversion rate <code>converted ≈ 0.25</code>, indicating that purchases are relatively infrequent.  </li>
+<li>Interpretation: at-risk or churning users → candidates for remarketing campaigns and discount coupons.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Cluster-5-:-First-time-visitors">Cluster 5 : First-time visitors<a class="anchor-link" href="#Cluster-5-:-First-time-visitors">&#182;</a></h3><ul>
+<li>Highest values for “회원가입완료” (signup completed) and “first_visit”, with a moderate conversion rate (<code>converted ≈ 0.5</code>).  </li>
+<li>Short total stay_time → users who are likely visiting the site for the first time.  </li>
+<li>Interpretation: customers who need marketing tailored to first-time visitors (onboarding guides, welcome offers, etc.).</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="6.-Cart">6. Cart<a class="anchor-link" href="#6.-Cart">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>In this section, we focus on users who have reached the cart stage and examine which factors drive them to complete a purchase. We restrict the data to customers with at least one <code>add_to_cart</code> event and build a logistic regression model with <code>converted</code> as the target and various behavioral features (and device information) as predictors. This allows us to quantify how different actions in the cart stage affect the probability of final conversion and to identify leverage points for improving checkout completion.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">user_df_cart</span> <span class="o">=</span> <span class="n">user_df</span><span class="p">[</span><span class="n">user_df</span><span class="p">[</span><span class="s1">&#39;add_to_cart&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="c1">#user_df_cart.loc[:, &#39;converted&#39;] = (user_df_cart[&#39;purchase&#39;] &gt; 0).astype(int)</span>
+<span class="n">user_df_cart</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>add_to_cart</th>
+      <th>begin_checkout</th>
+      <th>first_visit</th>
+      <th>login</th>
+      <th>purchase</th>
+      <th>session_start</th>
+      <th>회원가입완료</th>
+      <th>media</th>
+      <th>device</th>
+      <th>converted</th>
+      <th>total_stay_time_sec</th>
+      <th>cluster</th>
+    </tr>
+    <tr>
+      <th>user_pseudo_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>25456.172429</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>organic</td>
+      <td>desktop</td>
+      <td>0</td>
+      <td>1.723212e+02</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>36909.170936</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>advertiser_tv</td>
+      <td>mobile</td>
+      <td>0</td>
+      <td>1.542716e+02</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>55536.169964</th>
+      <td>4</td>
+      <td>12</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>124</td>
+      <td>0</td>
+      <td>RTB</td>
+      <td>mobile</td>
+      <td>1</td>
+      <td>3.675918e+06</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>59429.168086</th>
+      <td>5</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>20</td>
+      <td>0</td>
+      <td>not set</td>
+      <td>mobile</td>
+      <td>0</td>
+      <td>1.031516e+05</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>78975.162420</th>
+      <td>1</td>
+      <td>9</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>21</td>
+      <td>0</td>
+      <td>direct</td>
+      <td>mobile</td>
+      <td>0</td>
+      <td>2.080192e+05</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">user_df_cart</span><span class="p">[</span><span class="s1">&#39;device&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_df_cart</span><span class="p">[</span><span class="s1">&#39;device&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;mobile&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;desktop&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="n">user_df_cart</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>C:\Users\user\AppData\Local\Temp\ipykernel_5984\3132898683.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  user_df_cart[&#39;device&#39;] = user_df_cart[&#39;device&#39;].map({&#39;mobile&#39; : 0, &#39;desktop&#39; : 1})
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>add_to_cart</th>
+      <th>begin_checkout</th>
+      <th>first_visit</th>
+      <th>login</th>
+      <th>purchase</th>
+      <th>session_start</th>
+      <th>회원가입완료</th>
+      <th>media</th>
+      <th>device</th>
+      <th>converted</th>
+      <th>total_stay_time_sec</th>
+      <th>cluster</th>
+    </tr>
+    <tr>
+      <th>user_pseudo_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>25456.172429</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>organic</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1.723212e+02</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>36909.170936</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>advertiser_tv</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.542716e+02</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>55536.169964</th>
+      <td>4</td>
+      <td>12</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>124</td>
+      <td>0</td>
+      <td>RTB</td>
+      <td>0</td>
+      <td>1</td>
+      <td>3.675918e+06</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>59429.168086</th>
+      <td>5</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>20</td>
+      <td>0</td>
+      <td>not set</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.031516e+05</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>78975.162420</th>
+      <td>1</td>
+      <td>9</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>21</td>
+      <td>0</td>
+      <td>direct</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2.080192e+05</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>For the cart-stage analysis, we construct the feature matrix <code>X</code> by removing <code>purchase</code>, <code>media</code>, <code>converted</code>, and <code>cluster</code>. The variable <code>converted</code> is our target and must not be included as an input, while <code>purchase</code> is effectively an outcome-like variable that would leak information about conversion. We also exclude <code>media</code> and the derived <code>cluster</code> label so that the logistic regression focuses on the direct effects of users’ behavioral features in the cart stage, without confounding from channel attributes or previously computed segments.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">user_df_cart</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;purchase&#39;</span><span class="p">,</span><span class="s1">&#39;media&#39;</span><span class="p">,</span> <span class="s1">&#39;converted&#39;</span><span class="p">,</span> <span class="s1">&#39;cluster&#39;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">user_df_cart</span><span class="p">[</span><span class="s1">&#39;converted&#39;</span><span class="p">]</span>  <span class="c1"># target</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression(max_iter=1000)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;LogisticRegression<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LogisticRegression.html">?<span>Documentation for LogisticRegression</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>LogisticRegression(max_iter=1000)</pre></div> </div></div></div></div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">coeff_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+    <span class="s1">&#39;Coefficient&#39;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coeff_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Coefficient&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>               Feature   Coefficient
+1       begin_checkout  4.603798e-01
+5               회원가입완료  1.976794e-01
+3                login  3.332584e-02
+4        session_start  8.550497e-03
+7  total_stay_time_sec -3.571540e-07
+0          add_to_cart -7.881150e-03
+2          first_visit -2.358669e-02
+6               device -2.115448e-01
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>From the logistic regression coefficients, we can draw the following conclusions about which factors most strongly influence conversion at the cart stage:</p>
+<ul>
+<li><p><strong><code>begin_checkout</code> (β ≈ 0.46)</strong></p>
+<ul>
+<li>This is the strongest positive predictor: users who proceed to the checkout step are much more likely to complete a purchase.</li>
+</ul>
+</li>
+<li><p><strong><code>회원가입완료</code> – signup completed (β ≈ 0.20)</strong></p>
+<ul>
+<li>Completing membership registration is also strongly associated with higher conversion, suggesting that <strong>registered members are more likely to finish the purchase</strong> than non-members.</li>
+</ul>
+</li>
+<li><p><strong><code>login</code> and <code>session_start</code> (small positive coefficients)</strong></p>
+<ul>
+<li>More logins and session starts slightly increase the probability of conversion, indicating that <strong>repeated engagement with the site helps</strong>, but their effect is weaker than checkout or signup.</li>
+</ul>
+</li>
+<li><p><strong><code>first_visit</code> (β &lt; 0)</strong></p>
+<ul>
+<li>First-time visitors are <strong>less likely to convert</strong> than returning users, which aligns with the idea that users often need multiple visits before purchasing.</li>
+</ul>
+</li>
+<li><p><strong><code>device</code> (β ≈ -0.21, mobile = 0, desktop = 1)</strong></p>
+<ul>
+<li>The negative coefficient means that <strong>desktop users have a lower conversion probability than mobile users</strong>, even among those who added items to the cart, consistent with the earlier device-level analysis.</li>
+</ul>
+</li>
+<li><p><strong><code>total_stay_time_sec</code> and <code>add_to_cart</code> (coefficients close to 0)</strong></p>
+<ul>
+<li>Their effects are very small in magnitude in this model, suggesting that <strong>spending more time or adding slightly more items to the cart does not, by itself, strongly change the conversion probability</strong>, once other behaviors (like checkout and signup) are controlled for.</li>
+</ul>
+</li>
+</ul>
+<p>Overall, the model highlights that <strong>moving forward in the funnel (begin_checkout), completing signup, and using mobile</strong> are the key drivers of conversion at the cart stage, whereas first-time visits and desktop usage are associated with lower purchase completion.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="7.-Conclusion">7. Conclusion<a class="anchor-link" href="#7.-Conclusion">&#182;</a></h2><p>In this analysis, we used detailed event-level logs from an online shopping mall to understand how customers move from visit to purchase and how different channels and behaviors affect conversion.</p>
+<p>Overall, the analysis shows that <strong>personalized CRM channels, mobile usage, and deeper funnel engagement (checkout and signup)</strong> are critical drivers of conversion, while <strong>user behavior patterns allow us to identify VIPs, loyal buyers, at-risk customers, and newcomers</strong>. These insights can be used to design <strong>targeted marketing and retention strategies</strong> that allocate resources more efficiently and improve overall sales performance.</p>
+
+</div>
+</div>
+</div>
+</div>
+</body>
+
+
+
+
+
+
+
+</html>
+</div>
