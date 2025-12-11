@@ -6,6 +6,19 @@ permalink: /research/
 
 {% include sidebar.html %}  <!-- 사이드바 포함 -->
 
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+</script>
+<script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
 <div class="main-wrapper home-content" style="display: flex; align-items: flex-start;">
 
   <!-- 왼쪽 컬럼: 소개 -->
@@ -155,7 +168,7 @@ permalink: /research/
   </p>
 
   <p>
-    <code>Err(\hat{w}_\lambda) \to \Phi(-\Theta(\lambda))</code>
+    $$ \mathrm{Err}(\hat{w}_\lambda) \to \Phi(-\Theta(\lambda)) $$
   </p>
 
   <p>
@@ -201,7 +214,7 @@ permalink: /research/
   </p>
 
   <p>
-    <code>v(\lambda) = (CC^\top + \lambda I)^{-1} w, &nbsp; \lambda &gt; 0.</code>
+    $$ v(\lambda) = (CC^\top + \lambda I)^{-1} w,\ \lambda > 0. $$
   </p>
 
   <p>As λ varies:</p>
