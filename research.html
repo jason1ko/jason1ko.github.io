@@ -10,8 +10,113 @@ permalink: /research/
 
   <!-- 왼쪽 컬럼: 소개 -->
   <div class="intro-section" style="flex: 5;">
-    <h1>Undergraduate Capstone</h1>
-    <p>will be uploaded soon.</p>
+
+      <h1>Relative Embedding for Periocular and Face Recognition: Conditional Multimodal Biometrics</h1>
+
+  <p>
+    This repository provides the implementation and experiments for the project
+    <strong>"Relative Embedding for Periocular and Face Recognition: Conditional Multimodal Biometrics"</strong>,
+    conducted at Yonsei University.
+  </p>
+
+  <hr>
+
+  <h2>Motivation</h2>
+  <p>
+    The COVID-19 pandemic has reduced the accuracy of conventional face recognition because masks cover important facial areas.
+    To address this, we focus on the <strong>periocular region</strong> (the area around the eyes) as a reliable biometric trait.
+    We also propose a <strong>Conditional Multimodal Biometrics (CMB)</strong> framework that combines periocular and face
+    recognition for stronger identification and verification.
+  </p>
+
+  <hr>
+
+  <h2>Methodology</h2>
+
+  <h3>End-to-End Deep Face Recognition</h3>
+  <ul>
+    <li><strong>Face Detection</strong>: Locate faces in images</li>
+    <li><strong>Face Alignment</strong>: Normalize faces using key landmarks</li>
+    <li><strong>Face Representation</strong>: Extract features with a MobileFaceNet backbone</li>
+  </ul>
+
+  <h3>Conditional Multimodal Biometrics (CMB)</h3>
+  <ul>
+    <li>Combines periocular and face embeddings</li>
+    <li>
+      Introduces a <strong>CMB Loss</strong> that:
+      <ul>
+        <li>Pulls embeddings from the same subject closer (even across modalities)</li>
+        <li>Pushes embeddings from different subjects further apart</li>
+      </ul>
+    </li>
+    <li>Supports four recognition tasks:
+      <ul>
+        <li>Periocular &harr; Periocular (p2p)</li>
+        <li>Face &harr; Face (f2f)</li>
+        <li>Periocular &harr; Face (p2f)</li>
+        <li>Face &harr; Periocular (f2p)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>Similarity Metrics</h3>
+  <ul>
+    <li><strong>Cosine Similarity</strong> (main measure)</li>
+    <li><strong>KL Divergence</strong> (tested for cross-modal similarity)</li>
+  </ul>
+
+  <hr>
+
+  <h2>Software Implementation</h2>
+  <ul>
+    <li>Identification and verification pipelines using extracted embeddings</li>
+    <li><strong>Metrics</strong>:
+      <ul>
+        <li>CMC (Cumulative Match Curve) for identification</li>
+        <li>EER (Equal Error Rate), ROC, and AUC for verification</li>
+      </ul>
+    </li>
+    <li>KL divergence optimized with broadcasting for faster computation</li>
+  </ul>
+
+  <hr>
+
+  <h2>Datasets</h2>
+  <p>Experiments were performed on six datasets:</p>
+  <ul>
+    <li><strong>Ethnic</strong></li>
+    <li><strong>PubFig</strong></li>
+    <li><strong>FaceScrub</strong></li>
+    <li><strong>IMDB-Wiki</strong></li>
+    <li><strong>AR</strong> (including blur, occlusion, and scarf conditions)</li>
+    <li><strong>YTF (YouTube Faces)</strong></li>
+  </ul>
+
+  <hr>
+
+  <h2>Results</h2>
+  <ul>
+    <li><strong>Periocular-to-Periocular</strong>: CMC up to ~97%, EER as low as 2.8%</li>
+    <li><strong>Face-to-Face</strong>: CMC up to ~98%, EER ~2.4%</li>
+    <li><strong>Cross-modal (p2f, f2p)</strong>: CMC up to ~97%, EER around 5%</li>
+    <li><strong>YTF dataset</strong>: Lower performance due to low resolution</li>
+  </ul>
+
+  <p>Cosine similarity generally outperformed KL divergence.</p>
+  <ul>
+    <li>trained to separate identities using inner products</li>
+    <li>scale-invariant, and robust to variations</li>
+    <li>KL divergencer equires extra normalization, sensitive to small noisy components</li>
+  </ul>
+
+  <hr>
+
+  <h2>Reference</h2>
+  <p>
+    This work is based on the graduation project submitted for EEE4610-01 at Yonsei University (Dec 2022).<br>
+    Advisor: Prof. Andrew Beng Jin Teoh, Dr. Jae Woo Park.
+  </p>
 
   </div>
 
