@@ -17,7 +17,7 @@ minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "n
 # Site Settings
 locale                   : "en-US"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
-title                    : "KO Hanjun"
+title                    : "Han Jun Ko"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead 
 name                     : "Your Name"
@@ -113,15 +113,15 @@ analytics:
 
 # Site Author
 author:
-  name             : "KO Hanjun"
+  name             : "Han Jun Ko"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "M.S. Candidate in Statistics"
-  location         : "Gangnam, Seoul, Korea"
+  location         : "Seoul, Korea"
   email            :
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "jason801601@gmail.com"
+      url: "jason801601@naver.com"
     #- label: "Website"
     #  icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
