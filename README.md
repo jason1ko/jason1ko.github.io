@@ -19,7 +19,7 @@ The site organizes notes, projects, and research reports across various topics:
 ## 🔗 Links
 - **Blog**: [https://jason1ko.github.io/](https://jason1ko.github.io/)
 - **GitHub Profile**: [https://github.com/jason1ko](https://github.com/jason1ko)
-- **Email**: jason1ko@example.com
+- **Email**: jason801601@naver.com
 
 ## 🚀 Future Updates
 I will continue uploading:
