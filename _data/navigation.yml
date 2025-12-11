@@ -2,8 +2,8 @@
 main:
   - title: "Home"
     url: /
-  - title: "Bio"
-    url: /bio/
+  - title: "Research"
+    url: /research/
   - title: "Transcript"
     url: /transcript/
   - title: "CV"
