@@ -119,6 +119,174 @@ permalink: /research/
     Advisor: Prof. Andrew Beng Jin Teoh, Dr. Jae Woo Park.
   </p>
 
+
+
+  <h1>2. Master</h1>
+   <h2>Asymptotic Error and Regularization Path in High-Dimensional LDA: A Random Matrix Approach</h2>
+
+    
+  <p>
+    This repository accompanies my master's research paper, which studies
+    <strong>regularized discriminant analysis (rLDA)</strong> in the
+    <strong>high-dimensional, low-sample-size (HDLSS)</strong> regime using tools from
+    <strong>random matrix theory (RMT)</strong>.<br>
+    It contains selected <strong>R codes</strong> that reproduce the theoretical derivations,
+    numerical experiments, and figures presented in the paper.
+  </p>
+
+  <hr>
+
+  <h2>📘 Paper Overview</h2>
+
+  <p>
+    <strong>Title:</strong> <em>Regularized Discriminant Analysis in the HDLSS Regime: A Random Matrix Perspective</em><br>
+    <strong>Author:</strong> Han Jun Ko<br>
+    <strong>Date:</strong> January 2025<br>
+    <strong>Institution:</strong> Yonsei University, Department of Statistics
+  </p>
+
+  <h3>Abstract (Summary)</h3>
+
+  <p>
+    This work analyzes the asymptotic classification error of ridge-regularized LDA in the HDLSS regime.<br>
+    We establish explicit limiting forms for the misclassification risk:
+  </p>
+
+  <p>
+    <code>Err(\hat{w}_\lambda) \to \Phi(-\Theta(\lambda))</code>
+  </p>
+
+  <p>
+    and provide theoretical and numerical characterization of the optimal regularization parameter
+    λ as a function of the aspect ratio γ = p/n and correlation strength ρ in Toeplitz covariance
+    structures (AR(1), Matérn).
+  </p>
+
+  <hr>
+
+  <h2>🧮 Key Contributions</h2>
+
+  <ol>
+    <li>
+      <strong>Closed-form limit under Σ = I</strong>
+      <ul>
+        <li>Derived a piecewise closed-form expression for the MDP limit Θ(0) across regimes γ &lt; 1, γ = 1, γ &gt; 1.</li>
+        <li>Theoretical error curve Φ(−Θ(0)) peaks at γ = 1, reconciling classical HDLSS observations.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Toeplitz Covariance Validation</strong>
+      <ul>
+        <li>Verified via <strong>Szegő’s theorem</strong> that AR(1) and Matérn covariances satisfy RMT spectral assumptions.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Stable Approximation Pipeline</strong>
+      <ul>
+        <li>Implemented a numerically stable computation of Θ(λ) using empirical spectral sums.</li>
+        <li>Mapped <strong>λ<sub>opt</sub>(γ, ρ)</strong> and analyzed the transition between MDP (λ = 0) and MD (λ = ∞).</li>
+      </ul>
+    </li>
+  </ol>
+
+  <hr>
+
+  <h2>🧠 Theoretical Framework</h2>
+
+  <p>
+    Regularized LDA forms a continuum between the <strong>Maximal Data Piling (MDP)</strong> and
+    <strong>Mean Difference (MD)</strong> rules:
+  </p>
+
+  <p>
+    <code>v(\lambda) = (CC^\top + \lambda I)^{-1} w, &nbsp; \lambda &gt; 0.</code>
+  </p>
+
+  <p>As λ varies:</p>
+  <ul>
+    <li>λ = 0 → Maximal Data Piling (MDP)</li>
+    <li>λ = ∞ → Mean Difference (MD)</li>
+    <li>Intermediate λ → Ridge-regularized direction connecting both ends</li>
+  </ul>
+
+  <p>
+    The limiting misclassification risk depends on the
+    <strong>Stieltjes transform</strong> of the sample covariance spectral distribution
+    (Marchenko–Pastur law).
+  </p>
+
+  <hr>
+
+  <h2>📊 Repository Contents</h2>
+
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>File</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>ar1_example.R</code></td>
+        <td>plot of Θ(λ), from Dobriban, E. &amp; Wager, S. (2018)</td>
+      </tr>
+      <tr>
+        <td><code>rda_functions.R</code></td>
+        <td>calculate Stieltjes functions, from Dobriban, E. &amp; Wager, S. (2018)</td>
+      </tr>
+      <tr>
+        <td><code>rda_rcpp2.cpp</code></td>
+        <td>generate multivariate Normal using Rcpp</td>
+      </tr>
+      <tr>
+        <td><code>results.R</code></td>
+        <td>includes all codes and functions needed for the paper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <h2>🔍 Numerical Patterns Observed</h2>
+
+  <ul>
+    <li>λ<sub>opt</sub> <strong>increases</strong> with γ and <strong>decreases</strong> with ρ.</li>
+    <li>Θ(λ<sub>opt</sub>) is close to Θ(0) at small γ and approaches Θ(∞) as γ grows.</li>
+    <li>
+      Under Matérn covariance, Φ(−Θ(λ<sub>opt</sub>)) and Φ(−Θ(∞)) nearly coincide,
+      indicating smoother effective regularization.
+    </li>
+  </ul>
+
+  <hr>
+
+  <h2>🔗 Key References</h2>
+
+  <ul>
+    <li>
+      Dobriban, E. &amp; Wager, S. (2018).
+      High-dimensional asymptotics of prediction: Ridge regression and classification.
+      <em>Annals of Statistics</em>.
+    </li>
+    <li>
+      Ahn, J. &amp; Marron, J. S. (2010).
+      The maximal data piling direction for discrimination.
+      <em>Biometrika</em>.
+    </li>
+    <li>
+      Lee, M. H., Ahn, J., &amp; Jeon, Y. (2013).
+      HDLSS discrimination with adaptive data piling.
+      <em>Journal of Computational and Graphical Statistics (JCGS)</em>.
+    </li>
+    <li>
+      Bai, Z. &amp; Silverstein, J. (2010).
+      <em>Spectral Analysis of Large Dimensional Random Matrices</em>. Springer.
+    </li>
+  </ul>
+
+    
+
   </div>
 
   
