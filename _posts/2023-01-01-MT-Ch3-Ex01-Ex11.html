@@ -1,0 +1,1024 @@
+---
+title: "Ch3 Ex.01 ~ Ex.11"
+date: 2023-01-01 23:30:59
+categories: [Measure Theory]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+  
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="differentiation-and-integration" class="section level1">
+<h1>3. Differentiation and Integration</h1>
+<div id="suppose-psi-is-an-integrable-function-on-mathbbrd-with-int_mathbbrd-psitdt-1.-set-k_deltax-delta-dpsileftfracxdeltaright." class="section level2">
+<h2>1. Suppose <span class="math inline">\(\psi\)</span> is an
+integrable function on <span class="math inline">\(\mathbb{R}^d\)</span>
+with <span class="math inline">\(\int_{\mathbb{R}^d} \psi(t)\,dt =
+1\)</span>. Set <span class="math inline">\(K_\delta(x) =
+\delta^{-d}\psi\left(\frac{x}{\delta}\right)\)</span>.</h2>
+<div id="a-show-that-k_delta_delta0-is-a-family-of-good-kernels." class="section level3">
+<h3>(a) Show that <span class="math inline">\(\{K_\delta\}_{\delta&gt;0}\)</span> is a family of
+good kernels.</h3>
+<p><strong>proof</strong></p>
+<p>① <span class="math inline">\(\int_{\mathbb{R}^d} K_\delta(x)\,dx =
+1\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{\mathbb{R}^d} K_\delta(x)\,dx
+&amp;= \int_{\mathbb{R}^d} \delta^{-d}
+\psi\left(\frac{x}{\delta}\right)\,dx
+\quad (\text{Let } z = \tfrac{x}{\delta} \Rightarrow dx = \delta^d dz)
+\\
+&amp;= \delta^{-d} \int_{\mathbb{R}^d} \psi(z)\, \delta^d dz
+= \int_{\mathbb{R}^d} \psi(z)\,dz
+= 1.
+\end{aligned}
+\]</span></p>
+<p>② <span class="math inline">\(\int_{|x|&gt;1} |K_\delta(x)|\,dx \le A
+\quad (A&gt;0)\)</span></p>
+<p><span class="math display">\[
+\int_{\mathbb{R}^d} |K_\delta(x)|\,dx
+= \int_{\mathbb{R}^d} \delta^{-d} |\psi(z)|\,dz
+= \int_{\mathbb{R}^d} |\psi(z)|\,dz &lt; \infty
+\quad (\because\ \psi \text{ is integrable})
+\]</span></p>
+<p>③ <span class="math inline">\(\lim_{\delta\to 0} \int_{|x|\ge \gamma}
+|K_\delta(x)|\,dx = 0\)</span> for all <span class="math inline">\(\gamma&gt;0\)</span>.</p>
+<p><span class="math inline">\(\psi\)</span> is integrable, so there is
+<span class="math inline">\(r_\varepsilon&gt;0\)</span> such that <span class="math inline">\(\int_{|t|\ge r_\varepsilon} |\psi(t)|\,dt &lt;
+\varepsilon\)</span> for given <span class="math inline">\(\varepsilon&gt;0\)</span>. (Prop. 2.1.12(ii)). Let
+<span class="math inline">\(z = \frac{x}{\delta}\)</span>, then <span class="math inline">\(\int_{|x|\ge \gamma} |K_\delta(x)|\,dx =
+\int_{|z|\ge \gamma/\delta} \delta^{-d} |\psi(z)|\,dz &lt;
+\varepsilon\)</span>.</p>
+<p>For given <span class="math inline">\(\gamma&gt;0\)</span>, consider
+<span class="math inline">\(\delta&gt;0\)</span> with <span class="math inline">\(\delta r_\varepsilon &lt; \gamma\)</span>.</p>
+<p><span class="math inline">\(\{x\in\mathbb{R}^d : |x|&gt;\gamma \}
+\subset \{ x\in\mathbb{R}^d : |z| &gt; \delta r_\varepsilon \}\)</span>
+(since <span class="math inline">\(\gamma &gt; \delta
+r_\varepsilon\)</span>), so</p>
+<p><span class="math display">\[
+\int_{|x|\ge \gamma} |K_\delta(x)|\,dx
+= \int_{|z|\ge \gamma/\delta} \delta^{-d} |\psi(z)|\,dz
+&lt; \varepsilon,
+\]</span></p>
+<p>and <span class="math inline">\(\int_{|z|\ge r_\varepsilon}
+|\psi(z)|\,dz &lt; \varepsilon\)</span>.</p>
+<p>To sum up, for every <span class="math inline">\(\varepsilon&gt;0\)</span> there is <span class="math inline">\(\frac{\gamma}{\varepsilon}&gt;0\)</span> such that
+<span class="math inline">\(0&lt;\delta&lt;\frac{\gamma}{\varepsilon}\)</span>
+implies <span class="math inline">\(\int_{|x|\ge\gamma}
+|K_\delta(x)|\,dx &lt; \varepsilon\)</span>. So <span class="math inline">\(\lim_{\delta\to 0} \int_{|x|\ge\gamma}
+|K_\delta(x)|\,dx = 0\)</span>.</p>
+<p>This holds for all <span class="math inline">\(\gamma&gt;0\)</span>.</p>
+</div>
+<div id="b-assume-that-psi-is-bounded-and-supported-on-a-bounded-set.-show-that-k_delta_delta0-is-an-approximation-to-the-identity." class="section level3">
+<h3>(b) Assume that <span class="math inline">\(\psi\)</span> is bounded
+and supported on a bounded set. Show that <span class="math inline">\(\{K_\delta\}_{\delta&gt;0}\)</span> is an
+approximation to the identity.</h3>
+<p><strong>proof</strong></p>
+<p><span class="math inline">\(|\psi(t)| \le M\)</span> and <span class="math inline">\(\psi(t) = 0\)</span> for <span class="math inline">\(|t| &gt; B \quad (M,B&gt;0)\)</span></p>
+<p>① <span class="math inline">\(|K_\delta(x)| \le M
+\delta^{-d}\)</span></p>
+<p>When <span class="math inline">\(\left|\frac{x}{\delta}\right| \le
+B\)</span>,<br />
+<span class="math display">\[|K_\delta(x)| = |\delta^{-d}\psi(x/\delta)|
+= \delta^{-d}|\psi(t)| \le M \delta^{-d}\]</span></p>
+<p>When <span class="math inline">\(\left|\frac{x}{\delta}\right| &gt;
+B\)</span>,<br />
+<span class="math display">\[|K_\delta(x)| = 0 \le M
+\delta^{-d}\]</span></p>
+<p>② <span class="math inline">\(|K_\delta(x)| \le
+C\,\delta^{-1}\frac{1}{|x|^{d+1}}\)</span></p>
+<p>When <span class="math inline">\(\left|\frac{x}{\delta}\right| \le
+B\)</span>,<br />
+<span class="math display">\[
+\begin{aligned}
+|K_\delta(x)|
+&amp;= \delta^{-d} |\psi(x/\delta)|
+= \delta^{-(d+1)} |\delta \psi(x/\delta)| \\
+&amp;\le \frac{B^{d+1}}{|x|^{d+1}} M \delta
+= C \delta \frac{1}{|x|^{d+1}}
+\quad (C = M B^{d+1}).
+\end{aligned}
+\]</span></p>
+<p>When <span class="math inline">\(\left|\frac{x}{\delta}\right| &gt;
+B\)</span>,<br />
+<span class="math display">\[|K_\delta(x)| = 0 \le
+C\,\delta\frac{1}{|x|^{d+1}}\]</span></p>
+<p>③ Since <span class="math inline">\(\int_{\mathbb{R}^d}
+K_\delta(x)\,dx = 1\)</span>, <span class="math inline">\(K_\delta\)</span> is an approximation to
+identity.</p>
+</div>
+<div id="c-show-that-lim_deltato-0-f-k_delta---f_infty-0-for-good-kernels-l1-linfty-to-linfty." class="section level3">
+<h3>(c) Show that <span class="math inline">\(\lim_{\delta\to 0} \|(f *
+K_\delta) - f\|_\infty = 0\)</span> for good kernels (<span class="math inline">\(L^1 * L^\infty \to L^\infty\)</span>).</h3>
+<p><strong>proof</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\|(f * K_\delta) - f\| \\
+&amp;= \int_{\mathbb{R}^d} |(f * K_\delta)(x) - f(x)|\,dx \\
+&amp;= \int_{\mathbb{R}^d} \left| \int_{\mathbb{R}^d}
+f(x-y)K_\delta(y)\,dy - f(x) \right| dx \quad (\text{def of }
+f*K_\delta) \\
+&amp;= \int_{\mathbb{R}^d} \left| \int_{\mathbb{R}^d} (f(x-y) - f(x))
+K_\delta(y)\,dy \right| dx \\
+&amp;\le \int_{\mathbb{R}^d} \int_{\mathbb{R}^d} |f(x-y) - f(x)|
+|K_\delta(y)|\,dy\,dx.
+\end{aligned}
+\]</span></p>
+<p>(<span class="math inline">\(f\)</span> is measurable on <span class="math inline">\(\mathbb{R}^d\)</span>, so <span class="math inline">\(f(x-y)\)</span> and <span class="math inline">\(f(x)\)</span> are measurable on <span class="math inline">\(\mathbb{R}^{2d}\)</span>;<br />
+<span class="math inline">\(K_\delta\)</span> is measurable on <span class="math inline">\(\mathbb{R}^d\)</span>, as well as on <span class="math inline">\(\mathbb{R}^{2d}\)</span> (Prop 2.3.9, Cor
+2.3.7)<br />
+<span class="math inline">\(\Rightarrow\)</span> Tonelli’s theorem)</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;... \\
+&amp;= \int_{\mathbb{R}^d} \int_{\mathbb{R}^d} |f(x-y) - f(x)|
+|K_\delta(y)|\,dx\,dy. \\
+&amp;= \int_{|y|\le \gamma} \int_{\mathbb{R}^d} |f(x-y) - f(x)|
+|K_\delta(y)|\,dx\,dy
+\quad (\text{for any } \gamma&gt;0)
+\;+\;
+\int_{|y|&gt;\gamma} \int_{\mathbb{R}^d} |f(x-y) - f(x)|
+|K_\delta(y)|\,dx\,dy.
+\end{aligned}
+\]</span></p>
+<p>① <span class="math inline">\(\int_{|y|\le \gamma}
+\int_{\mathbb{R}^d} |f(x-y) - f(x)| |K_\delta(y)|\,dx\,dy\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;... \\
+&amp;= \int_{|y|\le \gamma} |K_\delta(y)| \left( \int_{\mathbb{R}^d}
+|f(x-y) - f(x)|\,dx \right) dy \\
+&amp;= \int_{|y|\le \gamma} |K_\delta(y)| \|f(x-y) - f(x)\|_1 dy
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(f \in L^1(\mathbb{R}^d)\)</span> so <span class="math inline">\(\lim_{y\to 0} \|f(x-y) - f(x)\|_1 = 0\)</span>
+(Prop 2.2.7). Then, for given <span class="math inline">\(\varepsilon&gt;0\)</span>, there is <span class="math inline">\(\gamma_\varepsilon &gt; 0\)</span> such that <span class="math inline">\(|y| &lt; \gamma_\varepsilon\)</span> implies <span class="math inline">\(\|f(x-y) - f(x)\|_1 &lt; \varepsilon\)</span>.
+Replace <span class="math inline">\(\gamma\)</span> to <span class="math inline">\(\gamma_\varepsilon\)</span>, then</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{|y|\le \gamma_\varepsilon} \int_{\mathbb{R}^d} |f(x-y) -
+f(x)|\,|K_\delta(y)|\,dx\,dy &lt; \int_{|y|\le \gamma_\varepsilon}
+|K_\delta(y)| \cdot \varepsilon \, dy \le \varepsilon
+\int_{\mathbb{R}^d} |K_\delta(y)|\,dy \le A \cdot \varepsilon
+\end{aligned}
+\]</span></p>
+<p>② <span class="math inline">\(\int_{|y| &gt; \gamma_\varepsilon}
+\int_{\mathbb{R}^d} |f(x-y) - f(x)| |K_\delta(y)|\,dx\,dy\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;... \\
+&amp;= \int_{|y| &gt; \gamma_\varepsilon} |K_\delta(y)| \left(
+\int_{\mathbb{R}^d} |f(x-y) - f(x)|\,dx \right) dy \\
+&amp;\le \int_{|y| &gt; \gamma_\varepsilon} |K_\delta(y)| \left(
+\int_{\mathbb{R}^d} (|f(x-y)| + |f(x)|)\,dx \right) dy \\
+&amp;= \int_{|y| &gt; \gamma_\varepsilon} |K_\delta(y)| \cdot 2\|f\|_1
+\, dy \quad (\because \text{translation invariance}) \\
+&amp;= 2\|f\|_1 \int_{|y| &gt; \gamma_\varepsilon} |K_\delta(y)| \, dy
+\end{aligned}
+\]</span></p>
+<p>Note that <span class="math inline">\(\lim_{\delta\to 0} \int_{|y|
+&gt; \gamma_\varepsilon} |K_\delta(y)|\,dy = 0\)</span> for all <span class="math inline">\(\gamma_\varepsilon &gt; 0\)</span>.</p>
+<p>③ Conclusion</p>
+<p>Then, <span class="math display">\[\|(f * K_\delta) - f\|_1 \le
+A\varepsilon + 2\|f\|_1 \int_{|y| &gt; \gamma_\varepsilon}
+|K_\delta(y)|\,dy\]</span> and</p>
+<p><span class="math display">\[\limsup_{\delta\to 0} \|(f * K_\delta) -
+f\|_1 \le A\varepsilon + 0\]</span></p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(\limsup_{\delta\to 0} \|(f*K_\delta) - f\|_1 =
+0\)</span> and thus <span class="math display">\[\lim_{\delta\to 0}
+\|(f*K_\delta) - f\|_1 = 0\]</span> (∵ <span class="math inline">\(\liminf_{\delta\to 0} \|f*K_\delta - f\|_1 \ge
+0\)</span>).</p>
+</div>
+</div>
+<div id="suppose-k_delta-is-a-family-of-kernels-that-satisfies-i-k_deltax-le-c_1-delta-d-ii-k_deltax-le-c_2-delta-xd1-iii-int_mathbbrd-k_deltaxdx-c-c-ge-0.-show-that-if-f-in-l1mathbbrd-then-lim_deltato-0-f-k_deltax-c-fx-for-x-in-lebesgue-set-of-f.-when-c-0-show-that-lim_deltato-0-f-k_delta-0-a.e.-x." class="section level2">
+<h2>2. Suppose <span class="math inline">\(\{K_\delta\}\)</span> is a
+family of kernels that satisfies<br> (i) <span class="math inline">\(|K_\delta(x)| \le c_1 \delta^{-d}\)</span>,<br>
+(ii) <span class="math inline">\(|K_\delta(x)| \le c_2 \delta /
+|x|^{d+1}\)</span>,<br> (iii) <span class="math inline">\(\int_{\mathbb{R}^d} K_\delta(x)\,dx = c\)</span>
+(<span class="math inline">\(c \ge 0\)</span>). <br> Show that if <span class="math inline">\(f \in L^1(\mathbb{R}^d)\)</span>, then <span class="math inline">\(\lim_{\delta\to 0} (f * K_\delta)(x) = c
+f(x)\)</span> for <span class="math inline">\(x \in\)</span> Lebesgue
+set of <span class="math inline">\(f\)</span>. When <span class="math inline">\(c = 0\)</span>, show that <span class="math inline">\(\lim_{\delta\to 0} f * K_\delta = 0\)</span> a.e.
+<span class="math inline">\(x\)</span>.</h2>
+<p><strong>proof</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+(f * K_\delta)(x) - c f(x)
+&amp;= \left( \int_{\mathbb{R}^d} f(x-y) K_\delta(y)\,dy - f(x)
+\int_{\mathbb{R}^d} K_\delta(y)\,dy \right) \\
+&amp;= \int_{\mathbb{R}^d} (f(x-y) - f(x)) K_\delta(y)\,dy
+\end{aligned}
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+\begin{aligned}
+|(f * K_\delta)(x) - c f(x)|
+&amp;\le \int_{\mathbb{R}^d} |f(x-y) - f(x)| \, |K_\delta(y)| \,dy \\
+&amp;= \int_{|y| \le \delta} |f(x-y) - f(x)|\,|K_\delta(y)|\,dy+
+\sum_{k=0}^\infty \int_{2^k \delta &lt; |y| \le 2^{k+1} \delta} |f(x-y)
+- f(x)| |K_\delta(y)|\, dy
+\end{aligned}
+\]</span></p>
+<p>① <span class="math inline">\(\int_{|y|\le \delta} |f(x-y) - f(x)|
+|K_\delta(y)| dy &lt; C_1 \varepsilon\)</span>.</p>
+<p><span class="math inline">\(\int_{|y|\le \delta} |f(x-y) - f(x)|
+|K_\delta(y)| dy \le \int_{|y|\le \delta} |f(x-y) - f(x)| c_1
+\delta^{-d} dy \le c_1 A(\delta)\)</span> (in lemma 3.2.2). Since <span class="math inline">\(\lim_{\delta\to 0} A(\delta) = 0\)</span>, for
+given <span class="math inline">\(\varepsilon&gt;0\)</span> there is
+<span class="math inline">\(\eta&#39;&gt;0\)</span> such that <span class="math inline">\(0 &lt; \delta &lt; \eta&#39;\)</span> implies
+<span class="math inline">\(\int_{|y|\le \delta} |f(x-y) - f(x)|
+|K_\delta(y)| dy \le c_1 A(\delta) &lt; C_1 \varepsilon\)</span> for
+<span class="math inline">\(x\)</span> in Lebesgue set of <span class="math inline">\(f\)</span>.</p>
+<p>② <span class="math inline">\(\sum_{k=0}^\infty \int_{2^k\delta &lt;
+|y| \le 2^{k+1}\delta} |f(x-y) - f(x)| |K_\delta(y)| dy \le
+\sum_{k=0}^\infty c_2 \delta 2^{-k(d+1)} A(2^{k+1}\delta)\)</span>.</p>
+<p><span class="math inline">\(\int_{2^k\delta &lt; |y| \le
+2^{k+1}\delta} |f(x-y) - f(x)| |K_\delta(y)| dy\)</span></p>
+<p><span class="math inline">\(\le \int_{2^k\delta &lt; |y| \le
+2^{k+1}\delta} |f(x-y) - f(x)| \, c_2 \delta / |y|^{d+1} \,
+dy\)</span></p>
+<p><span class="math inline">\(\le \int_{2^k\delta &lt; |y| \le
+2^{k+1}\delta} |f(x-y) - f(x)| \, c_2 \delta / (2^k \delta)^{d+1} \, dy
+\quad (\because 2^k \delta \le |y|)\)</span></p>
+<p><span class="math inline">\(= \frac{c_2}{2^{k(d+1)} \delta^d}
+\int_{|y|\le 2^{k+1}\delta} |f(x-y) - f(x)|\, dy \quad (\text{note that
+} (2^{k+1}\delta)^d = 2^d \cdot 2^{kd} \cdot \delta^d)\)</span></p>
+<p><span class="math inline">\(= \frac{c_2 \cdot 2^d}{2^{k(d+1)}}
+\int_{|y|\le 2^{k+1}\delta} |f(x-y) - f(x)|\, dy \qquad (C_2 = c_2
+2^d)\)</span></p>
+<p>③</p>
+<p>So, <span class="math inline">\(\sum_{k=0}^\infty
+\frac{C_2}{2^{k(d+1)}} A(2^{k+1}\delta)\)</span> converges, so there is
+<span class="math inline">\(N \in \mathbb{N}\)</span> such that <span class="math inline">\(\sum_{k=N+1}^\infty \frac{1}{2^k} &lt;
+\varepsilon\)</span> (given <span class="math inline">\(\varepsilon&gt;0\)</span>).</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(k \ge N+1\)</span></li>
+</ol>
+<p>Since <span class="math inline">\(\exists M&gt;0\)</span> s.t. <span class="math inline">\(A(2^{k+1}\delta) \le M\)</span>,<br />
+<span class="math inline">\(\sum_{k=N+1}^\infty \frac{C_2}{2^{k(d+1)}}
+A(2^{k+1}\delta) \le M \sum_{k=N+1}^\infty \frac{C_2}{2^k} &lt; MC_2
+\varepsilon\)</span>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="math inline">\(1 \le k \le N\)</span></li>
+</ol>
+<p>Since <span class="math inline">\(\lim_{\delta\to 0} A(\delta) =
+0\)</span>, for given <span class="math inline">\(\varepsilon&gt;0\)</span> there is <span class="math inline">\(\eta_k &gt; 0\)</span> such that <span class="math inline">\(0 &lt; \delta &lt; \eta_k\)</span> implies <span class="math inline">\(A(2^{k+1}\delta) &lt; \varepsilon\)</span>. Let
+<span class="math inline">\(\tilde{\eta} = \min(\eta_1, \dots,
+\eta_N)\)</span>, then <span class="math inline">\(0 &lt; \delta &lt;
+\tilde{\eta}\)</span> implies</p>
+<p><span class="math display">\[
+\sum_{k=1}^N \frac{C_2}{2^{k(d+1)}} A(2^{k+1}\delta)
+&lt; \sum_{k=1}^N \frac{C_2}{2^{k(d+1)}} \varepsilon
+\equiv C_2^* \varepsilon.
+\]</span></p>
+<p>To sum up, for given <span class="math inline">\(\varepsilon&gt;0\)</span> there is <span class="math inline">\(\tilde{\gamma} &gt; 0\)</span> such that <span class="math inline">\(0 &lt; \delta &lt; \tilde{\gamma}\)</span>
+implies</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_{k=0}^\infty \frac{C_2}{2^{k(d+1)}} A(2^{k+1}\delta)
+&amp;= \sum_{k=1}^N \frac{C_2}{2^{k(d+1)}} A(2^{k+1}\delta)+
+\sum_{k=N+1}^\infty \frac{C_2}{2^{k(d+1)}} A(2^{k+1}\delta) \\
+&amp;\le MC_2 \varepsilon + C_2^* \varepsilon \equiv C_2^{**}
+\varepsilon.
+\end{aligned}
+\]</span></p>
+<p>④ Conclusion</p>
+<p>So, for every <span class="math inline">\(\varepsilon&gt;0\)</span>,
+there is <span class="math inline">\(\gamma_\varepsilon =
+\min(\eta&#39;, \tilde{\gamma})\)</span> such that <span class="math inline">\(0 &lt; \delta &lt; \gamma_\varepsilon\)</span>
+implies</p>
+<p><span class="math display">\[
+\begin{aligned}
+|(f * K_\delta)(x) - c f(x)|
+&amp;\le \int_{|y|\le \delta} |f(x-y) - f(x)| |K_\delta(y)|\,dy+
+\sum_{k=0}^\infty \int_{2^k\delta &lt; |y| \le 2^{k+1}\delta} |f(x-y) -
+f(x)| |K_\delta(y)|\,dy\\
+&amp;\le C_1 \varepsilon + C_2^{**} \varepsilon
+\equiv C_3 \varepsilon \quad (C_3 &gt; 0).
+\end{aligned}
+\]</span></p>
+<p>Thus, <span class="math inline">\(\lim_{\delta\to 0} (f *
+K_\delta)(x) - c f(x) = 0\)</span> for <span class="math inline">\(x\)</span> in the <strong>Lebesgue set of <span class="math inline">\(f\)</span></strong>.</p>
+<p>Also, when <span class="math inline">\(c = 0\)</span>, <span class="math inline">\(\lim_{\delta\to 0} (f * K_\delta)(x) = 0\)</span>
+a.e. <span class="math inline">\(x\)</span> (<span class="math inline">\(x \in\)</span> Lebesgue set of <span class="math inline">\(f\)</span>).</p>
+</div>
+<div id="suppose-0-is-a-point-of-lebesgue-density-of-the-set-e-subset-mathbbr.-show-that-there-is-an-infinite-sequence-x_n-subset-e-such-that-x_n-neq-0-lim_ntoinfty-x_n-0-and" class="section level2">
+<h2>3. Suppose ‘0’ is a point of Lebesgue density of the set <span class="math inline">\(E \subset \mathbb{R}\)</span>. Show that there is
+an (infinite) sequence <span class="math inline">\(\{x_n\} \subset
+E\)</span> such that <span class="math inline">\(x_n \neq 0\)</span>,
+<span class="math inline">\(\lim_{n\to\infty} x_n = 0\)</span> and</h2>
+<div id="a--x_n-in-e-for-all-n" class="section level3">
+<h3>(a) <span class="math inline">\(-x_n \in E\)</span> for all <span class="math inline">\(n\)</span></h3>
+<p><strong>proof</strong></p>
+<p>① <span class="math inline">\(\dfrac{m(B_n \cap E)}{m(B_n)} \ge
+\dfrac{2}{3} \quad \forall n \ge N_0\)</span></p>
+<p>Let <span class="math inline">\(B_n = B_{1/n}(0)\)</span>, a ball
+centered at origin with radius <span class="math inline">\(\frac{1}{n}\)</span>. Since <span class="math inline">\(\lim_{n\to\infty} m(B_n) = 0\)</span> and ‘0’ is a
+point of density, <span class="math inline">\(\lim_{n\to\infty}
+\frac{m(B_n \cap E)}{m(B_n)} = 1\)</span>. Then, there is <span class="math inline">\(N_0 \in \mathbb{N}\)</span> such that <span class="math inline">\(1 - \frac{m(B_n \cap E)}{m(B_n)} &lt;
+\frac{1}{3}\)</span> for <span class="math inline">\(n \ge N_0\)</span>.
+So <span class="math inline">\(\frac{m(B_n \cap E)}{m(B_n)} \ge
+\frac{2}{3}\)</span> holds for all <span class="math inline">\(n \in
+\mathbb{N}\)</span> with <span class="math inline">\(\frac{1}{n} \le
+\frac{1}{N_0}\)</span>.</p>
+<p>② <span class="math inline">\(E_n \cap (-E_n) \neq
+\varnothing\)</span></p>
+<p>Let <span class="math inline">\(E_n = B_n \cap E\)</span> when <span class="math inline">\(n \ge N_0\)</span> and <span class="math inline">\(E_n = B_n \cap E\)</span> when <span class="math inline">\(n &lt; N_0\)</span>.</p>
+<p><span class="math inline">\(m(E_n) &gt; \frac{2}{3} m(B_n) =
+\frac{2}{3} \cdot \frac{2}{n} = \frac{4}{3n}\)</span> and <span class="math inline">\(m(-E_n) = m(E_n) &gt; \frac{4}{3n}\)</span>.</p>
+<p>Since <span class="math inline">\(-E_n = (-B_n) \cap (-E) = B_n \cap
+(-E)\)</span>, both <span class="math inline">\(E_n\)</span> and <span class="math inline">\(-E_n\)</span> are included in <span class="math inline">\(B_n\)</span>, with measure greater than <span class="math inline">\(\frac{4}{3n}\)</span>. Since <span class="math inline">\(m(B_n) = \frac{2}{n}\)</span>, the measure of
+<span class="math inline">\(E_n \cap (-E_n)\)</span> is greater than
+<span class="math inline">\(\frac{8}{3n^2}\)</span>, which is positive.
+So <span class="math inline">\(E_n \cap (-E_n)\)</span> is not
+empty.</p>
+<p>③ <span class="math inline">\(-x_n \in E\)</span></p>
+<p>Choose <span class="math inline">\(x_n \in E_n \cap (-E_n)\)</span>
+other than 0. Since <span class="math inline">\(|x_n| &lt;
+\frac{1}{n}\)</span> (because <span class="math inline">\(x_n \in E_n
+\subset B_n\)</span>), <span class="math inline">\(\lim_{n\to\infty} x_n
+= 0\)</span>.</p>
+<p>It is obvious that <span class="math inline">\(x_n \in E_n \subset
+E\)</span>. Also, <span class="math inline">\(x_n \in -E_n \subset
+-E\)</span>, so <span class="math inline">\(-x_n \in E\)</span>.</p>
+</div>
+<div id="b-2x_n-in-e-for-all-n-in-mathbbn." class="section level3">
+<h3>(b) <span class="math inline">\(2x_n \in E\)</span> for all <span class="math inline">\(n \in \mathbb{N}\)</span>.</h3>
+<p><strong>proof</strong></p>
+<p>① <span class="math inline">\(\dfrac{m(B_n \cap E)}{m(B_n)} \ge
+\dfrac{2}{3} \quad \forall n \ge N_0\)</span></p>
+<p>Let <span class="math inline">\(B_n = B_{1/n}(0)\)</span>, a ball
+centered at origin with radius <span class="math inline">\(\frac{1}{n}\)</span>. Since <span class="math inline">\(\lim_{n\to\infty} m(B_n) = 0\)</span> and ‘0’ is a
+point of density of <span class="math inline">\(E\)</span>, <span class="math inline">\(\lim_{n\to\infty} \dfrac{m(B_n \cap E)}{m(B_n)} =
+1\)</span>. Then, there is <span class="math inline">\(N_0 \in
+\mathbb{N}\)</span> such that <span class="math inline">\(1 -
+\dfrac{m(B_n \cap E)}{m(B_n)} &lt; \dfrac{1}{3}\)</span> for <span class="math inline">\(n \ge N_0\)</span>. So <span class="math inline">\(\dfrac{m(B_n \cap E)}{m(B_n)} \ge
+\dfrac{2}{3}\)</span> holds for all <span class="math inline">\(n \in
+\mathbb{N}\)</span> with <span class="math inline">\(\dfrac{1}{n} \le
+\dfrac{1}{N_0}\)</span>.</p>
+<p>② <span class="math inline">\(E_n \cap \tfrac{1}{2} E_n \neq
+\varnothing\)</span>.</p>
+<p>Let <span class="math inline">\(E_n = B_n \cap E\)</span>. Then<br />
+<span class="math inline">\(m(E_n) = m(E_n \cap B_n) &gt;
+\dfrac{2}{3n}\)</span>.</p>
+<p><span class="math inline">\(\tfrac{1}{2}E_n = \tfrac{1}{2}B_n \cap
+\tfrac{1}{2}E = B_{2n} \cap \tfrac{1}{2}E\)</span>, and<br />
+<span class="math inline">\(m(\tfrac{1}{2}E_n) = \tfrac{1}{2} m(E_n)
+&gt; \dfrac{2}{3n}\)</span> (∵ <span class="math inline">\(m(E_n) &gt;
+\dfrac{4}{3n}\)</span>).</p>
+<p><span class="math inline">\(E_n \cap B_{2n} = E_{2n}\)</span>,
+so<br />
+<span class="math inline">\(m(E_{2n}) &gt; \dfrac{2}{3} m(B_{1/(2n)}(0))
+= \dfrac{2}{3} \cdot \dfrac{1}{2n} = \dfrac{1}{3n}\)</span> (∵ ①).</p>
+<p>Both <span class="math inline">\(E_n\)</span> and <span class="math inline">\(\tfrac{1}{2}E_n\)</span> are included in <span class="math inline">\(B_n\)</span>, so <span class="math inline">\(E_n\)</span> and <span class="math inline">\(\tfrac{1}{2}E_n\)</span> intersect in a set of
+measure greater than <span class="math inline">\(\dfrac{1}{3n}\)</span>,
+which is positive. So <span class="math inline">\(E_n \cap
+(\tfrac{1}{2}E_n)\)</span> is not empty and contains numbers other than
+0.</p>
+<p>③ <span class="math inline">\(2x_n \in E\)</span></p>
+<p>Choose <span class="math inline">\(x_n \in E_n \cap
+(\tfrac{1}{2}E_n)\)</span> other than 0. <span class="math inline">\(x_n
+\in B_n\)</span>, so <span class="math inline">\(|x_n| &lt;
+\dfrac{1}{n}\)</span> and thus <span class="math inline">\(\lim_{n\to\infty} x_n = 0\)</span>.</p>
+<p><span class="math inline">\(x_n \in E_n\)</span> implies <span class="math inline">\(x_n \in E\)</span>, and <span class="math inline">\(x_n \in \tfrac{1}{2}E_n\)</span> implies <span class="math inline">\(2x_n \in E\)</span>. So, <span class="math inline">\(x_n \in E\)</span> and <span class="math inline">\(2x_n \in E\)</span>.</p>
+</div>
+</div>
+<div id="f-is-integrable-on-mathbbrd-and-f-is-not-identically-zero.-show-that" class="section level2">
+<h2>4 <span class="math inline">\(f\)</span> is integrable on <span class="math inline">\(\mathbb{R}^d\)</span> and <span class="math inline">\(f\)</span> is not identically zero. Show that</h2>
+<div id="i-fx-ge-dfraccxd-for-some-c0-and-x1" class="section level3">
+<h3>(i) <span class="math inline">\(f^*(x) \ge \dfrac{C}{|x|^d}\)</span>
+for some <span class="math inline">\(C&gt;0\)</span> and <span class="math inline">\(|x|&gt;1\)</span></h3>
+<p><strong>proof</strong></p>
+<p>① <span class="math inline">\(|f| \neq 0\)</span>, so <span class="math inline">\(\int_{\mathbb{R}^d} |f| &gt; 0\)</span> and there
+is a ball <span class="math inline">\(B_r \subset \mathbb{R}^d\)</span>
+such that <span class="math inline">\(\int_{B_r} |f| &gt;
+0\)</span>.</p>
+<p>②</p>
+<p>Choose <span class="math inline">\(x \in \mathbb{R}^d\)</span> such
+that <span class="math inline">\(|x| \ge 1\)</span>. Let <span class="math inline">\(\delta = r + |x|\)</span>, then <span class="math inline">\(B_r \subset B_\delta(x)\)</span> and</p>
+<p><span class="math display">\[
+\begin{aligned}
+f^*(x) &amp;\ge \frac{1}{m(B_\delta(x))} \int_{B_\delta(x)} |f(y)|\,dy
+\quad (\text{def of maximal function}) \\
+&amp;= v_d^{-1} (r + |x|)^{-d} \int_{B_\delta(x)} |f(y)|\,dy \quad (v_d
+: \text{volume of unit ball})\\
+&amp;\ge v_d^{-1}(r + |x|)^{-d} \int_{B_r} |f(y)|\,dy \quad (\because
+B_r \subset B_\delta(x))\\
+&amp;\ge v_d^{-1} a^d |x|^{-d} \int_{B_r} |f(y)|\,dy \quad (\text{let }
+r + |x| \le a|x|, a&gt;0)\\
+&amp;\equiv \frac{C}{|x|^d} \quad (C = v_d^{-1} a^d \int_{B_r}
+|f(y)|\,dy), \quad (|x| \ge 1)
+\end{aligned}
+\]</span></p>
+</div>
+<div id="ii-f-is-not-integrable-on-mathbbrd" class="section level3">
+<h3>(ii) <span class="math inline">\(f^*\)</span> is not integrable on
+<span class="math inline">\(\mathbb{R}^d\)</span></h3>
+<p><strong>proof</strong></p>
+<p>In exercise 2-10, we’ve shown that <span class="math inline">\(\dfrac{1}{|x|^b}\)</span> is integrable iff <span class="math inline">\(b&gt;d\)</span>. Thus <span class="math inline">\(\dfrac{1}{|x|^d}\)</span> is not integrable; <span class="math inline">\(\int_{|x|\ge 1} \dfrac{1}{|x|^d} dx =
+\infty\)</span>.</p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\int_{\mathbb{R}^d} f^*(x)\,dx
+\ge \int_{|x|\ge 1} f^*(x)\,dx
+\ge C \int_{|x|\ge 1} \frac{1}{|x|^d} dx
+= \infty.
+\]</span></p>
+</div>
+<div id="iii-if-f-is-supported-on-the-unit-ball-b_1-with-int_b_1-f-1-then-mx-fx-alpha-ge-dfraccalpha-for-some-c0-and-all-sufficiently-small-alpha.-let-f_alpha-x-fx-alpha-let-b_1-x-le-1-w.l.o.g." class="section level3">
+<h3>(iii) if <span class="math inline">\(f\)</span> is supported on the
+unit ball <span class="math inline">\(B_1\)</span>, with <span class="math inline">\(\int_{B_1} |f| = 1\)</span>, then <span class="math inline">\(m(\{x : f^*(x) &gt; \alpha\}) \ge
+\dfrac{C}{\alpha}\)</span> for some <span class="math inline">\(C&gt;0\)</span> and all sufficiently small <span class="math inline">\(\alpha\)</span>. (Let <span class="math inline">\(F_\alpha = \{x : f^*(x) &gt; \alpha\}\)</span>;
+let <span class="math inline">\(B_1 = \{ |x| \le 1\}\)</span>
+w.l.o.g.)</h3>
+<p><strong>proof</strong></p>
+<p>① <span class="math inline">\(x \in B_1\)</span> : <span class="math inline">\(\dfrac{1}{m(B_1)} \int_{B_1} |f(y)|\,dy =
+\dfrac{1}{v_d}\)</span>, so <span class="math inline">\(\sup_{B \subset
+\mathbb{R}^d} \dfrac{1}{m(B)} \int_B |f(y)|\,dy \ge
+\dfrac{1}{v_d}\)</span> and <span class="math inline">\(f^*(x) \ge
+\dfrac{1}{v_d}\)</span>.</p>
+<p>② <span class="math inline">\(|x|&gt;1\)</span> : let <span class="math inline">\(B\)</span> be a ball containing <span class="math inline">\(x\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(B \cap B_1 = \varnothing\)</span> :
+<span class="math inline">\(\int_B |f| = 0\)</span> so <span class="math inline">\(\dfrac{1}{m(B)} \int_B |f(y)|\,dy =
+0\)</span>.</p></li>
+<li><p><span class="math inline">\(B \cap B_1 \ne
+\varnothing\)</span>.</p></li>
+</ol>
+<p>Let <span class="math inline">\(B&#39;\)</span> be the smallest ball
+such that <span class="math inline">\(x \in B&#39;\)</span> and <span class="math inline">\(B_1 \subset B&#39;\)</span>. The radius of <span class="math inline">\(B&#39;\)</span> is <span class="math inline">\(\tfrac{1}{2}(|x|+1)\)</span>. Then <span class="math display">\[
+\begin{aligned}
+\dfrac{1}{m(B&#39;)} \int_{B&#39;} |f(y)|\,dy
+&amp;= \dfrac{1}{\left(\frac{|x|+1}{2}\right)^d v_d} \int_{B&#39;}
+|f(y)|\,dy \\
+&amp;\ge \left\{\left(\frac{|x|+1}{2}\right)^d v_d\right\}^{-1}
+\int_{B_1} |f(y)|\,dy \quad (\because B_1 \subset B&#39;) \\
+&amp;= \left(\frac{|x|+1}{2}\right)^{-d} v_d^{-1} =
+\dfrac{2^d}{(|x|+1)^d v_d}.
+\end{aligned}
+\]</span></p>
+<p>③ <span class="math inline">\(f^* \ge\)</span></p>
+<p>Then, <span class="math inline">\(f^*(x) \ge \dfrac{1}{v_d}\)</span>
+(∵①) and <span class="math inline">\(f^*(x) \ge \dfrac{2^d}{(|x|+1)^d
+v_d}\)</span> for <span class="math inline">\(|x|&gt;1\)</span>
+(∵②).</p>
+<p>④ <span class="math inline">\(\{x : f^*(x) &gt; \alpha\} \supset
+\left\{ x : \dfrac{2^d}{(|x|+1)^d v_d} &gt; \alpha \right\}\)</span> for
+<span class="math inline">\(0&lt;\alpha&lt;\dfrac{1}{v_d}\)</span>.</p>
+<p>Consider two cases for <span class="math inline">\(x \in \left\{ x :
+\dfrac{2^d}{(|x|+1)^d v_d} &gt; \alpha \right\}\)</span>.</p>
+<p>When <span class="math inline">\(|x|&gt;1\)</span>, we’ve shown that
+<span class="math inline">\(f^*(x) \ge \dfrac{2^d}{(|x|+1)^d
+v_d}\)</span>, so <span class="math inline">\(f^*(x) &gt;
+\alpha\)</span> (∵③). When <span class="math inline">\(|x| \le
+1\)</span>, <span class="math inline">\(f^*(x) \ge \dfrac{1}{v_d} &gt;
+\alpha\)</span> (∵①), so <span class="math inline">\(f^*(x) &gt;
+\alpha\)</span>.</p>
+<p>For the both case, <span class="math inline">\(x \in \{x : f^*(x)
+&gt; \alpha\}\)</span>.</p>
+<p>⑤ <span class="math inline">\(m(F_\alpha) \ge
+\dfrac{C&#39;}{\alpha}\)</span> for some <span class="math inline">\(0
+&lt; C&#39; &lt; (2 - (\sqrt[v_d]{\alpha})^2)^d\)</span> and all <span class="math inline">\(0 &lt; \alpha &lt; \dfrac{1}{v_d}\)</span>.</p>
+<p><span class="math inline">\(\{ x : f^*(x) &gt; \alpha \} = \left\{ x
+: \dfrac{2^d}{(|x|+1)^d v_d} &gt; \alpha \right\} = \left\{ x : |x| &lt;
+\dfrac{2}{(\sqrt[v_d]{\alpha})} - 1 \right\}\)</span>.</p>
+<p>So, <span class="math inline">\(m(F_\alpha) \ge v_d \left(
+\dfrac{2}{(\sqrt[v_d]{\alpha})} - 1 \right)^d\)</span>.</p>
+<p>Note that <span class="math inline">\(v_d \left(
+\dfrac{2}{(\sqrt[v_d]{\alpha})} - 1 \right)^d \ge
+\dfrac{C&#39;}{\alpha}\)</span> <span class="math inline">\((C&#39; &gt;
+0)\)</span></p>
+<p><span class="math inline">\(\Longleftrightarrow \left(
+\dfrac{2}{(\sqrt[v_d]{\alpha})} - 1 \right) \ge \left(
+\dfrac{C&#39;}{v_d \alpha} \right)^{1/d}\)</span> (and <span class="math inline">\(2 - (\sqrt[v_d]{\alpha})^2 &gt; 0\)</span>)</p>
+<p><span class="math inline">\(\Longleftrightarrow \dfrac{2 -
+C&#39;^{1/d}}{(\sqrt[v_d]{\alpha})} \ge 1 \quad \Longleftrightarrow
+\quad 0 &lt; C&#39;^{1/d} \le 2 - (\sqrt[v_d]{\alpha})^2\)</span>.</p>
+<p>So choose some <span class="math inline">\(C&#39;\)</span> with <span class="math inline">\(0 &lt; C&#39; \le (2 -
+(\sqrt[v_d]{\alpha})^2)^d\)</span> and <span class="math inline">\(0
+&lt; \alpha &lt; \dfrac{1}{v_d}\)</span>. Then, <span class="math inline">\(m(F_\alpha) \ge \dfrac{C&#39;}{\alpha}\)</span>
+holds.</p>
+</div>
+</div>
+<div id="consider-a-function-on-mathbbr-defined-byfx-begincasesdfrac1xbigllog-dfrac1xbigr2-x-le-dfrac124pt0-texto.w.endcases" class="section level2">
+<h2>5 Consider a function on <span class="math inline">\(\mathbb{R}\)</span> defined by<span class="math display">\[f(x) =\begin{cases}\dfrac{1}{|x|\bigl(\log
+\dfrac{1}{|x|}\bigr)^2}, &amp; |x| \le \dfrac{1}{2},\\[4pt]0, &amp;
+\text{o.w.}\end{cases}\]</span></h2>
+<div id="a-show-that-f-is-integrable" class="section level3">
+<h3>(a) Show that <span class="math inline">\(f\)</span> is
+integrable</h3>
+<p><strong>proof</strong><br />
+<span class="math display">\[
+\begin{aligned}
+\int_{\mathbb{R}} |f(x)|\,dx
+&amp;= 2\int_{0}^{1/2} \frac{1}{x\bigl(\log \tfrac{1}{x}\bigr)^2}\,dx
+   \quad (\text{by symmetry}) \\
+&amp;= 2\int_{0}^{1/2} \frac{1}{x\bigl(\log \tfrac{1}{x}\bigr)^2}\,dx
+   \quad (\text{let } t = \log \tfrac{1}{x},\ dt = -\tfrac{1}{x}dx) \\
+&amp;= 2\int_{\log 2}^{\infty} \frac{1}{t^2}\,dt
+= 2\left[ -\frac{1}{t} \right]_{\log 2}^{\infty}
+= 2\cdot(-\log \tfrac{1}{2})
+= 2\log 2 &lt; \infty.
+\end{aligned}
+\]</span> So <span class="math inline">\(f\)</span> is integrable.</p>
+</div>
+<div id="b-show-that-fx-ge-c-xlog-tfrac1x-1-for-some-c0-and-all-x-dfrac12" class="section level3">
+<h3>(b) Show that <span class="math inline">\(f^*(x) \ge C (|x|\log
+\tfrac{1}{|x|})^{-1}\)</span> for some <span class="math inline">\(C&gt;0\)</span> and all <span class="math inline">\(|x| &lt; \dfrac{1}{2}\)</span></h3>
+<p><strong>proof</strong><br />
+Let <span class="math inline">\(B = B_{|x|}(x)\)</span>: a ball of
+radius <span class="math inline">\(|x|\)</span> centered at <span class="math inline">\(x\)</span> (either <span class="math inline">\((0,2x_1)\)</span> or <span class="math inline">\((2x_1,0)\)</span> in the picture). Then <span class="math display">\[
+\begin{aligned}
+\frac{1}{m(B)} \int_B |f(y)|\,dy
+&amp;= \frac{1}{2|x|} \int_{0}^{2|x|} \frac{1}{y\bigl(\log
+\tfrac{1}{y}\bigr)^2}\,dy \\
+&amp;\ge \frac{1}{2|x|} \int_{|x|}^{2|x|} \frac{1}{y\bigl(\log
+\tfrac{1}{y}\bigr)^2}\,dy
+   \quad (\text{restrict interval}) \\
+&amp;= \frac{1}{2|x|} \int_{\log \tfrac{1}{2|x|}}^{\log \tfrac{1}{|x|}}
+\frac{1}{t^2}\,dt
+   \quad (\text{let } t = \log \tfrac{1}{y},\ dt = -\tfrac{1}{y}dy) \\
+&amp;= \frac{1}{2|x|} \left[ -\frac{1}{t} \right]_{\log
+\tfrac{1}{2|x|}}^{\log \tfrac{1}{|x|}}\\
+&amp;= \frac{1}{2|x|} \left( -\frac{1}{\log \tfrac{1}{|x|}} +
+\frac{1}{\log \tfrac{1}{2|x|}} \right)
+\;\\ &amp;\ge\; \frac{1}{2}\,\frac{1}{|x|\log \tfrac{1}{|x|}}
+\end{aligned}
+\]</span> for all sufficiently small <span class="math inline">\(|x|\)</span>. Hence <span class="math inline">\(f^*(x) \ge \dfrac{1}{2} \dfrac{1}{|x|\log
+\tfrac{1}{|x|}}\)</span>, so for example <span class="math inline">\(C =
+\dfrac{1}{2}\)</span> works.</p>
+</div>
+<div id="c-show-that-f-is-not-locally-integrable" class="section level3">
+<h3>(c) Show that <span class="math inline">\(f^*\)</span> is not
+locally integrable</h3>
+<p><strong>proof</strong><br />
+For <span class="math inline">\(0&lt;\delta&lt;\dfrac{1}{2}\)</span>,
+<span class="math display">\[
+\begin{aligned}
+\int_{0}^{\delta} f^*(x)\,dx
+&amp;\ge \int_{0}^{\delta} \frac{1}{2x\log \tfrac{1}{x}}\,dx
+= \frac{1}{2}\int_{0}^{\delta} \frac{1}{x\log \tfrac{1}{x}}\,dx
+   \quad (\text{use the lower bound from (b)}) \\
+&amp;= \frac{1}{2}\int_{\log \tfrac{1}{\delta}}^{\infty} \frac{1}{t}\,dt
+   \quad (\text{let } t = \log \tfrac{1}{x},\ dt = -\tfrac{1}{x}dx) \\
+&amp;= \frac{1}{2}\left[ \log t \right]_{\log
+\tfrac{1}{\delta}}^{\infty}
+= \infty.
+\end{aligned}
+\]</span> Therefore there exists <span class="math inline">\(\delta \in
+(0,\tfrac{1}{2})\)</span> such that <span class="math inline">\(\int_{0}^{\delta} f^*(x)\,dx = \infty\)</span>, so
+<span class="math inline">\(f^*\)</span> is not locally integrable.</p>
+</div>
+</div>
+<div id="we-define-one-sided-maximal-function-f_rx-sup_h0-dfrac1hint_xxh-fydy.-if-e_alpha-x-in-mathbbr-f_rx-alpha-show-that-me_alpha-dfrac1alpha-int_e_alpha-fydy.-alpha0" class="section level2">
+<h2>6. We define ‘one-sided’ maximal function: <span class="math inline">\(f_r^+(x) = \sup_{h&gt;0} \dfrac{1}{h}\int_x^{x+h}
+|f(y)|\,dy\)</span>. If <span class="math inline">\(E_\alpha^+ = \{ x
+\in \mathbb{R} : f_r^+(x) &gt; \alpha \}\)</span>, show that <span class="math inline">\(m(E_\alpha^+) = \dfrac{1}{\alpha}
+\int_{E_\alpha^+} |f(y)|\,dy\)</span>. (<span class="math inline">\(\alpha&gt;0\)</span>)</h2>
+<p><strong>proof</strong></p>
+<p>① <span class="math inline">\(\sup B \not\le \alpha\)</span>, then
+<span class="math inline">\(\exists\, b \in B\)</span> s.t. <span class="math inline">\(b&gt;\alpha\)</span>.</p>
+<p>Assume <span class="math inline">\(b \le \alpha\)</span> <span class="math inline">\(\forall b \in B\)</span>. Then <span class="math inline">\(\sup B \le \alpha\)</span>, contradiction.</p>
+<p>② <span class="math inline">\(E_\alpha^+ = \{ x \in \mathbb{R} :
+\exists h&gt;0 \text{ s.t. } F(x+h) &gt; F(x) \}\)</span></p>
+<p><span class="math inline">\(x \in E_\alpha^+ \;\Longleftrightarrow\;
+f_r^+(x) &gt; \alpha \;\Longleftrightarrow\; \exists h&gt;0 \text{ s.t.
+} \dfrac{1}{h} \int_x^{x+h} |f(y)|\,dy &gt; \alpha\)</span><br />
+(∵①)<br />
+<span class="math inline">\(\Longleftrightarrow \exists h&gt;0 \text{
+s.t. } \int_x^{x+h} |f(y)|\,dy &gt; \alpha h\)</span><br />
+<span class="math inline">\(\Longleftrightarrow \exists h&gt;0 \text{
+s.t. } \int_0^{x+h} |f(y)|\,dy - \int_0^x |f(y)|\,dy &gt; \alpha (x+h) -
+\alpha x\)</span>.</p>
+<p>Let <span class="math inline">\(F(x) = \int_0^x |f(y)|\,dy - \alpha
+x\)</span>. Then <span class="math inline">\(x \in E_\alpha^+\)</span>
+iff <span class="math inline">\(\exists h&gt;0\)</span> s.t. <span class="math inline">\(F(x+h) &gt; F(x)\)</span>.</p>
+<p>③ <span class="math inline">\(F\)</span> is continuous real
+function</p>
+<p><span class="math inline">\(f\)</span> is integrable, as well as
+<span class="math inline">\(|f|\)</span>. Then <span class="math inline">\(\int_0^x |f(y)|\,dy\)</span> is absolutely
+continuous, and continuous. So <span class="math inline">\(F(x) =
+\int_0^x |f(y)|\,dy - \alpha x\)</span> is continuous real function on
+<span class="math inline">\(\mathbb{R}\)</span>.</p>
+<p>④ conclusion</p>
+<p>Since <span class="math inline">\(E_\alpha^+ = \{ x \in \mathbb{R} :
+\exists h&gt;0 \text{ s.t. } F(x+h) &gt; F(x) \}\)</span>, <span class="math inline">\(E_\alpha^+\)</span> is <strong>open</strong>
+(<span class="math inline">\(E_\alpha^+ = \bigcup_k (a_k, b_k)\)</span>)
+and <span class="math inline">\(F(a_k) = F(b_k)\)</span> (Lemma 3.3.5)
+(∵②).</p>
+<p>This leads to<br />
+<span class="math inline">\(\displaystyle \int_{a_k}^{b_k} |f(y)|\,dy -
+\alpha a_k = \int_{a_k}^{b_k} |f(y)|\,dy - \alpha b_k\)</span><br />
+and<br />
+<span class="math inline">\(\displaystyle \int_{a_k}^{b_k} |f(y)|\,dy =
+\alpha (b_k - a_k)\)</span>.</p>
+<p>Then,<br />
+<span class="math inline">\(\displaystyle \int_{E_\alpha^+} |f(y)|\,dy =
+\sum_{k=1}^\infty \int_{a_k}^{b_k} |f(y)|\,dy = \sum_{k=1}^\infty \alpha
+(b_k - a_k) = \alpha\, m(E_\alpha^+)\)</span>.</p>
+<p>Therefore,<br />
+<span class="math display">\[m(E_\alpha^+) = \frac{1}{\alpha}
+\int_{E_\alpha^+} |f(y)|\,dy.\]</span></p>
+</div>
+<div id="e-is-a-measurable-subset-of-01-such-that-me-cap-i-ge-alpha-cdot-mi-for-some-alpha-in-01-and-all-intervals-i-in-01.-show-that-me1." class="section level2">
+<h2>7 E is a measurable subset of <span class="math inline">\([0,1]\)</span> such that <span class="math inline">\(m(E \cap I) \ge \alpha \cdot m(I)\)</span> for
+some <span class="math inline">\(\alpha \in (0,1)\)</span> and all
+intervals <span class="math inline">\(I\)</span> in <span class="math inline">\([0,1]\)</span>. Show that <span class="math inline">\(m(E)=1\)</span>.</h2>
+<p><strong>proof</strong></p>
+<p>Choose <span class="math inline">\(x \in (0,1)\)</span> and <span class="math inline">\(\varepsilon&gt;0\)</span> small enough so that
+<span class="math inline">\([x-\varepsilon,x+\varepsilon] \subset
+[0,1]\)</span>.</p>
+<p><span class="math display">\[
+\int_{x-\varepsilon}^{x+\varepsilon} \chi_E(t)\,dt
+= m\bigl(E \cap [x-\varepsilon,x+\varepsilon]\bigr)
+\ge \alpha \cdot 2\varepsilon,
+\]</span> so <span class="math display">\[
+\frac{1}{2\varepsilon} \int_{x-\varepsilon}^{x+\varepsilon}
+\chi_E(t)\,dt &gt; \alpha.
+\]</span></p>
+<p>By Lebesgue’s differentiation theorem (Thm 3.1.3), <span class="math display">\[
+\lim_{\varepsilon \to 0} \frac{1}{2\varepsilon}
+\int_{x-\varepsilon}^{x+\varepsilon} \chi_E(t)\,dt = \chi_E(x) \quad
+\text{a.e. } x \in [0,1].
+\]</span></p>
+<p>Then <span class="math inline">\(\chi_E(x) \ge \alpha\)</span> a.e.
+<span class="math inline">\(x\)</span> and <span class="math inline">\(\chi_E(x)=1\)</span> a.e. <span class="math inline">\(x\)</span>.</p>
+<p>Let <span class="math inline">\(F \subset [0,1]\)</span> such that
+<span class="math inline">\(\chi_E(x)=0\)</span> for <span class="math inline">\(x \in F\)</span>, then <span class="math inline">\(m(F)=0\)</span>. Since <span class="math inline">\(E \cup F = [0,1]\)</span> and <span class="math inline">\(E \cap F = \varnothing\)</span>, <span class="math inline">\(m([0,1]) = 1 = m(E) + m(F)\)</span>.</p>
+<p><span class="math inline">\(\therefore\ m(E)=1\)</span>.</p>
+<p><strong>another proof</strong></p>
+<p>Let <span class="math inline">\(F = [0,1] - E\)</span>. Then <span class="math inline">\(E \cup F = [0,1]\)</span> and <span class="math inline">\(E \cap F = \varnothing\)</span>. Note that <span class="math inline">\(F\)</span> is measurable.</p>
+<p>Since<br />
+<span class="math inline">\(I \cap (E \cup F) = (I \cap E) \cup (I \cap
+F) = I\)</span>, and <span class="math inline">\((I \cap E) \cap (I \cap
+F) = \varnothing\)</span>,<br />
+<span class="math inline">\(m(I \cap F) = m(I) - m(I \cap E)\)</span>
+and<br />
+<span class="math display">\[m(I \cap F) = m(I) - m(I \cap E) \le
+(1-\alpha)m(I).\]</span></p>
+<p>Then<br />
+<span class="math display">\[\frac{m(I \cap F)}{m(I)} \le
+1-\alpha\]</span><br />
+and this holds for all intervals <span class="math inline">\(I \subset
+[0,1]\)</span>.<br />
+So<br />
+<span class="math display">\[\lim_{r\to 0} \frac{m((x-r,x+r)\cap
+F)}{m(x-r,x+r)} \le 1-\alpha &lt; 1\]</span><br />
+and <span class="math inline">\(x \in F\)</span> is <strong>not</strong>
+a point of Lebesgue density of <span class="math inline">\(F\)</span>.</p>
+<p>Let <span class="math inline">\(F = F_a \cup F_m\)</span> such that
+<span class="math inline">\(F_a \cap F_m = \varnothing\)</span>,<br />
+<span class="math inline">\(x \in F_a\)</span> is a point of Lebesgue
+density,<br />
+<span class="math inline">\(x \in F_m\)</span> is not a point of
+Lebesgue density,<br />
+and <span class="math inline">\(m(F_m)=0\)</span>. (Cor 3.1.5(1))</p>
+<p>The inequality<br />
+<span class="math display">\[\lim_{r\to 0} \frac{m((x-r,x+r)\cap
+F)}{m(x-r,x+r)} \le 1-\alpha &lt; 1\]</span><br />
+holds for all intervals <span class="math inline">\(I\)</span>,
+including intervals that contain <span class="math inline">\(x \in
+F\)</span>.<br />
+Hence<br />
+<span class="math display">\[\lim_{r\to 0} \frac{m((x-r,x+r)\cap
+F)}{m(x-r,x+r)} \ne 1\]</span><br />
+for <span class="math inline">\(x \in F\)</span>.<br />
+So <span class="math inline">\(F\)</span> has <strong>no</strong>
+Lebesgue density points: <span class="math inline">\(F_a =
+\varnothing\)</span>.<br />
+<span class="math inline">\(m(F_a)=0\)</span>, so<br />
+<span class="math display">\[m(F) = m(F_a) + m(F_m) = 0.\]</span></p>
+<p>Since <span class="math inline">\(E \cup F = [0,1]\)</span> and <span class="math inline">\(E \cap F = \varnothing\)</span>,<br />
+<span class="math display">\[m(E) + m(F) = 1.\]</span></p>
+<p>∴ <span class="math inline">\(m(E)=1\)</span>.</p>
+</div>
+<div id="a-is-a-lebesgue-measurable-set-in-mathbbr-with-ma0.-does-there-exist-a-sequence-s_n-such-that-the-complement-of-bigcup_n1infty-a-s_n-has-measure-0" class="section level2">
+<h2>8 <span class="math inline">\(A&#39;\)</span> is a Lebesgue
+measurable set in <span class="math inline">\(\mathbb{R}\)</span> with
+<span class="math inline">\(m(A&#39;)&gt;0\)</span>. Does there exist a
+sequence <span class="math inline">\(\{s_n\}\)</span> such that the
+complement of <span class="math inline">\(\bigcup_{n=1}^\infty (A&#39; +
+s_n)\)</span> has measure <span class="math inline">\(0\)</span>?</h2>
+<p><strong>proof</strong></p>
+<p>① <span class="math inline">\(\{I_n\}\)</span> s.t. <span class="math inline">\(m(I_n \cap A^c) &lt; 2^{-n} m(I_n)\)</span> and
+<span class="math inline">\(m(I_n) &lt; 1\)</span>.</p>
+<p><span class="math inline">\(A\)</span> is measurable, so when <span class="math inline">\(x^*\)</span> is a point of Lebesgue density of
+<span class="math inline">\(A\)</span> and <span class="math inline">\(J\)</span> is an open interval in <span class="math inline">\(\mathbb{R}\)</span>,<br />
+<span class="math display">\[\lim_{m(J)\to 0} \frac{m(J \cap A)}{m(J)} =
+1.\]</span></p>
+<p>Choose a sequence of open intervals <span class="math inline">\(\{J_i\}\)</span> such that <span class="math inline">\(\lim_{i\to\infty} m(J_i) = 0\)</span> and <span class="math inline">\(x \in J_i\)</span>. Then, for every <span class="math inline">\(n \in \mathbb{N}\)</span>, there is <span class="math inline">\(N_n \in \mathbb{N}\)</span> such that <span class="math inline">\(i \ge N_n\)</span> implies<br />
+<span class="math display">\[1 - \frac{m(J_i \cap A)}{m(J_i)} &lt;
+2^{-n} \;\Longrightarrow\; m(J_i \cap A) &gt; (1-2^{-n}) m(J_i) \quad
+\text{for } i \ge N_n.\]</span></p>
+<p>Among the <span class="math inline">\(J_i\)</span>’s, choose <span class="math inline">\(i\)</span> such that <span class="math inline">\(m(J_i) &lt; 1\)</span>. Such <span class="math inline">\(i\)</span> exists because <span class="math inline">\(\lim_{i\to\infty} m(J_i) = 0\)</span>. Let the
+smallest such <span class="math inline">\(i\)</span> be <span class="math inline">\(i_n\)</span> and <span class="math inline">\(I_n =
+J_{i_n}\)</span>; <span class="math inline">\(m(I_n \cap A) &gt;
+(1-2^{-n}) m(I_n)\)</span>. Since<br />
+<span class="math display">\[m(I_n) = m(I_n \cap A) + m(I_n \cap
+A^c),\]</span><br />
+<span class="math display">\[m(I_n \cap A^c) = m(I_n) - m(I_n \cap A)
+&lt; 2^{-n} m(I_n).\]</span></p>
+<p>② <span class="math inline">\(L_{k,n}\)</span>, <span class="math inline">\([k,k+1] \subset \bigcup_{l \in L_{k,n}} (I_n +
+l\,|I_n|)\)</span>.</p>
+<p>The <span class="math inline">\(\{I_n\}\)</span> is defined so that
+<span class="math inline">\(|I_n| &lt; 1\)</span>. Then, the number of
+<span class="math inline">\(I_n\)</span> that intersect an interval of
+length <span class="math inline">\(1\)</span> is less than <span class="math inline">\(1 + \dfrac{1}{|I_n|}\)</span>. Let<br />
+<span class="math display">\[L_{k,n} = \{ l \in \mathbb{Z} : [k,k+1]
+\cap (I_n + l\,|I_n|) \ne \varnothing \} \quad \Rightarrow \quad \#
+L_{k,n} &lt; 1 + \frac{1}{m(I_n)}.\]</span> Then,<br />
+<span class="math display">\[[k,k+1] \subset \bigcup_{l \in L_{k,n}}
+(I_n + l\,|I_n|).\]</span></p>
+<p>③ <span class="math inline">\(T_n = \bigcup_{k \in \mathbb{Z}} (A +
+k\,|I_n|)\)</span>, <span class="math inline">\(T = \bigcap_{n=1}^\infty
+T_n\)</span>.</p>
+<p>Let<br />
+<span class="math display">\[T_n = \bigcup_{k \in \mathbb{Z}} \bigl(A +
+k\,m(I_n)\bigr), \quad T = \bigcap_{n=1}^\infty T_n.\]</span> Countable
+union of countable union is countable, so <span class="math inline">\(T\)</span> can be written as<br />
+<span class="math display">\[T = \bigcup_{i=1}^\infty (A + s_i) \quad
+(s_i \in \mathbb{R},\ \forall i \in \mathbb{N}).\]</span></p>
+<p>④ <span class="math inline">\([k,k+1] \cap (\mathbb{R} - T_n) \subset
+\bigcup_{l \in L_{k,n}} \bigl( (I_n + l\,m(I_n)) - (A + l\,m(I_n))
+\bigr)\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+[k,k+1] \cap (\mathbb{R} - T_n)
+&amp;= [k,k+1] \cap \left(\mathbb{R} - \bigcup_{k \in \mathbb{Z}} (A +
+k\cdot m(I_n))\right) \quad (\because ②) \\
+&amp;\subset \biggl\{ \bigcup_{l \in L_{k,n}} (I_n + l\cdot m(I_n))
+\biggr\} \cap \biggl\{ \mathbb{R }-\bigcup_{k \in \mathbb{Z}} (A +
+k\cdot m(I_n)) \biggr\} \\
+&amp;= \biggl\{ \bigcup_{l \in L_{k,n}} (I_n + l\cdot m(I_n)) \biggr\}
+\cap \biggl\{\bigcup_{k \in \mathbb{Z}} (A + k\cdot m(I_n)) \biggr\}^c
+\\
+&amp;=\biggl\{ \bigcup_{l \in L_{k,n}} (I_n + l\cdot m(I_n)) \biggr\} -
+\biggl\{\bigcup_{k \in \mathbb{Z}} (A + k\cdot m(I_n)) \biggr\} \\
+&amp; \subset \left\{ \bigcup_{l \in L_{k,n}} (I_n + l\cdot m(I_m))
+\right\}
+    - \left\{ \bigcup_{l \in L_{k,n}} (A + l \cdot m(I_m)) \right\}
+    \; \biggl(\because \bigcup_{k \in \mathbb{Z}} (A + k \cdot I_m)
+    \supset \bigcup_{l \in L_{k,n}} (A + \ell \cdot I_m) \biggr) \\
+&amp; \subset \bigcup_{l \in L_{k,n}} \big( (I_n + l\cdot m(I_m)) - (A +
+l\cdot m(I_m)) \big)
+    \; (\because A - B \subset \bigcup_i (A_i - B_i))
+\end{aligned}
+\]</span></p>
+<p>⑤ <span class="math inline">\(m([k_i, k_i + 1] \cap (\mathbb{R} -
+T_n)) \le 2^{-(n+1)}.\)</span><br />
+Then,<br />
+<span class="math display">\[
+\begin{aligned}
+m([k_i, k_i+1] \cap (\mathbb{R}-T_n))
+&amp;\le \sum_{\ell \in L_{k_i}} m\big( (I_n + \ell \cdot m(I_m)) - (A +
+\ell \cdot m(I_m)) \big) \\
+&amp;= \sum_{\ell \in L_{k_i}} m(I_n - A)
+   \le (1 + m(I_m)) \cdot m(I_n - A) \\
+&amp;\;\;(\because \varnothing) \\
+&amp;&lt; (1 + m(I_m)) \cdot 2^{-n} m(I_m)
+   = 2^n (m(I_m) + 1) \\
+&amp;&lt; 2^n \cdot 2 = 2^{-(n+1)}
+\quad (\because |I_m| &lt; 1)
+\end{aligned}
+\]</span></p>
+<p>⑥ <span class="math inline">\(\therefore\; m(\mathbb{R} - T) =
+0.\)</span></p>
+<p>Since <span class="math inline">\(T_n \subset T\)</span>, <span class="math inline">\([k_i, k_i+1] \cap (\mathbb{R}-T) \subset [k_i,
+k_i+1] \cap (\mathbb{R}-T_n)\)</span> and<br />
+<span class="math inline">\(m([k_i, k_i+1] \cap (\mathbb{R}-T)) \le
+m([k_i,k_i+1] \cap (\mathbb{R}-T_n)) &lt; 2^{-(n+1)}.\)</span></p>
+<p>This holds for all <span class="math inline">\(n \in
+\mathbb{N}\)</span>, so <span class="math inline">\(m([k_i, k_i+1] \cap
+(\mathbb{R}-T)) = 0 \;\; \forall k_i \in \mathbb{Z}.\)</span></p>
+<p>Since <span class="math inline">\(\mathbb{R}-T \subset
+\bigcup_{k=-\infty}^\infty \big([k_i, k_i+1] \cap
+(\mathbb{R}-T)\big)\)</span> and <span class="math inline">\(m(\mathbb{R}-T) \le \sum_{k=-\infty}^\infty
+m([k_i,k_i+1] \cap (\mathbb{R}-T))\)</span>,<br />
+<span class="math display">\[m(\mathbb{R}-T) = 0.\]</span></p>
+</div>
+<div id="f-is-a-closed-subset-in-mathbbr-and-deltax-dx-f-infx-y-x-in-f.-show-that" class="section level2">
+<h2>9 F is a closed subset in <span class="math inline">\(\mathbb{R}\)</span>, and <span class="math inline">\(\delta(x) = d(x, F) = \inf\{|x-y| : x \in
+F\}\)</span>. Show that</h2>
+<div id="deltaxy-le-y-whenever-x-in-f" class="section level3">
+<h3>(1) <span class="math inline">\(\delta(x+y) \le |y|\)</span>
+whenever <span class="math inline">\(x \in F\)</span></h3>
+<p><strong>proof</strong> <span class="math inline">\(\delta(x+y) \le
+|x+y-x| = |y|\)</span> for <span class="math inline">\(x \in F\)</span>.
+Note that <span class="math inline">\(\delta(x) = 0\)</span> for <span class="math inline">\(x \in F\)</span>.</p>
+</div>
+<div id="deltaxy-oy-a.e.-x-in-f-displaystyle-lim_yto-0-fracdeltaxyy-0-text-a.e.-x-in-f" class="section level3">
+<h3>(2) <span class="math inline">\(\delta(x+y) = o(|y|)\)</span> a.e.
+<span class="math inline">\(x \in F\)</span> ; <span class="math inline">\(\displaystyle \lim_{|y|\to 0}
+\frac{\delta(x+y)}{|y|} = 0 \text{ a.e. } x \in F\)</span></h3>
+<p><strong>proof</strong> ① <span class="math inline">\(\delta\)</span>
+is uniformly continuous</p>
+<p>For given <span class="math inline">\(\gamma &gt; 0\)</span>, there
+is <span class="math inline">\(z \in F\)</span> such that <span class="math inline">\(|y-z| &lt; \delta(y) + \gamma\)</span> (::<span class="math inline">\(\,\)</span>def of <span class="math inline">\(\delta\)</span>).</p>
+<p><span class="math inline">\(\delta(x) \le |x-z| \le |x-y| + |y-z|
+&lt; |x-y| + \delta(y) + \gamma\)</span>. So, <span class="math inline">\(\delta(x) - \delta(y) &lt; |x-y| +
+\gamma\)</span>. Switching <span class="math inline">\(x\)</span> and
+<span class="math inline">\(y\)</span> yields <span class="math inline">\(\delta(y) - \delta(x) &lt; |x-y| +
+\gamma\)</span>.</p>
+<p>Then, <span class="math inline">\(|\delta(x)-\delta(y)| &lt; |x-y| +
+\gamma\)</span> holds for all <span class="math inline">\(\gamma &gt;
+0\)</span>, so <span class="math inline">\(|\delta(x)-\delta(y)| \le
+|x-y| \ \ (x,y \in \mathbb{R})\)</span>.</p>
+<p>Then, for every <span class="math inline">\(\varepsilon &gt;
+0\)</span>, <span class="math inline">\(|\delta(x)-\delta(y)| &lt;
+\varepsilon\)</span> holds if <span class="math inline">\(|x-y| &lt;
+\varepsilon\)</span> satisfies. Thus, <span class="math inline">\(\delta\)</span> is (uniformly) continuous on <span class="math inline">\(\mathbb{R}\)</span>.</p>
+<p>② <span class="math inline">\(\delta\)</span> is of bounded
+variation</p>
+<p>Let <span class="math inline">\(a = t_0 &lt; t_1 &lt; \cdots &lt; t_N
+= b\)</span> be a partition of <span class="math inline">\([a,b]\)</span> (with <span class="math inline">\(t_i - t_{i-1} = \dfrac{b-a}{N}\)</span>).
+Then<br />
+<span class="math inline">\(\displaystyle \sum_{i=1}^N \left|
+\delta(t_i) - \delta(t_{i-1}) \right| \le \sum_{i=1}^N |t_i - t_{i-1}| =
+b-a\)</span>. So <span class="math inline">\(\delta\)</span> is of
+bounded variation.</p>
+<p>③ Conclusion</p>
+<p><span class="math inline">\(\delta(x)\)</span> is non-negative, so
+<span class="math inline">\(0\)</span> is a minimum of <span class="math inline">\(\delta\)</span>. Since <span class="math inline">\(\delta(x) = 0\)</span> for all <span class="math inline">\(x \in F\)</span>, <span class="math inline">\(\delta\)</span> achieves minimum at <span class="math inline">\(x \in F\)</span>.</p>
+<p><span class="math inline">\(\delta\)</span> is of bounded variation,
+so <span class="math inline">\(\delta&#39;\)</span> exists a.e. and
+<span class="math inline">\(\delta&#39;(x) = 0\)</span> a.e. <span class="math inline">\(x \in F\)</span>. Thus,<br />
+<span class="math display">\[
+\begin{aligned}
+\lim_{|y|\to 0} \frac{|\delta(x+y) - \delta(x)|}{|y|}
+&amp;= \lim_{|y|\to 0} \frac{|\delta(x+y)|}{|y|} = 0 \quad \text{a.e. }
+x \in F
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+<div id="for-ab0-let-fx-begincasesxasinx-b-0xle1-0-x0endcases" class="section level2">
+<h2>11. For <span class="math inline">\(a,b&gt;0\)</span>, let <span class="math display">\[f(x) =\begin{cases}x^a\sin(x^{-b}) &amp;
+(0&lt;x\le1) \\0 &amp; x=0\end{cases}\]</span></h2>
+<div id="i-show-that-f-is-of-bounded-variation-iff-ab" class="section level3">
+<h3>(i) Show that <span class="math inline">\(f\)</span> is of bounded
+variation iff <span class="math inline">\(a&gt;b\)</span></h3>
+<p><strong>proof</strong></p>
+<p>① <span class="math inline">\(a&gt;b \Rightarrow f\)</span> is
+bv.</p>
+<p><span class="math inline">\(f&#39;(x)=a
+x^{a-1}\sin(x^{-b})+x^a\cos(x^{-b})(-b)x^{-b-1}
+= a x^{a-1}\sin(x^{-b})-b x^{a-b-1}\cos(x^{-b})\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_0^1 |f&#39;(x)|dx &amp;\le a\int_0^1 |x^{a-1}\sin(x^{-b})|dx +
+b\int_0^1 |x^{a-b-1}\cos(x^{-b})|dx \\
+&amp;\le a\int_0^1 x^{a-1}dx + b\int_0^1 x^{a-b-1}dx \\
+&amp;= a\int_0^1 x^{-(a-1)}dx + b\int_0^1 x^{-(a-b+1)}dx
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(-(a-1)=-a+1&lt;1\)</span>, so <span class="math inline">\(\int_0^1 x^{a-1}dx&lt;\infty\)</span> (∵ ex
+2-10).</p>
+<p><span class="math inline">\(a-b&gt;0\)</span>, so <span class="math inline">\(\int_0^1 x^{a-b-1}dx&lt;\infty\)</span> for the
+same reason.</p>
+<p>This leads to <span class="math inline">\(\int_0^1
+|f&#39;(x)|dx&lt;\infty\)</span>, so <span class="math inline">\(f&#39;\)</span> is integrable and <span class="math inline">\(f\)</span> is absolutely continuous.</p>
+<p>Thus, <span class="math inline">\(f\)</span> is of bounded variation
+(p.127).</p>
+<p>② <span class="math inline">\(b\ge a \Rightarrow f\)</span> is NOT
+bv.</p>
+<p>Choose <span class="math inline">\(P_n:
+0&lt;\cdots&lt;x_k&lt;\cdots&lt;x_2&lt;x_1&lt;1\)</span> with <span class="math inline">\(x_k=\left(\frac{k\pi}{2}\right)^{-1/b}\
+(k\in\mathbb{N}\ \text{s.t.}\ (\frac{k\pi}{2})^b\le1,\ k\le
+n)\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+T_f(0,1) &amp;\ge\sum_{k=1}^n |f(x_k)-f(x_{k-1})| \\
+&amp;=\sum_{k=1}^n\left|\left(\frac{k\pi}{2}\right)^{-a/b}\sin\frac{k\pi}{2}-\left(\frac{(k-1)\pi}{2}\right)^{-a/b}\sin\frac{(k-1)\pi}{2}\right|
+\\
+&amp;\ge\sum_{k=1}^n
+2\left(\frac{\pi}{2}\right)^{-a/b}\left(\frac{1}{2k-1}\right)^{a/b}
+\end{aligned}
+\]</span></p>
+<p>for some <span class="math inline">\(m\in\mathbb{N}\)</span>.</p>
+<p>So, <span class="math display">\[T_f(0,1)\ge\sum_{k=1}^\infty
+|f(x_k)-f(x_{k-1})|
+=2\left(\frac{\pi}{2}\right)^{-a/b}\sum_{k=1}^\infty\left(\frac{1}{2k-1}\right)^{a/b}\]</span></p>
+<p><span class="math inline">\(\sum_{n=1}^\infty
+\frac{1}{n^p}=\infty\)</span> if <span class="math inline">\(p\le1\)</span>, and <span class="math display">\[\sum_{k=1}^\infty\left(\frac{1}{2k-1}\right)^{a/b}\ge\sum_{k=1}^\infty\left(\frac{1}{2k}\right)^{a/b}
+=\left(\frac12\right)^{a/b}\sum_{k=1}^\infty\left(\frac{1}{k}\right)^{a/b}\]</span>,
+and <span class="math inline">\(\frac{a}{b}\le1\)</span></p>
+<p>So, <span class="math display">\[2\left(\frac{\pi}{2}\right)^{-a/b}\sum_{k=1}^\infty\left(\frac{1}{2k-1}\right)^{a/b}=\infty.\]</span></p>
+<p>∴ <span class="math inline">\(f\)</span> is not of bounded
+variation.</p>
+</div>
+<div id="ii-let-ba.-show-that-f-follows-fx-fyle-ax-yalpha-0alpha1-the-lipschitz-condition-of-exponent-alpha-and-f-is-not-of-bounded-variation." class="section level3">
+<h3>(ii) Let <span class="math inline">\(b=a\)</span>. Show that <span class="math inline">\(f\)</span> follows <span class="math inline">\(|f(x)-f(y)|\le A|x-y|^\alpha\)</span> <span class="math inline">\((0&lt;\alpha&lt;1)\)</span>, the Lipschitz
+condition of exponent <span class="math inline">\(\alpha\)</span>, and
+<span class="math inline">\(f\)</span> is not of bounded variation.</h3>
+<p><strong>proof</strong></p>
+<p>① <span class="math inline">\(|f(x+h)-f(x)|\le 2(x+h)^a\)</span>
+&amp; <span class="math inline">\(|f(x+h)-f(x)|\le 2a h\cdot
+\frac1x\)</span></p>
+<p>For <span class="math inline">\(x\in[0,1]\)</span> and <span class="math inline">\(h\in[0,1]\)</span> s.t. <span class="math inline">\(x+h\le1\)</span>,<br />
+<span class="math display">\[|f(x+h)-f(x)|\le |f(x+h)|+|f(x)|\le
+(x+h)^a+x^a\le 2(x+h)^a\]</span></p>
+<p>Also, <span class="math inline">\(f&#39;(x)=a x^{a-1}\sin(x^{-a})-a
+x^{-1}\cos(x^{-a})\)</span>, so<br />
+<span class="math display">\[|f&#39;(x)|\le a x^{a-1}|\sin(x^{-a})|+a
+x^{-1}|\cos(x^{-a})|
+\le a(x^{a-1}+x^{-1})\le 2a x^{-1}\ (x\in(0,1))\]</span></p>
+<p>Then, <span class="math inline">\(|f(x+h)-f(x)|=|f&#39;(c)\cdot
+h|\)</span> (: MVT, <span class="math inline">\(c\in(x,x+h)\)</span>)
+<span class="math inline">\(\le 2a h\cdot \frac1c\le 2a h\cdot
+\frac1x\)</span>.</p>
+<p>② <span class="math inline">\(|f(x+h)-f(x)|\le A\cdot
+h^{\frac{a}{a+1}}\)</span></p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(h\le x^{a+1}\iff h^{\frac1{a+1}}\le
+x\iff x^{-1}\le h^{-\frac1{a+1}}\)</span></li>
+</ol>
+<p><span class="math inline">\(|f(x+h)-f(x)|\le 2a h\cdot x^{-1}\le 2a
+h\cdot h^{-\frac1{a+1}}
+=2a\cdot h^{\frac{a}{a+1}}\)</span>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="math inline">\(h&gt;x^{a+1}\iff
+x&lt;h^{\frac1{a+1}}\)</span></li>
+</ol>
+<p><span class="math inline">\(|f(x+h)-f(x)|\le 2(x+h)^a\le
+2(h^{\frac1{a+1}}+h)^a
+\le 2(2h^{\frac1{a+1}})^a\)</span> (: <span class="math inline">\(0\le
+h\le1\)</span>) <span class="math inline">\(=2^{a+1}\cdot
+h^{\frac{a}{a+1}}\)</span>.</p>
+<p><span class="math inline">\(2^{a+1}&gt;2a\)</span> for all <span class="math inline">\(a&gt;0\)</span>, thus<br />
+<span class="math inline">\(|f(x+h)-f(x)|\le 2^{a+1}\cdot
+h^{\frac{a}{a+1}}
+=2^{a+1}\cdot h^\alpha\ (\alpha=\frac{a}{a+1})\)</span>.</p>
+<p>③ not bounded variation</p>
+<p>Since <span class="math inline">\(b&gt;a\)</span> does not hold,
+<span class="math inline">\(f\)</span> is not bounded variation (∵
+(i)).</p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+
+</div>
