@@ -28,4 +28,4 @@ I will continue uploading:
 - Coding projects (R, Python, and Rcpp implementations)
 
 ---
-© 2025 Ko Hanjun
+© 2025 Han Jun Ko
