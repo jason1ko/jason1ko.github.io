@@ -1,0 +1,631 @@
+---
+title: "Ch4 : Ex.10 ~ Ex.20"
+date: 2023-01-01 23:20:50
+categories: [Measure Theory]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="let-s-denote-a-subspace-of-a-hilbert-space-h.-show-that-sperpperp-is-the-smallest-closed-subspace-of-h-such-that-ssubset-mathcalh." class="section level2">
+<h2>10. Let <span class="math inline">\(S\)</span> denote a subspace of
+a Hilbert space <span class="math inline">\(H\)</span>. Show that <span class="math inline">\(S^{\perp\perp}\)</span> is the smallest closed
+subspace of <span class="math inline">\(H\)</span> such that <span class="math inline">\(S\subset \mathcal{H}\)</span>.</h2>
+<p><strong>proof</strong> ① <span class="math inline">\(S\subset
+S^{\perp\perp}\)</span></p>
+<p>Let <span class="math inline">\(f\in S^\perp\)</span> and <span class="math inline">\(g\in S\)</span>, then <span class="math inline">\((f,g)=0\)</span>.<br />
+<span class="math inline">\(S^{\perp\perp}\)</span> can be defined as
+follows: <span class="math inline">\(S^{\perp\perp}=\{g\in H:(g,f)=0\
+\forall f\in S^\perp\}\)</span>.<br />
+When <span class="math inline">\(g\in S\)</span>, <span class="math inline">\((g,f)=0\)</span> for all <span class="math inline">\(f\in S^\perp\)</span>. So, <span class="math inline">\(g\in S^{\perp\perp}\)</span> and thus <span class="math inline">\(S\subset S^{\perp\perp}\)</span>.<br />
+Note that <span class="math inline">\((S^\perp)^\perp\)</span> is a
+closed subspace of <span class="math inline">\(H\)</span>.</p>
+<p>② <span class="math inline">\(A\subset B\subset H\)</span>, then
+<span class="math inline">\(B^\perp\subset A^\perp\)</span></p>
+<p>Let <span class="math inline">\(u\in B^\perp\)</span>, then <span class="math inline">\((u,v)=0\)</span> for all <span class="math inline">\(v\in B\)</span>.<br />
+If <span class="math inline">\(a\in A\)</span>, <span class="math inline">\(a\in B\)</span> as well so <span class="math inline">\((u,a)=0\)</span> for all <span class="math inline">\(a\in A\)</span>. Thus, <span class="math inline">\(u\in A^\perp\)</span>.</p>
+<p>③ <span class="math inline">\(F\)</span> is closed subspace, then
+<span class="math inline">\(F^{\perp\perp}=F\)</span></p>
+<p>It suffices to show <span class="math inline">\(F^{\perp\perp}\subset
+F\)</span> (<span class="math inline">\(\because\)</span> ①)</p>
+<p><span class="math inline">\((F^\perp)^\perp\)</span> is a closed
+subspace, which is a Hilbert space, and <span class="math inline">\(F\subset F^{\perp\perp}\)</span> is also a closed
+subspace of <span class="math inline">\(F^{\perp\perp}\)</span>. So
+<span class="math inline">\(F^{\perp\perp}=F\oplus F^\perp\)</span>
+(prop 4.4.2): that is, <span class="math inline">\(x\in
+F^{\perp\perp}\)</span> can be uniquely written as <span class="math inline">\(a+b\)</span>, where <span class="math inline">\(a\in F\)</span> and <span class="math inline">\(b\in F^\perp\)</span>. Due to the definition of
+<span class="math inline">\(F^\perp\)</span>, <span class="math inline">\((a,b)=0\)</span>. Then, <span class="math display">\[
+\begin{aligned}
+0&amp;=(a+b,b)=(a,b)+\|b\|^2=\|b\|^2\ (\because a\perp b),
+\end{aligned}
+\]</span> and <span class="math inline">\(b=0\)</span>. Thus, <span class="math inline">\(x=a\in F\)</span> and <span class="math inline">\(F^{\perp\perp}\subset F\)</span>.</p>
+<p>④ conclusion : <span class="math inline">\(S^{\perp\perp}\subset
+F\)</span></p>
+<p>Suppose <span class="math inline">\(F\subset H\)</span> is another
+closed subspace containing <span class="math inline">\(S: S\subset
+F\)</span>. Due to ②, <span class="math inline">\(F^\perp\subset
+S^\perp\)</span> and <span class="math inline">\(S^{\perp\perp}\subset
+F^{\perp\perp}=F\)</span> (<span class="math inline">\(\because\)</span>
+③). Since <span class="math inline">\(S^{\perp\perp}\subset F\)</span>
+for all such closed subspaces containing <span class="math inline">\(S\)</span>, <span class="math inline">\(S^{\perp\perp}\)</span> is the smallest closed
+subspace containing <span class="math inline">\(S\)</span>.</p>
+<hr />
+</div>
+<div id="let-p-be-the-orthogonal-projection-onto-a-closed-subspace-ssubset-mathcalh." class="section level2">
+<h2>11. Let <span class="math inline">\(P\)</span> be the orthogonal
+projection onto a closed subspace <span class="math inline">\(S\subset
+\mathcal{H}\)</span>.</h2>
+<div id="a-1-show-that-p2p" class="section level3">
+<h3>(a)-1 Show that <span class="math inline">\(P^2=P\)</span></h3>
+<p><strong>proof</strong> <span class="math inline">\(f\in\mathcal{H}\)</span> can be uniquely written
+as <span class="math inline">\(f_S+f_{S^\perp}\)</span>, where <span class="math inline">\(f_S\in S\)</span> and <span class="math inline">\(f_{S^\perp}\in S^\perp\)</span>.<br />
+<span class="math inline">\(P(f)=f_S\)</span> and <span class="math inline">\(P^2(f)=P(P(f))=P(f_S)=f_S\)</span>. Thus, <span class="math inline">\(P^2=P\)</span>.</p>
+</div>
+<div id="a-2-show-that-pp" class="section level3">
+<h3>(a)-2 Show that <span class="math inline">\(P^*=P\)</span></h3>
+<p><strong>proof</strong> Let <span class="math inline">\(g=g_S+g_{S^\perp}\)</span>, where <span class="math inline">\(g\in\mathcal{H}\)</span>, <span class="math inline">\(g_S\in S\)</span>, and <span class="math inline">\(g_{S^\perp}\in S^\perp\)</span>.<br />
+<span class="math inline">\((Pf,g)=(f_S,g_S+g_{S^\perp})=(f_S,g_S)=(f_S+f_{S^\perp},g_S)=(f,Pg)\)</span>.
+Thus, <span class="math inline">\(P^*=P\)</span>.</p>
+</div>
+<div id="b-conversely-p-is-a-bounded-operator-satisfying-p2p-and-pp.-then-show-that-p-is-the-orthogonal-projection-onto-some-closed-subspace-of-mathcalh." class="section level3">
+<h3>(b) Conversely, <span class="math inline">\(P\)</span> is a bounded
+operator satisfying <span class="math inline">\(P^2=P\)</span> and <span class="math inline">\(P^*=P\)</span>. Then, show that <span class="math inline">\(P\)</span> is the orthogonal projection onto some
+closed subspace of <span class="math inline">\(\mathcal{H}\)</span>.</h3>
+<p><strong>proof</strong> Let <span class="math inline">\(S=\{Pf:f\in\mathcal{H}\}\)</span>; for <span class="math inline">\(\forall g\in S\)</span>, there is <span class="math inline">\(f\in\mathcal{H}\)</span> such that <span class="math inline">\(g=Pf\)</span>.</p>
+<p>① <span class="math inline">\(P(v)=v\)</span> for <span class="math inline">\(\forall v\in S\)</span></p>
+<p>Choose <span class="math inline">\(f\in\mathcal{H}\)</span> such that
+<span class="math inline">\(v=P(f)\)</span>: <span class="math inline">\(P(v)=P^2(f)=P(f)\)</span> (<span class="math inline">\(\because P^2=P\)</span>) <span class="math inline">\(=v\)</span>.</p>
+<p>② <span class="math inline">\(Pw=0\)</span> for <span class="math inline">\(\forall w\in S^\perp\)</span></p>
+<p>For <span class="math inline">\(\forall v\in S\)</span>, <span class="math inline">\((v,Pw)=(Pv,w)\)</span> (<span class="math inline">\(\because P^*=P\)</span>) <span class="math inline">\(=^{\cdot ①} (v,w)=0\)</span>, so <span class="math inline">\(Pw\in S^\perp\)</span>.<br />
+Since <span class="math inline">\(Pw\in S\)</span> by def of <span class="math inline">\(S\)</span>, <span class="math inline">\(Pw=0\)</span>.</p>
+<p>④ <span class="math inline">\(S\)</span> is a subspace of <span class="math inline">\(\mathcal{H}\)</span> (<span class="math inline">\(f,g\in S,\ \alpha,\beta\in\mathbb{C}\)</span>)</p>
+<p>There exist <span class="math inline">\(u,v\in\mathcal{H}\)</span>
+such that <span class="math inline">\(f=Pu\)</span> and <span class="math inline">\(g=Pv\)</span>.<br />
+<span class="math inline">\(\alpha f+\beta g=\alpha Pu+\beta Pv=P(\alpha
+u+\beta v)\)</span> (<span class="math inline">\(\because P\)</span> is
+operator).<br />
+<span class="math inline">\(\alpha u+\beta v\in\mathcal{H}\)</span>
+(<span class="math inline">\(\because \mathcal{H}\)</span> is a vector
+space), so <span class="math inline">\(\alpha f+\beta g\in
+S\)</span>.<br />
+Thus, <span class="math inline">\(S\)</span> is a subspace of <span class="math inline">\(\mathcal{H}\)</span>.</p>
+<p>⑤ <span class="math inline">\(S\)</span> is closed</p>
+<p>Suppose <span class="math inline">\(\{z_n\}\subset S\)</span> such
+that <span class="math inline">\(z_n\to x\in\mathcal{H}\)</span>. <span class="math inline">\(P\)</span> is continuous, so <span class="math inline">\(Pz_n\to Px\)</span>.<br />
+This means <span class="math inline">\(z_n\to Px\)</span>, so <span class="math inline">\(x=Px\in S\)</span> and thus <span class="math inline">\(S\)</span> is closed.<br />
+<span class="math inline">\(\because ①\)</span></p>
+<p>⑥ conclusion</p>
+<p>Consider <span class="math inline">\(y\in\mathcal{H}\)</span>. Then
+<span class="math inline">\(y=y_S+y_{S^\perp}\)</span>, where <span class="math inline">\(y_S\in S\)</span> and <span class="math inline">\(y_{S^\perp}\in S^\perp\)</span>.<br />
+<span class="math inline">\(P\)</span> is an operator, so <span class="math inline">\(Py=Py_S+Py_{S^\perp}=Py_S\)</span> (<span class="math inline">\(\because ②\)</span>) <span class="math inline">\(=y_S\)</span> (<span class="math inline">\(\because ①\)</span>).<br />
+This holds for all <span class="math inline">\(y\in\mathcal{H}\)</span>,
+so <span class="math inline">\(P\)</span> is an orthogonal projection
+onto <span class="math inline">\(S\)</span>.</p>
+</div>
+<div id="c-show-that-s-is-separable-cdot_mathcalhto-cdot" class="section level3">
+<h3>(c) Show that <span class="math inline">\(S\)</span> is separable
+<span class="math inline">\((\|\cdot\|_{\mathcal{H}}\to
+\|\cdot\|)\)</span></h3>
+<p><strong>proof</strong> <span class="math inline">\(\mathcal{H}\)</span> is separable, so there is
+<span class="math inline">\(\{\phi_k\}\subset\mathcal{H}\)</span> such
+that its finite linear combinations are dense in <span class="math inline">\(\mathcal{H}\)</span>; for <span class="math inline">\(f\in\mathcal{H}\)</span> and <span class="math inline">\(\forall\varepsilon&gt;0\)</span>, there is <span class="math inline">\(\psi_\varepsilon=\sum_{i=1}^N a_i\phi_i\)</span>
+(<span class="math inline">\(a_i\in\mathbb{C}\)</span>) such that <span class="math inline">\(\|\psi_\varepsilon-f\|&lt;\varepsilon\)</span>.
+Consider the case <span class="math inline">\(f\in
+S\subset\mathcal{H}\)</span>.</p>
+<p><span class="math inline">\(P(\psi_\varepsilon)=P\!\left(\sum_{i=1}^N
+a_i\phi_i\right)=\sum_{i=1}^N a_i\cdot P(\phi_i)\)</span>, finite linear
+combination of <span class="math inline">\(\{P(\phi_i)\}\subset
+S\)</span>.<br />
+Then, <span class="math inline">\(\|P(\psi_\varepsilon)-f\|=\|P(\psi_\varepsilon)-P(f)\|=\|P(\psi_\varepsilon-f)\|\le
+\|\psi_\varepsilon-f\|&lt;\varepsilon\)</span>.</p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span> and all <span class="math inline">\(f\in S\)</span>, so <span class="math inline">\(\{P(\phi_i)\}_i\)</span> is dense in <span class="math inline">\(S\)</span> and <span class="math inline">\(S\)</span> is separable.</p>
+<hr />
+</div>
+</div>
+<div id="let-e-be-a-measurable-subset-of-mathbbrd-and-s-is-a-subspace-of-l2mathbbrd-whose-functions-vanish-a.e.-xin-ec.-show-that-the-orthogonal-projection-p-on-s-is-pfchi_e-f-fin-l2mathbbrd" class="section level2">
+<h2>12. Let <span class="math inline">\(E\)</span> be a measurable
+subset of <span class="math inline">\(\mathbb{R}^d\)</span>, and <span class="math inline">\(S\)</span> is a subspace of <span class="math inline">\(L^2(\mathbb{R}^d)\)</span> whose functions vanish
+a.e. <span class="math inline">\(x\in E^c\)</span>. Show that the
+orthogonal projection <span class="math inline">\(P\)</span> on <span class="math inline">\(S\)</span> is <span class="math inline">\(P(f)=\chi_E f\)</span> (<span class="math inline">\(f\in L^2(\mathbb{R}^d)\)</span>)</h2>
+<p><strong>proof</strong> Let <span class="math inline">\(T(f(x))=\chi_E(x)f(x)\)</span> (<span class="math inline">\(f\in L^2\)</span>, <span class="math inline">\(T:L^2\to L^2\)</span>, <span class="math inline">\(\|\cdot\|_{L^2}\to\|\cdot\|\)</span>). Then <span class="math inline">\(\{Tf:f\in L^2\}=S\)</span>.<br />
+Note that <span class="math inline">\(Tf(x)\)</span> vanishes for a.e.
+<span class="math inline">\(x\in E^c\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(T^2(f)=T(Tf)=T(\chi_E
+f)=\chi_E(\chi_E f)=\chi_E f=T(f)\)</span>, so <span class="math inline">\(T^2=T\)</span>.</p></li>
+<li><p><span class="math inline">\((Tf,g)=\int \chi_E f\cdot
+\overline{g}=\int_E f\cdot \overline{g}=(f,\chi_E g)=(f,Tg)\)</span>, so
+<span class="math inline">\(T^*=T\)</span>.</p></li>
+<li><p><span class="math inline">\(\|T(f)\|^2=\|\chi_E
+f\|^2=\int_{\mathbb{R}^d}|\chi_E f|^2=\int_E |f|^2\le
+\int_{\mathbb{R}^d}|f|^2=\|f\|^2\)</span>.<br />
+Then, <span class="math inline">\(\|T(f)\|\le \|f\|\)</span>, so <span class="math inline">\(T\)</span> is bounded <span class="math inline">\((\|T\|=1)\)</span>. So, <span class="math inline">\(T\)</span> is an orthogonal projection onto a
+closed subspace <span class="math inline">\(S\)</span> (<span class="math inline">\(\because\)</span> ex 11)</p></li>
+<li><p>linear <span class="math inline">\((f,g\in\mathcal{H},\
+\alpha,\beta\in\mathbb{C})\)</span> <span class="math inline">\(T(\alpha
+f+\beta g)=\chi_E(x)(\alpha f(x)+\beta g(x))=\alpha\cdot \chi_E
+f+\beta\cdot \chi_E g=\alpha Tf+\beta Tg\)</span></p></li>
+</ol>
+<hr />
+</div>
+<div id="suppose-p_1p_2-are-orthogonal-projections-on-s_1s_2subset-mathcalh-respectively." class="section level2">
+<h2>13. Suppose <span class="math inline">\(P_1,P_2\)</span> are
+orthogonal projections on <span class="math inline">\(S_1,S_2\subset
+\mathcal{H}\)</span> respectively.</h2>
+<div id="show-that-p_1p_2-is-an-orthogonal-projection-if-p_1-and-p_2-commute" class="section level3">
+<h3>(1) Show that <span class="math inline">\(P_1P_2\)</span> is an
+orthogonal projection if <span class="math inline">\(P_1\)</span> and
+<span class="math inline">\(P_2\)</span> commute</h3>
+<p><strong>proof</strong> ① <span class="math inline">\((AB)^*=B^*A^*\)</span>, where <span class="math inline">\(A,B\)</span> are linear operator on <span class="math inline">\(\mathcal{H}\)</span> <span class="math inline">\((v,w\in\mathcal{H})\)</span></p>
+<p><span class="math inline">\((ABv,w)=(A(Bv),w)=(Bv,A^*w)=(v,B^*A^*w)\)</span>,
+so <span class="math inline">\((AB)^*=B^*A^*\)</span>.<br />
+<span class="math inline">\(\because Bv\in\mathcal{H}\)</span> <span class="math inline">\(\because v\in\mathcal{H}\)</span></p>
+<p>②→ : when <span class="math inline">\(P_1P_2\)</span> is orthogonal
+projection</p>
+<p><span class="math inline">\(P_2P_1=P_2^*P_1^*=(P_1P_2)^*=P_1P_2\)</span>, so
+they commute.</p>
+<p>③← : When <span class="math inline">\(P_1,P_2\)</span> commute</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\((P_1P_2)^2=P_1P_2P_1P_2=P_1P_1P_2P_2=P_1P_2\)</span></p></li>
+<li><p><span class="math inline">\((P_1P_2)^*=P_2^*P_1^*=P_2P_1=P_1P_2\)</span></p></li>
+<li><p><span class="math inline">\(\|P_1P_2 f\|=\|P_1(P_2f)\|\le
+\|P_2f\|\le \|f\|\to P_1P_2\)</span> is bounded</p></li>
+</ol>
+<p>So, <span class="math inline">\(P_1P_2\)</span> is an orthogonal
+projection</p>
+</div>
+<div id="show-that-p_1p_2-projects-onto-s_1cap-s_2-if-they-commute" class="section level3">
+<h3>(2) Show that <span class="math inline">\(P_1P_2\)</span> projects
+onto <span class="math inline">\(S_1\cap S_2\)</span> if they
+commute</h3>
+<p><strong>proof</strong> ① <span class="math inline">\(\mathrm{Im}(P_1P_2)\subset S_1\cap
+S_2\)</span></p>
+<p><span class="math inline">\(P_1P_2 f=P_1(P_2f)\in S_1\)</span>, and
+<span class="math inline">\(P_1P_2 f=P_2(P_1f)\in S_2\)</span>. <span class="math inline">\(\therefore P_1P_2 f\in S_1\cap S_2\)</span></p>
+<p>② <span class="math inline">\(S_1\cap S_2\subset
+\mathrm{Im}(P_1P_2),\ \forall f\in\mathcal{H}\)</span></p>
+<p>Let <span class="math inline">\(s\in S_1\cap S_2\)</span>. <span class="math inline">\(P_1(s)=s\)</span> (<span class="math inline">\(\because s\in S_1\)</span>) and <span class="math inline">\(P_2(s)=s\)</span> (<span class="math inline">\(\because s\in S_2\)</span>).<br />
+Then, <span class="math inline">\(P_1P_2(s)=P_1(s)=s\)</span>. So, <span class="math inline">\(s\in \mathrm{Im}(P_1P_2)\)</span></p>
+<p><span class="math inline">\(\therefore \mathrm{Im}(P_1P_2)=S_1\cap
+S_2\)</span></p>
+<hr />
+</div>
+</div>
+<div id="suppose-mathcalh-and-mathcalh-are-two-completions-of-pre-hilbert-space-mathcalh_0.-show-that-there-is-a-unitary-mapping-from-mathcalh-to-mathcalh-that-is-identity-on-mathcalh_0." class="section level2">
+<h2>14. Suppose <span class="math inline">\(\mathcal{H}\)</span> and
+<span class="math inline">\(\mathcal{H}&#39;\)</span> are two
+completions of pre-Hilbert space <span class="math inline">\(\mathcal{H}_0\)</span>. Show that there is a
+unitary mapping from <span class="math inline">\(\mathcal{H}\)</span> to
+<span class="math inline">\(\mathcal{H}&#39;\)</span> that is identity
+on <span class="math inline">\(\mathcal{H}_0\)</span>.</h2>
+<p><strong>proof</strong> Choose a Cauchy sequence <span class="math inline">\(\{f_n\}\subset \mathcal{H}_0\)</span> such that
+<span class="math inline">\(\|f_n-f\|_{\mathcal{H}}\to 0\)</span> for
+<span class="math inline">\(f\in\mathcal{H}\)</span>. Define <span class="math inline">\(U:\mathcal{H}\to\mathcal{H}&#39;\)</span> as
+follows: <span class="math inline">\(\|f_n-U(f)\|_{\mathcal{H}&#39;}\to
+0\)</span> for <span class="math inline">\(f\in\mathcal{H}\)</span>.</p>
+<p>① <span class="math inline">\(U\)</span> is identity on <span class="math inline">\(\mathcal{H}_0\)</span> : <span class="math inline">\(Uf=f\)</span> for <span class="math inline">\(f\in\mathcal{H}_0\)</span></p>
+<p>Consider the case <span class="math inline">\(f\in\mathcal{H}_0\)</span>. <span class="math display">\[
+\begin{aligned}
+\|f-U(f)\|_{\mathcal{H}&#39;}
+&amp;\le \|f-f_n\|_{\mathcal{H}&#39;}+\|f_n-U(f)\|_{\mathcal{H}&#39;} \\
+&amp;= \|f_n-f\|_{\mathcal{H}_0}+\|f_n-U(f)\|_{\mathcal{H}&#39;} \qquad
+(\because f,f_n\in\mathcal{H}_0)\\
+&amp;= \|f_n-f\|_{\mathcal{H}}+\|f_n-U(f)\|_{\mathcal{H}&#39;} \qquad
+(\because \mathcal{H}_0\subset \mathcal{H})
+\end{aligned}
+\]</span> So, <span class="math inline">\(\|f-U(f)\|_{\mathcal{H}&#39;}\le
+\lim_{n\to\infty}\|f_n-f\|_{\mathcal{H}}+\lim_{n\to\infty}\|f_n-U(f)\|_{\mathcal{H}&#39;}=0\)</span>.<br />
+This means <span class="math inline">\(\|f-U(f)\|_{\mathcal{H}&#39;}=0\)</span>, so <span class="math inline">\(U(f)=f\)</span>.<br />
+This holds for all <span class="math inline">\(f\in\mathcal{H}_0\)</span>, so <span class="math inline">\(U\)</span> is identity on <span class="math inline">\(\mathcal{H}_0\)</span>.</p>
+<p>② <span class="math inline">\(U\)</span> is unitary</p>
+<p>Consider Cauchy sequences <span class="math inline">\(\{f_n\},\{g_n\}\subset \mathcal{H}_0\)</span> such
+that <span class="math inline">\((f,g\in\mathcal{H})\)</span> <span class="math inline">\(\lim_{n\to\infty}\|f_n-f\|_{\mathcal{H}}=0\)</span>
+and <span class="math inline">\(\lim_{n\to\infty}\|g_n-g\|_{\mathcal{H}}=0\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(U\)</span> is linear <span class="math inline">\((f,g\in\mathcal{H},\
+\alpha,\beta\in\mathbb{C})\)</span> <span class="math inline">\(\lim_{n\to\infty}\|f_n-U(f)\|_{\mathcal{H}&#39;}=0\)</span>
+and <span class="math inline">\(\lim_{n\to\infty}\|g_n-U(g)\|_{\mathcal{H}&#39;}=0\)</span>
+are true. Then, <span class="math inline">\(\lim_{n\to\infty}\|\alpha
+f_n-\alpha U(f)\|_{\mathcal{H}&#39;}=0\)</span> and <span class="math inline">\(\lim_{n\to\infty}\|\beta g_n-\beta
+U(g)\|_{\mathcal{H}&#39;}=0\)</span> by def of <span class="math inline">\(U\)</span>. So, <span class="math display">\[
+\begin{aligned}
+\|(\alpha f_n+\beta g_n)-(\alpha U(f)+\beta U(g))\|_{\mathcal{H}&#39;}
+&amp;\le \|\alpha f_n-\alpha U(f)\|_{\mathcal{H}&#39;}+\|\beta g_n-\beta
+U(g)\|_{\mathcal{H}&#39;},\\
+\lim_{n\to\infty}\|(\alpha f_n+\beta g_n)-(\alpha U(f)+\beta
+U(g))\|_{\mathcal{H}&#39;}&amp;=0.
+\end{aligned}
+\]</span> <span class="math display">\[
+\begin{aligned}
+\|(\alpha f_n+\beta g_n)-(\alpha f+\beta g)\|_{\mathcal{H}}
+&amp;\le \|\alpha f_n-\alpha f\|_{\mathcal{H}}+\|\beta g_n-\beta
+g\|_{\mathcal{H}} \to 0,\\
+\lim_{n\to\infty}\|(\alpha f_n+\beta g_n)-(\alpha f+\beta
+g)\|_{\mathcal{H}}&amp;=0,
+\end{aligned}
+\]</span> so <span class="math inline">\(\lim_{n\to\infty}\|\alpha
+f_n+\beta g_n-U(\alpha f+\beta g)\|_{\mathcal{H}&#39;}=0\)</span> (<span class="math inline">\(\because\)</span> def of <span class="math inline">\(U\)</span>).<br />
+Thus, <span class="math inline">\(U(\alpha f+\beta g)=\alpha U(f)+\beta
+U(g)\)</span> : linear</p></li>
+<li><p><span class="math inline">\(U\)</span> is bijection<br></p></li>
+</ol>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(U\)</span> is injective (1-1) Let <span class="math inline">\(U(f)=U(g)\in\mathcal{H}&#39;\)</span> for <span class="math inline">\(f,g\in\mathcal{H}\)</span>. <span class="math display">\[
+\begin{aligned}
+\|f-g\|_{\mathcal{H}}
+&amp;\le
+\|f-f_n\|_{\mathcal{H}}+\|f_n-g_n\|_{\mathcal{H}}+\|g_n-g\|_{\mathcal{H}}\\
+&amp;=
+\|f-f_n\|_{\mathcal{H}}+\|f_n-g_n\|_{\mathcal{H}}+\|g_n-g\|_{\mathcal{H}}
+\qquad (\because f_n,g_n\in\mathcal{H}_0\subset \mathcal{H}&#39;)\\
+&amp;\le
+\|f-f_n\|_{\mathcal{H}}+\|f_n-U(f)\|_{\mathcal{H}&#39;}+\|U(g)-g_n\|_{\mathcal{H}&#39;}+\|g_n-g\|_{\mathcal{H}}
+\qquad (\because U(f)=U(g))
+\end{aligned}
+\]</span> Then, <span class="math display">\[
+\|f-g\|_{\mathcal{H}}\le
+\lim_{n\to\infty}\Big\{\|f-f_n\|_{\mathcal{H}}+\|f_n-U(f)\|_{\mathcal{H}&#39;}+\|U(g)-g_n\|_{\mathcal{H}&#39;}+\|g_n-g\|_{\mathcal{H}}\Big\}=0.
+\]</span> So, <span class="math inline">\(f=g\)</span> and thus <span class="math inline">\(U\)</span> is injective (1-1).<br></li>
+<li><span class="math inline">\(U\)</span> is surjective (onto) Consider
+<span class="math inline">\(f&#39;\in\mathcal{H}&#39;\)</span> and <span class="math inline">\(\{f_n\}\)</span>, a Cauchy sequence in <span class="math inline">\(\mathcal{H}_0\)</span>, such that <span class="math inline">\(\lim_{n\to\infty}\|f_n-f&#39;\|_{\mathcal{H}&#39;}=0\)</span>.<br />
+<span class="math inline">\(\exists f\in\mathcal{H}\)</span> s.t. <span class="math inline">\(\lim_{n\to\infty}\|f_n-f\|_{\mathcal{H}}=0\)</span>.<br />
+<span class="math inline">\(\lim_{n\to\infty}\|f_n-U(f)\|_{\mathcal{H}&#39;}=0\)</span>
+by def of <span class="math inline">\(U\)</span>, then <span class="math display">\[
+\|U(f)-f&#39;\|_{\mathcal{H}&#39;}\le
+\|U(f)-f_n\|_{\mathcal{H}&#39;}+\|f_n-f&#39;\|_{\mathcal{H}&#39;},\
+\text{so }\|U(f)-f&#39;\|_{\mathcal{H}&#39;}=0.
+\]</span> Thus, there is <span class="math inline">\(f\in\mathcal{H}\)</span> such that <span class="math inline">\(f&#39;=U(f)\Rightarrow\)</span> surjective
+(onto).<br></li>
+<li><span class="math inline">\(\therefore\)</span> <span class="math inline">\(U\)</span> is bijective</li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math inline">\(\|U(f)\|_{\mathcal{H}&#39;}=\|f\|_{\mathcal{H}}\)</span>
+<span class="math inline">\(\ \forall f\in\mathcal{H}\)</span> Choose
+the same Cauchy sequence <span class="math inline">\(\{f_n\}\)</span> in
+<span class="math inline">\(\mathcal{H}_0\)</span>. <span class="math display">\[
+\begin{aligned}
+\|U(f)\|_{\mathcal{H}&#39;}
+&amp;\le
+\|U(f)-f_n\|_{\mathcal{H}&#39;}+\|f_n\|_{\mathcal{H}&#39;}=\|U(f)-f_n\|_{\mathcal{H}&#39;}+\|f_n\|_{\mathcal{H}}
+\qquad (\because f_n\in\mathcal{H}_0\subset \mathcal{H})\\
+&amp;\le
+\|U(f)-f_n\|_{\mathcal{H}&#39;}+\|f_n-f\|_{\mathcal{H}}+\|f\|_{\mathcal{H}}.
+\end{aligned}
+\]</span> Since <span class="math inline">\(\|U(f)\|_{\mathcal{H}&#39;}\le
+\lim_{n\to\infty}\|U(f)-f_n\|+\lim_{n\to\infty}\|f_n-f\|_{\mathcal{H}}+\|f\|_{\mathcal{H}}=\|f\|_{\mathcal{H}}\)</span>,
+<span class="math inline">\(\|U(f)\|_{\mathcal{H}&#39;}\le
+\|f\|_{\mathcal{H}}\)</span>.<br />
+Similarly, <span class="math display">\[
+\|f\|_{\mathcal{H}}\le
+\|f-f_n\|_{\mathcal{H}}+\|f_n-U(f)\|_{\mathcal{H}&#39;}+\|U(f)\|_{\mathcal{H}&#39;},\
+\text{so }\|f\|_{\mathcal{H}}\le \|U(f)\|_{\mathcal{H}&#39;}.
+\]</span> Thus, <span class="math inline">\(\|U(f)\|_{\mathcal{H}&#39;}=\|f\|_{\mathcal{H}}\)</span>
+for all <span class="math inline">\(f\in\mathcal{H}\)</span>.</li>
+</ol>
+<hr />
+</div>
+<div id="let-t-be-a-linear-transformation-from-h_1-to-h_2.-if-we-suppose-that-h_1-is-finite-dimension-show-that-t-is-bounded." class="section level2">
+<h2>15. Let <span class="math inline">\(T\)</span> be a linear
+transformation from <span class="math inline">\(H_1\)</span> to <span class="math inline">\(H_2\)</span>. If we suppose that <span class="math inline">\(H_1\)</span> is finite dimension, show that <span class="math inline">\(T\)</span> is bounded.</h2>
+<p><strong>proof</strong> Let <span class="math inline">\(\{e_i\}_{i=1}^n\)</span> be an orthonormal basis
+for <span class="math inline">\(H_1\)</span>. <span class="math inline">\(f\in H_1\)</span> can be written as <span class="math inline">\(f=\sum_{i=1}^n a_i e_i\)</span>, where <span class="math inline">\(a_i\in\mathbb{C}\)</span>. Let <span class="math inline">\(M=\max_{1\le i\le n}\|T(e_i)\|_{H_2}\)</span>.
+<span class="math display">\[
+\begin{aligned}
+\|T(f)\|_{H_2}
+&amp;=\left\|T\!\left(\sum_{i=1}^n a_i e_i\right)\right\|_{H_2}
+=\left\|\sum_{i=1}^n a_i T(e_i)\right\|_{H_2} \\
+&amp;\le \sum_{i=1}^n |a_i|\,\|T(e_i)\|_{H_2}\qquad (\because \triangle\
+\text{ineq})\\
+&amp;\le M\sum_{i=1}^n |a_i| \\
+&amp;\le M\left(\sum_{i=1}^n |a_i|^2\cdot n\right)^{1/2}\qquad (\because
+\text{Cauchy-Schwartz})\\
+&amp;=M\sqrt{n}\,\|f\|_{H_1}\qquad (\text{thm }4.2.3\ \text{iv})\ \
+(\text{let }M&#39;=M\sqrt{n})
+\end{aligned}
+\]</span> Since <span class="math inline">\(\|T(f)\|_{H_2}\le
+M&#39;\|f\|_{H_1}\)</span> for all <span class="math inline">\(f\in
+H_1\)</span>, <span class="math inline">\(T\)</span> is bounded.</p>
+<hr />
+</div>
+<div id="let-h-denote-a-hilbert-space-and-mathcallh-the-vector-space-of-all-bounded-linear-operators-on-h." class="section level2">
+<h2>18. Let <span class="math inline">\(H\)</span> denote a Hilbert
+space, and <span class="math inline">\(\mathcal{L}(H)\)</span> the
+vector space of all bounded linear operators on <span class="math inline">\(H\)</span>.</h2>
+<div id="a-show-that-t_1t_2le-t_1t_2-forall-t_1t_2inmathcallh" class="section level3">
+<h3>(a) Show that <span class="math inline">\(\|T_1+T_2\|\le
+\|T_1\|+\|T_2\|\)</span> <span class="math inline">\(\ \forall
+T_1,T_2\in\mathcal{L}(H)\)</span></h3>
+<p><strong>proof</strong> <span class="math display">\[
+\begin{aligned}
+\|T_1+T_2\|
+&amp;=\sup\Big\{|((T_1+T_2)f,g)|: f,g\in H\ \&amp;\ \|f\|\le 1,\
+\|g\|\le 1\Big\}\qquad \text{omitted}\\
+&amp;=\sup_{\|f\|,\|g\|\le 1}\Big\{|(T_1f,g)+(T_2f,g)|\Big\}\\
+&amp;\le \sup_{\|f\|,\|g\|\le 1}\Big\{|(T_1f,g)|+|(T_2f,g)|\Big\}\qquad
+(\because \sup_n(a_n+b_n)\le \sup_n a_n+\sup_n b_n)\\
+&amp;\le \sup_{\|f\|,\|g\|\le 1}|(T_1f,g)|+\sup_{\|f\|,\|g\|\le
+1}|(T_2f,g)|=\|T_1\|+\|T_2\|.
+\end{aligned}
+\]</span></p>
+</div>
+<div id="b-show-that-dt_1t_2t_1-t_2-is-a-metric-on-mathcallh" class="section level3">
+<h3>(b) Show that <span class="math inline">\(d(T_1,T_2)=\|T_1-T_2\|\)</span> is a metric on
+<span class="math inline">\(\mathcal{L}(H)\)</span></h3>
+<p><strong>proof</strong> ① <span class="math inline">\(d(T_1,T_2)\ge
+0\)</span></p>
+<p><span class="math inline">\(\|T_1-T_2\|=\sup_{f,g\in
+H}|((T_1-T_2)f,g)|\)</span> : supremum of non-negative numbers. So,
+<span class="math inline">\(\|T_1-T_2\|\ge 0\)</span>.</p>
+<p>② <span class="math inline">\(d(T_1,T_2)=0\)</span> iff <span class="math inline">\(T_1=T_2\)</span></p>
+<p><span class="math inline">\(\to\)</span> : <span class="math inline">\(\|(T_1-T_2)f\|_H\le \|T_1-T_2\|\|f\|_H\)</span>,
+so <span class="math inline">\(\|(T_1-T_2)f\|_H=0\)</span> for all <span class="math inline">\(f\in H\)</span> and <span class="math inline">\((T_1-T_2)f=0\)</span> <span class="math inline">\(\forall f\in H\)</span>. Then <span class="math inline">\(T_1-T_2\)</span> is a zero operator: <span class="math inline">\(T_1-T_2=0\)</span>, so <span class="math inline">\(T_1=T_2\)</span>.<br />
+<span class="math inline">\(\leftarrow\)</span> : <span class="math inline">\(\|T_1-T_1\|=\sup_{\|f\|,\|g\|\le 1}|\langle
+0f,g\rangle|=\sup_{\|f\|,\|g\|\le 1}|\langle
+0,g\rangle|=\sup_{\|f\|,\|g\|\le 1}0=0\)</span>.</p>
+<p>③ <span class="math inline">\(d(T_1,T_2)=d(T_2,T_1)\)</span></p>
+<p><span class="math inline">\(\|-T\|=\sup|(-Tf,g)|=\sup|(T(-f),g)|=\|T\|\ \
+(\because \|-f\|_H=\|f\|_H)\)</span>.<br />
+Then, <span class="math inline">\(d(T_1,T_2)=\|T_1-T_2\|=\|T_2-T_1\|=d(T_2,T_1)\)</span>.</p>
+<p>④ <span class="math inline">\(d(T_1,T_3)\le
+d(T_1,T_2)+d(T_2,T_3)\)</span></p>
+<p><span class="math inline">\(\|T_1-T_3\|=\|T_1-T_2+T_2-T_3\|\le
+\|T_1-T_2\|+\|T_2-T_3\|\)</span> (<span class="math inline">\(\because\)</span> (a))</p>
+</div>
+<div id="c-show-that-mathcallh-is-complete-in-the-metric-d" class="section level3">
+<h3>(c) Show that <span class="math inline">\(\mathcal{L}(H)\)</span> is
+complete in the metric ‘d’</h3>
+<p><strong>proof</strong> Let <span class="math inline">\(\{T_n\}\subset\mathcal{L}(H)\)</span> be a Cauchy
+sequence, then for every <span class="math inline">\(\varepsilon&gt;0\)</span> there is <span class="math inline">\(N_\varepsilon\in\mathbb{N}\)</span> such that
+<span class="math inline">\(n,m\ge N_\varepsilon\)</span> implies <span class="math inline">\(\|T_m-T_n\|&lt;\varepsilon\)</span>. Choose <span class="math inline">\(f\in H\)</span>.</p>
+<p>① <span class="math inline">\(\{T_nf\}\)</span> is Cauchy in <span class="math inline">\(H\)</span>, define <span class="math inline">\(T\)</span> as <span class="math inline">\(F=T(f)\)</span>.</p>
+<p><span class="math inline">\(\|(T_m-T_n)f\|_H\le
+\|T_m-T_n\|\|f\|_H\)</span>, so <span class="math inline">\(n,m\ge
+N_\varepsilon\)</span> implies <span class="math inline">\(\|T_mf-T_nf\|_H&lt;\|f\|_H\varepsilon\)</span>.<br />
+This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(\{T_nf\}\)</span> is Cauchy sequence in <span class="math inline">\(H\)</span>.<br />
+Then, there is <span class="math inline">\(F\in H\)</span> such that
+<span class="math inline">\(\lim_{n\to\infty}\|T_n(f)-F\|_H=0\)</span>
+(<span class="math inline">\(\because H\)</span> is complete).<br />
+Let <span class="math inline">\(F=T(f)\)</span> <span class="math inline">\((T:H\to H)\)</span>.</p>
+<p>② <span class="math inline">\(T\)</span> is bounded</p>
+<p><span class="math inline">\(\|Tf\|_H\le
+\|Tf-T_nf\|_H+\|T_nf\|_H\)</span> and <span class="math inline">\(\|T_nf\|_H\le
+\|T_nf-Tf\|_H+\|Tf\|_H\)</span>.<br />
+This leads to <span class="math inline">\(\|Tf\|_H=\lim_{n\to\infty}\|T_nf\|_H\)</span>
+(<span class="math inline">\(\because\)</span> ①).</p>
+<p><span class="math inline">\(\|T_n\|\le
+\|T_n-T_m\|+\|T_m\|&lt;\|T_m\|+\varepsilon\)</span> for <span class="math inline">\(n,m\ge N_\varepsilon\)</span>, so <span class="math inline">\(\lim_{n\to\infty}\|T_n\|\le
+\|T_{N_\varepsilon}\|+\varepsilon\)</span> let <span class="math inline">\(B\)</span>.<br />
+Then, <span class="math inline">\(\|Tf\|_H=\lim_{n\to\infty}\|T_nf\|_H\le
+\lim_{n\to\infty}\|T_n\|\|f\|_H&lt; B\cdot \|f\|_H\)</span>.</p>
+<p>Thus, <span class="math inline">\(\|T\|\le B\)</span> and <span class="math inline">\(T\)</span> is bounded.</p>
+<p>③ <span class="math inline">\(T\)</span> is linear <span class="math inline">\((\alpha,\beta\in\mathbb{C})\)</span></p>
+<p>When <span class="math inline">\(g\in H\)</span>, <span class="math inline">\(\{T_ng\}\)</span> is a Cauchy sequence in <span class="math inline">\(H\)</span>: <span class="math inline">\(\lim_{n\to\infty}\|T_ng-Tg\|_H=0\)</span>. Then,
+<span class="math display">\[
+\begin{aligned}
+\lim_{n\to\infty}\|\alpha\cdot T_nf+\beta\cdot T_ng-(\alpha\cdot
+Tf+\beta\cdot Tg)\|_H
+&amp;\le
+\lim_{n\to\infty}\Big\{|\alpha|\|T_nf-Tf\|_H+|\beta|\|T_ng-Tg\|_H\Big\}=0.
+\end{aligned}
+\]</span> <span class="math inline">\(\{T_n(\alpha f+\beta g)\}\)</span>
+is a Cauchy sequence in <span class="math inline">\(H\)</span>, so <span class="math inline">\(\lim_{n\to\infty}\|T_n(\alpha f+\beta g)-T(\alpha
+f+\beta g)\|_H=0\)</span>.<br />
+<span class="math inline">\(T_n\)</span> is linear for all <span class="math inline">\(n\in\mathbb{N}\)</span>, so <span class="math inline">\(T_n(\alpha f+\beta g)=\alpha\cdot
+T_n(f)+\beta\cdot T_n(g)\)</span>. Then, <span class="math display">\[
+\lim_{n\to\infty}\|T_n(\alpha f+\beta g)-T(\alpha f+\beta g)\|
+=\lim_{n\to\infty}\|\alpha\cdot T_n(f)+\beta\cdot T_n(g)-T(\alpha
+f+\beta g)\|=0.
+\]</span> Thus, <span class="math inline">\(T(\alpha f+\beta
+g)=\alpha\cdot T(f)+\beta\cdot T(g)\)</span>, and <span class="math inline">\(T\)</span> is linear.</p>
+<p>④ <span class="math inline">\(\lim_{n\to\infty}\|T_n-T\|=0\)</span></p>
+<p><span class="math inline">\(\lim_{m\to\infty}\|T_mf-Tf\|_H=0\)</span>, so
+there is <span class="math inline">\(M_\varepsilon\in\mathbb{N}\)</span>
+such that <span class="math inline">\(m\ge M_\varepsilon\)</span>
+implies <span class="math inline">\(\|T_mf-Tf\|_H&lt;\varepsilon\|f\|_H\)</span> for
+the given <span class="math inline">\(\varepsilon&gt;0\)</span> (&amp;
+fixed <span class="math inline">\(f\)</span>).<br />
+Then, <span class="math inline">\(m\ge M_\varepsilon\)</span> leads to
+<span class="math inline">\(\|T_m-T\|\le \varepsilon\)</span>.<br />
+This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(\lim_{m\to\infty}\|T_m-T\|=0\)</span>.</p>
+<p>⑤ conclusion</p>
+<p><span class="math inline">\(\therefore\)</span> <span class="math inline">\(T\in\mathcal{L}(H)\)</span> and <span class="math inline">\(\mathcal{L}(H)\)</span> is complete.</p>
+<hr />
+</div>
+</div>
+<div id="t-is-a-bounded-linear-operator-on-a-hilbert-space.-show-that-ttttt2t2." class="section level2">
+<h2>19. <span class="math inline">\(T\)</span> is a bounded linear
+operator on a Hilbert space. Show that <span class="math inline">\(\|TT^*\|=\|T^*T\|=\|T\|^2=\|T^*\|^2\)</span>.</h2>
+<p><strong>proof</strong> It suffices to show <span class="math inline">\(\|T^*T\|=\|T\|^2\)</span> (<span class="math inline">\(\because \|T\|=\|T^*\|\)</span> is known)</p>
+<p>① <span class="math inline">\(\|T^*T\|\le \|T\|^2\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\|T^*T\| &amp;=\sup_{\|f\|_H,\|g\|_H\le
+1}|(T^*Tf,g)|=\sup_{f,g}|(Tf,Tg)| \\
+&amp;\le \sup_{f,g}\|Tf\|\cdot\|Tg\|\ \ (\because \text{Cauchy-Schwartz
+ineq}) \\
+&amp;=\|T\|^2
+\end{aligned}
+\]</span></p>
+<p>② <span class="math inline">\(\|T\|^2\le \|T^*T\|\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\|T\|^2 &amp;=\sup_{\|x\|_H\le 1}\|Tx\|^2=\sup_{\|x\|_H\le 1}(Tx,Tx) \\
+&amp;=\sup_{\|x\|_H\le 1}(x,T^*Tx) \\
+&amp;\le \sup_{\|x\|_H\le 1}\|x\|\cdot\|T^*Tx\| \qquad (\because
+\text{Cauchy}) \\
+&amp;=\sup_{\|x\|_H\le 1}\|T^*Tx\|\\
+&amp;\le \sup_{\|x\|_H\le 1}\|T^*T\|\cdot\|x\|\\
+&amp;=\|T^*T\|
+\end{aligned}
+\]</span></p>
+<p>So, <span class="math inline">\(\|T\|^2\le \|T^*T\|\)</span>.</p>
+<p>③ <span class="math inline">\(\therefore\
+\|T^*T\|=\|T\|^2\)</span></p>
+<p>④ other equalities</p>
+<p>Since <span class="math inline">\(\|T\|=\|T^*\|\)</span>, <span class="math inline">\(\|T\|^2=\|T^*\|^2\)</span>. Also, switching <span class="math inline">\(T\)</span> with <span class="math inline">\(T^*\)</span> vise versa, <span class="math inline">\(\|TT^*\|=\|T^*\|^2\)</span>.</p>
+<p>Thus, <span class="math inline">\(\|TT^*\|=\|T^*T\|=\|T\|^2=\|T^*\|^2\)</span>.</p>
+<p><strong>cf)</strong> <span class="math inline">\(\|T\|=\sup_{\|x\|_H\le
+1}\|Tx\|_H=\sup_{\|x\|_H=1}\|Tx\|_H=\sup_{x\ne
+0}\dfrac{\|Tx\|_H}{\|x\|_H}\)</span></p>
+<p><strong>proof</strong> Let <span class="math inline">\(I=\inf\{C:\|Tx\|_H\le C\|x\|_H\}\)</span>.<br />
+<span class="math inline">\(S_1=\sup\{\|Tx\|_H:\|x\|_H\le
+1\}\)</span><br />
+<span class="math inline">\(S_2=\sup\{\|Tx\|_H:\|x\|_H=1\}\)</span><br />
+<span class="math inline">\(S_3=\sup\left\{\dfrac{\|Tx\|_H}{\|x\|_H}:x\ne
+0\right\}\)</span></p>
+<p><span class="math inline">\(\|Tx\|_H\le S_3\|x\|_H\ \to\ I\le
+S_3\)</span></p>
+<p><span class="math inline">\(\forall x,\ \exists v\ne 0\ \text{s.t.}\
+S_3&lt;\dfrac{\|Tv\|}{\|v\|}+\varepsilon\)</span><br />
+<span class="math inline">\(\because \dfrac{\|Tv\|}{\|v\|}\le I\ \ \}\to
+S_3\le I\)</span></p>
+<hr />
+</div>
+<div id="suppose-h-is-an-infinite-dimensional-hilbert-space.-show-that-for-any-f_nsubset-h-with-f_n1-forall-ninmathbbn-there-is-fin-h-and-a-subsequence-f_n_k-such-that" class="section level2">
+<h2>20. Suppose <span class="math inline">\(H\)</span> is an
+infinite-dimensional Hilbert space. Show that for any <span class="math inline">\(\{f_n\}\subset H\)</span> with <span class="math inline">\(\|f_n\|=1\)</span> <span class="math inline">\(\forall n\in\mathbb{N}\)</span>, there is <span class="math inline">\(f\in H\)</span> and a subsequence <span class="math inline">\(\{f_{n_k}\}\)</span> such that</h2>
+<p><span class="math display">\[
+\lim_{k\to\infty}(f_{n_k},g)=(f,g)\qquad \forall g\in H.
+\]</span></p>
+<p><strong>proof</strong> Let <span class="math inline">\(\{e_i\}\)</span> be an orthonormal basis for <span class="math inline">\(H\)</span>.</p>
+<p>① <span class="math inline">\(\exists\)</span> convergent <span class="math inline">\(\{(f_n,e_1)\}_n\)</span></p>
+<p>Consider a sequence <span class="math inline">\(\{(f_n,e_1)\}_n\subset \mathbb{C}\)</span>.<br />
+<span class="math inline">\(|(f_n,e_1)|\le \|f_n\|\|e_1\|=1\)</span>, so
+<span class="math inline">\(\{(f_n,e_1)\}_n\)</span> is a bounded
+sequence in <span class="math inline">\(\mathbb{C}\)</span>.<br />
+Then, <span class="math inline">\(\{(f_n,e_1)\}_n\)</span> has a
+convergent subsequence <span class="math inline">\(\{(f_{1n},e_1)\}_n\)</span> such that <span class="math inline">\(\lim_{n\to\infty}(f_{1n},e_1)=l_1\in\mathbb{C}\)</span>
+(PMA 3.6) (<span class="math inline">\(\{f_{1n}\}\subset\{f_n\}\)</span>).</p>
+<p>② <span class="math inline">\(\exists\)</span> convergent <span class="math inline">\(\{(f_{2n},e_2)\}_n\)</span></p>
+<p>Consider a sequence <span class="math inline">\(\{(f_{1n},e_2)\}_n\subset
+\mathbb{C}\)</span>.<br />
+<span class="math inline">\(|(f_{1n},e_2)|\le
+\|f_{1n}\|\|e_2\|=1\)</span>, so <span class="math inline">\(\{(f_{1n},e_2)\}_n\)</span> is a bounded sequence
+in <span class="math inline">\(\mathbb{C}\)</span>.<br />
+Then <span class="math inline">\(\{(f_{1n},e_2)\}_n\)</span> has a
+convergent subsequence <span class="math inline">\(\{(f_{2n},e_2)\}_n\)</span> such that <span class="math inline">\(\lim_{n\to\infty}(f_{2n},e_2)=l_2\in\mathbb{C}\)</span>
+(<span class="math inline">\(\{f_{2n}\}\subset\{f_{1n}\}\)</span>).<br />
+Note that <span class="math inline">\(\lim_{n\to\infty}(f_{2n},e_1)=l_1\)</span> (PMA
+3.5-1).</p>
+<p>③ <span class="math inline">\(S_m=\{f_{m,n}\}_n\)</span> s.t. <span class="math inline">\(\lim_{n\to\infty}(f_{m,n},e_i)=l_i\)</span> <span class="math inline">\((i=1,\cdots,m)\)</span></p>
+<p>Continuing the same process, we can obtain sequences <span class="math inline">\(S_0,S_1,S_2,\cdots\)</span>, where <span class="math inline">\(S_0=\{f_n\}\)</span>, <span class="math inline">\(S_m=\{f_{m,n}\}_n\)</span>, <span class="math inline">\(S_{m+1}\)</span> is a subsequence of <span class="math inline">\(S_m\)</span> obtained by the previous process, and
+<span class="math inline">\(\lim_{n\to\infty}(f_{m,n},e_i)=l_i\)</span>
+<span class="math inline">\((i=1,\cdots,m,\
+m\in\mathbb{N})\)</span>.</p>
+<p><span class="math inline">\(S_0:\ f_1,\ f_2,\ f_3,\
+\cdots\)</span></p>
+<p><span class="math inline">\(S_1:\ f_{1,1},\ f_{1,2},\ f_{1,3},\
+\cdots\ \ \text{s.t.}\ \lim_{n\to\infty}(f_{1,n},e_i)=l_i,\
+i=1\)</span></p>
+<p><span class="math inline">\(S_2:\ f_{2,1},\ f_{2,2},\ f_{2,3},\
+\cdots\ \ \text{s.t.}\ \lim_{n\to\infty}(f_{2,n},e_i)=l_i,\
+i=1,2\)</span></p>
+<p><span class="math inline">\(\qquad \vdots\)</span></p>
+<p><span class="math inline">\(S_k:\ f_{k,1},\ f_{k,2},\ \cdots,\
+f_{k,k},\ \cdots\ \ \text{s.t.}\ \lim_{n\to\infty}(f_{k,n},e_i)=l_i,\
+i=1,\cdots,k\)</span></p>
+<p>④ <span class="math inline">\(S=\{f_{k,k}\},\ f=\sum_{i=1}^\infty
+l_ie_i\in H\)</span></p>
+<p>Let <span class="math inline">\(S=\{f_{k,k}\}\)</span> <span class="math inline">\((k\in\mathbb{N})\)</span>. Since <span class="math inline">\(S\subset S_i\)</span> for <span class="math inline">\(i\in\mathbb{N}\)</span>, <span class="math inline">\(\lim_{k\to\infty}(f_{k,k},e_i)=l_i\)</span>.<br />
+Relable <span class="math inline">\(f_{k,k}\)</span> as <span class="math inline">\(f_{n_k}\)</span>, and define <span class="math inline">\(f=\sum_{i=1}^\infty l_ie_i\in H\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\|f\|^2
+&amp;=\sum_{i=1}^\infty |l_i|^2
+=\lim_{N\to\infty}\sum_{i=1}^N |l_i|^2\\
+&amp;=\lim_{N\to\infty}\sum_{i=1}^N \lim_{k\to\infty}|(f_{n_k},e_i)|^2
+\\
+&amp;=\lim_{N\to\infty}\lim_{k\to\infty}\sum_{i=1}^N |(f_{n_k},e_i)|^2
+\\
+&amp;\le \lim_{k\to\infty}\|f_{n_k}\|^2=1.
+\end{aligned}
+\]</span> <span class="math inline">\(\sum_{i=1}^\infty
+|(f_{n_k},e_i)|^2=\|f_{n_k}\|^2=1\)</span> and <span class="math inline">\(\lim_{k\to\infty}\|f_{n_k}\|^2=1\)</span>, so
+<span class="math inline">\(\|f\|&lt;\infty\)</span> and <span class="math inline">\(f\in H\)</span>.<br />
+Then, <span class="math inline">\(\lim_{k\to\infty}(f_{n_k},e_i)=l_i=(f,e_i)\)</span>
+<span class="math inline">\(\forall i\in\mathbb{N}\)</span>.</p>
+<p>⑤ conclusion</p>
+<p>Let <span class="math inline">\(g=\sum_{i=1}^\infty b_ie_i\in
+H\)</span> where <span class="math inline">\(b_i\in\mathbb{C}\)</span>
+for all <span class="math inline">\(i\in\mathbb{N}\)</span>. Thus, <span class="math display">\[
+\begin{aligned}
+\lim_{k\to\infty}(f_{n_k},g)
+&amp;=\lim_{k\to\infty}\left(f_{n_k},\sum_{i=1}^\infty b_ie_i\right)
+=\lim_{k\to\infty}\sum_{i=1}^\infty \overline{b_i}(f_{n_k},e_i) \\
+&amp;=\sum_{i=1}^\infty
+\overline{b_i}\lim_{k\to\infty}(f_{n_k},e_i)\qquad (\because
+\text{DCT},\ \sum_{i=1}^\infty |b_i|^2|(f_{n_k},e_i)|^2\le
+\sum_{i=1}^\infty |b_i|^2\cdot 1&lt;\infty\ \because g\in H)\\
+&amp;=\sum_{i=1}^\infty \overline{b_i}(f,e_i)=\left(f,\sum_{i=1}^\infty
+b_ie_i\right)=(f,g).
+\end{aligned}
+\]</span></p>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+  </body>
+  
+</div>
