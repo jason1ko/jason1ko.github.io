@@ -1,0 +1,288 @@
+---
+title: "Ch3 : Extra Questions"
+date: 2023-01-01 23:30:50
+categories: [Measure Theory]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="p.111-ex-2-p_yxfrac1picdot-fracyx2y2-xinmathbbr-y0.-show-that-p_yx-is-an-approximation-to-identity-deltay" class="section level2">
+<h2>p.111 ex 2 : <Poisson kernel> <span class="math inline">\(P_y(x)=\frac{1}{\pi}\cdot \frac{y}{x^2+y^2},\
+x\in\mathbb{R},\ y&gt;0.\)</span> Show that <span class="math inline">\(P_y(x)\)</span> is an approximation to identity
+<span class="math inline">\((\delta=y)\)</span></h2>
+<p><strong>proof</strong> ① <span class="math inline">\(\int_{\mathbb{R}}P_y(x)\,dx=1\)</span></p>
+<p><span class="math inline">\(P_y(x)=\frac{1}{\pi}\cdot\frac{y}{x^2+y^2}=\frac{1}{\pi
+y}\cdot\frac{1}{1+(x/y)^2}\)</span>. Let <span class="math inline">\(\frac{x}{y}=t\ \to\ \frac{1}{y}dx=dt\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+\int_{\mathbb{R}}P_y(x)\,dx
+&amp;=\frac{1}{\pi}\int_{\mathbb{R}}\frac{1}{1+t^2}\,dt
+=\frac{2}{\pi}\int_0^\infty \frac{1}{1+t^2}\,dt \quad (t=\tan\theta) \\
+&amp;=\frac{2}{\pi}\int_0^{\pi/2}\frac{1}{1+\tan^2\theta}\sec^2\theta\,d\theta
+=\frac{2}{\pi}\int_0^{\pi/2} d\theta
+=\frac{2}{\pi}\cdot\frac{\pi}{2}=1\ //
+\end{aligned}\]</span></p>
+<p>② <span class="math inline">\(|P_y(x)|\le A\cdot y^{-1}\)</span>
+<span class="math inline">\(::\)</span> <span class="math inline">\(P_y(x)=\frac{1}{\pi y}\cdot\frac{1}{1+(x/y)^2}\le
+\frac{1}{\pi}\cdot\frac{1}{y}\)</span></p>
+<p>③ <span class="math inline">\(|P_y(x)|\le A\cdot
+\frac{y}{x^2}\)</span> <span class="math inline">\(::\)</span> <span class="math inline">\(P_y(x)=\frac{1}{\pi}\cdot\frac{y}{x^2+y^2}\le
+\frac{1}{\pi}\cdot\frac{y}{x^2}\)</span></p>
+<p><span class="math inline">\(\therefore\ P_y(x)\)</span> is an
+approximation to identity</p>
+<hr />
+</div>
+<div id="p.112-ex5-f_nxbegincasesfrac12pi-nfracsin2nx2sin2x2-xle-pi-0-texto.wendcasesquad-textin-mathbbr-textwhere-deltafrac1n-show-that-f_n-is-approximations-to-the-identity." class="section level2">
+<h2>p.112 ex5 : <Fejér kernel><span class="math display">\[F_N(x)=\begin{cases}\frac{1}{2\pi
+N}\frac{\sin^2(Nx/2)}{\sin^2(x/2)} &amp; |x|\le \pi \\0 &amp;
+\text{o.w}\end{cases}\quad (\text{in }\mathbb{R}),\ \text{where
+}\delta=\frac{1}{N}\]</span> Show that <span class="math inline">\(F_N\)</span> is approximations to the
+identity.</h2>
+<p><strong>proof</strong></p>
+<p>① <span class="math inline">\(\int F_N(x)\,dx=1\)</span></p>
+<p><span class="math inline">\(F_N(x)=\frac{1}{N}\sum_{n=0}^{N-1}D_n(x)\)</span>,
+where <span class="math inline">\(D_n(x)=\frac{1}{2\pi}\sum_{k=-n}^{n}e^{ikx}\ \
+(x\in[-\pi,\pi])\)</span></p>
+<p><span class="math display">\[\int_{-\pi}^{\pi}D_n(x)\,dx=1\ \
+\left(\because \int_{-\pi}^{\pi}e^{inx}\,dx=\begin{cases}2\pi &amp;
+(n=0)\\0 &amp; (n\ne 0)\end{cases}\right),\ \ \text{so
+}\int_{-\pi}^{\pi}F_N(x)\,dx=1\]</span></p>
+<p>③ <span class="math inline">\(|F_N(x)|\le A\cdot N\)</span></p>
+<p>Since <span class="math inline">\(|D_n(x)|\le
+\frac{1}{2\pi}\sum_{k=-n}^{n}|e^{ikx}|=\frac{1}{2\pi}(2n+1)\)</span>,
+<span class="math display">\[\begin{aligned}
+|F_N(x)|
+&amp;\le \frac{1}{N}\sum_{n=0}^{N-1}|D_n(x)|
+\le \frac{1}{N}\cdot\frac{1}{2\pi}\sum_{n=0}^{N-1}(2n+1) \\
+&amp;=\frac{1}{2\pi N}\left\{2\cdot\frac{N(N-1)}{2}+N\right\} \\
+&amp;=\frac{1}{2\pi}(N-1+1)=\frac{1}{2\pi}\cdot N
+\end{aligned}\]</span></p>
+<p>③ <span class="math inline">\(|F_N(x)|\le A\cdot \frac{1}{N}\cdot
+\frac{1}{x^2}\)</span></p>
+<p>Note that <span class="math inline">\(\frac{|x|}{\pi}\le
+|\sin\frac{x}{2}|\)</span>. Then</p>
+<p><span class="math display">\[\begin{aligned}
+|F_N(x)|
+&amp;=\frac{1}{2\pi N}\cdot
+\frac{(\sin\frac{Nx}{2})^2}{(\sin\frac{x}{2})^2}
+\le \frac{1}{2\pi N}\cdot \frac{1}{(\sin\frac{x}{2})^2}
+\le \frac{1}{2\pi N}\cdot \frac{\pi^2}{x^2}
+= \frac{\pi}{2N}\cdot \frac{1}{x^2}
+\end{aligned}\]</span> <span class="math inline">\(\therefore\
+F_N(x)\)</span> is an approximation to identity</p>
+<hr />
+</div>
+<div id="q1.-fin-bvab-then-fle-m" class="section level2">
+<h2>Q1. <span class="math inline">\(F\in BV[a,b]\)</span>, then <span class="math inline">\(|F|\le M\)</span></h2>
+<p><strong>proof</strong> <span class="math inline">\(|F(x)-F(a)|\le
+T_F(a,b)\)</span> and <span class="math inline">\(|F(x)|-|F(a)|\le
+|F(x)-F(a)|\)</span>. So, <span class="math inline">\(|F(x)|\le
+|F(a)|+T_F(a,b)\quad \forall x\in[a,b]\)</span>.</p>
+<hr />
+</div>
+<div id="q2.-let-fgin-bvab-and-cinmathbbr." class="section level2">
+<h2>Q2. Let <span class="math inline">\(F,G\in BV[a,b]\)</span>, and
+<span class="math inline">\(c\in\mathbb{R}\)</span>.</h2>
+<div id="i-fg-fg-cfin-bvab" class="section level3">
+<h3>(i) <span class="math inline">\(F+G\)</span>, <span class="math inline">\(FG\)</span>, <span class="math inline">\(cF\in
+BV[a,b]\)</span></h3>
+<p><strong>proof</strong> ① <span class="math inline">\(F+G\)</span></p>
+<p>Let <span class="math inline">\(P=\{a=x_0&lt;x_1&lt;\cdots&lt;x_n=b\}\)</span> be
+a partition of <span class="math inline">\([a,b]\)</span>,</p>
+<p><span class="math display">\[\begin{aligned}
+\sum_{i=1}^n |F(x_i)+G(x_i)-F(x_{i-1})-G(x_{i-1})|
+&amp;\le \sum_{i=1}^n|F(x_i)-F(x_{i-1})|+\sum_{i=1}^n|G(x_i)-G(x_{i-1})|
+\\
+&amp;\le T_F(a,b)+T_G(a,b)
+\end{aligned}\]</span></p>
+<p>② <span class="math inline">\(FG\)</span> (let <span class="math inline">\(|F|\le L_F\)</span> and <span class="math inline">\(|G|\le L_G\)</span>)</p>
+<p><span class="math display">\[\begin{aligned}
+\sum_{i=1}^n |F(x_i)G(x_i)-F(x_{i-1})G(x_{i-1})|
+&amp;=\sum_{i=1}^n
+|F(x_i)G(x_i)-F(x_{i-1})G(x_i)+F(x_{i-1})G(x_i)-F(x_{i-1})G(x_{i-1})| \\
+&amp;\le \sum_{i=1}^n
+|G(x_i)|\,|F(x_i)-F(x_{i-1})|+\sum_{i=1}^n|F(x_{i-1})|\,|G(x_i)-G(x_{i-1})|
+\\
+&amp;\le L_G\cdot M_F + L_F\cdot M_G \quad (\because F,G \text{ is bdd})
+\end{aligned}\]</span></p>
+<p>③ trivial</p>
+</div>
+<div id="ii-t_fgable-t_fabt_gab-t_cfabccdot-t_fab" class="section level3">
+<h3>(ii) <span class="math inline">\(T_{F+G}(a,b)\le T_F(a,b)+T_G(a,b),\
+\ T_{cF}(a,b)=c\cdot T_F(a,b)\)</span></h3>
+<p><strong>proof</strong> ①</p>
+<p><span class="math display">\[\sum_{i=1}^n
+|F(x_i)+G(x_i)-F(x_{i-1})-G(x_{i-1})|
+\le
+\sum_{i=1}^n|F(x_i)-F(x_{i-1})|+\sum_{i=1}^n|G(x_i)-G(x_{i-1})|.\]</span></p>
+<p>This holds for all partitions, so <span class="math display">\[T_{F+G}(a,b)\le
+\sum_{i=1}^n|F(x_i)-F(x_{i-1})|+\sum_{i=1}^n|G(x_i)-G(x_{i-1})|,\]</span>
+and thus, <span class="math inline">\(T_{F+G}(a,b)\le
+T_F(a,b)+T_G(a,b)\)</span></p>
+<p>②</p>
+<p><span class="math display">\[\sum_{i=1}^n
+|cF(x_i)-cF(x_{i-1})|=c\sum_{i=1}^n|F(x_i)-F(x_{i-1})|.\]</span></p>
+<p><span class="math display">\[\sup_P \sum_{i=1}^n
+|cF(x_i)-cF(x_{i-1})|
+= T_{cF}(a,b)\ge c\cdot \sum_{i=1}^n|F(x_i)-F(x_{i-1})|
+\Rightarrow T_{cF}(a,b)\ge c\cdot T_F(a,b).\]</span></p>
+<p><span class="math display">\[\sum_{i=1}^n |cF(x_i)-cF(x_{i-1})|
+\le c\cdot \sup_P \sum_{i=1}^n|F(x_i)-F(x_{i-1})|
+= c\cdot T_F(a,b)\Rightarrow T_{cF}(a,b)\le c\cdot
+T_F(a,b).\]</span></p>
+<p><span class="math inline">\(\therefore\ T_{cF}(a,b)=c\cdot
+T_F(a,b)\)</span></p>
+<hr />
+</div>
+</div>
+<div id="q3.-fin-bvab-cinab" class="section level2">
+<h2>Q3. <span class="math inline">\(F\in BV[a,b]\)</span>, <span class="math inline">\(c\in(a,b)\)</span></h2>
+<div id="i-fin-bvaccap-bvcb-vfp-variation-of-f-over-p" class="section level3">
+<h3>(i) <span class="math inline">\(F\in BV[a,c]\cap BV[c,b]\)</span>
+<span class="math inline">\(V[F,P]\)</span> : variation of <span class="math inline">\(F\)</span> over <span class="math inline">\(P\)</span></h3>
+<p><strong>proof</strong> Let <span class="math inline">\(P_1,P_2\)</span> be partition of <span class="math inline">\([a,c]\)</span> and <span class="math inline">\([c,b]\)</span> respectively, and <span class="math inline">\(P=P_1\cup P_2\)</span>. Then, <span class="math inline">\(V[F,P_1]+V[F,P_2]=V[F,P]\le T_F(a,b)\)</span>.</p>
+<p><span class="math inline">\(V[F,P_1]\le T_F(a,b)\)</span> for all
+<span class="math inline">\(P_1\)</span>, so <span class="math inline">\(F\in BV[a,c]\)</span> <span class="math inline">\(V[F,P_2]\le T_F(a,b)\)</span> for all <span class="math inline">\(P_2\)</span>, so <span class="math inline">\(F\in
+BV[c,b]\)</span></p>
+</div>
+<div id="ii-t_fabt_fact_fcb" class="section level3">
+<h3>(ii) <span class="math inline">\(T_F(a,b)=T_F(a,c)+T_F(c,b)\)</span></h3>
+<p><strong>proof</strong> ① <span class="math inline">\(T_F(a,c)+T_F(c,b)\le T_F(a,b)\)</span> trivial</p>
+<p>From (i), <span class="math inline">\(V[F,P_1]+V[F,P_2]\le
+T_F(a,b)\)</span> for all <span class="math inline">\(P_1\)</span> &amp;
+<span class="math inline">\(P_2\)</span>. So, <span class="math inline">\(T_F(a,c)+T_F(c,b)\le T_F(a,b)\)</span>.</p>
+<p>② <span class="math inline">\(T_F(a,b) \le T_F(a,c) +
+T_F(c,b)\)</span></p>
+<p>Let <span class="math inline">\(Q\)</span> be a partition of <span class="math inline">\([a,b]\)</span>, <span class="math inline">\(\hat{Q}=Q\cup\{c\}\)</span>, <span class="math inline">\(Q_1=\hat{Q}\cap[a,c]\)</span>, and <span class="math inline">\(Q_2=\hat{Q}\cap[c,b]\)</span>.</p>
+<p><span class="math inline">\(V(F,Q)\le
+V(F,\hat{Q})=V(F,Q_1)+V(F,Q_2)\le T_F(a,c)+T_F(c,b)\)</span>.</p>
+<p>This holds for all <span class="math inline">\(Q\)</span>, so <span class="math inline">\(T_F(a,b)\le T_F(a,c)+T_F(c,b)\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="q4.-fabtomathbbr-is-continuous-and-fin-bvab.-then-t_fax-is-continuous-xinab" class="section level2">
+<h2>Q4. <span class="math inline">\(F:[a,b]\to\mathbb{R}\)</span> is
+continuous and <span class="math inline">\(F\in BV[a,b]\)</span>. Then
+<span class="math inline">\(T_F(a,x)\)</span> is continuous <span class="math inline">\((x\in(a,b))\)</span></h2>
+<p><strong>proof</strong> Consider <span class="math inline">\(c\in(a,b)\)</span>. <span class="math inline">\(F\)</span> is continuous at <span class="math inline">\(c\)</span>, so there is <span class="math inline">\(\delta_0&gt;0\)</span> such that <span class="math inline">\(|x-c|&lt;\delta_0\)</span> implies <span class="math inline">\(|F(x)-F(c)|&lt;\varepsilon/2\)</span> for given
+<span class="math inline">\(\varepsilon&gt;0\)</span> <span class="math inline">\((x\in[a,b])\)</span>.</p>
+<p>Since <span class="math inline">\(F\in BV[a,b]\)</span>, there is a
+partition of <span class="math inline">\([a,b]\)</span> <span class="math inline">\(P_0\)</span> such that <span class="math inline">\(T_F(a,b) &lt; V(F,P_0) +
+\varepsilon/2\)</span>.</p>
+<p><span class="math inline">\(\delta_0 &gt; |b-a|\)</span> <span class="math inline">\(\delta_0 \le b-a\)</span></p>
+<p>Let <span class="math inline">\(P = P_0 \cup \{ \{c-\delta_0/2,\ c,\
+c+\delta_0/2\}\cap[a,b] \} = \{\hat
+x_0,\cdots,x_{k_1},c,x_{k_1+1},\cdots,\hat x_N\}\)</span> and <span class="math inline">\(P_1=\{\hat x_0,\cdots,x_{k_1}\}\)</span>, <span class="math inline">\(P_2=\{x_{k_1+1},\cdots,\hat x_N\}\)</span>.</p>
+<p><span class="math inline">\(|c-x_{k_1}|,\ |c-x_{k_1+1}| \le
+\delta_0/2 &lt; \delta_0\)</span>, then <span class="math display">\[
+\begin{aligned}
+V(F,P) &amp;= V(F,P_1)+V(F,P_2)+|F(c)-F(x_{k_1})|+|F(x_{k_1+1})-F(c)| \\
+&amp;&lt; V(F,P_1)+V(F,P_2)+\varepsilon/2+\varepsilon/2 \\
+&amp;\le T_F(a,x_{k_1}) + T_F(x_{k_1+1},b) + \varepsilon .
+\end{aligned}
+\]</span></p>
+<p>Then, <span class="math inline">\(T_F(a,b) \le T_F(a,x_{k_1}) +
+T_F(x_{k_1+1},b) + \varepsilon\)</span> and <span class="math inline">\(T_F(a,x_{k_1}) \le T_F(a,x_{k_1}) +
+\varepsilon\)</span>.</p>
+<p>Let <span class="math inline">\(\delta_\varepsilon=\min(c-x_{k_1},x_{k_1+1}-c)\)</span>,
+then <span class="math inline">\(|x-c|&lt;\delta_\varepsilon\)</span>
+implies <span class="math inline">\(x\in[x_{k_1},x_{k_1+1}]\)</span> and
+thus <span class="math inline">\(|T_F(a,x)-T_F(a,c)| \le
+T_F(a,x_{k_1+1})-T_F(a,x_{k_1}) &lt;
+\varepsilon_\varepsilon\)</span>.</p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(T_F(a,x)\)</span> is cont at <span class="math inline">\(c\in(a,b)\)</span> and thus at all <span class="math inline">\(x\in(a,b)\)</span></p>
+<hr />
+</div>
+<div id="q5.-fabtomathbbr-is-a-continuous-function.-then-fin-bvab-if-f-is-a-difference-of-two-increasing-and-continuous-function." class="section level2">
+<h2>Q5. <span class="math inline">\(F:[a,b]\to\mathbb{R}\)</span> is a
+continuous function. Then <span class="math inline">\(F\in
+BV[a,b]\)</span> if <span class="math inline">\(F\)</span> is a
+difference of two increasing and continuous function.</h2>
+<p><strong>proof</strong> ① <span class="math inline">\(\Leftarrow\)</span> (Thm 3.2.3)<br />
+<span class="math inline">\(F=F_1-F_2\)</span>, where <span class="math inline">\(F_1,F_2\)</span> are increasing &amp; continuous.
+Then <span class="math inline">\(F\in BV[a,b]\)</span>.</p>
+<p>② <span class="math inline">\(\Rightarrow\)</span><br />
+Then, <span class="math inline">\(T_F(a,x)\)</span> is continuous. Let
+<span class="math inline">\(P_F(a,x)=\sup\left\{\sum_{i=1}^k
+\big(F(t_i)-F(t_{i-1})\big): F(t_i)-F(t_{i-1})\ge 0\right\}\)</span> and
+<span class="math inline">\(N_F(a,x)=\sup\left\{\sum_{i=1}^k
+-\big(F(t_i)-F(t_{i-1})\big): F(t_i)-F(t_{i-1})\le 0\right\}\)</span>,
+which are increasing. Then <span class="math display">\[
+\begin{aligned}
+F(x)-F(a) &amp;= P_F(a,x)-N_F(a,x),\\
+T_F(a,x) &amp;= P_F(a,x)+N_F(a,x).
+\end{aligned}
+\]</span></p>
+<p>Since <span class="math inline">\(P_F(a,x)=\frac12\big(F(x)+T_F(a,x)-F(a)\big)\)</span>
+and <span class="math inline">\(N_F(a,x)=\frac12\big(T_F(a,x)-F(x)+F(a)\big)\)</span>,
+both <span class="math inline">\(P_F\)</span> and <span class="math inline">\(N_F\)</span> are continuous.</p>
+<p>Thus, <span class="math inline">\(F=(P_F+F(a))-N_F\)</span> is a
+difference of increasing &amp; continuous functions.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+  </body>
+
+</div>
