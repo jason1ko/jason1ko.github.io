@@ -1,0 +1,835 @@
+---
+title: "Ch3 : Ex.21 ~ Ex.32"
+date: 2023-01-01 23:30:51
+categories: [Measure Theory]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="f-is-absolutely-continuous-and-increasing-on-ab-with-faa-and-fbb.-f-is-a-measurable-function-on-ab." class="section level2">
+<h2>21. <span class="math inline">\(F\)</span> is absolutely continuous
+and increasing on <span class="math inline">\([a,b]\)</span> with <span class="math inline">\(F(a)=A\)</span> and <span class="math inline">\(F(b)=B\)</span>. <span class="math inline">\(f\)</span> is a measurable function on <span class="math inline">\([A,B]\)</span>.</h2>
+<div id="a-show-that-ffxfx-is-measurable-on-ab" class="section level3">
+<h3>(a) Show that <span class="math inline">\(f(F(x))F&#39;(x)\)</span>
+is measurable on <span class="math inline">\([a,b]\)</span></h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(\chi_I(F(x))F&#39;(x)\)</span>, where
+<span class="math inline">\(I=[P,Q]\subset[A,B]\)</span></p>
+<p>Let <span class="math inline">\(P=F(p)\)</span> and <span class="math inline">\(Q=F(q)\)</span> <span class="math inline">\((p,q\in[a,b])\)</span>. <span class="math inline">\(F\)</span> is continuous and increasing, so <span class="math inline">\([p,q]=F^{-1}([P,Q])\)</span>.</p>
+<p>Then, <span class="math inline">\(\chi_I(F(x))=1\)</span> when <span class="math inline">\(P\le F(x)\le Q\)</span>, which is <span class="math inline">\(p\le x\le q\)</span>. So, <span class="math inline">\(\chi_I(F(x))=\chi_{[p,q]}(x)\)</span>, which is
+measurable.</p>
+<p><span class="math inline">\(F&#39;\)</span> is measurable (<span class="math inline">\(\because\)</span> integrable), so <span class="math inline">\(\chi_I(F(x))F&#39;(x)\)</span> is measurable.</p>
+<p>Note that <span class="math display">\[
+\int_{[a,b]} \chi_I(F(x))F&#39;(x)\,dx
+=\int_{[a,b]}\chi_{[p,q]}(x)F&#39;(x)\,dx
+=\int_p^q F&#39;(x)\,dx
+=Q-P
+=|I|
+\qquad(\because\ F\ \text{is A.C.})
+\]</span></p>
+<p>② <span class="math inline">\(\chi_O(F(x))F&#39;(x)\)</span>, <span class="math inline">\(O\)</span> is an open set in <span class="math inline">\([A,B]\)</span></p>
+<p><span class="math inline">\(\chi_O(F(x))=1\Leftrightarrow F(x)\in O
+\Leftrightarrow x\in F^{-1}(O)\Leftrightarrow
+\chi_{F^{-1}(O)}(x)=1\)</span>.<br />
+Since <span class="math inline">\(F\)</span> is continuous, <span class="math inline">\(F^{-1}(O)\)</span> is open (in <span class="math inline">\([a,b]\)</span>) <span class="math inline">\(\to\)</span> measurable.<br />
+Then, <span class="math inline">\(\chi_O(F(x))=\chi_{F^{-1}(O)}(x)\)</span> is
+measurable.</p>
+<p>Thus, <span class="math inline">\(\chi_O(F(x))F&#39;(x)\)</span> is
+measurable.</p>
+<p>③ <span class="math inline">\(\chi_G(F(x))F&#39;(x)\)</span>, where
+<span class="math inline">\(G=\bigcap_{i=1}^\infty O_i\)</span>, <span class="math inline">\((O_i\ \text{is open})\subset[A,B]\)</span></p>
+<p><span class="math inline">\(\chi_G(F(x))=1\Leftrightarrow F(x)\in G
+\Leftrightarrow x\in F^{-1}\!\left(\bigcap_i O_i\right)=\bigcap_i
+F^{-1}(O_i)\Leftrightarrow \chi_{F^{-1}(G)}(x)=1\)</span>.<br />
+Then, <span class="math inline">\(\chi_G(F(x))=\chi_{F^{-1}(G)}(x)\)</span> is
+measurable.<br />
+(<span class="math inline">\(\because\ \bigcap_i F^{-1}(O_i)\)</span> is
+a countable union of open (<span class="math inline">\(\to\)</span>
+measurable) sets)</p>
+<p><span class="math inline">\(\therefore\
+\chi_G(F(x))F&#39;(x)\)</span> is measurable.</p>
+<p>④ <span class="math inline">\(\chi_Z(F(x))F&#39;(x)\)</span>, where
+<span class="math inline">\(m(Z)=0\)</span> &amp; <span class="math inline">\(Z\subset[A,B]\)</span></p>
+<p>There is a covering of <span class="math inline">\(Z\subset\bigcup_i
+I_i\)</span>, such that <span class="math inline">\(\sum_i|I_i|\le
+m(Z)+\epsilon\)</span> for given <span class="math inline">\(\epsilon&gt;0\)</span>.</p>
+<p><span class="math inline">\(Z\subset\bigcup_i I_i\)</span> leads to
+<span class="math inline">\(\chi_Z\le \chi_{\cup_i I_i}\le
+\sum_i\chi_{I_i}\)</span>, so <span class="math inline">\(\chi_Z(F(x))F&#39;(x)\le
+\sum_i\chi_{I_i}(F(x))F&#39;(x)\)</span>.</p>
+<p>Then, <span class="math display">\[
+\begin{aligned}
+\int_a^b \chi_Z(F(x))F&#39;(x)\,dx
+&amp;\le \int_a^b \sum_i\chi_{I_i}(F(x))F&#39;(x)\,dx\\
+&amp;=\sum_i\int_a^b \chi_{I_i}(F(x))F&#39;(x)\,dx \qquad(\mathrm{MCT}\
+\text{Cor }2.1.10)\\
+&amp;=\sum_i |I_i|\qquad(\because\ ①)\\
+&amp;&lt;\epsilon \ \Rightarrow\ \text{integrable}
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\chi_Z\)</span> is a characteristic
+function (<span class="math inline">\(\ge 0\)</span>), and <span class="math inline">\(F\)</span> is increasing (<span class="math inline">\(F&#39;\ge 0\)</span> a.e) so <span class="math inline">\(\chi_Z(F(x))F&#39;(x)\ge 0\)</span> a.e <span class="math inline">\(x\in[a,b]\)</span> and <span class="math inline">\(\int_a^b \chi_Z(F(x))F&#39;(x)\,dx\ge
+0\)</span>.</p>
+<p><span class="math inline">\(0\le \int_a^b
+\chi_Z(F(x))F&#39;(x)\,dx&lt;\epsilon\)</span> holds for all <span class="math inline">\(\epsilon&gt;0\)</span>, so <span class="math inline">\(\int_a^b \chi_Z(F(x))F&#39;(x)\,dx=0\)</span> and
+<span class="math inline">\(\chi_Z(F(x))F&#39;(x)=0\)</span> a.e <span class="math inline">\(x\in[a,b]\)</span>.<br />
+Thus, <span class="math inline">\(\chi_Z(F(x))F&#39;(x)\)</span> is
+measurable.</p>
+<p>⑤ <span class="math inline">\(\chi_E(F(x))F&#39;(x)\)</span>, <span class="math inline">\(E\)</span> is measurable</p>
+<p><span class="math inline">\(G=E\cup(G-E)\)</span>, where <span class="math inline">\(G=\bigcap_i O_i\)</span>, <span class="math inline">\(E\subset G\)</span>, and <span class="math inline">\(m(G-E)=0\)</span>.<br />
+Then, <span class="math inline">\(\chi_E(F(x))=\chi_G(F(x))-\chi_{G-E}(F(x))\)</span>.</p>
+<p>Since <span class="math inline">\(\chi_G(F(x))F&#39;(x)\)</span>,
+<span class="math inline">\(\chi_{G-E}(F(x))F&#39;(x)\)</span> is
+measurable (<span class="math inline">\(\because\)</span> ③, ④)<br />
+<span class="math inline">\(\chi_E(F(x))F&#39;(x)=\chi_G(F(x))F&#39;(x)-\chi_{G-E}(F(x))F&#39;(x)\)</span>
+is measurable.</p>
+<p>⑥ <span class="math inline">\(f(F(x))F&#39;(x)\)</span>,
+conclusion</p>
+<p><span class="math inline">\(f\)</span> is measurable, so there is a
+sequence of simple functions <span class="math inline">\(\{\psi_k\}\)</span> such that <span class="math inline">\(|\psi_k|\le |\psi_{k+1}|\)</span> and <span class="math inline">\(\lim_{k\to\infty}\psi_k(t)=f(t)\)</span> (thm
+1.4.2). Let <span class="math inline">\(\psi_k(t)=\sum_{i=1}^{N_k}
+a_{k,i}\chi_{E_{k,i}}(t)\)</span>, where <span class="math inline">\(a_{k,i}\in\mathbb{R}\)</span> and <span class="math inline">\(E_{k,i}\)</span> is a measurable set.</p>
+<p>Let <span class="math inline">\(\phi_k(x)=\psi_k(F(x))F&#39;(x)=\sum_{i=1}^{N_k}
+a_{k,i}\chi_{E_{k,i}}(F(x))F&#39;(x)\)</span>.<br />
+Each <span class="math inline">\(\chi_{E_{k,i}}(F(x))F&#39;(x)\)</span>
+is measurable (<span class="math inline">\(\because\)</span> ⑤), so
+their finite combination <span class="math inline">\(\phi_k\)</span> is
+measurable.</p>
+<p>Since <span class="math inline">\(\lim_{k\to\infty}\phi_k(x)=f(F(x))F&#39;(x)\)</span>,
+<span class="math inline">\(f(F(x))F&#39;(x)\)</span> is a limit of
+measurable functions. Thus, <span class="math inline">\(f(F(x))F&#39;(x)\)</span> is measurable.</p>
+</div>
+<div id="b-if-f-is-integrable-on-ab-show-that-ffxfx-is-integrable-and-int_ab-fydyint_ab-ffxfxdx" class="section level3">
+<h3>(b) If <span class="math inline">\(f\)</span> is integrable on <span class="math inline">\([A,B]\)</span>, show that <span class="math inline">\(f(F(x))F&#39;(x)\)</span> is integrable and <span class="math inline">\(\int_A^B f(y)\,dy=\int_a^b
+f(F(x))F&#39;(x)\,dx\)</span></h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(\chi_I(F(x))F&#39;(x)\)</span>, where
+<span class="math inline">\(I=[P,Q]\subset[A,B]\)</span></p>
+<p>We’ve shown that <span class="math inline">\(\int_a^b
+\chi_I(F(x))F&#39;(x)\,dx=|I|=\int_A^B \chi_I(y)\,dy\)</span>.</p>
+<p>② <span class="math inline">\(\chi_O(F(x))F&#39;(x)\)</span>, <span class="math inline">\(O\)</span> is an open set in <span class="math inline">\([A,B]\)</span></p>
+<p><span class="math inline">\(O=\dot\bigcup_{i=1}^\infty
+(A_i,B_i)\)</span> (<span class="math inline">\(\because\)</span> <span class="math inline">\(O\)</span> is open). <span class="math inline">\(F\)</span> is continuous and increasing, so each
+<span class="math inline">\((A_i,B_i)\)</span> can be written as <span class="math inline">\((a_i,b_i)=F^{-1}((A_i,B_i))\)</span>. Then <span class="math inline">\(F^{-1}(O)=\dot\bigcup_{i=1}^\infty
+F^{-1}((A_i,B_i))=\dot\bigcup_{i=1}^\infty (a_i,b_i)\)</span>.</p>
+<p>Then, <span class="math display">\[
+\begin{aligned}
+\int_a^b \chi_O(F(x))F&#39;(x)\,dx
+&amp;=\int_{F^{-1}(O)}F&#39;(x)\,dx
+=\int_{[a,b]}\chi_{\cup_i (a_i,b_i)}(x)F&#39;(x)\,dx\\
+&amp;=\sum_{i=1}^\infty\int_{(a_i,b_i)}F&#39;(x)\,dx
+\qquad(\mathrm{MCT})
+=\sum_{i=1}^\infty\big(F(b_i)-F(a_i)\big)\\
+&amp;=\sum_{i=1}^\infty|B_i-A_i|
+=m(O)
+=\int_A^B \chi_O(y)\,dy.
+\end{aligned}
+\]</span> Thus, <span class="math inline">\(\int_a^b
+\chi_O(F(x))F&#39;(x)\,dx=\int_A^B \chi_O(y)\,dy\)</span>.</p>
+<p>③ <span class="math inline">\(\chi_G(F(x))F&#39;(x)\)</span>, where
+<span class="math inline">\(G=\bigcap_i O_i\)</span>, <span class="math inline">\((O_i\ \text{is open})\subset[A,B]\)</span></p>
+<p>Let <span class="math inline">\(S_n=\bigcap_{i=1}^n O_i\)</span>,
+which is open. Then <span class="math inline">\(\bigcap_{n=1}^\infty
+S_n=\bigcap_{i=1}^\infty O_i\)</span>. Note that <span class="math inline">\(S_n\supset S_{n+1}\)</span>.</p>
+<p>(<span class="math inline">\(\because\)</span> <span class="math inline">\(x\in\bigcap_{n=1}^\infty S_n\)</span>, then <span class="math inline">\(x\in S_n\ \forall n\in\mathbb{N}\Rightarrow x\in
+O_i\)</span> for <span class="math inline">\(1\le i\le n\ \forall
+n\)</span>. So <span class="math inline">\(x\in O_i\ \forall
+i\in\mathbb{N}\)</span> and <span class="math inline">\(x\in\bigcap_i
+O_i\)</span>.<br />
+<span class="math inline">\(x\in\bigcap_i O_i\)</span>, then <span class="math inline">\(x\in O_i\ \forall i\in\mathbb{N}\Rightarrow
+x\in\bigcap_{i=1}^n O_i=S_n\ \forall n\)</span>. So <span class="math inline">\(x\in\bigcap_n S_n\)</span>.)</p>
+<p><span class="math inline">\(\{\chi_{F^{-1}(S_n)}(x)F&#39;(x)\}\)</span> is a
+sequence of measurable functions s.t. <span class="math inline">\(\chi_{F^{-1}(S_n)}(x)F&#39;(x)\downarrow
+\chi_{F^{-1}(G)}(x)F&#39;(x)\)</span> (<span class="math inline">\(\because\ S_n\downarrow G\)</span>). Using MCT,
+<span class="math display">\[
+\lim_{n\to\infty}\int_{F^{-1}(S_n)}F&#39;(x)\,dx=\int_{F^{-1}(G)}F&#39;(x)\,dx.
+\]</span> <span class="math inline">\(S_n\)</span> is open, so <span class="math inline">\(\int_{F^{-1}(S_n)}F&#39;(x)\,dx=m(S_n)\)</span>.
+Since <span class="math inline">\(\lim_{n\to\infty}m(S_n)=m(G)\)</span>,
+<span class="math inline">\(\int_{F^{-1}(G)}F&#39;=m(G)\)</span>.</p>
+<p>So, <span class="math display">\[
+\int_a^b \chi_G(F(x))F&#39;(x)\,dx
+=\int_{F^{-1}(G)}F&#39;(x)\,dx
+=m(G)
+=\int_A^B \chi_G(y)\,dy.
+\]</span></p>
+<p>④ <span class="math inline">\(X_Z(F(x))F&#39;(x)\)</span>, where
+<span class="math inline">\(m(Z)=0\)</span> &amp; <span class="math inline">\(Z\subset [A,B]\)</span></p>
+<p>We’ve shown <span class="math display">\[\begin{aligned}
+\int_a^b X_Z(F(x))F&#39;(x)\,dx = m(Z) = \int_A^B X_Z(y)\,dy
+\end{aligned}\]</span></p>
+<p>⑤ <span class="math inline">\(X_E(F(x))F&#39;(x)\)</span>, <span class="math inline">\(E\)</span> is measurable</p>
+<p><span class="math inline">\(G=E\cup(G-E)\)</span>, then <span class="math inline">\(X_E(F(x))F&#39;(x)=X_G(F(x))F&#39;(x)-X_{G-E}(F(x))F&#39;(x)\)</span></p>
+<p>Then, <span class="math display">\[\begin{aligned}
+\int_a^b X_E(F(x))F&#39;(x)\,dx = m(G)-m(G-E)=m(E)=\int_A^B X_E(y)\,dy
+\end{aligned}\]</span></p>
+<p>cf) When <span class="math inline">\(\psi(y)=\sum_{i=1}^N a_i
+X_{E_i}(y)\)</span>, <span class="math inline">\(\psi(F(x))=\sum_{i=1}^N
+a_i X_{E_i}(F(x))\)</span>, so</p>
+<p><span class="math display">\[\begin{aligned}
+\int_a^b \psi(F(x))F&#39;(x)\,dx
+&amp;= \sum_{i=1}^N a_i \int_a^b X_{E_i}(F(x))F&#39;(x)\,dx \\
+&amp;= \sum_{i=1}^N a_i \int_A^B X_{E_i}(y)\,dy
+= \int_A^B \psi(y)\,dy
+\end{aligned}\]</span></p>
+<p>⑥</p>
+<p>Note that <span class="math inline">\(|f(F(x))|F&#39;(x)=(|f|\circ
+F(x))F&#39;(x)\)</span> <span class="math inline">\((\because F&#39;\ge
+0\ \text{a.e})\)</span></p>
+<p><span class="math inline">\(Hf\)</span> is measurable, so there is a
+sequence of simple functions <span class="math inline">\(\{\phi_n\}\)</span> such that <span class="math inline">\(0\le \phi_n\le \phi_{n+1}\)</span> and <span class="math inline">\(\lim_{n\to\infty}\phi_n=|Hf|\)</span> (thm 1.4.1).
+<span class="math inline">\(\phi_n\uparrow |Hf|\)</span>, so <span class="math inline">\(\lim_{n\to\infty}\int_{[A,B]}\phi_n=\int_{[A,B]}|Hf|\)</span>
+(MCT).</p>
+<p><span class="math inline">\(\phi_n\)</span> is measurable, so <span class="math inline">\(\int_{[A,B]}\phi_n(y)\,dy=\int_{[a,b]}\phi_n(F(x))F&#39;(x)\,dx\)</span></p>
+<p><span class="math inline">\(\phi_n(F(x))F&#39;(x)\uparrow (|Hf|\circ
+F)(x)\cdot F&#39;(x)\)</span>, so <span class="math inline">\(\lim_{n\to\infty}\int_{[a,b]}(\phi_n\circ
+F)(x)F&#39;(x)\,dx=\int_{[a,b]}(|Hf|\circ F)(x)F&#39;(x)\,dx\)</span>
+(MCT)</p>
+<p>The limit is same, so <span class="math inline">\(\int_{[a,b]}(Hf\circ
+g)(x)g&#39;(x)\,dx=\int_{[A,B]}Hf(y)&lt;\infty\)</span> <span class="math inline">\((\because f\ \text{is integrable})\)</span></p>
+<p>Thus, <span class="math inline">\((f\circ g)(x)g&#39;(x)\)</span> is
+integrable</p>
+<p>Using the similar logic above with the existence of a sequence of
+simple functions <span class="math inline">\(\{\psi_k\}\)</span> s.t.
+<span class="math inline">\(|\psi_k|\le |\psi_{k+1}|\)</span> &amp;
+<span class="math inline">\(\lim_{k\to\infty}\psi_k=f\)</span>, we can
+obtain the following result : thm 1.4.2</p>
+<p><span class="math display">\[\int_{[a,b]}
+f(g(x))g&#39;(x)\,dx=\int_A^B f(y)\,dy\]</span></p>
+</div>
+<div id="b-if-f-is-integrable-on-ab-show-that-ffxfx-is-integrable-and" class="section level3">
+<h3>(b) If <span class="math inline">\(f\)</span> is integrable on <span class="math inline">\([A,B]\)</span>, show that <span class="math inline">\(f(F(x))F&#39;(x)\)</span> is integrable and</h3>
+<p><span class="math display">\[\int_A^B f(y)\,dy=\int_a^b
+f(F(x))F&#39;(x)\,dx\]</span></p>
+<p><strong>proof</strong> Consider the case <span class="math inline">\(f\ge 0\)</span> first. Let <span class="math inline">\(\tilde{F}(x)=\int_A^x f(t)\,dt\)</span> and <span class="math inline">\(\widetilde{F}(x)=\int_a^x
+f(F(t))F&#39;(t)\,dt\)</span>.</p>
+<p>For <span class="math inline">\(n\in\mathbb{N}\)</span>, define <span class="math inline">\(f_n(x)\)</span> as follows; <span class="math display">\[
+f_n(x)=
+\begin{cases}
+f(x) &amp; (0\le f(x)\le n)\\
+n &amp; (f(x)&gt;n)
+\end{cases}
+\]</span></p>
+<p>Let <span class="math inline">\(\tilde{F}_n(x)=\int_A^x
+f_n(t)\,dt\)</span> and <span class="math inline">\(\widetilde{F}_n(x)=\int_a^x
+f_n(F(t))F&#39;(t)\,dt\)</span> accordingly.</p>
+<p>① <span class="math inline">\(f_n(F(x))F&#39;(x)\)</span> is
+integrable <span class="math inline">\(\ \forall
+n\in\mathbb{N}\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+\int_a^b f_n(F(x))F&#39;(x)\,dx
+&amp;= \int_A^B f_n(y)\,dy \quad (F(x)=y) \\
+&amp;\le \int_A^B f(y)\,dy &lt; \infty \quad (\because f\in
+L^1(\mathbb{R}))
+\end{aligned}\]</span></p>
+<p>② <span class="math inline">\(\tilde{F}_n\)</span> follows Lipschitz
+conditions</p>
+<p>For <span class="math inline">\(x\le y\in[A,B]\)</span>, <span class="math display">\[\begin{aligned}
+|\tilde{F}_n(y)-\tilde{F}_n(x)|
+&amp;= \left|\int_x^y f_n(t)\,dt\right| \\
+&amp;\le \int_x^y |f_n(t)|\,dt \\
+&amp;\le \int_x^y n\,dt = n(y-x)
+\end{aligned}\]</span></p>
+<p><span class="math inline">\(y\le x\in[A,B]\)</span> leads to <span class="math inline">\(|\tilde{F}_n(y)-\tilde{F}_n(x)|\le
+n(x-y)\)</span>, so <span class="math inline">\(|\tilde{F}_n(y)-\tilde{F}_n(x)|\le
+n|y-x|\)</span></p>
+<p>③ <span class="math inline">\(h\)</span> is Lipschitz and <span class="math inline">\(g\)</span> is absolutely continuous on <span class="math inline">\(\mathbb{R}\)</span>, then <span class="math inline">\(h\circ g\)</span> is absolutely continuous on
+<span class="math inline">\(\mathbb{R}\)</span></p>
+<p>There is <span class="math inline">\(C\ge 0\)</span> such that <span class="math inline">\(|h(y)-h(x)|\le C|y-x|\)</span> for all <span class="math inline">\(x,y\in\mathbb{R}\)</span>. For given <span class="math inline">\(\varepsilon&gt;0\)</span>, there is <span class="math inline">\(\delta_\varepsilon&gt;0\)</span> such that
+whenever <span class="math inline">\(\sum_{i=1}^N|b_i-a_i|&lt;\delta_\varepsilon\)</span>,
+<span class="math inline">\(\sum_{i=1}^N|g(b_i)-g(a_i)|&lt;\varepsilon/C\)</span></p>
+<p><span class="math inline">\(g(a_i),g(b_i)\in\mathbb{R}\)</span>, so
+<span class="math inline">\(|h(g(b_i))-h(g(a_i))|\le
+C|g(b_i)-g(a_i)|\)</span>.</p>
+<p>Then, <span class="math inline">\(\sum_{i=1}^N|h\circ g(b_i)-h\circ
+g(a_i)|\le \sum_{i=1}^N C|g(b_i)-g(a_i)|\le C\cdot
+\varepsilon/C=\varepsilon\)</span> whenever <span class="math inline">\(\sum_{i=1}^N|b_i-a_i|&lt;\delta_\varepsilon\)</span>.</p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(h\circ g\)</span> is absolutely continuous on
+<span class="math inline">\(\mathbb{R}\)</span>.</p>
+<p>④ <span class="math inline">\((\tilde{F}_n\circ
+F)&#39;(x)=\widetilde{F}_n&#39;(x)\ \ a.e\)</span></p>
+<p>We’ve shown <span class="math inline">\((\tilde{F}_n\circ
+F)(x)\)</span> is absolutely continuous. Also, <span class="math inline">\(\widetilde{F}_n\)</span> is absolutely continuous
+(<span class="math inline">\(\because\)</span> ①), so <span class="math inline">\(\tilde{F}_n\circ F-\widetilde{F}_n\)</span> is
+absolutely continuous. This means <span class="math inline">\((\tilde{F}_n\circ F-\widetilde{F}_n)&#39;\)</span>
+exists a.e <span class="math inline">\([a,b]\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+\big((\tilde{F}_n\circ F)(x)-\widetilde{F}_n(x)\big)&#39;
+&amp;= \tilde{F}_n&#39;(F(x))F&#39;(x)-f_n(F(x))F&#39;(x) \\
+&amp;= 0\ \ a.e,
+\end{aligned}\]</span> so <span class="math inline">\(\tilde{F}_n\circ
+F-\widetilde{F}_n\)</span> is constant.</p>
+<p>Then, <span class="math inline">\(\tilde{F}_n\circ
+F(x)-\widetilde{F}_n(x)=\tilde{F}_n\circ
+F(a)-\widetilde{F}_n(a)=\tilde{F}_n(A)-\widetilde{F}_n(a)=0\ \ \forall
+x\in[a,b]\)</span>.</p>
+<p>So, <span class="math display">\[\int_A^B f_n(x)\,dx=\int_a^b
+f_n(F(x))F&#39;(x)\,dx\]</span></p>
+<hr />
+</div>
+</div>
+<div id="f-and-g-are-absolutely-continuous-on-ab.-show-that" class="section level2">
+<h2>22 <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> are absolutely continuous on <span class="math inline">\([a,b]\)</span>. Show that</h2>
+<div id="cf-fg-is-absolutely-continuous-on-ab" class="section level3">
+<h3>cf) <span class="math inline">\(FG\)</span> is absolutely continuous
+on <span class="math inline">\([a,b]\)</span></h3>
+<p><strong>proof</strong> ① bounded<br />
+<span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> are continuous on a compact set <span class="math inline">\([a,b]\)</span>, so they are bounded.<br />
+Then, there is <span class="math inline">\(M&gt;0\)</span> such that
+<span class="math inline">\(|F|\le M\)</span> and <span class="math inline">\(|G|\le M\)</span></p>
+<p>②<br />
+For given <span class="math inline">\(\varepsilon&gt;0\)</span>, there
+is <span class="math inline">\(\delta_\varepsilon&gt;0\)</span> such
+that whenever <span class="math inline">\(\sum_{i=1}^N|b_i-a_i|&lt;\delta_\varepsilon\)</span>
+holds, <span class="math inline">\(\sum_{i=1}^N|F(b_i)-F(a_i)|&lt;\varepsilon/(2M)\)</span>
+and <span class="math inline">\(\sum_{i=1}^N|G(b_i)-G(a_i)|&lt;\varepsilon/(2M)\)</span>.</p>
+<p>③<br />
+Then, whenever <span class="math inline">\(\sum_{i=1}^N|b_i-a_i|&lt;\delta_\varepsilon\)</span>,</p>
+<p><span class="math display">\[\begin{aligned}
+\sum_{i=1}^N |F(b_i)G(b_i)-F(a_i)G(a_i)|
+&amp;= \sum_{i=1}^N
+|F(b_i)G(b_i)-F(a_i)G(b_i)+F(a_i)G(b_i)-F(a_i)G(a_i)| \\
+&amp;\le \sum_{i=1}^N |G(b_i)|\,|F(b_i)-F(a_i)|+\sum_{i=1}^N
+|F(a_i)|\,|G(b_i)-G(a_i)| \\
+&amp;&lt; \sum_{i=1}^N M|F(b_i)-F(a_i)|+\sum_{i=1}^N M|G(b_i)-G(a_i)| \\
+&amp;&lt; M\cdot \frac{\varepsilon}{2M}+M\cdot
+\frac{\varepsilon}{2M}=\varepsilon
+\end{aligned}\]</span></p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(FG\)</span> is absolutely continuous.</p>
+</div>
+<div id="a-fxgx_xaxbint_ab-fxgxdxint_ab-fxgxdx" class="section level3">
+<h3>(a) <span class="math inline">\([F(x)G(x)]_{x=a}^{x=b}=\int_a^b
+F(x)G&#39;(x)\,dx+\int_a^b F&#39;(x)G(x)\,dx\)</span></h3>
+<p><strong>proof</strong> <span class="math inline">\(F\)</span> and
+<span class="math inline">\(G\)</span> are absolutely continuous, so
+<span class="math inline">\(F&#39;\)</span> and <span class="math inline">\(G&#39;\)</span> exist a.e <span class="math inline">\([a,b]\)</span>.<br />
+(<span class="math inline">\(\because\)</span> (o)) <span class="math inline">\(FG\)</span> is absolutely continuous, so <span class="math inline">\((FG)&#39;\)</span> exists a.e <span class="math inline">\([a,b]\)</span>.</p>
+<p><span class="math inline">\((FG)&#39;=F&#39;G+FG&#39;\)</span> (a.e),
+and <span class="math inline">\(\int_a^b (FG)&#39;=\int_a^b
+F&#39;G+\int_a^b FG&#39;\)</span>.</p>
+<p>Thus, <span class="math inline">\([F(x)G(x)]_{x=a}^{x=b}=\int_a^b
+F(x)G&#39;(x)\,dx+\int_a^b F&#39;(x)G(x)\,dx\)</span></p>
+</div>
+<div id="b-let-f-be-absolutely-continuous-on--pipi-with-f-pifpi-a_nfrac12piint_-pipifxe-inxdx-and-fxsim-sum_n-a_neinx.-show-that-fxsim-sum_n-ina_neinx" class="section level3">
+<h3>(b) Let <span class="math inline">\(F\)</span> be absolutely
+continuous on <span class="math inline">\([-\pi,\pi]\)</span> with <span class="math inline">\(F(-\pi)=F(\pi)\)</span>, <span class="math inline">\(a_n=\frac{1}{2\pi}\int_{-\pi}^{\pi}F(x)e^{-inx}\,dx\)</span>,
+and <span class="math inline">\(F(x)\sim \sum_n a_ne^{inx}\)</span>.
+Show that <span class="math inline">\(F&#39;(x)\sim \sum_n
+ina_ne^{inx}\)</span></h3>
+<p><strong>proof</strong> Let <span class="math inline">\(b_n=\frac{1}{2\pi}\int_{-\pi}^{\pi}F&#39;(x)e^{-inx}\,dx\)</span>
+be a Fourier coefficient of <span class="math inline">\(F&#39;\)</span>.</p>
+<p>Using the result of (a),</p>
+<p><span class="math display">\[\begin{aligned}
+b_n
+&amp;=\frac{1}{2\pi}\int_{-\pi}^{\pi}F&#39;(x)e^{-inx}\,dx \\
+&amp;=-\frac{1}{2\pi}\int_{-\pi}^{\pi}F(x)(-in)e^{-inx}\,dx+\Big[F(x)e^{-inx}\Big]_{x=-\pi}^{x=\pi}
+\\
+&amp;=in\cdot \frac{1}{2\pi}\int_{-\pi}^{\pi}F(x)e^{-inx}\,dx +
+F(\pi)e^{-in\pi}-F(-\pi)e^{in\pi} \\
+&amp;=in\cdot a_n+0\ \ (\because F(\pi)=F(-\pi),\
+e^{-in\pi}=e^{in\pi+i(2n)\pi}=e^{in\pi}) \\
+&amp;=in\cdot a_n
+\end{aligned}\]</span></p>
+<p>Thus, <span class="math inline">\(F&#39;(x)\sim \sum_n
+(ina_n)e^{inx}\)</span></p>
+</div>
+<div id="c-what-happens-if-fpine-f-pi-consider-fxx-and-gxe-inx" class="section level3">
+<h3>(c) What happens if <span class="math inline">\(F(\pi)\ne
+F(-\pi)\)</span>? (Consider <span class="math inline">\(F(x)=x\)</span>,
+and <span class="math inline">\(G(x)=e^{-inx}\)</span>)</h3>
+<p><strong>proof</strong> <span class="math inline">\(F\)</span> is
+absolutely continuous on <span class="math inline">\([-\pi,\pi]\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+a_n
+&amp;=\frac{1}{2\pi}\int_{-\pi}^{\pi}xe^{-inx}\,dx
+=
+\frac{1}{2\pi}\Big[x\cdot\Big(\frac{1}{-in}\Big)e^{-inx}\Big]_{x=-\pi}^{x=\pi}-\frac{1}{2\pi}\int_{-\pi}^{\pi}\frac{1}{-in}e^{-inx}\,dx
+\\
+&amp;=\frac{1}{2\pi}\Big[\frac{1}{-in}xe^{-inx}\Big]_{x=-\pi}^{x=\pi}-\frac{1}{2\pi}\Big[\frac{1}{(in)^2}e^{-inx}\Big]_{x=-\pi}^{x=\pi}
+\\
+&amp;=\frac{1}{2\pi}\Big[\frac{1}{-in}xe^{-inx}+\frac{1}{n^2}e^{-inx}\Big]_{x=-\pi}^{x=\pi}
+\\
+&amp;=\frac{1}{2\pi}\Big\{\Big(\frac{1}{-in}\pi
+e^{-in\pi}+\frac{1}{n^2}e^{-in\pi}\Big)-\Big(\frac{1}{-in}(-\pi)e^{in\pi}+\frac{1}{n^2}e^{in\pi}\Big)\Big\}
+\\
+&amp;=\frac{1}{2\pi}\Big(\frac{1}{-in}\pi(-1)^n+\frac{1}{in}\pi(-1)^n\Big)
+=\frac{i}{n}(-1)^n\quad (n\ne 0)
+\end{aligned}\]</span></p>
+<p>and <span class="math inline">\(a_0=\frac{1}{2\pi}\int_{-\pi}^{\pi}x\,dx=0\)</span>.</p>
+<p><span class="math inline">\(F&#39;(x)=1\)</span>, so <span class="math inline">\(b_0=\frac{1}{2\pi}\int_{-\pi}^{\pi}1\,dx=1\)</span>,
+and</p>
+<p><span class="math display">\[\begin{aligned}
+b_n
+&amp;=\frac{1}{2\pi}\int_{-\pi}^{\pi}e^{-inx}\,dx
+=\frac{1}{2\pi}\left[\frac{-1}{in}e^{-inx}\right]_{x=-\pi}^{x=\pi} \\
+&amp;=\frac{1}{2\pi}\left\{\left(\frac{-1}{in}(-1)^n\right)-\left(\frac{-1}{in}(-1)^n\right)\right\}
+=0 \quad (n\ne 0)
+\end{aligned}\]</span></p>
+<p>For all <span class="math inline">\(n\in\mathbb{Z}\)</span>, <span class="math inline">\(b_n\ne ina_n\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="f-is-continuous-on-ab." class="section level2">
+<h2>23. <span class="math inline">\(F\)</span> is continuous on <span class="math inline">\([a,b]\)</span>.</h2>
+<div id="a-suppose-dfxge-0-for-every-xinab.-show-that-f-is-increasing-on-ab" class="section level3">
+<h3>(a) Suppose <span class="math inline">\((D^+F)(x)\ge 0\)</span> for
+every <span class="math inline">\(x\in[a,b]\)</span>. Show that <span class="math inline">\(F\)</span> is increasing on <span class="math inline">\([a,b]\)</span></h3>
+<p><strong>proof</strong> ① <span class="math inline">\(D^+G(x)&gt;0\)</span> for continuous <span class="math inline">\(G\)</span> on <span class="math inline">\([a,b]\)</span>, <span class="math inline">\(G\)</span> is increasing</p>
+<p>Assume there is <span class="math inline">\(c,d\in(a,b)\)</span> such
+that <span class="math inline">\(c&lt;d\)</span> and <span class="math inline">\(G(x_1)&gt;G(x_2)\)</span> for all <span class="math inline">\(x_1,x_2\in[c,d]\)</span> with <span class="math inline">\(x_1&lt;x_2\)</span>. Intermediate Value Thm
+guarantees that for <span class="math inline">\(\mu\in(G(c),G(d))\)</span>, there is <span class="math inline">\(\xi\in(c,d)\)</span> such that <span class="math inline">\(G(\xi)=\mu\)</span> <span class="math inline">\((\because G\ \text{is continuous})\)</span>.</p>
+<p>For each <span class="math inline">\(t\in(\xi,d)\)</span>, <span class="math inline">\(\frac{G(t)-G(\xi)}{t-\xi}&lt;0\)</span>. So <span class="math inline">\(D^+G(\xi)=\limsup_{t\to\xi+}\frac{G(t)-G(\xi)}{t-\xi}\le
+0\)</span>, contradiction. Thus, <span class="math inline">\(G\)</span>
+is increasing</p>
+<p>② <span class="math inline">\(F\)</span> is increasing</p>
+<p>Let <span class="math inline">\(G_\varepsilon(x)=F(x)+\varepsilon
+x\)</span>, which is continuous, for given <span class="math inline">\(\varepsilon&gt;0\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+D^+G_\varepsilon(x)
+&amp;=\limsup_{h\to
+0+}\frac{1}{h}\Big(F(x+h)+\varepsilon(x+h)-F(x)-\varepsilon x\Big) \\
+&amp;=\limsup_{h\to
+0+}\left\{\frac{1}{h}(F(x+h)-F(x))+\varepsilon\right\} \\
+&amp;=\limsup_{h\to 0+}\frac{1}{h}(F(x+h)-F(x))+\varepsilon
+= D^+F(x)+\varepsilon&gt;0,
+\end{aligned}\]</span></p>
+<p>cf) <span class="math inline">\(\limsup(f(x)+g(x))\le \limsup
+f(x)+\limsup g(x)\)</span><br />
+<span class="math inline">\(\to\)</span> if one of them have lim, <span class="math inline">\(=\)</span></p>
+<p>So <span class="math inline">\(G_\varepsilon\)</span> is increasing
+<span class="math inline">\((\because\)</span> ①<span class="math inline">\()\)</span></p>
+<p>Then, for <span class="math inline">\(x&lt;y\in[a,b]\)</span>, <span class="math display">\[F(y)-F(x)=G_\varepsilon(y)-G_\varepsilon(x)-\varepsilon(y-x)\ge
+-\varepsilon(y-x).\]</span> So <span class="math inline">\(\frac{F(y)-F(x)}{y-x}\ge -\varepsilon\)</span>.
+This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(\frac{F(y)-F(x)}{y-x}\ge 0\)</span> and <span class="math inline">\(F(y)\ge F(x)\)</span>. This holds for all <span class="math inline">\(x,y\in[a,b]\)</span> with <span class="math inline">\(x&lt;y\)</span>, so <span class="math inline">\(F\)</span> is increasing.</p>
+</div>
+<div id="b-fx-exists-for-every-xinab-and-fxle-m.-show-that-fx-fyle-mx-y-and-f-is-absolutely-continuous." class="section level3">
+<h3>(b) <span class="math inline">\(F&#39;(x)\)</span> exists for every
+<span class="math inline">\(x\in(a,b)\)</span> and <span class="math inline">\(|F&#39;(x)|\le M\)</span>. Show that <span class="math inline">\(|F(x)-F(y)|\le M|x-y|\)</span> and <span class="math inline">\(F\)</span> is absolutely continuous.</h3>
+<p><strong>proof</strong> ① <span class="math inline">\(|F(x)-F(y)|\le
+M|x-y|\)</span></p>
+<p><span class="math inline">\(F\)</span> is continuous on <span class="math inline">\((a,b)\)</span> and differentiable on <span class="math inline">\((a,b)\)</span>, so there is <span class="math inline">\(c\)</span> btw <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> such that <span class="math inline">\(F(x)-F(y)=F&#39;(c)(x-y)\)</span> (MVT). Since
+<span class="math inline">\(|F&#39;(c)|\le M\)</span>, <span class="math inline">\(|F(x)-F(y)|\le M|x-y|\)</span>.</p>
+<p>② <span class="math inline">\(F\)</span> is absolutely continuous</p>
+<p>For a finite collection <span class="math inline">\(\{(a_i,b_i)\}_{i=1}^N\)</span> of disjoint
+intervals in <span class="math inline">\(\mathbb{R}\)</span>, <span class="math display">\[\sum_{i=1}^N |F(b_i)-F(a_i)|\le M\sum_{i=1}^N
+(b_i-a_i)\ \ (\because ①)\]</span></p>
+<p>For given <span class="math inline">\(\varepsilon&gt;0\)</span>,
+choose <span class="math inline">\(\delta_\varepsilon=\varepsilon/M\)</span> and
+<span class="math inline">\(\{(a_i,b_i)\}\)</span> such that <span class="math inline">\(\sum_{i=1}^N(b_i-a_i)&lt;\delta_\varepsilon\)</span>.
+Then, <span class="math inline">\(\sum_{i=1}^N|F(b_i)-F(a_i)|&lt;\varepsilon\)</span>.</p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(F\)</span> is absolutely continuous.</p>
+<hr />
+</div>
+</div>
+<div id="f-is-increasing-on-ab" class="section level2">
+<h2>24. <span class="math inline">\(F\)</span> is increasing on <span class="math inline">\([a,b]\)</span></h2>
+<div id="a-show-that-ff_af_cf_j-where-f_a-is-absolutely-continuous-f_c-is-continuous-and-f_cx0-a.e-and-f_j-is-a-jump-function." class="section level3">
+<h3>(a) Show that <span class="math inline">\(F=F_A+F_C+F_J\)</span>,
+where <span class="math inline">\(F_A\)</span> is absolutely continuous,
+<span class="math inline">\(F_C\)</span> is continuous and <span class="math inline">\(F_C&#39;(x)=0\)</span> a.e, and <span class="math inline">\(F_J\)</span> is a jump function.</h3>
+<p><strong>proof</strong> ① <span class="math inline">\(F-F_J\)</span>
+is increasing &amp; continuous</p>
+<p><span class="math inline">\(F\)</span> is increasing on <span class="math inline">\([a,b]\)</span>, so <span class="math inline">\(F(a)\le F(x)\le F(b)\)</span> which means <span class="math inline">\(F\)</span> is bounded.<br />
+Let <span class="math inline">\(F_J\)</span> be a jumpfunction of <span class="math inline">\(F\)</span>, then <span class="math inline">\(F-F_J\)</span> is increasing &amp; continuous (lem
+3.3.13)<br />
+let <span class="math inline">\(f=F-F_J\)</span>. Note that <span class="math inline">\(F\)</span> is increasing, so as <span class="math inline">\(F_J\)</span></p>
+<p>② <span class="math inline">\(F_A(x)=\int_a^x
+f&#39;(t)\,dt\)</span></p>
+<p><span class="math inline">\(f\)</span> is increasing and continuous,
+so <span class="math inline">\(f&#39;\)</span> exists a.e. Also, <span class="math inline">\(f\)</span> is bounded (<span class="math inline">\(::\)</span> increasing on <span class="math inline">\([a,b]\)</span>), so <span class="math inline">\(f&#39;\)</span> is integrable.</p>
+<p>Let <span class="math inline">\(F_A(x)=\int_a^x
+f&#39;(t)\,dt\)</span>. Since <span class="math inline">\(f&#39;\)</span> is integrable, <span class="math inline">\(F_A(x)\)</span> is absolutely continuous.</p>
+<p>For <span class="math inline">\(c&lt;d\in[a,b]\)</span>, <span class="math inline">\(F_A(d)-F_A(c)=\int_{[c,d]} f&#39;(t)\,dt\ge
+0\)</span> (<span class="math inline">\(::\)</span> <span class="math inline">\(f\)</span> is increasing, <span class="math inline">\(f&#39;\ge 0\)</span> a.e)</p>
+<p>③ <span class="math inline">\(F_C(x)=f(x)-F_A(x)\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(F_C(x)\)</span> is continuous and
+<span class="math inline">\(F_C&#39;(x)=0\)</span> a.e Let <span class="math inline">\(F_C(x)=f(x)-F_A(x)\)</span>. <span class="math inline">\(f\)</span> and <span class="math inline">\(F_A\)</span> are continuous, so <span class="math inline">\(F_C\)</span> is continuous.<br />
+<span class="math inline">\(f&#39;\)</span> exists a.e and <span class="math inline">\(F_A&#39;=f&#39;\)</span> a.e (<span class="math inline">\(::\)</span> <span class="math inline">\(F_A\)</span> is absolutely continuous), so <span class="math inline">\(F_C&#39;=0\)</span> a.e.</p></li>
+<li><p><span class="math inline">\(F_C\)</span> is increasing For <span class="math inline">\(c&lt;d\in[a,b]\)</span>, <span class="math inline">\(F_C(d)-F_C(c)=(f(d)-f(c))-(F_A(d)-F_A(c))=f(d)-f(c)-\int_{[c,d]}
+f&#39;\)</span> Let <span class="math inline">\(g_n(x)=\frac{f(x+1/n)-f(x)}{1/n}\)</span> which is
+measurable function and <span class="math inline">\(g_n\ge 0\)</span>
+(<span class="math inline">\(::\)</span> <span class="math inline">\(f\)</span> is increasing)<br />
+Since <span class="math inline">\(f&#39;\)</span> exist a.e, <span class="math inline">\(\lim_{n\to\infty} g_n(x)=f&#39;(x)\)</span> a.e.
+Then, <span class="math display">\[\begin{aligned}
+\int_{[c,d]} f&#39; &amp;\le \liminf_{n\to\infty}\int_{[c,d]} g_n \quad
+(\because \text{Fatou, lemma 2.1.7})\\
+&amp;=
+\liminf_{n\to\infty}\frac{1}{1/n}\int_c^d\big(f(x+1/n)-f(x)\big)\,dx
+\quad (\because f\ \text{is continuous, so Riemann integrable})\\
+&amp;=
+\liminf_{n\to\infty}\frac{1}{1/n}\Big\{\big(\tilde{F}(d+1/n)-\tilde{F}(d)\big)-\big(\tilde{F}(c+1/n)-\tilde{F}(c)\big)\Big\}
+\quad (\text{let }\int f=\tilde{F})\\
+&amp;=
+\lim_{n\to\infty}\frac{\tilde{F}(d+1/n)-\tilde{F}(d)}{1/n}-\lim_{n\to\infty}\frac{\tilde{F}(c+1/n)-\tilde{F}(c)}{1/n}
+= f(d)-f(c). \quad (\because f\ \text{is cont, so }\tilde{F}\ \text{is
+differentiable})\\
+&amp;\hspace{13.3cm}\text{PMA 6.20}
+\end{aligned}\]</span> So, <span class="math inline">\(f(d)-f(c)\ge
+\int_{[c,d]} f&#39;\)</span> and thus <span class="math inline">\(F_C(d)-F_C(c)\ge 0\)</span>. <span class="math inline">\(\therefore\ F=F_A+F_C+F_J\)</span>, where <span class="math inline">\(F_A,F_C,F_J\)</span> are increasing.</p></li>
+</ol>
+</div>
+<div id="b-each-f_af_cf_j-is-uniquely-determined-up-to-additive-constant" class="section level3">
+<h3>(b) Each <span class="math inline">\(F_A,F_C,F_J\)</span> is
+uniquely determined up to additive constant</h3>
+<p><strong>proof</strong> Let <span class="math inline">\(F=F_{A1}+F_{C1}+F_{J1}=F_{A2}+F_{C2}+F_{J2}\)</span>.</p>
+<p>① <span class="math inline">\(F_{J2}-F_{J1}\)</span><br />
+<span class="math inline">\(F_{J2}-F_{J1}=F_{A1}-F_{A2}+F_{C1}-F_{C2}\)</span>,
+which is continuous. Then, <span class="math inline">\(F_{J2}-F_{J1}\)</span> is constant.</p>
+<p>Let <span class="math inline">\(G=F_{J2}-F_{J1}\)</span></p>
+<p>② <span class="math inline">\(F_{A1}-F_{A2}\)</span><br />
+<span class="math inline">\(F_{A1}-F_{A2}=F_{C2}-F_{C1}+G\)</span>,
+which is absolutely continuous. Then, <span class="math inline">\(F_{A1}&#39;-F_{A2}&#39;=F_{C2}&#39;-F_{C1}&#39;=0-0=0\)</span>
+a.e <span class="math inline">\([a,b]\)</span>, and <span class="math inline">\(F_{A1}-F_{A2}=C_A\)</span> (constant).</p>
+<p>③ <span class="math inline">\(F_{C1}-F_{C2}\)</span><br />
+Then, <span class="math inline">\(F_{C1}-F_{C2}=(F_{J2}-F_{J1})+(F_{A2}-F_{A1})=G-C_A\)</span>
+(constant)</p>
+<hr />
+</div>
+</div>
+<div id="let-e-be-a-set-of-measure-0.-show-that" class="section level2">
+<h2>25 Let <span class="math inline">\(E\)</span> be a set of measure
+<span class="math inline">\(0\)</span>. Show that :</h2>
+<div id="a-there-is-a-non-negative-integrable-function-f-on-mathbbrd-such-that" class="section level3">
+<h3>(a) there is a non-negative &amp; integrable function <span class="math inline">\(f\)</span> on <span class="math inline">\(\mathbb{R}^d\)</span> such that</h3>
+<p><span class="math display">\[\liminf_{\substack{m(B)\to 0\\ x\in
+B}}\frac{1}{m(B)}\int_B f(y)\,dy=\infty \ \ \text{for }x\in
+E\]</span></p>
+<p><strong>proof</strong> ① open <span class="math inline">\(O_n\supset
+E\)</span> with <span class="math inline">\(m(O_n)&lt;\frac{1}{2^n}\)</span><br />
+<span class="math inline">\(m(E)=0\)</span>, so for every <span class="math inline">\(n\in\mathbb{N}\)</span> there is an open set <span class="math inline">\(O_n\)</span> such that <span class="math inline">\(E\subset O_n\)</span> and <span class="math inline">\(m(O_n)&lt;\frac{1}{2^n}\)</span> (<span class="math inline">\(E\)</span> is measurable).</p>
+<p>② <span class="math inline">\(f=\sum_{n=1}^\infty \chi_{O_n}\)</span>
+is integrable<br />
+Let <span class="math inline">\(f=\sum_{n=1}^\infty \chi_{O_n}\)</span>,
+then <span class="math display">\[\begin{aligned}
+\int f
+&amp;=\int \sum_{n=1}^\infty \chi_{O_n}
+= \sum_{n=1}^\infty \int \chi_{O_n}\ (\because \text{MCT}) \\
+&amp;= \sum_{n=1}^\infty m(O_n)
+&lt; \sum_{n=1}^\infty \frac{1}{2^n}=1.
+\end{aligned}\]</span> So <span class="math inline">\(f\)</span> is
+integrable on <span class="math inline">\(\mathbb{R}^d\)</span>.</p>
+<p>③ <span class="math inline">\(\frac{1}{m(B)}\int_B f(y)\,dy \ge
+\frac{1}{m(B)}\sum_{n=1}^\infty m(D_n\cap B)\)</span>.</p>
+<p>Consider <span class="math inline">\(x\in E\)</span>. <span class="math inline">\(x\in O_n\)</span> as well, so there is an open
+ball <span class="math inline">\(D_n\subset O_n\)</span> centered at
+<span class="math inline">\(x\)</span>. Then, for a ball <span class="math inline">\(B\)</span> containing <span class="math inline">\(x\)</span>, <span class="math display">\[\begin{aligned}
+\int_B f(y)\,dy
+&amp;=\sum_{n=1}^\infty \int_B \chi_{O_n}(y)\,dy
+=\sum_{n=1}^\infty \int_B \chi_{O_n\cap B}(y)\,dy \\
+&amp;=\sum_{n=1}^\infty m(O_n\cap B)
+\ge \sum_{n=1}^\infty m(D_n\cap B)\ \ (\because D_n\subset O_n).
+\end{aligned}\]</span> So, <span class="math inline">\(\frac{1}{m(B)}\int_B f(y)\,dy \ge
+\frac{1}{m(B)}\sum_{n=1}^\infty m(D_n\cap B)\)</span>.</p>
+<p>④ <span class="math inline">\(B_n=\bigcap_{k=1}^n D_k\)</span> with
+<span class="math inline">\(\lim_{n\to\infty} m(B_n)=0\)</span></p>
+<p>Let <span class="math inline">\(B_n=\bigcap_{k=1}^n D_k\)</span>,
+which is open, contains <span class="math inline">\(x\)</span>, and
+<span class="math inline">\(B_n\subset D_k\)</span> for <span class="math inline">\(k=1,\cdots,n\)</span>. Note that <span class="math inline">\(m(B_n)\le m(D_n)\le
+m(O_n)&lt;\frac{1}{2^n}\Rightarrow \lim_{n\to\infty} m(B_n)=0\)</span>.
+Note that <span class="math inline">\(x\in B_n,\ \forall
+n\in\mathbb{N}\)</span>.</p>
+<p>⑤ <span class="math inline">\(\frac{1}{m(B_{N_\varepsilon})}\int_{B_{N_\varepsilon}}
+f(y)\,dy&gt;\varepsilon\)</span></p>
+<p>For given <span class="math inline">\(\varepsilon&gt;0\)</span>, let
+<span class="math inline">\(N_\varepsilon\)</span> be the smallest
+integer greater than <span class="math inline">\(\varepsilon\)</span>.
+Then <span class="math display">\[\begin{aligned}\frac{1}{m(B_{N_\varepsilon})}\int_{B_{N_\varepsilon}}
+f(y)\,dy &amp;\ge \sum_{k=1}^\infty \frac{m(D_k\cap
+B_{N_\varepsilon})}{m(B_{N_\varepsilon})}\ (\because ③) \\
+&amp;= N_\varepsilon+\sum_{k&gt;N_\varepsilon}\frac{m(D_k\cap
+B_{N_\varepsilon})}{m(B_{N_\varepsilon})}\\
+&amp;\Bigl(\because B_{N_\varepsilon}\subset D_k\ \text{for
+}k=1,\cdots,N_\varepsilon\ \text{④} \to\ m(D_k\cap
+B_{N_\varepsilon})=m(B_{N_\varepsilon}) \Bigr) \\
+&amp;\ge N_\varepsilon&gt;\varepsilon
+\end{aligned}\]</span></p>
+<p>⑥ conclusion</p>
+<p>To sum up, for every <span class="math inline">\(\varepsilon&gt;0\)</span> there is <span class="math inline">\(N_\varepsilon\in\mathbb{N}\)</span> such that
+<span class="math inline">\(N_\varepsilon&gt;\varepsilon\)</span> and
+<span class="math inline">\(n\ge N_\varepsilon\)</span> implies <span class="math inline">\(\frac{1}{m(B_n)}\int_{B_n} f(y)\,dy =
+n&gt;\varepsilon\)</span>. So <span class="math inline">\(\lim_{n\to\infty}\frac{1}{m(B_n)}\int_{B_n}
+f(y)\,dy=\infty\)</span></p>
+<p>This holds for all <span class="math inline">\(\{B_n\}\)</span> such
+that <span class="math inline">\(x\in B_n\ \forall n\)</span> and <span class="math inline">\(\lim_{n\to\infty} m(B_n)=0\)</span>, so <span class="math display">\[\liminf_{\substack{m(B)\to 0\\ x\in
+B}}\frac{1}{m(B)}\int_B f(y)\,dy=\infty.\]</span></p>
+<p>Thus, <span class="math inline">\(\liminf_{\substack{m(B)\to 0\\ x\in
+B}}\frac{1}{m(B)}\int_B f(y)\,dy=\infty\)</span> and this holds for all
+<span class="math inline">\(x\in E\)</span>.</p>
+</div>
+<div id="b-when-d1-there-is-an-increasing-absolutely-continuous-f-such-that-d_fxd_-fxinfty-for-each-xin-e." class="section level3">
+<h3>(b) when <span class="math inline">\(d=1\)</span>, there is an
+increasing &amp; absolutely continuous <span class="math inline">\(F\)</span> such that <span class="math inline">\(D_+F(x)=D_-F(x)=\infty\)</span> for each <span class="math inline">\(x\in E\)</span>.</h3>
+<p><strong>proof</strong> ① <span class="math inline">\(F=\int_0^x
+f\)</span></p>
+<p>Use the same <span class="math inline">\(f\)</span> in (a), and let
+<span class="math inline">\(F(x)=\int_0^x f(t)\,dt\)</span>. Since <span class="math inline">\(f\)</span> is integrable, <span class="math inline">\(F\)</span> is absolutely continuous. Also, <span class="math inline">\(F\)</span> is increasing, bcz <span class="math inline">\(f\)</span> is non-negative.</p>
+<p>② <span class="math inline">\(D_+F(x),\ D_-F(x)\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+D_+F(x)
+&amp;=\liminf_{h\to 0+}\frac{F(x+h)-F(x)}{h}
+=\liminf_{h\to 0+}\frac{1}{h}\int_x^{x+h}f(t)\,dt
+=\infty \quad (\because m([x,x+h])=h) \\
+D_-F(x)
+&amp;=\liminf_{h\to 0-}\frac{F(x+h)-F(x)}{h}
+=\liminf_{h\to 0-}\frac{1}{h}\int_{x+h}^x f(t)\,dt
+=\infty \quad (\because m([x+h,x])=-h)
+\end{aligned}\]</span></p>
+<hr />
+</div>
+</div>
+<div id="a-bounded-function-f-is-said-to-be-of-bounded-variation-on-mathbbr-if-f-is-of-bounded-variation-on-any-ab-and-sup_abt_fabinfty.-show-that" class="section level2">
+<h2>30. A bounded function <span class="math inline">\(F\)</span> is
+said to be of bounded variation on <span class="math inline">\(\mathbb{R}\)</span> if <span class="math inline">\(F\)</span> is of bounded variation on any <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(\sup_{a,b}T_F(a,b)&lt;\infty\)</span>. Show
+that</h2>
+<div id="a-int_mathbbrfxh-fxdx-le-ah-for-some-constant-a-and-all-hinmathbbr" class="section level3">
+<h3>(a) <span class="math inline">\(\int_{\mathbb{R}}|F(x+h)-F(x)|\,dx
+\le A|h|\)</span> for some constant <span class="math inline">\(A\)</span> and all <span class="math inline">\(h\in\mathbb{R}\)</span></h3>
+<p><strong>proof</strong> ① when <span class="math inline">\(F\)</span>
+is bounded &amp; increasing</p>
+<p>It suffices to consider <span class="math inline">\(h&gt;0\)</span>,
+because <span class="math inline">\(\int|F(x-h)-F(x)|dx=\int|F(x)-F(x-h)|dx=\int(F(x+h)-F(x))dx\)</span>
+(<span class="math inline">\(::\)</span> translation-invariance) <span class="math inline">\(h=0\)</span> is trivial, <span class="math inline">\(\therefore \int 0\le 0\)</span>.</p>
+<p>On an interval <span class="math inline">\([a,a+h]\)</span> (<span class="math inline">\(a\in\mathbb{R}\)</span>), <span class="math inline">\(F(x+h)-F(x)\le F(a+2h)-F(a)\)</span>, which leads
+to <span class="math inline">\(\int_a^{a+h}(F(x+h)-F(x))\,dx\le
+h(F(a+2h)-F(a))\)</span>.</p>
+<p>Then, <span class="math display">\[\int_{kh}^{(k+1)h}(F(x+h)-F(x))\,dx \le
+h\{F((k+2)h)-F(kh)\}\quad (k\in\mathbb{Z}).\]</span></p>
+<p>Then, <span class="math display">\[\begin{aligned}
+\int_{-Nh}^{Nh}(F(x+h)-F(x))\,dx
+&amp;\le \sum_{k=-N}^{N-1} h\{F((k+2)h)-F(kh)\}\quad (N\in\mathbb{N}) \\
+&amp;= h\{F((N+1)h)+F(Nh)-F((-N+1)h)-F(-Nh)\} \\
+&amp;\le h\{2F(\infty)-2F(-\infty)\}=Ah \quad (\because F\ \text{is
+bounded})
+\end{aligned}\]</span></p>
+<p>This holds for all <span class="math inline">\(N\in\mathbb{N}\)</span>, so</p>
+<p><span class="math display">\[\int_{\mathbb{R}}|F(x+h)-F(x)|\,dx
+= \lim_{N\to\infty}\int_{-Nh}^{Nh}(F(x+h)-F(x))\,dx \le Ah,\]</span> and
+thus</p>
+<p><span class="math display">\[\int_{\mathbb{R}}|F(x+h)-F(x)|\,dx \le
+A|h|\quad \text{for all }h\in\mathbb{R}.\]</span></p>
+<p>② <span class="math inline">\(F(x)-F(-\infty)=P_F(x)-N_F(x)\)</span></p>
+<p><span class="math inline">\(P_F(x)\)</span> and <span class="math inline">\(N_F(x)\)</span> mean positive &amp; negative
+variation of <span class="math inline">\(F\)</span> on <span class="math inline">\((-\infty,x)\)</span>, and <span class="math inline">\(F(-\infty)\)</span> is an abbreviation of <span class="math inline">\(\lim_{x\to-\infty}F(x)\)</span>.</p>
+<p><span class="math display">\[P_F(x)=\sup\left\{\sum_{i=1}^k\big(F(t_i)-F(t_{i-1})\big):
+-\infty&lt;t_1&lt;\cdots&lt;t_k=x\ \&amp;\ F(t_i)\ge
+F(t_{i-1})\right\}\]</span></p>
+<p><span class="math display">\[N_F(x)=\sup\left\{\sum_{i=1}^k-\big(F(t_i)-F(t_{i-1})\big):
+-\infty&lt;t_1&lt;\cdots&lt;t_k=x\ \&amp;\
+F(t_i)&lt;F(t_{i-1})\right\}\]</span></p>
+<p>Then, there is a partition <span class="math inline">\(-\infty&lt;t_1&lt;\cdots&lt;t_k=x\)</span> for
+given <span class="math inline">\(\varepsilon&gt;0\)</span> that
+satisfies the following properties :</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;0\le P_F(x)-\sum_{i=1}^k(F(t_i)-F(t_{i-1}))&lt;\varepsilon \text{
+and } 0\le
+N_F(x)-\sum_{i=1}^k-\big(F(t_i)-F(t_{i-1})\big)&lt;\varepsilon \\
+&amp;\Leftrightarrow -\varepsilon&lt;
+P_F(x)-N_F(x)-\sum_{i=1}^k(F(t_i)-F(t_{i-1}))-\sum_{i=1}^k-\big(F(t_i)-F(t_{i-1})\big)&lt;\varepsilon
+\\
+&amp;\Leftrightarrow
+\left|P_F(x)-N_F(x)-\sum_{i=1}^k(F(t_i)-F(t_{i-1}))\right|=\left|(P_F(x)-N_F(x))-(F(x)-F(-\infty))\right|&lt;\varepsilon
+\end{aligned}
+\]</span></p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(F(x)-F(-\infty)=P_F(x)-N_F(x)\)</span>. Each <span class="math inline">\(P_F\)</span> and <span class="math inline">\(N_F\)</span> is increasing and bounded (<span class="math inline">\(::\)</span> <span class="math inline">\(P_F,N_F\le
+T_F\)</span>)<br />
+(<span class="math inline">\(::\)</span> <span class="math inline">\(x\le y\to P_F(x)\le P_F(y)\)</span>)</p>
+<p>Thus, <span class="math inline">\(F\)</span> is the difference of two
+increasing and bounded function as well</p>
+<p>③ <span class="math inline">\(F\)</span> is of bounded variation</p>
+<p>Go back to <span class="math inline">\(F\)</span> of bounded
+variation: <span class="math inline">\(F=F_1-F_2\)</span>, where <span class="math inline">\(F_1,F_2\)</span> are bounded and increasing
+function. There exist <span class="math inline">\(A_1,A_2&gt;0\)</span>
+such that <span class="math inline">\(\int_{\mathbb{R}}|F_1(x+h)-F_1(x)|dx\le
+A_1|h|\)</span> and <span class="math inline">\(\int_{\mathbb{R}}|F_2(x+h)-F_2(x)|dx\le
+A_2|h|\)</span> for all <span class="math inline">\(h\in\mathbb{R}\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+|F(x+h)-F(x)|
+&amp;=|F_1(x+h)-F_2(x+h)-F(x)+F_2(x)| \\
+&amp;=\left|(F_1(x+h)-F_1(x))-(F_2(x+h)-F_2(x))\right| \\
+&amp;\le |F_1(x+h)-F_1(x)|+|F_2(x+h)-F_2(x)| \quad (\forall
+h\in\mathbb{R})
+\end{aligned}\]</span></p>
+<p>Then, <span class="math display">\[\begin{aligned}
+\int_{\mathbb{R}}|F(x+h)-F(x)|dx
+&amp;\le
+\int_{\mathbb{R}}|F_1(x+h)-F_1(x)|dx+\int_{\mathbb{R}}|F_2(x+h)-F_2(x)|dx
+\\
+&amp;\le (A_1+A_2)|h| \overset{\text{let}}{=} A|h|
+\end{aligned}\]</span></p>
+</div>
+<div id="b-leftint_mathbbr-fxpsixdxrightle-a-where-psi-ranges-over-all-c1-functions-of-bounded-support-with-sup_xinmathbbrpsixle-1-1st-derivative-is-continuous" class="section level3">
+<h3>(b) <span class="math inline">\(\left|\int_{\mathbb{R}}
+F(x)\psi&#39;(x)\,dx\right|\le A\)</span>, where <span class="math inline">\(\psi\)</span> ranges over all <span class="math inline">\(C^1\)</span> functions of bounded support with
+<span class="math inline">\(\sup_{x\in\mathbb{R}}|\psi(x)|\le 1\)</span>
+(1st derivative is continuous)</h3>
+<p><strong>proof</strong> ① <span class="math inline">\(\left|\int_{\mathbb{R}} F(x)\cdot
+\frac{\psi(x+h)-\psi(x)}{h}\,dx\right|\le A\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+F(x+h)\psi(x+h)-F(x)\psi(x)
+&amp;= F(x+h)\psi(x+h)-F(x)\psi(x+h)+F(x)\psi(x+h)-F(x)\psi(x) \\
+&amp;= \{F(x+h)-F(x)\}\psi(x+h)+F(x)\{\psi(x+h)-\psi(x)\}
+\end{aligned}\]</span></p>
+<p>By translation invariance, <span class="math inline">\(\int_{\mathbb{R}}F(x+h)\psi(x+h)\,dx=\int_{\mathbb{R}}F(x)\psi(x)\,dx\)</span>.</p>
+<p>So, <span class="math inline">\(\int_{\mathbb{R}}F(x)\{\psi(x+h)-\psi(x)\}\,dx=-\int_{\mathbb{R}}\{F(x+h)-F(x)\}\psi(x+h)\,dx\)</span>,
+and</p>
+<p><span class="math display">\[\begin{aligned}
+\left|\int_{\mathbb{R}}F(x)\{\psi(x+h)-\psi(x)\}\,dx\right|
+&amp;=\left|\int_{\mathbb{R}}\{F(x+h)-F(x)\}\psi(x+h)\,dx\right| \\
+&amp;\le \int_{\mathbb{R}}|F(x+h)-F(x)|\,|\psi(x+h)|\,dx \\
+&amp;\le \int_{\mathbb{R}}|F(x+h)-F(x)|\,dx \quad (\because
+\sup|\psi(x)|\le 1) \\
+&amp;\le A|h| \quad \forall h\in\mathbb{R}\ (\because (a))
+\end{aligned}\]</span></p>
+<p>Then, <span class="math inline">\(\left|\int_{\mathbb{R}}F(x)\cdot
+\frac{\psi(x+h)-\psi(x)}{h}\,dx\right|\le A\)</span></p>
+<p>② <span class="math inline">\(\psi,F\)</span> are bounded</p>
+<p><span class="math inline">\(\psi\)</span> is supported on a bounded
+set in <span class="math inline">\(\mathbb{R}\)</span> (say, <span class="math inline">\([a,b]\)</span>), so <span class="math inline">\(\psi\)</span> is supported on a compact set <span class="math inline">\(K\subset\mathbb{R}\)</span>. <span class="math inline">\(\psi\)</span> is continuous on <span class="math inline">\(K\)</span>, so there is <span class="math inline">\(M&gt;0\)</span> such that <span class="math inline">\(|\psi|\le M\)</span>.</p>
+<p><span class="math inline">\(F\)</span> is bounded (<span class="math inline">\(::\)</span> <span class="math inline">\(P_F,N_F\)</span> are bounded), so there is <span class="math inline">\(L&gt;0\)</span> such that <span class="math inline">\(|F|\le L\)</span>.</p>
+<p>③ <span class="math inline">\(\lim_{h\to 0}\int_{\mathbb{R}}F(x)\cdot
+\frac{1}{h}(\psi(x+h)-\psi(x))\,dx=\int_{\mathbb{R}}F(x)\psi&#39;(x)\,dx\)</span>,
+DCT</p>
+<p>Consider a sequence <span class="math inline">\(\{h_n\}\)</span> such
+that <span class="math inline">\(h_n\ne 0\)</span> and <span class="math inline">\(\lim_{n\to\infty}h_n=0\)</span>. Let <span class="math inline">\(f_n(x)=F(x)\cdot
+\frac{1}{h_n}\{\psi(x+h_n)-\psi(x)\}\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(f_n\)</span> is measurable Consider
+the increasing <span class="math inline">\(F_1\)</span> in (a) and let
+<span class="math inline">\(S_c=\{x\in\mathbb{R}: F_1(x)&gt;c\}\)</span>
+for <span class="math inline">\(c\in\mathbb{R}\)</span>. Let <span class="math inline">\(p\in S_c\)</span>: <span class="math inline">\(F_1(p)&gt;c\)</span>. When <span class="math inline">\(q&gt;p\)</span>, <span class="math inline">\(F_1(q)\ge F_1(p)&gt;c\)</span> so <span class="math inline">\(q\in S_c\)</span>. This is true for all <span class="math inline">\(q&gt;p\)</span>, so <span class="math inline">\(S_c\)</span> can be <span class="math inline">\((\inf S,\infty)\)</span>, <span class="math inline">\((\inf S,-\infty)\)</span> as well as <span class="math inline">\(\mathbb{R}\)</span> and <span class="math inline">\(\varnothing\)</span>. These sets are all
+measurable, so <span class="math inline">\(S_c\)</span> is measurable.
+This holds for all <span class="math inline">\(c\in\mathbb{R}\)</span>,
+so <span class="math inline">\(F_1\)</span> is measurable. <span class="math inline">\(F_2\)</span> is increasing as well, so <span class="math inline">\(F=F_1-F_2\)</span> is measurable. Since <span class="math inline">\(\psi\)</span> is measurable (<span class="math inline">\(::\)</span> continuous), <span class="math inline">\(f_n\)</span> is measurable.</p></li>
+<li><p><span class="math inline">\(\lim_{n\to\infty} f_n = F(x)\cdot
+\lim_{n\to\infty}\frac{\psi(x+h_n)-\psi(x)}{h_n}=F(x)\psi&#39;(x)\)</span>
+(<span class="math inline">\(::\)</span> <span class="math inline">\(\psi\in C^1\)</span>, differentiable)</p></li>
+<li><p><span class="math inline">\(|f_n|\le L\cdot
+U\,\chi_{\tilde{K}}(x)\)</span> <span class="math inline">\(\frac{1}{h_n}\{\psi(x+h_n)-\psi(x)\}\)</span>
+converges, so there is <span class="math inline">\(U&gt;0\)</span> such
+that <span class="math inline">\(\left|\frac{1}{h_n}\{\psi(x+h_n)-\psi(x)\}\right|\le
+U\)</span> for all <span class="math inline">\(n\in\mathbb{N}\)</span>.
+Let <span class="math inline">\(\tilde{K}=[\inf K-\sup_n|h_n|,\ \sup
+K+\sup_n|h_n|]\)</span>. Then, <span class="math inline">\(\left|\frac{1}{h_n}\{\psi(x+h_n)-\psi(x)\}\right|\le
+U\cdot \chi_{\tilde{K}}(x)\)</span>. So, <span class="math inline">\(|f_n|\le L\cdot U\,\chi_{\tilde{K}}\)</span> which
+is integrable ; <span class="math inline">\(L\cdot U\int
+\chi_{\tilde{K}}=L\cdot U\cdot m(\tilde{K})&lt;\infty\)</span>.</p></li>
+<li><p>By DCT, <span class="math inline">\(\lim_{n\to\infty}\int
+f_n=\int F(x)\psi&#39;(x)\,dx\)</span>. This holds for all <span class="math inline">\(\{h_n\}\)</span> with <span class="math inline">\(h_n\to 0\)</span>, so <span class="math inline">\(\lim_{h\to 0}\int F(x)\cdot
+\frac{1}{h}(\psi(x+h)-\psi(x))\,dx=\int
+F(x)\psi&#39;(x)\,dx\)</span></p></li>
+</ol>
+<p>④ Conclusion</p>
+<p>Thus, <span class="math inline">\(\left|\int_{\mathbb{R}}F(x)\psi&#39;(x)\,dx\right|
+=\lim_{h\to 0}\left|\int_{\mathbb{R}}F(x)\cdot
+\frac{\psi(x+h)-\psi(x)}{h}\,dx\right|\le A\ \ (\because ①)\)</span></p>
+<hr />
+</div>
+</div>
+<div id="show-that-fmathbbrtomathbbr-satisfies-fx-fyle-mx-y-for-some-m0-and-all-xyinmathbbr-if-i-f-is-absolutely-continuous-and-ii-fxle-m-a.e-x." class="section level2">
+<h2>32. Show that <span class="math inline">\(f:\mathbb{R}\to\mathbb{R}\)</span> satisfies <span class="math inline">\(|f(x)-f(y)|\le M|x-y|\)</span> for some <span class="math inline">\(M&gt;0\)</span> and all <span class="math inline">\(x,y\in\mathbb{R}\)</span> if (i) <span class="math inline">\(f\)</span> is absolutely continuous and (ii) <span class="math inline">\(|f&#39;(x)|\le M\)</span> a.e <span class="math inline">\(x\)</span>.</h2>
+<div id="a-longleftarrow" class="section level3">
+<h3>(a) <span class="math inline">\(\longleftarrow\)</span></h3>
+<p><strong>proof</strong> ① <span class="math inline">\(f\)</span> is
+absolutely continuous</p>
+<p>For a finite collection <span class="math inline">\(\{(a_i,b_i)\}_{i=1}^N\)</span> of disjoint
+intervals in <span class="math inline">\(\mathbb{R}\)</span>, <span class="math display">\[\sum_{i=1}^N |f(b_i)-f(a_i)|\le
+M\sum_{i=1}^N(b_i-a_i).\]</span></p>
+<p>For given <span class="math inline">\(\varepsilon&gt;0\)</span>,
+choose <span class="math inline">\(\delta_\varepsilon=\varepsilon/M\)</span> and
+<span class="math inline">\(\{(a_i,b_i)\}\)</span> such that <span class="math inline">\(\sum_{i=1}^N(b_i-a_i)&lt;\delta_\varepsilon\)</span>.
+Then, <span class="math inline">\(\sum_{i=1}^N|f(b_i)-f(a_i)|&lt;\varepsilon\)</span>.</p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(f\)</span> is absolutely continuous.</p>
+<p>② <span class="math inline">\(|f&#39;(x)|\le M\)</span> a.e <span class="math inline">\(x\)</span></p>
+<p>Due to ①, <span class="math inline">\(f&#39;\)</span> exists a.e
+<span class="math inline">\(x\)</span>. For such <span class="math inline">\(x\)</span>, <span class="math inline">\(|f(x+h)-f(x)|\le M|h|\)</span>. Then</p>
+<p><span class="math display">\[\frac{1}{|h|}|f(x+h)-f(x)|\le M\ \
+\text{and thus}\ \ \lim_{h\to
+0}\left|\frac{f(x+h)-f(x)}{h}\right|=|f&#39;(x)|\le M\ \ (\text{a.e
+}x).\]</span></p>
+</div>
+<div id="b-longrightarrow" class="section level3">
+<h3>(b) <span class="math inline">\(\longrightarrow\)</span></h3>
+<p><strong>proof</strong></p>
+<p><span class="math inline">\(f\)</span> is absolutely continuous, so
+(<span class="math inline">\(x\ge y\)</span> wlog) <span class="math inline">\(f(x)-f(y)=\int_y^x f&#39;(t)\,dt\)</span>. Let
+<span class="math inline">\(\mathcal{N}=\{t\in[y,x]:
+|f&#39;(t)|&gt;M\}\)</span>, then <span class="math display">\[f(x)-f(y)=\int_{\mathcal{N}^c}f&#39;(t)\,dt+\int_{\mathcal{N}}f&#39;(t)\,dt=\int_{\mathcal{N}^c}f&#39;(t)\,dt\]</span>
+(<span class="math inline">\(\mathcal{N}^c=[y,x]-\mathcal{N}\)</span>
+for simplicity, <span class="math inline">\(m(\mathcal{N})=0\)</span>)</p>
+<p><span class="math display">\[|f(x)-f(y)|\le
+\int_{\mathcal{N}^c}|f&#39;(t)|\,dt \le \int_{\mathcal{N}^c}M\,dt \le
+\int_{[y,x]}M\,dt=M(x-y).\]</span></p>
+<p>The case <span class="math inline">\(y\ge x\)</span> yields a same
+conclusion : <span class="math inline">\(|f(y)-f(x)|\le
+M(y-x)\)</span></p>
+<p>This holds for all <span class="math inline">\(x,y\in\mathbb{R}\)</span>, so <span class="math inline">\(|f(x)-f(y)|\le M|x-y|\)</span></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</div>
