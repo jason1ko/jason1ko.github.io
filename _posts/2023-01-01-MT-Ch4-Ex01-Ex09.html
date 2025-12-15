@@ -1,0 +1,805 @@
+---
+title: "Ch4 : Ex.01 ~ Ex.09"
+date: 2023-01-01 23:20:59
+categories: [Measure Theory]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+ <body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="ch4.-hilbert-space-an-introduction" class="section level1">
+<h1>Ch4. Hilbert Space: An Introduction</h1>
+<div id="section" class="section level2">
+<h2>1.</h2>
+<div id="i-show-that-fg-le-fg-for-all-fg-in-mathcalh" class="section level3">
+<h3>(i) Show that <span class="math inline">\(|(f,g)| \le
+\|f\|\|g\|\)</span> for all <span class="math inline">\(f,g \in
+\mathcal{H}\)</span></h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(g=0\)</span> (wlog)</p>
+<p><span class="math display">\[(\alpha
+f,0)=\alpha(f,0)=(f,\overline{\alpha}\,0)=(f,0) \ \text{and this holds
+for all }\alpha\in\mathbb{C}.\ \text{Letting }\alpha=0,\ (f,0)=(0,0)=0.\
+\text{Note that }\|f\|\|g\|=0,\ \text{so the inequality
+holds.}\]</span></p>
+<p>② <span class="math inline">\(f,g\ne 0\)</span></p>
+<p>Let <span class="math inline">\(h=f-\dfrac{(f,g)}{\|g\|^2}g\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\|h\|^2
+&amp;=\left(f-\frac{(f,g)}{\|g\|^2}g,\ f-\frac{(f,g)}{\|g\|^2}g\right)
+\\
+&amp;=\|f\|^2+\frac{|(f,g)|^2}{\|g\|^2}+\left(f,-\frac{(f,g)}{\|g\|^2}g\right)+\left(-\frac{(f,g)}{\|g\|^2}g,f\right)
+\\
+&amp;=\|f\|^2+\frac{|(f,g)|^2}{\|g\|^2}-\frac{(f,g)}{\|g\|^2}(f,g)-\frac{\overline{(f,g)}}{\|g\|^2}(g,f)
+\\
+&amp;=\|f\|^2-\frac{|(f,g)|^2}{\|g\|^2}\ge 0.
+\end{aligned}
+\]</span></p>
+<p>Thus, <span class="math inline">\(|(f,g)|\le \|f\|\|g\|\)</span>.</p>
+</div>
+<div id="ii-show-that-fgle-fg" class="section level3">
+<h3>(ii) Show that <span class="math inline">\(\|f+g\|\le
+\|f\|+\|g\|\)</span></h3>
+<p><strong>proof</strong><br />
+<span class="math display">\[
+\begin{aligned}
+\|f+g\|^2
+&amp;=(f+g,f+g)=\|f\|^2+(f,g)+(g,f)+\|g\|^2 \\
+&amp;=\|f\|^2+2\operatorname{Re}(f,g)+\|g\|^2 \\
+&amp;\le \|f\|^2+2|(f,g)|+\|g\|^2 \\
+&amp;\le \|f\|^2+2\|f\|\|g\|+\|g\|^2=(\|f\|+\|g\|)^2 \quad (\because
+\text{Cauchy})
+\end{aligned}
+\]</span></p>
+<hr />
+</div>
+</div>
+<div id="fgfg-and-gne-0-then-fcg-cinmathbbc" class="section level2">
+<h2>2. <span class="math inline">\(|(f,g)|=\|f\|\|g\|\)</span> and <span class="math inline">\(g\ne 0\)</span>, then <span class="math inline">\(f=cg\)</span> <span class="math inline">\((c\in\mathbb{C})\)</span></h2>
+<p><strong>proof</strong> When <span class="math inline">\(|(f,g)|=\|f\|\|g\|\)</span>, <span class="math inline">\(\|h\|=0\)</span> so <span class="math inline">\(f=\dfrac{(f,g)}{\|g\|^2}g=cg\
+(c\in\mathbb{C})\)</span>.</p>
+<hr />
+</div>
+<div id="show-that-fg2f-g22bigf2g2big-fginmathcalh" class="section level2">
+<h2>3. Show that <span class="math inline">\(\|f+g\|^2+\|f-g\|^2=2\big(\|f\|^2+\|g\|^2\big)\)</span>
+<span class="math inline">\((f,g\in\mathcal{H})\)</span></h2>
+<p><strong>proof</strong><br />
+<span class="math display">\[
+\begin{aligned}
+\|f+g\|^2+\|f-g\|^2
+&amp;=\|f\|^2+2\operatorname{Re}(f,g)+\|g\|^2+\|f\|^2-2\operatorname{Re}(f,g)+\|g\|^2
+\\
+&amp;=2(\|f\|^2+\|g\|^2).
+\end{aligned}
+\]</span></p>
+<hr />
+</div>
+<div id="show-that-l2mathbbz-is-complete" class="section level2">
+<h2>4-1. Show that <span class="math inline">\(l^2(\mathbb{Z})\)</span>
+is complete</h2>
+<p><strong>proof</strong><br />
+The purpose of this proof is to show that for a Cauchy sequence <span class="math inline">\(\{a^{(m)}\}\subset l^2(\mathbb{Z})\)</span>, there
+is a <span class="math inline">\(a\in l^2(\mathbb{Z})\)</span> such that
+<span class="math inline">\(\lim_{m\to\infty}\|a^{(m)}-a\|=0\)</span>
+<span class="math inline">\(\
+(a^{(m)}=(\cdots,a_{-1}^{(m)},a_0^{(m)},a_1^{(m)},\cdots),\
+a_i^{(m)}\in\mathbb{C})\)</span>.</p>
+<p>① <span class="math inline">\(\{a^{(m_k)}\}\)</span> such that <span class="math inline">\(\|a^{(m_{k+1})}-a^{(m_k)}\|&lt;2^{-k}\)</span></p>
+<p><span class="math inline">\(\{a^{(m)}\}\)</span> is a Cauchy
+sequence, so for every <span class="math inline">\(k\in\mathbb{N}\)</span> there is <span class="math inline">\(n_k\in\mathbb{N}\)</span> such that <span class="math inline">\(n,m\ge n_k\)</span> implies <span class="math inline">\(\|a^{(m)}-a^{(n)}\|&lt;2^{-k}\)</span>. When <span class="math inline">\(n_k\le n_{k+1}\)</span>, <span class="math inline">\(\|a^{(m_{k+1})}-a^{(m_k)}\|&lt;2^{-k}\)</span>.
+When <span class="math inline">\(n_k&gt;n_{k+1}\)</span>, <span class="math inline">\(\|a^{(m_{k+1})}-a^{(m_k)}\|&lt;2^{-k-1}&lt;2^{-k}\)</span>.
+So, <span class="math inline">\(\|a^{(m_{k+1})}-a^{(m_k)}\|&lt;2^{-k}\)</span> for
+all cases. Choose <span class="math inline">\(\{a^{(m_k)}\}\)</span> as
+a subsequence.</p>
+<p>② let <span class="math inline">\(b_i:=|a_i^{(m_1)}|+\sum_{k=1}^\infty|a_i^{(m_{k+1})}-a_i^{(m_k)}|\)</span>
+<span class="math inline">\((i\in\mathbb{Z})\)</span> <span class="math inline">\(\ (b=(\cdots,b_{-1},b_0,b_1,\cdots))\ \to\
+\|b\|&lt;\infty\)</span></p>
+<p>Let <span class="math inline">\(S_i^{(b,K)}=|a_i^{(m_1)}|+\sum_{k=1}^{K-1}|a_i^{(m_{k+1})}-a_i^{(m_k)}|\)</span>
+<span class="math inline">\((i\in\mathbb{Z})\)</span> and <span class="math inline">\(S^{(b,K)}=(\cdots,S_{-1}^{(b,K)},S_0^{(b,K)},S_1^{(b,K)},\cdots)\)</span>.
+Note that <span class="math inline">\(\lim_{K\to\infty}S_i^{(b,K)}=b_i\)</span> <span class="math inline">\(\ (b=(\cdots,b_{-1},b_0,b_1,\cdots))\)</span>.</p>
+<p>For <span class="math inline">\(x=(\cdots,x_{-1},x_0,x_1,\cdots)\)</span>, let
+<span class="math inline">\(|x|=(\cdots,|x_{-1}|,|x_0|,|x_1|,\cdots)\)</span>.
+Then <span class="math inline">\(\||x|\|=\|x\|\)</span>. Then, <span class="math inline">\(S_i^{(b,K)}=|a_i^{(m_1)}|+\sum_{k=1}^{K-1}|a_i^{(m_{k+1})}-a_i^{(m_k)}|\)</span>.</p>
+<p>Triangle inequality implies <span class="math display">\[
+\begin{aligned}
+\|S^{(b,K)}\|
+&amp;\le \|a^{(m_1)}\|+\sum_{k=1}^{K-1}\|a^{(m_{k+1})}-a^{(m_k)}\| \\
+&amp;=\|a^{(m_1)}\|+\sum_{k=1}^{K-1}\|a^{(m_{k+1})}-a^{(m_k)}\| \\
+&amp;\le \|a^{(m_1)}\|+\sum_{k=1}^{K-1}2^{-k}\quad(\because ①).
+\end{aligned}
+\]</span> Note that <span class="math inline">\(a^{(m_1)}\subset\{a^{(m)}\}_m\subset
+l^2(\mathbb{Z})\)</span>, so <span class="math inline">\(\|a^{(m_1)}\|&lt;\infty\)</span>.</p>
+<p>Then, <span class="math inline">\(\|b\|=\lim_{K\to\infty}\|S^{(b,K)}\|\le
+\|a^{(m_1)}\|+1&lt;\infty\ (\because \mathrm{MCT})\)</span>, so <span class="math inline">\(\|b\|&lt;\infty\)</span>.</p>
+<p>③ let <span class="math inline">\(a_i:=a_i^{(m_1)}+\sum_{k=1}^\infty\{a_i^{(m_{k+1})}-a_i^{(m_k)}\}\)</span>
+<span class="math inline">\((i\in\mathbb{Z})\)</span> <span class="math inline">\(\ (a=(\cdots,a_{-1},a_0,a_1,\cdots))\ \to\
+\|a\|&lt;\infty\)</span></p>
+<p><span class="math inline">\(|a_i|\le b_i\)</span>, so <span class="math inline">\(\|a\|^2=\sum_{i\in\mathbb{Z}}|a_i|^2\le
+\sum_{i\in\mathbb{Z}}|b_i|^2=\|b\|^2&lt;\infty\)</span>.</p>
+<p>④ <span class="math inline">\(\lim_{k\to\infty}a^{(m_k)}=a,\)</span></p>
+<p>Let <span class="math inline">\(S_i^{(a,K)}=a_i^{(m_1)}+\sum_{k=1}^{K-1}(a_i^{(m_{k+1})}-a_i^{(m_k)})\)</span>
+and <span class="math inline">\(S^{(a,K)}=(\cdots,S_{-1}^{(a,K)},S_0^{(a,K)},S_1^{(a,K)},\cdots)\)</span>.
+By def of <span class="math inline">\(a_i\)</span> (in ③), <span class="math inline">\(\lim_{K\to\infty}S_i^{(a,K)}=a_i\)</span>.</p>
+<p>Since <span class="math inline">\(S_i^{(a,k)}=a_i^{(m_k)}\)</span>,
+<span class="math inline">\(\lim_{k\to\infty}a_i^{(m_k)}=a_i\)</span>
+for all <span class="math inline">\(i\in\mathbb{Z}\)</span> and thus
+<span class="math inline">\(\lim_{k\to\infty}a^{(m_k)}=a\)</span>.</p>
+<p>⑤ <span class="math inline">\(\lim_{k\to\infty}\|a^{(m_k)}-a\|=0\)</span></p>
+<p><span class="math inline">\(|S_i^{(a,k)}|\le S_i^{(b,k)}\)</span> so
+<span class="math inline">\(\|S^{(a,k)}\|^2=\sum_{i\in\mathbb{Z}}|S_i^{(a,k)}|^2\le
+\sum_{i\in\mathbb{Z}}(S_i^{(b,k)})^2=\|S^{(b,k)}\|^2\le
+\|b\|^2\)</span>.<br />
+<span class="math inline">\(S^{(a,k)}=a^{(m_k)}\)</span>. So <span class="math inline">\(\|a^{(m_k)}\|\le \|b\|\)</span>.</p>
+<p>Then, using DCT, <span class="math inline">\((\because
+\|b\|&lt;\infty)\)</span> <span class="math display">\[
+\begin{aligned}
+\lim_{k\to\infty}\|a^{(m_k)}-a\|^2
+&amp;=\lim_{k\to\infty}\sum_{i\in\mathbb{Z}}|a_i^{(m_k)}-a_i|^2 \\
+&amp;=\sum_{i\in\mathbb{Z}}\lim_{k\to\infty}|a_i^{(m_k)}-a_i|^2=0.
+\end{aligned}
+\]</span></p>
+<p>So, for given <span class="math inline">\(\varepsilon&gt;0\)</span>,
+there is <span class="math inline">\(k_\varepsilon\in\mathbb{N}\)</span>
+such that <span class="math inline">\(k\ge k_\varepsilon\)</span>
+implies <span class="math inline">\(\|a^{(m_k)}-a\|&lt;\varepsilon\)</span>.</p>
+<p>⑥ <span class="math inline">\(\|a^{(m)}-a^{(m_k)}\|&lt;\varepsilon\)</span></p>
+<p><span class="math inline">\(\{a^{(m)}\}\)</span> is Cauchy sequence,
+so there is <span class="math inline">\(N_\varepsilon\in\mathbb{N}\)</span> s.t. <span class="math inline">\(m,n\ge N_\varepsilon\)</span> implies <span class="math inline">\(\|a^{(m)}-a^{(n)}\|&lt;\varepsilon\)</span>.</p>
+<p>Choose <span class="math inline">\(k\)</span> such that <span class="math inline">\(k\ge k_\varepsilon\)</span> and <span class="math inline">\(n_k\ge N_\varepsilon\)</span>. Then, <span class="math inline">\(\|a^{(m)}-a^{(m_k)}\|&lt;\varepsilon\)</span>.</p>
+<p>⑦ Conclusion : <span class="math inline">\(\lim_{m\to\infty}\|a^{(m)}-a\|=0\)</span></p>
+<p>Thus, <span class="math inline">\(\|a^{(m)}-a\|\le
+\|a^{(m)}-a^{(m_k)}\|+\|a^{(m_k)}-a\|\ \ (m,n_k\ge
+N_\varepsilon)\)</span><br />
+<span class="math inline">\(\qquad\qquad\le
+\varepsilon+\|a^{(m_k)}-a\|\le \varepsilon+\varepsilon=2\varepsilon\ \
+(k\ge k_\varepsilon)\)</span></p>
+<p>To sum up, <span class="math inline">\(m\ge N_\varepsilon\)</span>
+implies <span class="math inline">\(\|a^{(m)}-a\|&lt;2\varepsilon\)</span>.<br />
+This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(\lim_{m\to\infty}\|a^{(m)}-a\|=0\)</span>.</p>
+</div>
+<div id="show-that-l2mathbbz-is-separable." class="section level2">
+<h2>4-2. Show that <span class="math inline">\(l^2(\mathbb{Z})\)</span>
+is separable.</h2>
+<p><strong>proof</strong><br />
+Let <span class="math inline">\(Q_N=\{(\cdots,q_{-1},q_0,q_1,\cdots)\in
+l^2(\mathbb{Z}):\ q_j=q_{j1}+iq_{j2},\ q_{j1},q_{j2}\in\mathbb{Q},\
+q_j=0\ \text{for}\ |j|&gt;N\}\)</span>. Then <span class="math inline">\(\tilde{Q}=\bigcup_{N=0}^\infty Q_N\)</span> is a
+countable union of countable sets, which is countable.</p>
+<p>Let <span class="math inline">\(\{b\}\in l^2(\mathbb{Z})\)</span>,
+<span class="math inline">\(\sum_{i\in\mathbb{Z}}|b_i|^2&lt;\infty\)</span>.
+Then, for given <span class="math inline">\(\varepsilon&gt;0\)</span>
+there is <span class="math inline">\(N_\varepsilon\in\mathbb{N}\)</span>
+such that <span class="math inline">\(\sum_{|i|&gt;N_\varepsilon}|b_i|^2&lt;\frac{\varepsilon^2}{2}\)</span>.</p>
+<p>Rationals are dense in <span class="math inline">\(\mathbb{R}\)</span>, so there is <span class="math inline">\(x\in\tilde{Q}\)</span> such that <span class="math inline">\(x_i\)</span> satisfies <span class="math inline">\(|x_i-b_i|^2&lt;\varepsilon^2/(2^{2N_\varepsilon+i+1})\)</span>
+for <span class="math inline">\(i=-N_\varepsilon,\cdots,N_\varepsilon\)</span>.</p>
+<p>Then, <span class="math display">\[
+\begin{aligned}
+\|x-b\|^2
+&amp;=\sum_{i\in\mathbb{Z}}|x_i-b_i|^2
+=\sum_{|i|&gt;N_\varepsilon}|b_i|^2+\sum_{i=-N_\varepsilon}^{N_\varepsilon}|x_i-b_i|^2
+\\
+&amp;&lt;\frac{\varepsilon^2}{2}+\sum_{i=-N_\varepsilon}^{N_\varepsilon}\frac{\varepsilon^2}{2^{2N_\varepsilon+i+1}}\quad(\text{let
+} i+N_\varepsilon=k) \\
+&amp;=\frac{\varepsilon^2}{2}+\varepsilon^2\sum_{k=0}^{2N_\varepsilon}\frac{1}{2^{2+k}}
+=\frac{\varepsilon^2}{2}+\frac{\varepsilon^2}{4}\sum_{k=0}^{2N_\varepsilon}\frac{1}{2^k}
+\\
+&amp;&lt;\frac{\varepsilon^2}{2}+\frac{\varepsilon^2}{4}\sum_{k=0}^{\infty}\frac{1}{2^k}
+=\frac{\varepsilon^2}{2}+\frac{\varepsilon^2}{4}\cdot 2=\varepsilon^2.
+\end{aligned}
+\]</span></p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span> and all <span class="math inline">\(b\in l^2(\mathbb{Z})\)</span>. This means there is
+<span class="math inline">\(\tilde{Q}\)</span> (countable) that is dense
+in <span class="math inline">\(l^2(\mathbb{Z})\)</span>. Thus, <span class="math inline">\(l^2(\mathbb{Z})\)</span> is separable.</p>
+<hr />
+</div>
+<div id="show-that" class="section level2">
+<h2>5. Show that</h2>
+<div id="a-neither-l2mathbbrdsubset-l1mathbbrd-nor-l1mathbbrdsubset-l2mathbbrd-is-valid" class="section level3">
+<h3>(a) neither <span class="math inline">\(L^2(\mathbb{R}^d)\subset
+L^1(\mathbb{R}^d)\)</span> nor <span class="math inline">\(L^1(\mathbb{R}^d)\subset
+L^2(\mathbb{R}^d)\)</span> is valid</h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(f(x)=\chi_{\{|x|&lt;1\}}(x)\cdot\frac{1}{|x|^{d/2}}\)</span>,
+<span class="math inline">\(L^1\nsubseteq L^2\)</span></p>
+<p><span class="math inline">\(\int_{\mathbb{R}^d}|f|=\int_{|x|&lt;1}\frac{1}{|x|^{d/2}}\,dx&lt;\infty\
+\ (\because \ d/2&lt;d),\)</span> while <span class="math inline">\(\int_{\mathbb{R}^d}|f|^2=\int_{|x|&lt;1}\frac{1}{|x|^{d}}\,dx=\infty\)</span>.</p>
+<p>② <span class="math inline">\(g(x)=\chi_{\{|x|&gt;1\}}(x)\cdot\frac{1}{|x|^{d}}\)</span>,
+<span class="math inline">\(L^2\nsubseteq L^1\)</span></p>
+<p><span class="math inline">\(\int_{\mathbb{R}^d}|g|^2=\int_{|x|&gt;1}\frac{1}{|x|^{2d}}\,dx&lt;\infty\
+\ (\because \ 2d&gt;d),\)</span> while <span class="math inline">\(\int_{\mathbb{R}^d}|g|=\int_{|x|&gt;1}\frac{1}{|x|^{d}}\,dx=\infty\)</span>.</p>
+</div>
+<div id="b-if-fin-l2-is-supported-on-a-set-e-of-finite-measure-then-fin-l1." class="section level3">
+<h3>(b) if <span class="math inline">\(f\in L^2\)</span> is supported on
+a set <span class="math inline">\(E\)</span> of finite measure, then
+<span class="math inline">\(f\in L^1\)</span>.</h3>
+<p><strong>proof</strong><br />
+<span class="math inline">\(\|f\|_1\)</span> can be written as <span class="math display">\[
+\|f\|_1=\int_E|f|=\int_{\mathbb{R}^d}|f|\chi_E=\int_{\mathbb{R}^d}|f|\overline{\chi_E}.\quad(\because
+\chi_E\ \text{is real})
+\]</span></p>
+<p>Since <span class="math inline">\(|f|,\chi_E\in L^2\)</span>, <span class="math display">\[
+\begin{aligned}
+\int_{\mathbb{R}^d}|f|\overline{\chi_E} &amp;\le \|f\|_2\|\chi_E\|_2 \ \
+(\because \text{Cauchy-Schwarz ineq.})\\
+&amp;=\|f\|_2\left\{\int_{\mathbb{R}^d}\chi_E^2\right\}^{1/2} \\
+&amp;=\|f\|_2\left\{\int_{\mathbb{R}^d}\chi_E\right\}^{1/2} \\
+&amp;=\|f\|_2\{m(E)\}^{1/2}&lt;\infty \quad (f\in L^2)
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\|f\|_1&lt;\infty\)</span>, so <span class="math inline">\(f\in L^1\)</span>.</p>
+</div>
+<div id="c-if-fle-m-and-fin-l1-then-fin-l2-m0" class="section level3">
+<h3>(c) if <span class="math inline">\(|f|\le M\)</span> and <span class="math inline">\(f\in L^1\)</span>, then <span class="math inline">\(f\in L^2\)</span> <span class="math inline">\((M&gt;0)\)</span></h3>
+<p><strong>proof</strong><br />
+<span class="math display">\[
+\|f\|_2^2=\int_{\mathbb{R}^d}|f|^2=\int_{\mathbb{R}^d}|f||f|\le
+M\int_{\mathbb{R}^d}|f|=M\|f\|_1&lt;\infty\ \ (\because f\in L^1),
+\]</span> so <span class="math inline">\(\|f\|_2&lt;\infty\)</span> and
+<span class="math inline">\(f\in L^2\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="show-that-the-following-are-dense-in-l2" class="section level2">
+<h2>6. Show that the following are dense in <span class="math inline">\(L^2\)</span></h2>
+<div id="a-simple-functions" class="section level3">
+<h3>(a) Simple functions</h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(f\ge 0\)</span><br />
+Choose <span class="math inline">\(f\in L^2\)</span> such that <span class="math inline">\(f\ge 0\)</span> and let <span class="math inline">\(\varepsilon&gt;0\)</span> be fixed.</p>
+<p><span class="math inline">\(f\)</span> is measurable, so there is a
+sequence of non-negative simple functions <span class="math inline">\(\{\varphi_n\}\)</span> such that <span class="math inline">\(\varphi_n\le \varphi_{n+1}\)</span> and <span class="math inline">\(\lim_{n\to\infty}\varphi_n=f\)</span> (thm
+1.4.1).</p>
+<p><span class="math inline">\(0\le f-\varphi_n\le f\)</span> so <span class="math inline">\(|f-\varphi_n|^2\le |f|^2\)</span>. Then <span class="math inline">\(\lim_{n\to\infty}\int_{\mathbb{R}^d}|f-\varphi_n|^2=0\)</span>
+(DCT), and there is <span class="math inline">\(N_\varepsilon\in\mathbb{N}\)</span> such that
+<span class="math inline">\(\|f-\varphi_{N_\varepsilon}\|_{L^2}&lt;\varepsilon\)</span>.
+This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>
+and all non-negative <span class="math inline">\(f\in L^2\)</span>. So,
+simple functions are dense in nonnegative <span class="math inline">\(L^2(\mathbb{R}^d)\)</span>.</p>
+<p>② <span class="math inline">\(f\in\mathbb{R}\)</span><br />
+Consider <span class="math inline">\(f\in\mathbb{R}\)</span> s.t. <span class="math inline">\(f=f^+-f^-\)</span>. Each <span class="math inline">\(f^+\)</span> and <span class="math inline">\(f^-\)</span> is non-negative, so there exist
+non-negative simple functions <span class="math inline">\(\{\psi_n^+\}\)</span>, <span class="math inline">\(\{\psi_n^-\}\)</span> and <span class="math inline">\(N_\varepsilon\in\mathbb{N}\)</span> such that
+<span class="math inline">\(\|f^+-\psi_{N_\varepsilon}^+\|_{L^2}&lt;\varepsilon/2\)</span>
+and <span class="math inline">\(\|f^--\psi_{N_\varepsilon}^-\|_{L^2}&lt;\varepsilon/2\)</span>
+for given <span class="math inline">\(\varepsilon&gt;0\)</span> (<span class="math inline">\(\because ①\)</span>).</p>
+<p>Note that <span class="math inline">\(\varphi_n=\psi_n^+-\psi_n^-\)</span> is simple
+function. Then, <span class="math display">\[
+\begin{aligned}
+\|f-\varphi_{N_\varepsilon}\|_{L^2}
+&amp;=\|(f^+-f^-)-(\psi_{N_\varepsilon}^+-\psi_{N_\varepsilon}^-)\|_{L^2}
+\\
+&amp;=\|(f^+-\psi_{N_\varepsilon}^+)-(f^--\psi_{N_\varepsilon}^-)\|_{L^2}
+\\
+&amp;\le
+\|f^+-\psi_{N_\varepsilon}^+\|_{L^2}+\|f^--\psi_{N_\varepsilon}^-\|_{L^2}
+\\
+&amp;&lt;\varepsilon \qquad(\because \Delta\ \text{ineq of
+}\|\cdot\|_2).
+\end{aligned}
+\]</span></p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span> and all real <span class="math inline">\(f\)</span>, so simple functions are dense in real
+<span class="math inline">\(L^2(\mathbb{R}^d)\)</span>.</p>
+<p>③ general <span class="math inline">\(f\in
+L^2(\mathbb{R}^d)\)</span><br />
+Let <span class="math inline">\(f=u+iv\)</span>, where <span class="math inline">\(u,v\in L^2\)</span> are real. Then for given <span class="math inline">\(\varepsilon&gt;0\)</span>, there exist simple
+functions <span class="math inline">\(\varphi_u,\varphi_v\)</span> s.t.
+<span class="math inline">\(\|u-\varphi_u\|_{L^2}&lt;\varepsilon/2\)</span>
+&amp; <span class="math inline">\(\|v-\varphi_v\|_{L^2}&lt;\varepsilon/2\)</span>.
+Note that <span class="math inline">\(\varphi_f=\varphi_u+i\varphi_v\)</span> is a
+simple function with complex coefficient.</p>
+<p>Then, <span class="math display">\[
+\begin{aligned}
+\|f-\varphi_f\|_{L^2}
+&amp;=\|(u+iv)-(\varphi_u+i\varphi_v)\|_{L^2} \\
+&amp;=\|(u-\varphi_u)+i(v-\varphi_v)\|_{L^2} \\
+&amp;\le \|u-\varphi_u\|_{L^2}+\|v-\varphi_v\|_{L^2}&lt;\varepsilon.
+\end{aligned}
+\]</span></p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span> and all <span class="math inline">\(f\in L^2\)</span>, so simple functions are dense
+in <span class="math inline">\(L^2(\mathbb{R}^d)\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="suppose-psi_k-is-an-orthonormal-basis-for-l2mathbbrd.-show-that-psi_ki-with-psi_kixypsi_kxpsi_iy-is-an-orthonormal-basis-for-l2mathbbrdtimesmathbbrd" class="section level2">
+<h2>7. Suppose <span class="math inline">\(\{\psi_k\}\)</span> is an
+orthonormal basis for <span class="math inline">\(L^2(\mathbb{R}^d)\)</span>. Show that <span class="math inline">\(\{\psi_{k,i}\}\)</span> with <span class="math inline">\(\psi_{k,i}(x,y)=\psi_k(x)\psi_i(y)\)</span> is an
+orthonormal basis for <span class="math inline">\(L^2(\mathbb{R}^d\times\mathbb{R}^d)\)</span></h2>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(\|\psi_{k,i}\|=1\)</span> (<span class="math inline">\(\because\)</span> Fubini)</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{\mathbb{R}^{2d}}|\psi_{k,i}(x,y)|^2\,dx\,dy
+&amp;=\int_{\mathbb{R}^{2d}}|\psi_k(x)|^2|\psi_i(y)|^2\,dx\,dy \\
+&amp;=\int_{\mathbb{R}^d}|\psi_k(x)|^2\,dx\cdot\int_{\mathbb{R}^d}|\psi_i(y)|^2\,dy
+=1\cdot 1&lt;\infty.
+\end{aligned}
+\]</span></p>
+<p>② <span class="math inline">\(\psi_{k,i}\perp \psi_{l,m}\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+(\psi_{k,i},\psi_{l,m})
+&amp;=\int_{\mathbb{R}^{2d}}\psi_{k,i}(x,y)\overline{\psi_{l,m}(x,y)}\,dx\,dy
+\\
+&amp;=\int_{\mathbb{R}^{2d}}\psi_k(x)\psi_i(y)\overline{\psi_l(x)}\,\overline{\psi_m(y)}\,dx\,dy
+\\
+&amp;=\int_{\mathbb{R}^d}\psi_k(x)\overline{\psi_l(x)}\,dx\cdot\int_{\mathbb{R}^d}\psi_i(y)\overline{\psi_m(y)}\,dy
+\qquad(\because \text{Fubini&#39;s Thm})
+\end{aligned}
+\]</span></p>
+<p>If <span class="math inline">\(k\ne l\)</span>, <span class="math inline">\(\int_{\mathbb{R}^d}\psi_k(x)\overline{\psi_l(x)}\,dx=0\)</span>.
+If <span class="math inline">\(i\ne m\)</span>, <span class="math inline">\(\int_{\mathbb{R}^d}\psi_i(y)\overline{\psi_m(y)}\,dy=0\)</span>.</p>
+<p><span class="math inline">\(\therefore\)</span> If <span class="math inline">\((k,i)\ne(l,m)\)</span>, <span class="math inline">\((\psi_{k,i},\psi_{l,m})=0\ \Rightarrow\
+①,②\)</span> proves <span class="math inline">\(\{\psi_{k,i}\}\)</span>
+is orthonormal set.</p>
+<p>③ orthonormal basis</p>
+<p>Consider <span class="math inline">\(f\in
+L^2(\mathbb{R}^{2d})\)</span> such that <span class="math inline">\((f,\psi_{k,i})=0\)</span> for all <span class="math inline">\(k,i\in\mathbb{N}\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+0
+&amp;=\int_{\mathbb{R}^{2d}} f(x,y)\overline{\psi_{k,i}(x,y)}\,dx\,dy \\
+&amp;=\int_{\mathbb{R}^d}\left\{\int_{\mathbb{R}^d}
+f(x,y)\overline{\psi_i(y)}\,dy\right\}\overline{\psi_k(x)}\,dx
+\qquad(\text{Fubini})
+\end{aligned}
+\]</span></p>
+<p>Let <span class="math inline">\(\int_{\mathbb{R}^d}F_i(x)\overline{\psi_k(x)}\,dx=(F_i,\psi_k)\)</span>
+for all <span class="math inline">\(k\in\mathbb{N}\)</span>.</p>
+<p><span class="math inline">\(\{\psi_k\}\)</span> is an orthonormal
+basis for <span class="math inline">\(L^2(\mathbb{R}^d)\)</span>, so
+<span class="math inline">\(F_i=0\)</span> (thm 4.23(i),(ii))</p>
+<p><span class="math inline">\(F_i=\int_{\mathbb{R}^d}
+f(x,y)\overline{\psi_i(y)}\,dy=0\)</span> for all <span class="math inline">\(i\in\mathbb{N}\)</span>, and <span class="math inline">\(\{\psi_i\}\)</span> is an orthonormal basis for
+<span class="math inline">\(L^2(\mathbb{R}^d)\)</span>. So, <span class="math inline">\(f(x,y)=0\)</span>. Thus, <span class="math inline">\(\{\psi_{k,i}\}\)</span> is an orthonormal basis
+for <span class="math inline">\(L^2(\mathbb{R}^{2d})\)</span> (thm
+4.23(i),(ii))</p>
+<hr />
+</div>
+<div id="let-etat-be-a-fixed-positive-continuous-functions-on-ab.-define-h_etal2abeta-to-be-the-space-of-all-measurable-functions-f-on-ab-such-that-f_eta2-oversetmathrmdef-int_ab-ft2etatdtinfty.-the-inner-product-on-h_eta-is-defined-as-fg_etaint_ab-ftoverlinegtetatdt." class="section level2">
+<h2>8. Let <span class="math inline">\(\eta(t)\)</span> be a fixed,
+positive, continuous functions on <span class="math inline">\([a,b]\)</span>. Define <span class="math inline">\(H_\eta=L^2([a,b],\eta)\)</span> to be the space of
+all measurable functions <span class="math inline">\(f\)</span> on <span class="math inline">\([a,b]\)</span> such that <span class="math inline">\(\|f\|_\eta^2 \overset{\mathrm{def}}{=} \int_a^b
+|f(t)|^2\eta(t)\,dt&lt;\infty\)</span>. The inner product on <span class="math inline">\(H_\eta\)</span> is defined as <span class="math inline">\((f,g)_\eta=\int_a^b
+f(t)\overline{g(t)}\,\eta(t)\,dt\)</span>.</h2>
+<div id="a-show-that-h_eta-is-a-hilbert-space-and-ufmapsto-eta12f-gives-a-unitary-correspondence-between-h_eta-and-l2ab." class="section level3">
+<h3>(a) Show that <span class="math inline">\(H_\eta\)</span> is a
+Hilbert space and <span class="math inline">\(U:f\mapsto
+\eta^{1/2}f\)</span> gives a unitary correspondence between <span class="math inline">\(H_\eta\)</span> and <span class="math inline">\(L^2([a,b])\)</span>.</h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(H_\eta\)</span> is a vector space over
+<span class="math inline">\(\mathbb{C}\)</span> <span class="math inline">\((f,g\in H_\eta,\ c\in\mathbb{C})\)</span></p>
+<p><span class="math inline">\(|f+g|^2\le (|f|+|g|)^2\le 2(|f|^2+|g|^2)\
+\ (\because\ |f|^2+|g|^2-2|f||g|=(|f|-|g|)^2\ge 0)\)</span>, so <span class="math display">\[
+\int_a^b |f(t)+g(t)|^2\eta(t)\,dt
+&lt;2\int_a^b |f(t)|^2\eta(t)\,dt+2\int_a^b
+|g(t)|^2\eta(t)\,dt&lt;\infty\ \ (\because\ f,g\in H_\eta).
+\]</span> So, <span class="math inline">\(f+g\in H_\eta\)</span>.</p>
+<p><span class="math inline">\(\int_a^b
+|cf(t)|^2\eta(t)\,dt=|c|^2\int_a^b
+|f(t)|^2\eta(t)\,dt&lt;\infty\)</span>, so <span class="math inline">\(cf\in H_\eta\)</span>.</p>
+<p>② <span class="math inline">\((f,g)_\eta\)</span> is linear on <span class="math inline">\(H_\eta\)</span>, <span class="math inline">\((f,g)=\overline{(g,f)}\)</span>, and <span class="math inline">\((f,f)_\eta\ge 0\)</span> <span class="math inline">\((f,g\in H_\eta)\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Linear <span class="math display">\[
+\begin{aligned}
+(f_1+f_2,g)_\eta
+&amp;=\int_a^b (f_1(t)+f_2(t))\overline{g(t)}\,\eta(t)\,dt \\
+&amp;=\int_a^b f_1(t)\overline{g(t)}\,\eta(t)\,dt+\int_a^b
+f_2(t)\overline{g(t)}\,\eta(t)\,dt \\
+&amp;=(f_1,g)_\eta+(f_2,g)_\eta,
+\end{aligned}
+\]</span> <span class="math display">\[
+\begin{aligned}
+(c f,g)_\eta &amp;=\int_a^b c f(t)\overline{g(t)}\,\eta(t)\,dt \\
+&amp;=c\int_a^b f(t)\overline{g(t)}\,\eta(t)\,dt=c(f,g)_\eta,
+\end{aligned}
+\]</span> <span class="math display">\[
+\begin{aligned}
+(f,g_1+g_2)_\eta
+&amp;=\int_a^b f(t)\overline{(g_1(t)+g_2(t))}\,\eta(t)\,dt \\
+&amp;=\int_a^b f(t)\overline{g_1(t)}\,\eta(t)\,dt+\int_a^b
+f(t)\overline{g_2(t)}\,\eta(t)\,dt \\
+&amp;=(f,g_1)_\eta+(f,g_2)_\eta,
+\end{aligned}
+\]</span> <span class="math display">\[
+\begin{aligned}
+(f,cg)_\eta &amp;=\int_a^b f(t)\overline{cg(t)}\,\eta(t)\,dt \\
+&amp;=\overline{c}\int_a^b
+f(t)\overline{g(t)}\,\eta(t)\,dt=\overline{c}(f,g)_\eta.
+\end{aligned}
+\]</span></p></li>
+<li><p><span class="math inline">\((f,g)_\eta=\overline{(g,f)_\eta}\)</span> Note
+that <span class="math inline">\(\ f=u+iv,\ u,v\in L^1(\mathbb{R}^d),\
+\text{then }\overline{\int f}=\int\overline{f},\)</span> <span class="math display">\[
+\text{and }\overline{\int_{\mathbb{R}^d}(u+iv)}
+=\overline{\int_{\mathbb{R}^d}u+i\int_{\mathbb{R}^d}v}
+=\int_{\mathbb{R}^d}u-i\int_{\mathbb{R}^d}v
+=\int_{\mathbb{R}^d}(u-iv)
+=\int_{\mathbb{R}^d}\overline{f}.
+\]</span> <span class="math display">\[
+\begin{aligned}
+(g,f)_\eta
+&amp;=\int_a^b g(t)\overline{f(t)}\,\eta(t)\,dt \\
+&amp;=\overline{\int_a^b \overline{g(t)}f(t)\,\eta(t)\,dt}
+=\overline{\int_a^b f(t)\overline{g(t)}\,\eta(t)\,dt}\quad(\because
+\eta\in\mathbb{R}) \\
+&amp;=\overline{(f,g)_\eta}.
+\end{aligned}
+\]</span></p></li>
+<li><p><span class="math inline">\((f,f)_\eta\ge 0\ \ :\ \ \int_a^b
+f(t)\overline{f(t)}\,\eta(t)\,dt=\int_a^b |f(t)|^2\eta(t)\,dt\ge 0\ \
+(\because |f(t)|^2\ge 0,\ \eta&gt;0)\)</span></p></li>
+</ol>
+<p>③ <span class="math inline">\(\|f\|_\eta=0\ \ \text{if
+}f=0\)</span></p>
+<p>Note that two functions in <span class="math inline">\(H_\eta\)</span> are equivalent if they differ on a
+set of measure <span class="math inline">\(0\)</span>. Then <span class="math inline">\(\int_a^b |f(t)|^2\eta(t)\,dt=0\)</span> implies
+<span class="math inline">\(|f(t)|^2=0\ \ (\because \eta&gt;0)\)</span>,
+and thus <span class="math inline">\(f(t)=0\)</span>.</p>
+<p><span class="math inline">\(f(t)=0\)</span> obviously leads to <span class="math inline">\(\int_a^b |f(t)|^2\eta(t)\,dt=0\)</span>.</p>
+<p>④-1 <span class="math inline">\(|(f,g)_\eta|\le \|f\|_\eta\|g\|_\eta\
+\ (f,g\in H_\eta)\)</span> Cauchy ineq</p>
+<p>If <span class="math inline">\(\|f\|_\eta\)</span> (or <span class="math inline">\(\|g\|_\eta\)</span>) <span class="math inline">\(=0\)</span>, <span class="math inline">\(f(t)=0\)</span> and <span class="math inline">\(\int_a^b
+f(t)\overline{g(t)}\,\eta(t)\,dt=(f,g)_\eta=0\)</span>.</p>
+<p>Consider <span class="math inline">\(f,g\)</span> such that <span class="math inline">\(\|f\|_\eta\ne 0\)</span> and <span class="math inline">\(\|g\|_\eta\ne 0\)</span>, and let <span class="math inline">\(f_0=\dfrac{f}{\|f\|_\eta}\)</span>, <span class="math inline">\(g_0=\dfrac{g}{\|g\|_\eta}\)</span>.</p>
+<p><span class="math inline">\(|f_0-\overline{g_0}|^2\ge 0\)</span>
+leads to <span class="math inline">\(2|f_0\overline{g_0}|\le
+|f_0|^2+|\overline{g_0}|^2=|f_0|^2+|g_0|^2\ \
+(|\overline{g_0}|=|g_0|)\)</span>, so <span class="math display">\[
+\begin{aligned}
+2|(f_0,g_0)_\eta|
+&amp;=2\left|\int_a^b f_0(t)\overline{g_0(t)}\,\eta(t)\,dt\right| \\
+&amp;\le 2\int_a^b |f_0(t)\overline{g_0(t)}|\,\eta(t)\,dt \\
+&amp;\le \int_a^b |f_0(t)|^2\eta(t)\,dt+\int_a^b |g_0(t)|^2\eta(t)\,dt
+\\
+&amp;=\frac{1}{\|f\|_\eta^2}\int_a^b
+|f(t)|^2\eta(t)\,dt+\frac{1}{\|g\|_\eta^2}\int_a^b |g(t)|^2\eta(t)\,dt
+=2.
+\end{aligned}
+\]</span></p>
+<p>Thus, <span class="math inline">\(\left|\left(\dfrac{f}{\|f\|_\eta},\dfrac{g}{\|g\|_\eta}\right)_\eta\right|\le
+1\)</span> and <span class="math inline">\((f,g)_\eta\le
+\|f\|_\eta\|g\|_\eta\)</span>.</p>
+<p>④-2 <span class="math inline">\(\|f+g\|_\eta\le
+\|f\|_\eta+\|g\|_\eta\ \ (f,g\in H_\eta)\)</span> triangle ineq.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\|f+g\|_\eta^2
+&amp;=(f+g,f+g)_\eta \\
+&amp;=\|f\|_\eta^2+(f,g)_\eta+(g,f)_\eta+\|g\|_\eta^2 \\
+&amp;=\|f\|_\eta^2+2\operatorname{Re}\{(f,g)_\eta\}+\|g\|_\eta^2 \\
+&amp;\le \|f\|_\eta^2+2|(f,g)_\eta|+\|g\|_\eta^2 \\
+&amp;\le \|f\|_\eta^2+2\|f\|_\eta\|g\|_\eta+\|g\|_\eta^2 \qquad(\because
+④\text{-}1) \\
+&amp;=(\|f\|_\eta+\|g\|_\eta)^2.
+\end{aligned}
+\]</span> Thus, <span class="math inline">\(\|f+g\|_\eta\le
+\|f\|_\eta+\|g\|_\eta\)</span>.</p>
+<p>⑤ <span class="math inline">\(H_\eta\)</span> is complete in the
+metric <span class="math inline">\(\|f-g\|_\eta\)</span> use continuity
+of <span class="math inline">\(\eta\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\exists\,b_1,b_2\in[a,b]\ \text{s.t.
+}\eta(b_1)=\sup\eta(t)\ \&amp;\ \eta(b_2)=\inf\eta(t)\)</span> <span class="math inline">\(\eta\)</span> is continuous on a compact set <span class="math inline">\([a,b]\)</span>, so there exist <span class="math inline">\(b_1,b_2\in[a,b]\)</span> such that <span class="math inline">\(M_1\overset{\mathrm{def}}{=}\eta(b_1)=\sup_{t\in[a,b]}\eta(t)\)</span>
+and <span class="math inline">\(M_2\overset{\mathrm{def}}{=}\eta(b_2)=\inf_{t\in[a,b]}\eta(t)\)</span>.
+<span class="math inline">\((M_1,M_2&gt;0)\)</span></p></li>
+<li><p><span class="math inline">\(g\in H_\eta\)</span>, then <span class="math inline">\(g\in L^2\)</span> For <span class="math inline">\(g\in H_\eta\)</span>, <span class="math display">\[
+\|g\|_\eta^2=\int_a^b |g(t)|^2\eta(t)\,dt \ge M_2\int_a^b |g(t)|^2\,dt =
+M_2\|g\|_{L^2([a,b])}^2.
+\]</span> Since <span class="math inline">\(\|g\|_\eta&lt;\infty\)</span>, <span class="math inline">\(g\in L^2([a,b])\)</span>. (let <span class="math inline">\(\|g\|_{L^2([a,b])}=\|g\|_2\)</span>)</p></li>
+<li><p><span class="math inline">\(\{f_n\}\)</span> Cauchy in <span class="math inline">\(H_\eta\)</span>, and Cauchy in <span class="math inline">\(L^2([a,b])\)</span> Consider a Cauchy sequence
+<span class="math inline">\(\{f_n\}\subset H_\eta\)</span>; for given
+<span class="math inline">\(\varepsilon&gt;0\)</span> there is <span class="math inline">\(N_\varepsilon\in\mathbb{N}\)</span> such that
+<span class="math inline">\(m,n\ge N_\varepsilon\)</span> implies <span class="math inline">\(\|f_m-f_n\|_\eta&lt;\varepsilon\)</span>. Then,
+<span class="math display">\[
+\|f_m-f_n\|_\eta^2=\int_a^b |f_m(t)-f_n(t)|^2\eta(t)\,dt \ge M_2\int_a^b
+|f_m(t)-f_n(t)|^2\,dt = M_2\|f_m-f_n\|_2^2.
+\]</span> This leads to <span class="math inline">\(\|f_m-f_n\|_2&lt;\varepsilon/\sqrt{M_2}\)</span>
+for <span class="math inline">\(m,n\ge N_\varepsilon\)</span>, and this
+holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>. So,
+<span class="math inline">\(\{f_n\}\)</span> is also a Cauchy sequence
+in <span class="math inline">\(L^2([a,b])\)</span>.</p></li>
+<li><p><span class="math inline">\(f\in L^2([a,b])\ \to\ f\in
+H_\eta\)</span> <span class="math inline">\(\int_a^b |f(t)|^2\eta(t)\,dt
+\le M_1\int_a^b |f(t)|^2\,dt &lt;\infty\ (f\in L^2([a,b]))\)</span>, so
+<span class="math inline">\(f\in H_\eta\)</span> as well.</p></li>
+<li><p><span class="math inline">\(\|f_n-f\|_2\to 0\)</span>, then <span class="math inline">\(\|f_n-f\|_\eta\to 0\)</span> <span class="math inline">\(L^2([a,b])\)</span> is complete, so there is <span class="math inline">\(f\in L^2([a,b])\)</span> such that <span class="math inline">\(\lim_{n\to\infty}\|f_n-f\|_2=0\)</span>. Then,
+<span class="math display">\[
+\|f_n-f\|_\eta^2=\int_a^b |f_n(t)-f(t)|^2\eta(t)\,dt \le M_1\int_a^b
+|f_n(t)-f(t)|^2\,dt = M_1\|f_n-f\|_2^2.
+\]</span> <span class="math inline">\(\lim_{n\to\infty}\|f_n-f\|_\eta=0\)</span> and
+<span class="math inline">\(f\in H_\eta\ (\because 4)\)</span>, thus
+<span class="math inline">\(H_\eta\)</span> is complete.</p></li>
+</ol>
+<p>⑥ <span class="math inline">\(H_\eta\)</span> is separable : needs
+continuity of <span class="math inline">\(\eta\)</span></p>
+<p><span class="math inline">\(L^2([a,b])\)</span> is separable, so
+there is <span class="math inline">\(\{f_k\}\subset L^2([a,b])\)</span>
+such that their finite linear combinations are dense in <span class="math inline">\(L^2([a,b])\)</span> : For <span class="math inline">\(f\in L^2([a,b])\)</span> and given <span class="math inline">\(\varepsilon&gt;0\)</span>, there is <span class="math inline">\(\psi_\varepsilon=\sum_{k=1}^n a_k f_k\)</span>
+such that <span class="math inline">\(\|f-\psi_\varepsilon\|_2^2&lt;\varepsilon^2\)</span>.</p>
+<p>Note that <span class="math inline">\(f\in H_\eta\)</span> and <span class="math inline">\(f_k\in H_\eta\ \forall k\in\mathbb{N}\)</span>
+(<span class="math inline">\(\because ⑤\)</span>), so <span class="math inline">\(\psi_\varepsilon\in H_\eta\)</span>. Then <span class="math display">\[
+\int_a^b |f(t)-\psi_\varepsilon(t)|^2\eta(t)\,dt \le M_1\int_a^b
+|f(t)-\psi_\varepsilon(t)|^2\,dt &lt; M_1\varepsilon^2.
+\]</span></p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span> and all <span class="math inline">\(f\in H_\eta\)</span>, so <span class="math inline">\(H_\eta\)</span> is separable.</p>
+<p>⑦ <span class="math inline">\(U\)</span> is unitary</p>
+<ol style="list-style-type: decimal">
+<li><p>Linear <span class="math inline">\((f,g\in H_\eta,\
+\alpha,\beta\in\mathbb{C})\)</span> <span class="math inline">\(U(\alpha
+f+\beta g)=\sqrt{\eta}(\alpha f+\beta
+g)=\alpha\sqrt{\eta}f+\beta\sqrt{\eta}g=\alpha\cdot U(f)+\beta\cdot
+U(g)\)</span></p></li>
+<li><p>bijection Consider the case <span class="math inline">\(U(f)=U(g)\)</span>; that is <span class="math inline">\(\sqrt{\eta(t)}f(t)=\sqrt{\eta(t)}g(t)\)</span>.
+Since <span class="math inline">\(\eta(t)&gt;0\)</span>, <span class="math inline">\(f(t)=g(t)\)</span>. Thus, <span class="math inline">\(U\)</span> is injective (1-1). Let <span class="math inline">\(h\in L^2([a,b])\)</span>; <span class="math inline">\(\int_a^b |h(t)|^2\,dt&lt;\infty\)</span>. Let
+<span class="math inline">\(f=h/\sqrt{\eta}\)</span>. Since <span class="math inline">\(\int_a^b |f(t)|^2\eta(t)\,dt=\int_a^b
+|h(t)|^2\,dt&lt;\infty\)</span>, <span class="math inline">\(f\in
+H_\eta\)</span>. Since <span class="math inline">\(U(f)=h\)</span>,
+<span class="math inline">\(U\)</span> is surjective (onto)</p></li>
+<li><p><span class="math inline">\(\|U(f)\|_2=\|f\|_\eta\ \ \forall f\in
+H_\eta\)</span> <span class="math inline">\(\|f\|_\eta^2=\int_a^b
+|f(t)|^2\eta(t)\,dt=\int_a^b
+|\sqrt{\eta(t)}f(t)|^2\,dt=\|\sqrt{\eta}f\|_2^2=\|U(f)\|_2^2\)</span></p></li>
+</ol>
+<p><span class="math inline">\(\therefore\ U\)</span> is unitary.</p>
+</div>
+<div id="b-generalize-a-to-the-case-where-eta-is-not-continuous." class="section level3">
+<h3>(b) Generalize (a) to the case where <span class="math inline">\(\eta\)</span> is not continuous.</h3>
+<p><strong>proof</strong><br />
+It suffices to prove <span class="math inline">\(H_\eta\)</span> is
+complete &amp; separable<br />
+(<span class="math inline">\(\because\)</span> only ⑤ &amp; ⑥ in
+<strong>(a)</strong> use the continuity)</p>
+<p>⑤ <span class="math inline">\(H_\eta\)</span> is complete</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(f\in H_\eta \Rightarrow
+\sqrt{\eta}\,f\in L^2([a,b])\)</span> <span class="math display">\[
+\|\sqrt{\eta}f\|_2^2=\int_a^b \eta(t)|f(t)|^2\,dt=\int_a^b
+|f(t)|^2\eta(t)\,dt=\|f\|_\eta^2&lt;\infty,
+\]</span> so <span class="math inline">\(\sqrt{\eta}f\in
+L^2([a,b])\)</span>.</p></li>
+<li><p><span class="math inline">\(\{f_n\}\)</span> Cauchy in <span class="math inline">\(H_\eta \to \{\sqrt{\eta}f_n\}\)</span> Cauchy in
+<span class="math inline">\(L^2([a,b])\)</span> Let <span class="math inline">\(\{f_n\}\)</span> be a Cauchy sequence in <span class="math inline">\(H_\eta\)</span>; for given <span class="math inline">\(\varepsilon&gt;0\)</span> there is <span class="math inline">\(N_\varepsilon\in\mathbb{N}\)</span> such that
+<span class="math inline">\(m,n\ge N_\varepsilon\)</span> implies <span class="math inline">\(\|f_m-f_n\|_\eta^2&lt;\varepsilon^2\)</span>.
+Again, <span class="math inline">\(m,n\ge N_\varepsilon\)</span> implies
+<span class="math display">\[
+\|f_m-f_n\|_\eta^2=\int_a^b |f_m(t)-f_n(t)|^2\eta(t)\,dt
+=\int_a^b
+\left|\sqrt{\eta(t)}f_m(t)-\sqrt{\eta(t)}f_n(t)\right|^2\,dt&lt;\varepsilon^2.
+\]</span> This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span> and <span class="math inline">\(N_\varepsilon\)</span>, so <span class="math inline">\(\{\sqrt{\eta}f_n\}\)</span> is a Cauchy sequence
+in <span class="math inline">\(L^2([a,b])\)</span>.</p></li>
+<li><p><span class="math inline">\(g\in L^2([a,b])\Rightarrow
+g/\sqrt{\eta}\in H_\eta\)</span> <span class="math display">\[
+\|g/\sqrt{\eta}\|_\eta^2=\int_a^b \frac{1}{\eta(t)}|g(t)|^2\eta(t)\,dt
+=\int_a^b |g(t)|^2\,dt&lt;\infty\ \ (\because g\in L^2),
+\]</span> so <span class="math inline">\(g/\sqrt{\eta}\in
+H_\eta\)</span>.</p></li>
+<li><p><span class="math inline">\(\|\sqrt{\eta}f_n-g\|_2\to 0\)</span>
+then <span class="math inline">\(\|f_n-g/\sqrt{\eta}\|_\eta\to
+0\)</span> There is <span class="math inline">\(g\in L^2([a,b])\)</span>
+such that <span class="math inline">\(\lim_{n\to\infty}\|\sqrt{\eta}f_n-g\|_2=0\)</span>
+(<span class="math inline">\(L^2([a,b])\)</span> is complete). Let <span class="math inline">\(f=g/\sqrt{\eta}\)</span>, then <span class="math inline">\(f\in H_\eta\)</span> (<span class="math inline">\(\because 3\)</span>). <span class="math display">\[
+\begin{aligned}
+\|f_n-f\|_\eta^2
+&amp;=\int_a^b |f_n(t)-f(t)|^2\eta(t)\,dt
+=\int_a^b |\sqrt{\eta(t)}f_n(t)-g(t)|^2\,dt \\
+&amp;=\|\sqrt{\eta}f_n-g\|_2^2,
+\end{aligned}
+\]</span> so <span class="math inline">\(\lim_{n\to\infty}\|f_n-f\|_\eta=\lim_{n\to\infty}\|\sqrt{\eta}f_n-g\|_2=0\)</span>.</p></li>
+</ol>
+<p>Thus, <span class="math inline">\(H_\eta\)</span> is complete.</p>
+<p>⑥ Separable</p>
+<p><span class="math inline">\(L^2([a,b])\)</span> is separable, so
+there is <span class="math inline">\(\{f_k\}\subset L^2([a,b])\)</span>
+such that their finite linear combinations are dense in <span class="math inline">\(L^2([a,b])\)</span> : For <span class="math inline">\(f\in L^2([a,b])\)</span> and given <span class="math inline">\(\varepsilon&gt;0\)</span>, there is <span class="math inline">\(\psi_\varepsilon=\sum_{k=1}^n a_k f_k\)</span>
+such that <span class="math inline">\(\int_a^b
+|f-\psi_\varepsilon|^2&lt;\varepsilon^2\)</span>.</p>
+<p>Note that <span class="math inline">\(f/\sqrt{\eta}\in
+H_\eta\)</span>, <span class="math inline">\(f_k/\sqrt{\eta}\in H_\eta\
+\forall k\in\mathbb{N}\)</span> and <span class="math inline">\(\psi_\varepsilon/\sqrt{\eta}\in H_\eta\ \
+(\because ⑤)\)</span>. Then,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\left\| \frac{f}{\sqrt{\eta}}-\frac{\psi_\varepsilon}{\sqrt{\eta}}
+\right\|_\eta^2
+&amp;=\int_a^b
+\frac{1}{\eta(t)}|f(t)-\psi_\varepsilon(t)|^2\,\eta(t)\,dt \\
+&amp;=\int_a^b |f(t)-\psi_\varepsilon(t)|^2\,dt
+=\|f-\psi_\varepsilon\|_2^2&lt;\varepsilon^2.
+\end{aligned}
+\]</span></p>
+<p>This means <span class="math inline">\(\left\{\frac{f_k}{\sqrt{\eta}}\right\}_k\)</span>
+is dense in <span class="math inline">\(H_\eta\)</span>, so <span class="math inline">\(H_\eta\)</span> is separable.</p>
+<hr />
+</div>
+</div>
+<div id="let-h_1l2-pipi-be-the-hilbert-space-of-functions-feitheta-on-the-unit-circle-with-inner-product-fgfrac12piint_-pipifeithetaoverlinegeithetadtheta.-let-h_2l2mathbbr.-using-the-mapping-xmapsto-fraci-xix-of-mathbbr-to-the-unit-circle-show-that" class="section level2">
+<h2>9. Let <span class="math inline">\(H_1=L^2([-\pi,\pi])\)</span> be
+the Hilbert space of functions <span class="math inline">\(F(e^{i\theta})\)</span> on the unit circle with
+inner product <span class="math inline">\((F,G)=\frac{1}{2\pi}\int_{-\pi}^{\pi}F(e^{i\theta})\overline{G(e^{i\theta})}\,d\theta\)</span>.
+Let <span class="math inline">\(H_2=L^2(\mathbb{R})\)</span>. Using the
+mapping <span class="math inline">\(x\mapsto \frac{i-x}{i+x}\)</span> of
+<span class="math inline">\(\mathbb{R}\)</span> to the unit circle, show
+that</h2>
+<div id="a-the-correspondence-ufmapsto-f-with-fxfrac1sqrtpiixfleftfraci-xixright-gives-a-unitary-mapping-of-h_1-to-h_2." class="section level3">
+<h3>(a) the correspondence <span class="math inline">\(U:F\mapsto
+f\)</span> with <span class="math inline">\(f(x)=\frac{1}{\sqrt{\pi}(i+x)}F\!\left(\frac{i-x}{i+x}\right)\)</span>
+gives a unitary mapping of <span class="math inline">\(H_1\)</span> to
+<span class="math inline">\(H_2\)</span>.</h3>
+<p><strong>proof</strong><br />
+① Linearity <span class="math inline">\((F_1,F_2\in H_1,\
+\alpha,\beta\in\mathbb{C})\)</span></p>
+<p>Let <span class="math inline">\(G(x)\overset{\mathrm{def}}{=}\alpha
+F_1(x)+\beta F_2(x)\)</span>, then <span class="math inline">\(U(G(x))=\frac{1}{\sqrt{\pi}(i+x)}G\!\left(\frac{i-x}{i+x}\right)\)</span>.</p>
+<p><span class="math inline">\(G\!\left(\frac{i-x}{i+x}\right)=\alpha
+F_1\!\left(\frac{i-x}{i+x}\right)+\beta
+F_2\!\left(\frac{i-x}{i+x}\right)\)</span>,</p>
+<p>so <span class="math inline">\(U(G(x))=\frac{1}{\sqrt{\pi}(i+x)}\left\{\alpha
+F_1\!\left(\frac{i-x}{i+x}\right)+\beta
+F_2\!\left(\frac{i-x}{i+x}\right)\right\}=\alpha\cdot U(F_1)+\beta\cdot
+U(F_2)\)</span>.</p>
+<p>② Bijection</p>
+<ol style="list-style-type: decimal">
+<li><p>1-1 (injective)<br />
+Consider the case <span class="math inline">\(U(F_1)=U(F_2):\
+\frac{1}{\sqrt{\pi}(i+x)}F_1\!\left(\frac{i-x}{i+x}\right)=\frac{1}{\sqrt{\pi}(i+x)}F_2\!\left(\frac{i-x}{i+x}\right)\)</span>.
+Letting <span class="math inline">\(\frac{i-x}{i+x}=e^{i\theta}\)</span>, <span class="math inline">\(F_1(e^{i\theta})=F_2(e^{i\theta})\)</span>, so
+<span class="math inline">\(U\)</span> is injective (1-1).</p></li>
+<li><p><span class="math inline">\(\frac{i-x}{i+x}=e^{i\theta}\
+\Rightarrow\ x=\tan\frac{\theta}{2}\)</span><br />
+<span class="math display">\[
+\begin{aligned}
+i-x=e^{i\theta}(i+x)
+&amp;\iff (1+e^{i\theta})x=i(1-e^{i\theta}) \\
+&amp;\iff x=\frac{i(1-e^{i\theta})}{1+e^{i\theta}}
+=\frac{i(1-\cos\theta-i\sin\theta)}{1+\cos\theta+i\sin\theta}
+=\frac{\sin\theta+i(1-\cos\theta)}{1+\cos\theta+i\sin\theta} \\
+&amp;=\frac{\{\sin\theta+i(1-\cos\theta)\}\{1+\cos\theta-i\sin\theta\}}{(1+\cos\theta)^2+\sin^2\theta}
+\\
+&amp;=\frac{\sin\theta(1+\cos\theta)-i\sin^2\theta+i(1-\cos\theta)(1+\cos\theta)+(1-\cos\theta)\sin\theta}{1+2\cos\theta+\cos^2\theta+\sin^2\theta}
+\\
+&amp;=\frac{2\sin\theta+i(1-\cos^2\theta-\sin^2\theta)}{2(1+\cos\theta)}
+=\frac{2\cdot 2\sin\frac{\theta}{2}\cos\frac{\theta}{2}}{2\cdot
+2\cos^2\frac{\theta}{2}}
+=\frac{\sin\frac{\theta}{2}}{\cos\frac{\theta}{2}}
+=\tan\frac{\theta}{2}.
+\end{aligned}
+\]</span></p></li>
+<li><p>onto (surjective) Consider <span class="math inline">\(g\in
+H_2\)</span> and let <span class="math inline">\(\sqrt{\pi}(i+x)g(x)=G\!\left(\frac{i-x}{i+x}\right)\)</span>.
+<span class="math inline">\(\frac{i-x}{i+x}=e^{i\theta}\ \Rightarrow\
+G(e^{i\theta})=\sqrt{\pi}\left(i+\tan\frac{\theta}{2}\right)g\!\left(\tan\frac{\theta}{2}\right).\)</span>
+<span class="math display">\[
+\begin{aligned}
+\|G\|_{H_1}^2
+&amp;=\frac{1}{2\pi}\int_{-\pi}^{\pi}\pi\left(i+\tan\frac{\theta}{2}\right)\left(-i+\tan\frac{\theta}{2}\right)\left|g\!\left(\tan\frac{\theta}{2}\right)\right|^2\,d\theta
+\\
+&amp;=\frac{1}{2}\int_{-\pi}^{\pi}\left(\tan^2\frac{\theta}{2}+1\right)\left|g\!\left(\tan\frac{\theta}{2}\right)\right|^2\,d\theta
+\quad\left(\text{let }\tan\frac{\theta}{2}=x,\
+dx=\frac{1}{2}\sec^2\frac{\theta}{2}\,d\theta\right) \\
+&amp;=\int_{\mathbb{R}}|g(x)|^2\,dx \quad\left(\because\
+\tan^2\frac{\theta}{2}+1=\sec^2\frac{\theta}{2}\right) \\
+&amp;&lt;\infty\quad(\because\ g\in H_2).
+\end{aligned}
+\]</span> This means <span class="math inline">\(G\in H_1\)</span>, so
+<span class="math inline">\(U\)</span> is surjective (onto).</p></li>
+</ol>
+<p>③ <span class="math inline">\(\|UF\|_{H_2}=\|F\|_{H_1}\)</span></p>
+<p>Also, ② shows <span class="math inline">\(\|F\|_{H_1}=\|UF\|_{H_2}\)</span>.</p>
+</div>
+<div id="b-as-a-result-leftfrac1sqrtpiixleftfraci-xixrightnright_n-is-an-orthonormal-basis-for-h_2" class="section level3">
+<h3>(b) As a result, <span class="math inline">\(\left\{\frac{1}{\sqrt{\pi}(i+x)}\left(\frac{i-x}{i+x}\right)^n\right\}_n\)</span>
+is an orthonormal basis for <span class="math inline">\(H_2\)</span></h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(\{e^{in\theta}\}_n\)</span> : orthonormal
+basis for <span class="math inline">\(H_1\)</span></p>
+<p>It is clear that <span class="math inline">\(\{e^{in\theta}\}\)</span> is an orthonormal set in
+<span class="math inline">\(H_1\)</span>.</p>
+<p>Consider <span class="math inline">\(F\in H_1\)</span> such that
+<span class="math inline">\(\frac{1}{2\pi}\int_{-\pi}^{\pi}F(e^{i\theta})\cdot
+e^{-in\theta}\,d\theta=0\)</span> for all <span class="math inline">\(n\in\mathbb{N}\)</span>. Since the Fourier
+coefficients of <span class="math inline">\(F\)</span> are all <span class="math inline">\(0\)</span>, <span class="math inline">\(F=0\)</span> (Thm 4.3.1). Thus, <span class="math inline">\(\{e^{in\theta}\}\)</span> is an orthonormal basis
+for <span class="math inline">\(H_1\)</span> (Thm 4.2.3).</p>
+<p>② <span class="math inline">\(\left\{\frac{1}{\sqrt{\pi}(i+x)}\left(\frac{i-x}{i+x}\right)^n\right\}_n\)</span>
+let <span class="math inline">\(\{f_n\}_n\)</span> : orthonormal basis
+for <span class="math inline">\(H_2\)</span></p>
+<p><span class="math inline">\(\frac{i-x}{i+x}=e^{i\theta}\)</span>, so
+<span class="math inline">\(e^{in\theta}=\left(\frac{i-x}{i+x}\right)^n\)</span>.</p>
+<p>Then, <span class="math inline">\(U(e^{in\theta})=U\!\left(\left(\frac{i-x}{i+x}\right)^n\right)=\frac{1}{\sqrt{\pi}(i+x)}\left(\frac{i-x}{i+x}\right)^n\
+\overset{\text{let}}{=}f_n(x)\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\|f_n\|_{H_2}=\|e^{in\theta}\|_{H_1}=1\)</span>
+(<span class="math inline">\(U\)</span> is unitary), so <span class="math inline">\(\|f_n\|_{H_2}=1\ \ \forall
+n\in\mathbb{N}\)</span>.</p></li>
+<li><p><span class="math inline">\((f_n,f_m)=(e^{in\theta},e^{im\theta})=0\ (n\ne
+m)\)</span>, so <span class="math inline">\(\{f_n\}\)</span> is
+orthogonal.</p></li>
+</ol>
+<p>So, 1) &amp; 2) implies <span class="math inline">\(\{f_n\}\)</span>
+is an orthonormal set in <span class="math inline">\(H_2\)</span>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math inline">\((f,f_n)=0\ \ \forall n,\ \text{then
+}f=0\in H_2\)</span></li>
+</ol>
+<p>Consider <span class="math inline">\(f\in H_2\)</span> such that
+<span class="math inline">\((f,f_n)=0\)</span> for all <span class="math inline">\(n\)</span>. <span class="math inline">\(U\)</span>
+is bijective, so there uniquely exists <span class="math inline">\(F\in
+H_1\)</span> s.t. <span class="math display">\[
+f(x)=\frac{1}{\sqrt{\pi}(i+x)}F\!\left(\frac{i-x}{i+x}\right)=U(F(e^{i\theta}))\quad\left(\frac{i-x}{i+x}=e^{i\theta}\right).
+\]</span> Then, <span class="math display">\[
+(f(x),f_n(x))_{H_2}=(F(e^{i\theta}),e^{in\theta})_{H_1}
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}F(e^{i\theta})e^{-in\theta}\,d\theta=0\
+\ \forall n.
+\]</span> The Fourier coefficients of <span class="math inline">\(F\)</span> are all <span class="math inline">\(0\)</span>, so <span class="math inline">\(F=0\)</span> and <span class="math inline">\(f=0\)</span>.</p>
+<p><span class="math inline">\(\therefore\ \{f_n\}\)</span> is an
+orthonormal basis for <span class="math inline">\(H_2\)</span>.</p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body> 
+
+  
+</div>
