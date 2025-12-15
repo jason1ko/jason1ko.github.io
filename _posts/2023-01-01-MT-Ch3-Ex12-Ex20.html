@@ -1,0 +1,667 @@
+---
+title: "Ch3 : Ex.12 ~ Ex.20"
+date: 2023-01-01 23:30:55
+categories: [Measure Theory]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="fxx2sinleftfrac1x2right-xneq-0-and-f00.-show-that" class="section level2">
+<h2>12. <span class="math inline">\(F(x)=x^2\sin\!\left(\frac{1}{x^2}\right)\ (x\neq
+0)\)</span> and <span class="math inline">\(F(0)=0\)</span>. Show
+that</h2>
+<div id="i-fx-exists-for-every-xinmathbbr" class="section level3">
+<h3>(i) <span class="math inline">\(F&#39;(x)\)</span> exists for every
+<span class="math inline">\(x\in\mathbb{R}\)</span></h3>
+<p><strong>proof</strong><br />
+<span class="math display">\[
+F&#39;(x)=2x\sin\!\left(\frac{1}{x^2}\right)-\frac{2}{x}\cos\!\left(\frac{1}{x^2}\right)\quad(x\neq
+0)
+\]</span> <span class="math display">\[
+\begin{aligned}
+F&#39;(0)
+&amp;=\lim_{x\to 0}\frac{F(x)-F(0)}{x-0}
+=\lim_{x\to
+0}\frac{1}{x}\left\{x^2\sin\!\left(\frac{1}{x^2}\right)\right\}\\
+&amp;=\lim_{x\to 0}x\sin\!\left(\frac{1}{x^2}\right)=0 \qquad(\because\
+|\sin(1/x^2)|\le 1).
+\end{aligned}
+\]</span></p>
+</div>
+<div id="ii-fx-is-not-integrable-on--11" class="section level3">
+<h3>(ii) <span class="math inline">\(F&#39;(x)\)</span> is not
+integrable on <span class="math inline">\([-1,1]\)</span></h3>
+<p><strong>proof</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+F&#39;(x)
+&amp;=2x\sin\!\left(\frac{1}{x^2}\right)+x^2\cos\!\left(\frac{1}{x^2}\right)(-2)x^{-3}\\
+&amp;=2x\sin\!\left(\frac{1}{x^2}\right)-\frac{2}{x}\cos\!\left(\frac{1}{x^2}\right).
+\end{aligned}
+\]</span> <span class="math inline">\(\displaystyle
+\int_0^1\left|2x\sin\!\left(\frac{1}{x^2}\right)\right|dx\le \int_0^1
+2x\,dx&lt;\infty\)</span>, it remains to show <span class="math inline">\(\displaystyle \int_0^1
+\frac{2}{x}\left|\cos\!\left(\frac{1}{x^2}\right)\right|dx=\infty\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Let <span class="math inline">\(g(x)=\dfrac{2}{x}\left|\cos\!\left(\dfrac{1}{x^2}\right)\right|\)</span>,
+<span class="math inline">\(a_k=\left(2k\pi+\dfrac{\pi}{4}\right)^{-1/2}\)</span>
+and <span class="math inline">\(b_k=\left(2k\pi-\dfrac{\pi}{4}\right)^{-1/2}\)</span>
+<span class="math inline">\((k\in\mathbb{N},\ a_k&lt;b_k)\)</span>. Note
+that <span class="math inline">\([a_k,b_k]:= I_k\)</span> doesn’t
+intersect for all <span class="math inline">\(k\in\mathbb{N}\)</span>.
+<span class="math inline">\((b_{k+1}&lt;a_k)\)</span> When <span class="math inline">\(x\in I_k\)</span>, <span class="math inline">\(2k\pi-\dfrac{\pi}{4}\le \dfrac{1}{x^2}\le
+2k\pi+\dfrac{\pi}{4}\)</span> and <span class="math inline">\(\dfrac{1}{\sqrt{2}}\le
+\cos\!\left(\dfrac{1}{x^2}\right)\le 1\)</span>. Also, <span class="math inline">\(\dfrac{2}{x}\ge 2\cdot\dfrac{1}{b_k}\)</span>. So,
+<span class="math inline">\(g(x)\ge
+\dfrac{2}{b_k}\cdot\dfrac{1}{\sqrt{2}}=\dfrac{\sqrt{2}}{b_k}\)</span>
+for <span class="math inline">\(x\in I_k\)</span> and <span class="math inline">\(g(x)\ge \sum_{k=1}^N
+\dfrac{\sqrt{2}}{b_k}\chi_{I_k}(x)\ (N\in\mathbb{N})\)</span>.</p></li>
+<li><p><span class="math inline">\(\displaystyle \int_0^1
+g(x)\,dx=\infty\)</span><br />
+Then, <span class="math display">\[
+\begin{aligned}
+\displaystyle \int_0^1 g(x)\,dx&amp;\ge \sum_{k=1}^\infty
+\frac{\sqrt{2}}{b_k}(b_k-a_k) \\
+&amp;=\sum_{k=1}^\infty \sqrt{2}\left(1-\frac{a_k}{b_k}\right) \\
+&amp;=\sum_{k=1}^\infty
+\sqrt{2}\left(1-\sqrt{\frac{2k\pi-\pi/4}{2k\pi+\pi/4}}\right) \\
+&amp;=\sum_{k=1}^\infty
+\sqrt{2}\left(1-\sqrt{1-\frac{\pi/2}{2k\pi+\pi/4}}\right).
+\end{aligned}
+\]</span> Since <span class="math inline">\(\sqrt{1-t}\le
+1-\dfrac{1}{2}t\)</span> for <span class="math inline">\(t\in[0,1]\)</span>, we have <span class="math inline">\(1-\sqrt{1-t}\ge \dfrac{1}{2}t\)</span>. Then,
+<span class="math inline">\(\displaystyle \int_0^1 g(x)\,dx\ge
+\sum_{k=1}^\infty
+\sqrt{2}\cdot\frac{1}{2}\cdot\frac{\pi/2}{2k\pi+\pi/4}=\frac{\pi\sqrt{2}}{4}\sum_{k=1}^\infty
+\frac{1}{2\pi(k+1/8)}&gt;\frac{\sqrt{2}}{8}\sum_{k=1}^\infty
+\frac{1}{k+1}\)</span>. Since <span class="math inline">\(\displaystyle
+\sum_{k=1}^\infty \frac{1}{k+1}=\infty\)</span>, <span class="math inline">\(\displaystyle \int_0^1 g(x)\,dx=\infty\
+\therefore\ \int_0^1 |F&#39;(x)|\,dx=\infty\)</span>.</p></li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="show-that-cantor-lebesgue-function-is-not-absolutely-continuous" class="section level2">
+<h2>13. Show that Cantor-Lebesgue function is not absolutely
+continuous</h2>
+<p><strong>proof</strong> Assume that <span class="math inline">\(f\)</span> is absolutely continuous, then for
+every <span class="math inline">\(\epsilon&gt;0\)</span> there is <span class="math inline">\(\delta_\epsilon&gt;0\)</span> such that <span class="math inline">\(\sum_{k=1}^n|f(b_k)-f(a_k)|&lt;\epsilon\)</span>
+whenever <span class="math inline">\(\sum_{k=1}^n|b_k-a_k|&lt;\delta_\epsilon\)</span>.
+Consider the case <span class="math inline">\(\epsilon&lt;1\)</span>.</p>
+<p>Let <span class="math inline">\(C=\bigcap_{k=0}^\infty C_k\)</span>
+be a Cantor set, where <span class="math inline">\(C_k\)</span> is a
+disjoint union of <span class="math inline">\(2^k\)</span> closed
+intervals of length <span class="math inline">\(\frac{1}{3^k}\)</span>:
+<span class="math inline">\(C_k=\bigcup_{k=1}^{2^k}[a_k,b_k]\)</span>
+and <span class="math inline">\(|b_k-a_k|=\frac{1}{3^k}\)</span>.</p>
+<p>Choose <span class="math inline">\(K\in\mathbb{N}\)</span> such that
+<span class="math inline">\(\left(\frac{2}{3}\right)^K=\sum_{k=1}^{2^K}|b_k-a_k|&lt;\delta_\epsilon\)</span>.
+<span class="math inline">\(f\)</span> increase only in the interval
+<span class="math inline">\(\bigcup_{k=1}^{2^K}[a_k,b_k]\)</span> and
+<span class="math inline">\(f\)</span> is constant on the complement of
+<span class="math inline">\(\bigcup_{k=1}^{2^K}[a_k,b_k]\)</span>. Since
+<span class="math inline">\(f(0)=0\)</span>, <span class="math inline">\(f(1)=1\)</span>, and <span class="math inline">\(f\)</span> is increasing, <span class="math inline">\(\sum_{k=1}^{2^K}|f(b_k)-f(a_k)|=1\)</span>.</p>
+<p>This is a direct contradiction to the definition of absolute
+continuity.</p>
+<p><strong>cf)</strong> Assume that <span class="math inline">\(F\)</span> is absolutely continuous on <span class="math inline">\([0,1]\)</span> <span class="math inline">\(f\)</span> is constant on <span class="math inline">\(C^c\)</span>, so <span class="math inline">\(f&#39;=0\)</span> on <span class="math inline">\(C^c\)</span>. Then, <span class="math inline">\(f&#39;=0\)</span> ae <span class="math inline">\(x\in[0,1]\)</span> and integrable. This leads to
+<span class="math display">\[
+\int_0^1 f&#39;(x)\,dx=f(1)-f(0)\qquad(\text{Thm }3.3.11)
+\]</span> LHS <span class="math inline">\(=0\)</span>, while RHS <span class="math inline">\(=1\)</span>, which is contradiction.</p>
+<hr />
+</div>
+<div id="a-suppose-f-is-continuous-on-ab-and-dfxlimsup_hto-0dfracfxh-fxh.-show-that-dfx-is-measurable." class="section level2">
+<h2>14. (a) Suppose <span class="math inline">\(F\)</span> is continuous
+on <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(D^+(F)(x)=\limsup_{h\to
+0^+}\dfrac{F(x+h)-F(x)}{h}\)</span>. Show that <span class="math inline">\(D^+(F)(x)\)</span> is measurable.</h2>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(E\)</span> is dense in <span class="math inline">\(X\)</span>, then <span class="math inline">\(\sup
+F(E)=\sup F(X)\)</span>.</p>
+<p><span class="math inline">\(\overline{E}=X\)</span>, so <span class="math inline">\(F(X)=F(\overline{E})\subset
+\overline{F(E)}\)</span> (<span class="math inline">\(\because\)</span>
+<span class="math inline">\(F\)</span> is continuous PMA ex 4-2).<br />
+<span class="math inline">\(E\subset X\)</span>, so <span class="math inline">\(F(E)\subset F(X)\)</span>. <span class="math inline">\(\Rightarrow \sup F(E)\le \sup F(X)\le \sup
+\overline{F(E)}\)</span></p>
+<p>PMA 2.28 Since <span class="math inline">\(\sup F(E)=\sup
+\overline{F(E)}\)</span>, <span class="math inline">\(\sup F(X)=\sup
+F(E)\)</span>.</p>
+<p>② <span class="math inline">\(D^+(F)(x)=\lim_{\delta\to
+0^+}\sup_{h\in(0,\delta)}\dfrac{1}{h}(F(x+h)-F(x))\)</span> (def)</p>
+<p><span class="math display">\[
+\begin{aligned}
+\limsup_{h\to 0^+}\frac{1}{h}(F(x+h)-F(x))
+&amp;=\lim_{\delta\to
+0^+}\sup_{0&lt;h&lt;\delta}\frac{1}{h}(F(x+h)-F(x))\\
+&amp;=\lim_{\delta\to
+0^+}\sup_{0&lt;h\in(0,\delta)\cap\mathbb{Q}}\frac{1}{h}(F(x+h)-F(x))
+\qquad(\because\ (0,\delta)\cap\mathbb{Q}\ \text{is dense in}\
+(0,\delta)\ \&amp;\ F\ \text{is continuous, ①})
+\end{aligned}
+\]</span></p>
+<p>③ <span class="math inline">\(D^+(F)(x)\)</span> is measurable</p>
+<p><span class="math inline">\((0,\delta)\cap\mathbb{Q}\)</span> can be
+written as <span class="math inline">\(\{q_n:n\in\mathbb{N},\
+q_n\in(0,\delta)\cap\mathbb{Q}\}\)</span>. Then,</p>
+<p><span class="math display">\[
+\limsup_{h\to 0^+}\frac{1}{h}(F(x+h)-F(x))
+=\lim_{\delta\to
+0^+}\sup_{n\in\mathbb{N}}\frac{1}{q_n}\left(F(x+q_n)-F(q_n)\right)
+\]</span></p>
+<p><span class="math inline">\(G_n(x)\overset{\text{def}}{=}\frac{1}{q_n}\left(F(x+q_n)-F(x)\right)\)</span>
+is continuous on <span class="math inline">\((0,\delta)\)</span>, which
+is measurable.<br />
+So, <span class="math inline">\(F_\delta(x)\overset{\text{def}}{=}\sup_{n\in\mathbb{N}}G_n(x)\)</span>
+is measurable.</p>
+<p>Thus, <span class="math inline">\(D^+(F)(x)=\lim_{\delta\to
+0^+}F_\delta(x)\)</span> is measurable.</p>
+<hr />
+</div>
+<div id="f-is-of-bounded-variation-and-continuous.-show-that-ff_1-f_2-where-both-f_1-and-f_2-are-monotonic-and-continuous." class="section level2">
+<h2>15. <span class="math inline">\(F\)</span> is of bounded variation
+and continuous. Show that <span class="math inline">\(F=F_1-F_2\)</span>, where both <span class="math inline">\(F_1\)</span> and <span class="math inline">\(F_2\)</span> are monotonic and continuous.</h2>
+<p><strong>proof</strong><br />
+<span class="math inline">\(F\)</span> is of bounded variation, then
+<span class="math inline">\(F=G_1-G_2\)</span> where <span class="math inline">\(G_1,G_2\)</span> are increasing and bounded (Thm
+3.3.3).</p>
+<p>Let <span class="math inline">\(F_1=G_1-J_1\)</span> and <span class="math inline">\(F_2=G_2-J_2\)</span>, where <span class="math inline">\(J_1,J_2\)</span> are jump functions of <span class="math inline">\(G_1,G_2\)</span> respectively. Then <span class="math inline">\(F_1,F_2\)</span> are increasing and continuous
+(Thm 3.3.13(ii)).</p>
+<p>Then, <span class="math display">\[
+\begin{aligned}
+F&amp;=(F_1+J_1)-(F_2+J_2)\\
+&amp;=(F_1-F_2)+(J_1-J_2).
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(F\)</span> is continuous, so <span class="math inline">\(J_1-J_2\)</span>, which is jump function, should
+be continuous.</p>
+<p>Let <span class="math inline">\(J_1-J_2=\sum_{n=1}^\infty \alpha_n
+i_n(x)\)</span>, where <span class="math inline">\(\alpha_n\in\mathbb{R}\)</span> and <span class="math display">\[
+i_n(x)=
+\begin{cases}
+0 &amp; (x&lt;x_n),\\
+\theta_n &amp; (x=x_n),\\
+1 &amp; (x&gt;x_n).
+\end{cases}
+\]</span> Assume <span class="math inline">\(\exists\,N\in\mathbb{N}\)</span> such that <span class="math inline">\(\alpha_N\neq 0\)</span>.</p>
+<p><span class="math display">\[
+\lim_{x\uparrow x_N}(J_1-J_2)(x)=\sum_{n=N+1}^\infty \alpha_n
+\quad\text{while}\quad
+\lim_{x\downarrow x_N}(J_1-J_2)(x)=\sum_{n=N}^\infty \alpha_n.
+\]</span> <span class="math inline">\(\alpha_N\neq 0\)</span> leads to
+<span class="math inline">\(\lim_{x\uparrow x_N}(J_1-J_2)(x)\neq
+\lim_{x\downarrow x_N}(J_1-J_2)(x)\)</span>, so <span class="math inline">\(J_1-J_2\)</span> is discontinuous at <span class="math inline">\(x_N\)</span>, which is contradiction.</p>
+<p>Thus, <span class="math inline">\(J_1-J_2=0\)</span> (constant) and
+<span class="math inline">\(F=F_1-F_2\)</span>.</p>
+<hr />
+</div>
+<div id="f-is-of-bounded-variation-on-ab.-show-that" class="section level2">
+<h2>16. <span class="math inline">\(F\)</span> is of bounded variation
+on <span class="math inline">\([a,b]\)</span>. Show that</h2>
+<div id="a-int_ab-fxdx-le-t_fab" class="section level3">
+<h3>(a) <span class="math inline">\(\int_a^b |F&#39;(x)|dx \le
+T_F(a,b)\)</span></h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(F(x)-F(a)=P_F(a,x)-N_F(a,x)\)</span><br />
+<span class="math inline">\(F\)</span> is of bounded variation on <span class="math inline">\([a,b]\)</span>, so <span class="math inline">\(F(x)-F(a)=P_F(a,x)-N_F(a,x)\)</span>, where <span class="math inline">\(P_F\)</span> is a positive variation of <span class="math inline">\(F\)</span> on <span class="math inline">\([a,x]\)</span>, <span class="math inline">\(N_F\)</span> is a negative variation of <span class="math inline">\(F\)</span> on <span class="math inline">\([a,x]\)</span>, and <span class="math inline">\(a\le x\le b\)</span>.</p>
+<p>② <span class="math inline">\(f\overset{\mathrm{let}}{=}g+h\)</span>
+and <span class="math inline">\(\exists f&#39;\)</span> a.e. Then <span class="math inline">\(g&#39;,h&#39;\)</span> exist a.e<br />
+<span class="math inline">\(G\overset{\mathrm{let}}{=}\{x:\ g&#39;(x)\
+\text{doesn&#39;t exist}\}\)</span> and <span class="math inline">\(H\overset{\mathrm{let}}{=}\{x:\ h&#39;(x)\
+\text{doesn&#39;t exist}\}\)</span>. Then <span class="math inline">\(f&#39;(x)\)</span> doesn’t exist for <span class="math inline">\(x\in G\cup H\)</span>. So <span class="math inline">\(m(G\cup H)=0\)</span>.</p>
+<p>If <span class="math inline">\(m(G)&gt;0\)</span> (wlog), <span class="math inline">\(m(G\cup H)\ge m(G)&gt;0\)</span>,
+contradiction.<br />
+If <span class="math inline">\(m(G)\cdot m(H)&gt;0\)</span>, <span class="math inline">\(m(G\cup H)\ge m(G)&gt;0\)</span>.</p>
+<p>Thus, <span class="math inline">\(m(G)=m(H)=0\)</span> and <span class="math inline">\(g&#39;,h&#39;\)</span> exist a.e <span class="math inline">\(x\in[a,b]\)</span>.</p>
+<p>③ <span class="math inline">\(|F&#39;|\le T_F&#39;\)</span>,
+conclusion<br />
+Then, <span class="math inline">\(F&#39;(x)=P_F(a,x)&#39;-N_F(a,x)&#39;\)</span> a.e
+<span class="math inline">\(x\in[a,b]\)</span> (<span class="math inline">\(\because\)</span> ②, thm 3.3.4)<br />
+Also, <span class="math inline">\(|F&#39;(x)|=|P_F(a,x)&#39;-N_F(a,x)&#39;|\le
+P_F(a,x)&#39;+N_F(a,x)&#39;=T_F&#39;(a,x)\)</span> (lemma 3.3.2)<br />
+Note that <span class="math inline">\(T_F&#39;(a,x)\)</span> exists
+a.e</p>
+<p>Thus, <span class="math inline">\(\int_a^b |F&#39;(x)|dx \le \int_a^b
+T_F&#39;(a,x)\,dx = T_F(a,b)\)</span></p>
+</div>
+<div id="b-1-if-int_ab-fxdx-t_fab-then-f-is-absolutely-continuous" class="section level3">
+<h3>(b)-1 if <span class="math inline">\(\int_a^b |F&#39;(x)|dx =
+T_F(a,b)\)</span>, then <span class="math inline">\(F\)</span> is
+absolutely continuous</h3>
+<p><strong>proof</strong><br />
+<span class="math inline">\(F\)</span> is of bounded variation, so <span class="math inline">\(T_F\)</span> is finite. Then, <span class="math inline">\(F&#39;\)</span> is integrable on <span class="math inline">\([a,b]\)</span>. Thus, <span class="math inline">\(F(x)=\int_a^x F&#39;(t)\,dt\)</span> is absolutely
+continuous. (p.183)</p>
+</div>
+<div id="b-2-f-is-absolutely-continuous-on-ab" class="section level3">
+<h3>(b)-2 <span class="math inline">\(F\)</span> is absolutely
+continuous on <span class="math inline">\([a,b]\)</span></h3>
+<div id="int_ab-fxdx-le-t_fab." class="section level4">
+<h4>(1) <span class="math inline">\(\int_a^b |F&#39;(x)|dx \le
+T_F(a,b)\)</span>.</h4>
+<p><strong>proof</strong></p>
+<p><span class="math inline">\(F\)</span> is ab. cont <span class="math inline">\(\Rightarrow F\)</span> is of bounded variation
+<span class="math inline">\(\Rightarrow \int_a^b |F&#39;(x)|dx \le
+T_F(a,b)\)</span>.</p>
+</div>
+<div id="show-that-t_fable-int_ab-fxdt" class="section level4">
+<h4>(2) Show that <span class="math inline">\(T_F(a,b)\le \int_a^b
+|F&#39;(x)|dt\)</span></h4>
+<p><strong>proof</strong><br />
+Consider a partition <span class="math inline">\(a=t_0&lt;\cdots&lt;t_n=b\)</span>. Then <span class="math display">\[
+\begin{aligned}
+\sum_i |F(t_i)-F(t_{i-1})|
+&amp;=\sum_i \left|\int_{t_{i-1}}^{t_i} F&#39;(t)\,dt\right|
+\qquad(\because\ \text{thm }3.3.11) \\
+&amp;\le \sum_i \int_{t_{i-1}}^{t_i} |F&#39;(t)|\,dt
+=\int_a^b |F&#39;(t)|\,dt
+\end{aligned}
+\]</span></p>
+<p>This holds for all partitions, so <span class="math inline">\(T_F(a,b)\le \int_a^b |F&#39;(t)|\,dt\)</span>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math inline">\(\therefore\ T_F(a,b)=\int_a^b
+|F&#39;(x)|dx\)</span></li>
+</ol>
+</div>
+</div>
+<div id="c-for-a-rectifiable-curve-z-lint_ab-ztdt-holds-iff-z-is-absolutely-continuous." class="section level3">
+<h3>(c) For a rectifiable curve <span class="math inline">\(z\)</span>,
+<span class="math inline">\(L=\int_a^b |z&#39;(t)|dt\)</span> holds iff
+<span class="math inline">\(z\)</span> is absolutely continuous.</h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(\leftarrow\)</span><br />
+<span class="math inline">\(z(t)\overset{\mathrm{let}}{=}x(t)+iy(t)\in\mathbb{C}\
+(x,y\in\mathbb{R}).\)</span> Then <span class="math inline">\(x,y\)</span> are absolutely continuous.</p>
+<p>cf) Assume <span class="math inline">\(x\)</span> is not absolutely
+continuous on <span class="math inline">\([a,b]\)</span> (wlog). Then,
+there is <span class="math inline">\(\epsilon_0&gt;0\)</span> such that
+for every <span class="math inline">\(\delta&gt;0\)</span> with <span class="math inline">\(\sum_{i=1}^N|b_i-a_i|&lt;\delta\)</span> and each
+<span class="math inline">\((a_i,b_i)\subset[a,b]\)</span> is disjoint,
+<span class="math inline">\(\sum_{i=1}^N|x(b_i)-x(a_i)|\ge
+\epsilon_0\)</span> ~1)</p>
+<p><span class="math inline">\(z\)</span> is absolutely continuous, so
+there is <span class="math inline">\(\delta_0&gt;0\)</span> such that
+<span class="math inline">\(\sum_{i=1}^N|b_i-a_i|&lt;\delta_0\)</span>
+implies <span class="math inline">\(\sum_{i=1}^N|z(b_i)-z(a_i)|&lt;\epsilon_0\)</span>
+~2).</p>
+<p><span class="math display">\[|z(b_i)-z(a_i)|=\left|(x(b_i)+iy(b_i))-(x(a_i)+iy(a_i))\right|\ge
+|x(b_i)-x(a_i)|,\]</span> so <span class="math display">\[\sum_{i=1}^N|z(b_i)-z(a_i)|\ge
+\sum_{i=1}^N|x(b_i)-x(a_i)|\ge \epsilon_0\ (\because\ \sim1),\]</span>
+which is contradiction to <span class="math inline">\(\sim2)\)</span>.</p>
+<p>The case when <span class="math inline">\(y\)</span> is not
+absolutely continuous (only) leads to same contradiction. Thus, both
+<span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are absolutely continuous.</p>
+<p>Then, using thm 3.4.1, <span class="math display">\[
+\begin{aligned}
+L
+&amp;=\int_a^b \left(x&#39;(t)^2+y&#39;(t)^2\right)^{1/2}dt
+=\int_a^b \left(z&#39;(t)\overline{z&#39;(t)}\right)^{1/2}dt
+=\int_a^b |z&#39;(t)|dt.
+\end{aligned}
+\]</span></p>
+<p>② <span class="math inline">\(\rightarrow\)</span><br />
+<span class="math display">\[
+\int_a^b |z&#39;(t)|dt=\int_a^b
+\left(x&#39;(t)^2+y&#39;(t)^2\right)^{1/2}dt=L&lt;\infty.
+\]</span> This means <span class="math inline">\(z&#39;\)</span> is
+integrable, so <span class="math inline">\(z(t)=\int_a^t
+z&#39;(t)\,dt\)</span> is absolutely continuous.</p>
+<hr />
+</div>
+</div>
+<div id="k_delta_delta0-is-a-family-of-approximations-to-identity-then-show-that-sup_delta0fk_deltaxle-ccdot-fx-for-some-c0-and-for-all-fin-l1mathbbrd." class="section level2">
+<h2>17. <span class="math inline">\(\{K_\delta\}_{\delta&gt;0}\)</span>
+is a family of approximations to identity, then show that <span class="math inline">\(\sup_{\delta&gt;0}|(f*K_\delta)(x)|\le C\cdot
+f^*(x)\)</span> for some <span class="math inline">\(C&gt;0\)</span> and
+for all <span class="math inline">\(f\in
+L^1(\mathbb{R}^d)\)</span>.</h2>
+<p><strong>proof</strong><br />
+Let <span class="math inline">\(L_\delta(x)=A\cdot\min\!\left(\delta^{-d},\
+\frac{\delta}{|x|^{d+1}}\right)\)</span>, then <span class="math inline">\(|K_\delta(x)|\le L_\delta(x)\)</span>.</p>
+<p>① <span class="math inline">\(|f*K_\delta|\le
+|f|*L_\delta\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+|(f*K_\delta)(x)|
+&amp;=\left|\int_{\mathbb{R}^d} f(x-y)K_\delta(y)\,dy\right|
+\le \int_{\mathbb{R}^d}|f(x-y)|\,|K_\delta(y)|\,dy\\
+&amp;\le \int_{\mathbb{R}^d}|f(x-y)|\,L_\delta(y)\,dy
+=(H*L_\delta)(x)
+\end{aligned}
+\]</span> So, it suffices to show <span class="math inline">\(|H|*L_\delta\le C\cdot f^*\)</span>. Then <span class="math display">\[
+\begin{aligned}
+(H*L_\delta)(x)
+&amp;=\int_{\mathbb{R}^d}|f(x-y)|\,L_\delta(y)\,dy\\
+&amp;=\int_{|y|\le \delta}|f(x-y)|\,L_\delta(y)\,dy \ \ \text{②}
++\sum_{k=0}^\infty\int_{2^k\delta&lt;|y|\le
+2^{k+1}\delta}|f(x-y)|\,L_\delta(y)\,dy \ \ \text{③}
+\end{aligned}
+\]</span></p>
+<p>② <span class="math inline">\(\int_{|y|\le\delta}|f(x-y)|L_\delta(y)\,dy\le
+Av_d\cdot f^*(x)\)</span></p>
+<p><span class="math inline">\(|y|\le \delta\)</span> leads to <span class="math inline">\(|y|^{d+1}\le \delta^{d+1}\)</span>, <span class="math inline">\(\delta^{-d}\le \frac{\delta}{|y|^{d+1}}\)</span>
+and thus <span class="math inline">\(L_\delta(y)=A\delta^{-d}\)</span>.
+Then <span class="math display">\[
+\begin{aligned}
+\int_{|y|\le\delta}|f(x-y)|L_\delta(y)\,dy
+&amp;=\frac{A}{\delta^d}\int_{|y|\le\delta}|f(x-y)|\,dy \quad(\text{let
+}t=x-y)\\
+&amp;=\frac{A}{\delta^d}\int_{|t-x|\le\delta}|f(t)|\,dt \quad(\text{let
+}B=B_\delta(x))\\
+&amp;\overset{(a)}{=}\frac{Av_d}{m(B)}\int_B |f(t)|\,dt \le Av_d\cdot
+f^*(x)\qquad(v_d:\ \text{volume of unit ball in }\mathbb{R}^d).
+\end{aligned}
+\]</span></p>
+<p>③ <span class="math inline">\(\int_{2^k\delta&lt;|y|\le
+2^{k+1}\delta}|f(x-y)|L_\delta(y)\,dy\le A2^dv_d\cdot
+2^{-k}f^*(x)\)</span></p>
+<p><span class="math inline">\(|y|&gt;\delta\)</span> leads to <span class="math inline">\(|y|^{d+1}&gt;\delta^{d+1}\)</span> and <span class="math inline">\(\delta^{-d}&gt;\frac{\delta}{|y|^{d+1}}\)</span>.
+So <span class="math inline">\(L_\delta(y)=A\delta/|y|^{d+1}\)</span>.
+Then <span class="math display">\[
+\begin{aligned}
+\int_{2^k\delta&lt;|y|\le 2^{k+1}\delta}|f(x-y)|L_\delta(y)\,dy
+&amp;=A\delta\int_{2^k\delta&lt;|y|\le
+2^{k+1}\delta}|f(x-y)|\frac{1}{|y|^{d+1}}\,dy\\
+&amp;\le A\delta\int_{2^k\delta&lt;|y|\le
+2^{k+1}\delta}|f(x-y)|\frac{1}{(2^k\delta)^{d+1}}\,dy \qquad(\because\
+|y|&gt;2^k\delta) \\
+&amp;\le A\delta\cdot\frac{1}{(2^k\delta)^{d+1}}\int_{|y|\le
+2^{k+1}\delta}|f(x-y)|\,dy \\
+&amp;=A\cdot\frac{2^d\cdot 2^{-k}}{(2^{k+1}\delta)^d}\int_{|y|\le
+2^{k+1}\delta}|f(x-y)|\,dy\\
+&amp;=A\cdot\frac{2^d}{(2^{k+1}\delta)^d}\cdot 2^{-k}\int_{|y|\le
+2^{k+1}\delta}|f(x-y)|\,dy\qquad(\text{let }x-y=t)\\
+&amp;=A2^d2^{-k}\cdot\frac{1}{(2^{k+1}\delta)^d}\int_{|x-t|&lt;2^{k+1}\delta}|f(t)|\,dt\\
+&amp;=A2^d2^{-k}\cdot\frac{v_d}{m(B)}\int_B
+|f(t)|\,dt\qquad\left(B=\{t:\ |t-x|&lt;2^{k+1}\delta\}\right)\\
+&amp;\le A2^dv_d\cdot 2^{-k}f^*(x)
+\end{aligned}
+\]</span></p>
+<p>So, <span class="math inline">\(\sum_{k=0}^\infty\int_{2^k\delta&lt;|y|\le
+2^{k+1}\delta}|f(x-y)|L_\delta(y)\,dy\le A2^dv_df^*(x)\sum_{k=0}^\infty
+2^{-k}=A\cdot 2^{d+1}\cdot v_df^*(x)\)</span></p>
+<p>④ Conclusion</p>
+<p>To sum up, <span class="math inline">\((|H|*L_\delta)(x)\le
+(Av_d+A2^{d+1}v_d)f^*(x)\ \overset{\mathrm{let}}{=}C\cdot
+f^*(x)\)</span> and thus</p>
+<p><span class="math inline">\(|(f*K_\delta)(x)|\le (|f|*L_\delta)(x)\le
+C\cdot f^*(x).\)</span></p>
+<p>This holds for all <span class="math inline">\(\delta&gt;0\)</span>,
+so <span class="math inline">\(\sup_{\delta&gt;0}|(f*K_\delta)(x)|\le
+C\cdot f^*(x)\)</span>, <span class="math inline">\((C=(1+2^{d+1})Av_d)\)</span>.</p>
+<hr />
+</div>
+<div id="fmathbbrtomathbbr-is-absolutely-continuous.-show-that" class="section level2">
+<h2>19. <span class="math inline">\(f:\mathbb{R}\to\mathbb{R}\)</span>
+is absolutely continuous. Show that</h2>
+<div id="a-f-maps-a-set-of-measure-0-to-a-set-of-measure-0" class="section level3">
+<h3>(a) <span class="math inline">\(f\)</span> maps a set of measure
+<span class="math inline">\(0\)</span> to a set of measure <span class="math inline">\(0\)</span></h3>
+<p><strong>proof</strong><br />
+<span class="math inline">\(f\)</span> is absolutely continuous on <span class="math inline">\(\mathbb{R}\)</span>, so there is <span class="math inline">\(\delta_\epsilon&gt;0\)</span> such that <span class="math inline">\(\sum_{i=1}^N|f(x_i)-f(y_i)|&lt;\epsilon\)</span>
+whenever <span class="math inline">\(\sum_{i=1}^N|x_i-y_i|&lt;\delta_\epsilon\)</span>
+<span class="math inline">\((N\in\mathbb{N})\)</span> for given <span class="math inline">\(\epsilon&gt;0\)</span>.</p>
+<p>for given <span class="math inline">\(\delta&gt;0\)</span> ✓<br />
+<span class="math inline">\(Z\)</span> is measurable, so there is an
+open set <span class="math inline">\(O_\epsilon\subset\mathbb{R}\)</span> such that
+<span class="math inline">\(Z\subset O_\epsilon\)</span> and <span class="math inline">\(m(O_\epsilon-Z)=m(O_\epsilon)-m(Z)&lt;\delta_\epsilon\)</span>
+; <span class="math inline">\(m(O_\epsilon)&lt;\delta_\epsilon\)</span>.</p>
+<p>Note that <span class="math inline">\(O_\epsilon\)</span> can be
+written as a countable union of open &amp; disjoint intervals in <span class="math inline">\(\mathbb{R}\)</span>: <span class="math inline">\(O_\epsilon=\bigsqcup_{k=1}^\infty (a_k,b_k)\
+\overset{\mathrm{let}}{=}\ \bigsqcup_{k=1}^\infty I_k\)</span>.</p>
+<p><span class="math inline">\(F\)</span> is continuous on <span class="math inline">\([a_k,b_k]\)</span> which is compact, so there
+exist <span class="math inline">\(c_k,d_k\in[a_k,b_k]\)</span> such that
+<span class="math inline">\(f(c_k)=\inf_{x\in I_k}f(x)\)</span> and
+<span class="math inline">\(f(d_k)=\sup_{x\in I_k}f(x)\)</span> and thus
+<span class="math inline">\(f(I_k)=[f(c_k),f(d_k)]\)</span>. (PMA
+4.16)</p>
+<p>Note that <span class="math inline">\(|c_k-d_k|\le (b_k-a_k)\)</span>
+for all <span class="math inline">\(k\in\mathbb{N}\)</span>.<br />
+Then <span class="math inline">\(\sum_{k=1}^N|c_k-d_k|\le
+\sum_{k=1}^N|b_k-a_k|\le
+m(O_\epsilon)&lt;\delta_\epsilon\)</span>.<br />
+This means <span class="math inline">\(\sum_{k=1}^N|f(c_k)-f(d_k)|&lt;\epsilon\)</span>
+for all <span class="math inline">\(N\in\mathbb{N}\)</span>, so <span class="math inline">\(\sum_{k=1}^\infty |f(c_k)-f(d_k)|\le
+\epsilon\)</span>.</p>
+<p>Then, <span class="math display">\[
+\begin{aligned}
+m(f(O_\epsilon))
+&amp;=m\!\left(f\!\left(\bigsqcup_{k=1}^\infty I_k\right)\right)
+=m\!\left(\bigsqcup_{k=1}^\infty f(I_k)\right)
+\le \sum_{k=1}^\infty m(f(I_k))
+=\sum_{k=1}^\infty |f(c_k)-f(d_k)|
+\le \epsilon.
+\end{aligned}
+\]</span> <span class="math inline">\(Z\subset O_\epsilon\)</span> leads
+to <span class="math inline">\(f(Z)\subset f(O_\epsilon)\)</span>, so
+<span class="math inline">\(m(f(Z))\le m(f(O_\epsilon))\le
+\epsilon\)</span>.</p>
+<p><span class="math inline">\(m(f(Z))\le \epsilon\)</span> holds for
+all <span class="math inline">\(\epsilon&gt;0\)</span>, so <span class="math inline">\(m(f(Z))=0\)</span>.</p>
+</div>
+<div id="b-f-maps-a-measurable-set-to-a-measurable-set-e." class="section level3">
+<h3>(b) <span class="math inline">\(f\)</span> maps a measurable set to
+a measurable set <span class="math inline">\(E\)</span>.</h3>
+<p>① <span class="math inline">\(K_n=F\cap\overline{B_n}\)</span> is
+compact</p>
+<p>Let <span class="math inline">\(F\)</span> be a closed set, and <span class="math inline">\(\overline{B_n}\)</span> be a closed ball centered
+at the origin with radius <span class="math inline">\(n\in\mathbb{N}\)</span>. <span class="math inline">\(\overline{B_n}\)</span> is also bounded, so it is
+compact. <span class="math inline">\(K_n=F\cap\overline{B_n}\)</span> is
+compact as well (PMA 2.35).</p>
+<p>② <span class="math inline">\(F=\bigcup_n K_n\)</span>, thus
+measurable</p>
+<p>If <span class="math inline">\(x\in\bigcup_{n=1}^\infty K_n\)</span>,
+there is an integer <span class="math inline">\(N\)</span> such that
+<span class="math inline">\(x\in F\cap\overline{B_N}\)</span>. So, <span class="math inline">\(x\in F\)</span>. For <span class="math inline">\(y\in F\)</span>, there is an integer <span class="math inline">\(M\)</span> such that <span class="math inline">\(M-1&lt;|y|\le M\)</span>. Since <span class="math inline">\(y\in\overline{B_M}\)</span>, <span class="math inline">\(y\in K_M\)</span>. So, <span class="math inline">\(y\in\bigcup_{n=1}^\infty K_n\)</span>. This leads
+to <span class="math inline">\(F=\bigcup_{n=1}^\infty K_n\)</span>, a
+countable union of measurable sets. Thus, <span class="math inline">\(F\)</span> is measurable.</p>
+<p>③ <span class="math inline">\(E=F_\sigma\cup(E-F_\sigma)\)</span></p>
+<p>Suppose <span class="math inline">\(E\)</span> is a measurable set in
+<span class="math inline">\(\mathbb{R}\)</span>. Then <span class="math inline">\(E=F_\sigma\cup(E-F_\sigma)\)</span>, where <span class="math inline">\(F_\sigma\)</span> is a countable union of closed
+sets and <span class="math inline">\(E-F_\sigma\)</span> is a null set:
+<span class="math inline">\(F_\sigma=\bigcup_{k=1}^\infty F_k\)</span>
+&amp; <span class="math inline">\(m(E-F_\sigma)=0\)</span>.</p>
+<p>④ <span class="math inline">\(F_\sigma=\bigcup K_\ell\)</span></p>
+<p>Every closed set <span class="math inline">\(F_k\)</span> can be
+written as a countable union of compact sets: <span class="math inline">\(F_k=\bigcup_{m=1}^\infty K_{k,m}\)</span>. Then,
+<span class="math inline">\(F_\sigma=\bigcup_{k=1}^\infty\bigcup_{m=1}^\infty
+K_{k,m}\ \overset{\mathrm{let}}{=}\ \bigcup_{\ell=1}^\infty
+K_\ell\)</span>.</p>
+<p>⑤ conclusion</p>
+<p>Then, <span class="math inline">\(f(E)=f(E-F_\sigma)\cup\left(\bigcup_{\ell=1}^\infty
+f(K_\ell)\right)\)</span>. <span class="math inline">\(f(E-F_\sigma)\)</span> has measure <span class="math inline">\(0\)</span>, which is measurable, and <span class="math inline">\(f(K_\ell)\)</span> is compact, which is
+measurable. Since <span class="math inline">\(f(E)\)</span> is a
+countable union of measurable sets, <span class="math inline">\(f(E)\)</span> is a measurable set in <span class="math inline">\(\mathbb{R}\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="f-is-absolutely-continuous-on-ab-and-increasing.-let-afa-and-bfb." class="section level2">
+<h2>20. <span class="math inline">\(F\)</span> is absolutely continuous
+on <span class="math inline">\([a,b]\)</span> and increasing. let <span class="math inline">\(A=F(a)\)</span> and <span class="math inline">\(B=F(b)\)</span>.</h2>
+<div id="c-e-is-a-measurable-subset-of-ab-then-show-that-f-1ecapxinabfx0-is-measurable-let-hxf0" class="section level3">
+<h3>(c) <span class="math inline">\(E\)</span> is a measurable subset of
+<span class="math inline">\([A,B]\)</span>, then show that <span class="math inline">\(F^{-1}(E)\cap\{x\in[a,b]:F&#39;(x)&gt;0\}\)</span>
+is measurable (let <span class="math inline">\(H=\{x:F&#39;&gt;0\}\)</span>)</h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(\int_{F^{-1}(O)}F&#39;(x)\,dx=m(O)\)</span> for
+open set <span class="math inline">\(O\subset[A,B]\)</span></p>
+<p><span class="math inline">\(O=\dot\bigcup_{i=1}^\infty
+(A_i,B_i)\)</span> (<span class="math inline">\(\because\)</span> <span class="math inline">\(O\)</span> is open). <span class="math inline">\(F\)</span> is continuous and increasing, so each
+<span class="math inline">\((A_i,B_i)\)</span> can be written as <span class="math inline">\((a_i,b_i)=F^{-1}((A_i,B_i))\)</span>. Then <span class="math inline">\(F^{-1}(O)=\dot\bigcup_{i=1}^\infty
+F^{-1}((A_i,B_i))=\dot\bigcup_{i=1}^\infty (a_i,b_i)\)</span>.</p>
+<p>Then, <span class="math display">\[
+\begin{aligned}
+\int_{F^{-1}(O)}F&#39;(x)\,dx
+&amp;=\int_{[a,b]}\chi_{\cup_i (a_i,b_i)}(x)\,F&#39;(x)\,dx
+=\sum_{i=1}^\infty\int_{(a_i,b_i)}F&#39;(x)\,dx \qquad(\mathrm{MCT})\\
+&amp;=\sum_{i=1}^\infty\big(F(b_i)-F(a_i)\big)
+=\sum_{i=1}^\infty|B_i-A_i|
+=m(O)\qquad(\because\ F\ \text{is A.C.})
+\end{aligned}
+\]</span></p>
+<p>② <span class="math inline">\(N\subset[A,B]\)</span> with <span class="math inline">\(m(N)=0\)</span>, then <span class="math inline">\(m(F^{-1}(N)\cap H)=0\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(G_N=N\cup(G_N-N)\)</span>, <span class="math inline">\(m(G_N)=0\)</span><br />
+<span class="math inline">\(N\)</span> is measurable, so there is a
+<span class="math inline">\(G_\delta\)</span> set <span class="math inline">\(G_N\subset[A,B]\)</span> such that <span class="math inline">\(N\subset G_N\)</span>, <span class="math inline">\(m(G_N-N)=0\)</span>, and <span class="math inline">\(G_N=N\cup(G_N-N)\)</span>. Let <span class="math inline">\(G_N=\bigcap_{k=1}^\infty O_k\)</span>, where <span class="math inline">\(O_k\subset[A,B]\)</span> is an open set, and <span class="math inline">\(E_n=\bigcap_{k=1}^n O_k\)</span>. Note that <span class="math inline">\(m(G_N)=0\)</span>.</p></li>
+<li><p><span class="math inline">\(\bigcap_{k=1}^\infty
+O_k=\bigcap_{n=1}^\infty E_n\)</span><br />
+<span class="math inline">\(x\in\bigcap_{k=1}^\infty O_k\)</span>, then
+<span class="math inline">\(x\in O_k\)</span> for all <span class="math inline">\(k\in\mathbb{N}\)</span>. This means <span class="math inline">\(x\in E_n=\bigcap_{k=1}^n O_k\)</span> for all
+<span class="math inline">\(n\in\mathbb{N}\)</span>. So, <span class="math inline">\(x\in\bigcap_{n=1}^\infty E_n\)</span>.</p></li>
+</ol>
+<p><span class="math inline">\(x\in\bigcap_{n=1}^\infty E_n\)</span>,
+then <span class="math inline">\(x\in E_n=\bigcap_{k=1}^n O_k\)</span>
+for all <span class="math inline">\(n\in\mathbb{N}\)</span>. <span class="math inline">\(x\in O_k\)</span> for <span class="math inline">\(1\le k\le n\)</span> and this holds for all <span class="math inline">\(n\in\mathbb{N}\)</span>, so <span class="math inline">\(x\in O_k\ \forall k\in\mathbb{N}\)</span>. Thus
+<span class="math inline">\(x\in\bigcap_{k=1}^\infty O_k\)</span>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p><span class="math inline">\(F^{-1}(G_N)\)</span> is a <span class="math inline">\(G_\delta\)</span><br />
+Then, <span class="math inline">\(F^{-1}(G_N)=F^{-1}\!\left(\bigcap_{n=1}^\infty
+E_n\right)=\bigcap_{n=1}^\infty F^{-1}(E_n)\)</span>. <span class="math inline">\(F\)</span> is continuous, so <span class="math inline">\(F^{-1}(E_n)\)</span> is open and <span class="math inline">\(F^{-1}(G_N)\)</span> is a set of <span class="math inline">\(G_\delta\)</span>. Note that <span class="math inline">\(F^{-1}(E_n)\supset F^{-1}(E_{n+1})\)</span> (<span class="math inline">\(\because\ E_n\supset E_{n+1}\)</span>).</p></li>
+<li><p><span class="math inline">\(\int_{F^{-1}(G_N)} F&#39; =
+m(G_N)=0\)</span> <span class="math inline">\((\because\
+F^{-1}(G_N)\supset F^{-1}(E_n))\)</span> <span class="math inline">\(\{\chi_{F^{-1}(E_n)}(x)F&#39;(x)\}\)</span> is a
+sequence of measurable functions and <span class="math inline">\(\chi_{F^{-1}(E_n)}(x)F&#39;(x)\downarrow
+\chi_{F^{-1}(G_N)}(x)F&#39;(x)\)</span>. Using MCT, <span class="math display">\[
+\lim_{n\to\infty}\int_{F^{-1}(E_n)}F&#39;(x)\,dx=\int_{F^{-1}(G_N)}F&#39;(x)\,dx.
+\qquad(\because\ ①)
+\]</span> Since <span class="math inline">\(\int_{F^{-1}(E_n)}F&#39;(x)\,dx=m(E_n)\)</span>
+and <span class="math inline">\(\lim_{n\to\infty}m(E_n)=m(G_N)\)</span>
+(each <span class="math inline">\(m(E_n)&lt;\infty\)</span>), <span class="math inline">\(\int_{F^{-1}(G_N)}F&#39;=m(G_N)=0\)</span>.</p></li>
+<li><p><span class="math inline">\(m(F^{-1}(N)\cap H)=0\)</span> So,
+<span class="math inline">\(m_*(F^{-1}(N)\cap H)\le m(F^{-1}(G_N)\cap
+H)\)</span> (<span class="math inline">\(\because\ N\subset G_N,\
+F^{-1}(G_N)\ \&amp;\ H\ \text{measurable?}\)</span>) <span class="math display">\[
+\begin{aligned}
+&amp;=m(\{x\in F^{-1}(G_N):F&#39;(x)&gt;0\})
+=m\!\left(\bigcup_{n=1}^\infty\left\{x\in F^{-1}(G_N):F&#39;(x)\ge
+\frac{1}{n}\right\}\right)\\
+&amp;=\lim_{n\to\infty}m\!\left(\left\{x\in F^{-1}(G_N):F&#39;(x)\ge
+\frac{1}{n}\right\}\right)
+\le
+\lim_{n\to\infty}\left(\frac{1}{1/n}\right)\int_{F^{-1}(G_N)}F&#39;(x)\,dx
+\qquad(\text{Chebyshev inequality})\\
+&amp;=\lim_{n\to\infty}0=0
+\end{aligned}
+\]</span> ( <span class="math inline">\(E_\alpha:=\{f&gt;\alpha\}\Rightarrow
+m(E_\alpha)\le \frac{1}{\alpha}\int f\)</span> )</p></li>
+</ol>
+<p>Thus, <span class="math inline">\(m(F^{-1}(N)\cap H)=0\)</span>.</p>
+<p>③ <span class="math inline">\(F^{-1}(E)\cap H\)</span> is
+measurable</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(G_E=E\cup(G_E-E),\
+G_H=H\cup(G_H-H)\)</span><br />
+<span class="math inline">\(E\)</span> is measurable, so there is a
+<span class="math inline">\(G_\delta\)</span> set <span class="math inline">\(G_E=\bigcap_{n=1}^\infty E_n\)</span> such that
+<span class="math inline">\(E_n\)</span> is open, <span class="math inline">\(E\subset G_E\subset[A,B]\)</span>, <span class="math inline">\(G_E=E\cup(G_E-E)\)</span>, and <span class="math inline">\(m(G_E-E)=0\)</span>. <span class="math inline">\(H\)</span> is measurable, so there is a <span class="math inline">\(G_\delta\)</span> set <span class="math inline">\(G_H=\bigcap_{i=1}^\infty H_i\)</span> such that
+<span class="math inline">\(H_i\)</span> is an open set, <span class="math inline">\(H\subset G_H\subset[a,b]\)</span>, <span class="math inline">\(G_H=H\cup(G_H-H)\)</span>, and <span class="math inline">\(m(G_H-H)=0\)</span>.</p></li>
+<li><p><span class="math inline">\(F^{-1}(G_E)\cap G_H\)</span> is a
+<span class="math inline">\(G_\delta\)</span> <span class="math display">\[
+\begin{aligned}
+F^{-1}(G_E)\cap G_H
+&amp;=F^{-1}\!\left(\bigcap_{n=1}^\infty
+E_n\right)\cap\left(\bigcap_{i=1}^\infty H_i\right)
+=\left(\bigcap_{n=1}^\infty
+F^{-1}(E_n)\right)\cap\left(\bigcap_{i=1}^\infty H_i\right)\\
+&amp;=\bigcap_{n,i}\left(F^{-1}(E_n)\cap H_i\right).
+\end{aligned}
+\]</span> <span class="math inline">\(F^{-1}(E_n)\)</span> is open
+(<span class="math inline">\(\because\)</span> <span class="math inline">\(F\)</span> is continuous), as well as <span class="math inline">\(H_i\)</span>, so <span class="math inline">\(F^{-1}(E_n)\cap H_i\)</span> is open.<br />
+So, <span class="math inline">\(F^{-1}(G_E)\cap G_H\)</span> is a set of
+<span class="math inline">\(G_\delta\)</span>.</p></li>
+<li><p><span class="math inline">\((F^{-1}(G_E)\cap G_H)-(F^{-1}(E)\cap
+H)\subset (F^{-1}(G_E-E)\cap H)\cup(G_H-H)\)</span> <span class="math display">\[
+\begin{aligned}
+&amp;\{F^{-1}(G_E)\cap G_H\}-\{F^{-1}(E)\cap H\}\\
+&amp;=\{F^{-1}(G_E)\cap G_H\}\cap\{F^{-1}(E)\cup H\}^c\\
+&amp;=F^{-1}(G_E)\cap\left[G_H\cap\{F^{-1}(E)\cup
+H\}^c\right]\qquad(\because\ [F^{-1}(E)]^c=F^{-1}(E^c))\\
+&amp;=F^{-1}(G_E)\cap\left[\{G_H\cap
+F^{-1}(E^c)\}\cup\{G_H-H\}^c\right]\\
+&amp;=\{F^{-1}(G_E)\cap G_H\cap
+F^{-1}(E^c)\}\cup\{F^{-1}(G_E)\cap(G_H-H)\}\\
+&amp;=\{F^{-1}(G_E-E)\cap G_H\}\cup\{F^{-1}(G_E)\cap(G_H-H)\}\\
+&amp;=\{F^{-1}(G_E-E)\cap
+H\}\cup\{F^{-1}(G_E-E)\cap(G_H-H)\}\cup\{F^{-1}(G_E)\cap(G_H-H)\}\\
+&amp;=\{F^{-1}(G_E-E)\cap H\}\cup\{F^{-1}(G_E)\cap(G_H-H)\}\\
+&amp;\subset \{F^{-1}(G_E-E)\cap H\}\cup(G_H-H).
+\end{aligned}
+\]</span></p></li>
+<li><p><span class="math inline">\(m\big((F^{-1}(G_E)\cap
+G_H)-(F^{-1}(E)\cap H)\big)=0\)</span> <span class="math inline">\(m(G_E-E)=0\)</span>, so <span class="math inline">\(m(\{F^{-1}(G_E-E)\cap H\})=0\)</span> (<span class="math inline">\(\because\)</span> ②). Since <span class="math inline">\(m(G_H-H)=0\)</span>, <span class="math display">\[m\big(\{F^{-1}(G_E)\cap G_H\}-\{F^{-1}(E)\cap
+H\}\big)
+\le m(\{F^{-1}(G_E-E)\cap H\})+m(G_H-H)=0.\]</span> So, <span class="math inline">\(m\big(\{F^{-1}(G_E)\cap G_H\}-\{F^{-1}(E)\cap
+H\}\big)=0\)</span>.</p></li>
+<li><p>conclusion Since <span class="math inline">\(F^{-1}(G_E)\cap
+G_H=(F^{-1}(E)\cap H)\cup\{(F^{-1}(G_E)\cap G_H)-(F^{-1}(E)\cap
+H)\}\)</span>, <span class="math inline">\(F^{-1}(E)\cap H\)</span> is
+measurable (Cor 1.3.5).</p></li>
+</ol>
+<hr />
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+
+</div>
