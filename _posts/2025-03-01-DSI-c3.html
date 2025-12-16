@@ -1,0 +1,536 @@
+---
+title: "Consultation 3"
+date: 2025-03-01 23:45:59
+categories: [Data Science Institute]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="clients-inquiry" class="section level1">
+<h1>Client’s Inquiry</h1>
+<div id="question-1" class="section level2">
+<h2>Question 1</h2>
+<p>Fifty patients with aphasia were asked to select their preferred
+activities using the <strong>ACS activity cards</strong>.<br />
+The ACS consists of <strong>67 cards</strong> in total, including
+<strong>33 instrumental activities</strong>, <strong>18 leisure
+activities</strong>, and <strong>16 social activities</strong>, each
+represented by a printed photograph.</p>
+<p>First, the researcher presented the <strong>33 instrumental activity
+cards</strong> to each patient one by one and asked whether the patient
+would like to perform the activity. - If the patient did
+<strong>not</strong> want to do the activity, it was coded as
+<strong>0</strong>. - If the patient <strong>wanted</strong> to do the
+activity, it was coded as <strong>1</strong>. - For example, if
+<code>acs_instrumental_1 = 1</code> in the Excel coding file, it
+indicates that the patient prefers instrumental activity #1 (visiting a
+hospital).</p>
+<p>After all 33 instrumental activities were classified, only the
+activities selected as preferred were gathered, and the patient was
+asked to choose their <strong>Top 1</strong> preferred activity among
+them. - The activity number was recorded in
+<code>acs_instrumental_top1</code>. - For example, if
+<code>acs_instrumental_top1 = 5</code>, it indicates that instrumental
+activity #5 (preparing a meal) was selected as the top preference.</p>
+<p>After completing the instrumental activity classification, the same
+procedure was applied to: - <strong>Leisure activities</strong>
+(<code>acs_leisure_34</code>–<code>acs_leisure_51</code>,
+<code>acs_leisure_top1</code>) - <strong>Social activities</strong>
+(<code>acs_social_52</code>–<code>acs_social_67</code>,
+<code>acs_social_top1</code>)</p>
+<p>To evaluate <strong>intra-rater reliability</strong> of the ACS, a
+second assessment was conducted for <strong>30 out of the 50
+patients</strong>, <strong>2 weeks to 4 months</strong> after the first
+assessment.</p>
+</div>
+<div id="study-objective" class="section level2">
+<h2>Study objective</h2>
+<p>To identify which <strong>demographic variables</strong> influence
+patients’ <strong>activity preference selections</strong><br />
+(<code>acs_instrumental_1</code>–<code>acs_instrumental_33</code>,<br />
+<code>acs_leisure_34</code>–<code>acs_leisure_51</code>,<br />
+<code>acs_social_52</code>–<code>acs_social_67</code>).</p>
+</div>
+<div id="demographic-variables" class="section level2">
+<h2>Demographic variables</h2>
+<ol style="list-style-type: decimal">
+<li><code>sex</code>: 1 = male, 2 = female<br />
+</li>
+<li><code>age</code>: numeric<br />
+</li>
+<li><code>education</code>:
+<ul>
+<li>1 = no schooling<br />
+</li>
+<li>2 = elementary school<br />
+</li>
+<li>3 = middle school<br />
+</li>
+<li>4 = high school<br />
+</li>
+<li>5 = college<br />
+</li>
+</ul></li>
+<li><code>job</code>:
+<ul>
+<li>1 = unemployed<br />
+</li>
+<li>2 = production<br />
+</li>
+<li>3 = service<br />
+</li>
+<li>4 = sales<br />
+</li>
+<li>5 = office<br />
+</li>
+<li>6 = professional<br />
+</li>
+<li>7 = managerial<br />
+</li>
+</ul></li>
+<li><code>hand</code>: 1 = right-handed, 2 = left-handed</li>
+</ol>
+<p>What <strong>statistical methods</strong> are appropriate for this
+analysis, and how should the <strong>variables be coded</strong>?</p>
+</div>
+<div id="answer" class="section level2">
+<h2>Answer</h2>
+<div id="recommended-statistical-approach" class="section level3">
+<h3>Recommended statistical approach</h3>
+<ul>
+<li>The outcomes (<code>acs_instrumental_1</code> to
+<code>acs_instrumental_33</code>) are <strong>binary</strong> (0/1), and
+each subject provides <strong>33 repeated responses</strong>, so
+observations <strong>within a subject are correlated</strong>.</li>
+<li>Therefore, instead of running 33 separate logistic regressions, it
+is recommended to use:
+<ul>
+<li><strong>Logistic GLMM (Generalized Linear Mixed Model)</strong> with
+a <strong>random intercept for subject</strong>, or</li>
+<li><strong>Logistic GEE (Generalized Estimating Equations)</strong> to
+account for within-subject correlation.</li>
+</ul></li>
+</ul>
+</div>
+<div id="why-restructuring-to-long-format-is-needed" class="section level3">
+<h3>Why restructuring to long format is needed</h3>
+<ul>
+<li>To fit GLMM/GEE properly, the data should be converted from
+<strong>wide format</strong> (33 columns of outcomes) to <strong>long
+format</strong>, where each row represents one (subject, activity)
+observation.</li>
+</ul>
+<div id="long-format-example-key-idea" class="section level4">
+<h4>Long-format example (key idea)</h4>
+<ul>
+<li>In long format:
+<ul>
+<li><code>activity_id = 1</code> corresponds to
+<code>acs_instrumental_1</code></li>
+<li><code>response</code> is the value of that variable (0 or 1)</li>
+</ul></li>
+</ul>
+<p>Example rows: | subject_id | activity_id | response | sex | age |
+education | job | hand | |———–:|————:|———:|—-:|—-:|———-:|—-:|—–:| | 1 |
+1 | value of <code>acs_instrumental_1</code> | 1/2 | … | … | … | 1/2 | |
+1 | 2 | value of <code>acs_instrumental_2</code> | 1/2 | … | … | … | 1/2
+| | … | … | … | … | … | … | … | … |</p>
+</div>
+</div>
+<div id="variable-coding-advice-demographics" class="section level3">
+<h3>Variable coding advice (demographics)</h3>
+<ul>
+<li>The current coding (e.g., <code>sex</code> as 1/2,
+<code>education</code> as 1–5, <code>job</code> as 1–7,
+<code>hand</code> as 1/2) is generally fine <strong>as long as</strong>:
+<ul>
+<li>In SPSS, these are explicitly treated as
+<strong>categorical</strong> variables (Nominal/Ordinal as appropriate,
+and specified as “categorical predictors” in the model).</li>
+</ul></li>
+<li>For easier interpretation (optional but recommended), binary
+variables can be recoded to 0/1:
+<ul>
+<li><code>sex</code>: male = 0, female = 1</li>
+<li><code>hand</code>: right = 0, left = 1 This is not strictly
+required, but coefficients become more intuitive to interpret.</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="question-2." class="section level2">
+<h2>Question 2.</h2>
+<p>The objective of this study is to examine the <strong>intra-rater
+reliability</strong> of the ACS assessment.</p>
+<p>In the Excel coding file, <strong>Sheet “Data2
+(Reliability)”</strong>, data from <strong>30 participants</strong> who
+completed both the first and second assessments have been
+recorded.<br />
+The dataset includes:</p>
+<ul>
+<li>Preference selections for activities<br />
+(<code>acs_instrumental_1–33</code>, <code>acs_leisure_34–51</code>,
+<code>acs_social_52–67</code>)</li>
+<li>The activity number selected as <strong>Top 1 preference</strong> in
+each domain</li>
+</ul>
+<p>for both the <strong>first and second assessments</strong>.</p>
+<p>I would like to ask:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Which statistical methods are appropriate</strong> for
+assessing the reliability of
+<ul>
+<li>the selected preferred activities, and<br />
+</li>
+<li>the Top 1 preferred activity?</li>
+</ul></li>
+<li><strong>Whether the current variable coding scheme is
+appropriate</strong> for conducting reliability analysis.</li>
+</ol>
+<p>For example:</p>
+<ul>
+<li><code>acs_instrumental_1</code> indicates whether Instrumental
+Activity #1 was selected in the <strong>first assessment</strong>.</li>
+<li><code>2acs_instrumental_1</code> indicates whether the same activity
+was selected in the <strong>second assessment</strong>.</li>
+</ul>
+</div>
+<div id="answer-1" class="section level2">
+<h2>Answer</h2>
+<div id="intraclass-correlation-coefficient-icc-reliability-assessment" class="section level3">
+<h3>[0] Intraclass Correlation Coefficient (ICC) — Reliability
+Assessment</h3>
+<p>The Intraclass Correlation Coefficient (ICC) is a statistic that
+quantifies the degree of <strong>agreement</strong> (or
+<strong>consistency</strong>) between measurements of the same targets
+made at different times or by different raters. ICC is typically used
+for continuous measurements and evaluates how much of the total variance
+is attributable to differences between subjects rather than measurement
+error.</p>
+<ul>
+<li><strong>Model</strong>
+<ul>
+<li><strong>Two-way random</strong>: Both subjects and raters (or time
+points) are treated as random effects (i.e., raters/timepoints are
+considered a random sample from a larger population).</li>
+<li><strong>Two-way mixed</strong>: Subjects are random but raters/time
+points are fixed (e.g., specifically Time1 and Time2).</li>
+</ul></li>
+<li><strong>Type</strong>
+<ul>
+<li><strong>Consistency</strong>: Focuses on whether subjects keep the
+same relative ranking across measurements (ignores systematic
+differences in mean levels between raters/timepoints).</li>
+<li><strong>Absolute agreement</strong>: Focuses on exact agreement of
+measurement values (penalizes systematic differences in means).</li>
+</ul></li>
+</ul>
+<p>A conceptual form of the ICC is:</p>
+<p><span class="math display">\[
+\mathrm{ICC} \;=\; \frac{\sigma^2_{\text{subject}}}
+{\sigma^2_{\text{subject}} + \sigma^2_{\text{error}} + (\text{if
+applicable } \sigma^2_{\text{rater}})}
+\]</span></p>
+<p>where <span class="math inline">\(\sigma^2_{\text{subject}}\)</span>
+is the between-subject variance, <span class="math inline">\(\sigma^2_{\text{error}}\)</span> is the
+residual/error variance, and <span class="math inline">\(\sigma^2_{\text{rater}}\)</span> is the variance
+due to raters/timepoints when included.</p>
+<p>Common, rule-of-thumb ranges (e.g., Landis &amp; Koch or similar)
+are:</p>
+<ul>
+<li><span class="math inline">\(\mathrm{ICC} \ge 0.75\)</span>:
+<strong>Excellent</strong><br />
+</li>
+<li><span class="math inline">\(0.60 \le \mathrm{ICC} &lt;
+0.75\)</span>: <strong>Good</strong><br />
+</li>
+<li><span class="math inline">\(0.40 \le \mathrm{ICC} &lt;
+0.60\)</span>: <strong>Fair</strong><br />
+</li>
+<li><span class="math inline">\(\mathrm{ICC} &lt; 0.40\)</span>:
+<strong>Poor</strong></li>
+</ul>
+</div>
+<div id="appropriateness-of-icc-for-the-current-data" class="section level3">
+<h3>[1] Appropriateness of ICC for the Current Data</h3>
+<p>❌ <strong>Not appropriate.</strong> ❌</p>
+<p>For nominal data such as <strong>binary preference selection
+(0/1)</strong> and <strong>categorical activity numbers</strong>, the
+<strong>Intraclass Correlation Coefficient (ICC)</strong> is not an
+appropriate reliability measure.</p>
+<p><strong>Why Is ICC Inappropriate?</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>ICC is designed for continuous (numerical) data</strong> ICC
+is used when the <em>magnitude and distance</em> between values are
+meaningful. Examples:
+<ul>
+<li>Blood pressure values</li>
+<li>Test scores</li>
+<li>Speed, distance</li>
+<li>Mean scores of questionnaire items → ICC is meaningful only when the
+<em>numerical value itself</em> carries quantitative meaning.</li>
+</ul></li>
+<li><strong>The current data are nominal (categorical)</strong> Example:
+<ul>
+<li><code>acs_instrumental_top1 = 5</code> → “Preparing meals”</li>
+<li><code>acs_instrumental_top1 = 8</code> → “Doing laundry” The
+numerical difference between 5 and 8 has <strong>no quantitative
+meaning</strong>.<br />
+Treating these category labels as numerical values is a logical error.
+ICC relies on variance and covariance between numerical values, so
+applying ICC to activity codes produces <strong>meaningless
+results</strong>.</li>
+</ul></li>
+</ol>
+<p><strong>What Should Be Used Instead?</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Data type</th>
+<th>Appropriate reliability measure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nominal (0/1 selection, Top 1 activity code)</td>
+<td>✅ Cohen’s Kappa</td>
+</tr>
+<tr class="even">
+<td>Ordinal (e.g., ranked satisfaction levels)</td>
+<td>🔸 Weighted Kappa</td>
+</tr>
+<tr class="odd">
+<td>Continuous (scores, measurements)</td>
+<td>✅ ICC</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When Is ICC Appropriate?</strong> If an assessment produces
+<strong>continuous scores</strong> that are repeatedly measured in the
+same way, ICC is appropriate.</p>
+<p>Example: - Treatment effect rated on a 0–100 scale</p>
+<p>However, <strong>activity codes and binary selections are
+categorical</strong>, so ICC should not be used here.</p>
+</div>
+<div id="cohens-kappa" class="section level3">
+<h3>[2] Cohen’s Kappa</h3>
+<p>Cohen’s Kappa measures <strong>how consistently two assessments
+agree</strong> beyond chance. In simple terms, it quantifies how well
+the results of the <strong>first and second assessments
+match</strong>.</p>
+<p>Example: - A participant selects “Visiting a hospital” in the first
+assessment - The same activity is selected again in the second
+assessment<br />
+→ This is counted as agreement.</p>
+<p>Kappa summarizes such agreements across all activities. Cohen’s Kappa
+(<span class="math inline">\(\kappa\)</span>) is defined as <span class="math display">\[
+\kappa = \frac{P_o - P_e}{1 - P_e},
+\]</span> where: - <span class="math inline">\(P_o\)</span> is the
+<strong>observed proportion of agreement</strong> between the first and
+second assessments. - <span class="math inline">\(P_e\)</span> is the
+<strong>expected proportion of agreement by chance</strong>, calculated
+from the marginal distributions of the two assessments.</p>
+<p>The <strong>observed agreement</strong> <span class="math inline">\(P_o\)</span> is given by <span class="math display">\[
+P_o = \frac{\sum_{i=1}^{K} n_{ii}}{N},
+\]</span> where: - <span class="math inline">\(K\)</span> is the number
+of categories, - <span class="math inline">\(n_{ii}\)</span> is the
+number of cases classified into category <span class="math inline">\(i\)</span> in both assessments, - <span class="math inline">\(N\)</span> is the total number of
+observations.</p>
+<p>The <strong>expected agreement</strong> <span class="math inline">\(P_e\)</span> is calculated as <span class="math display">\[
+P_e = \sum_{i=1}^{K} \left( \frac{n_{i+}}{N} \cdot \frac{n_{+i}}{N}
+\right),
+\]</span> where: - <span class="math inline">\(n_{i+}\)</span> is the
+total number of cases classified into category <span class="math inline">\(i\)</span> in the first assessment, - <span class="math inline">\(n_{+i}\)</span> is the total number of cases
+classified into category <span class="math inline">\(i\)</span> in the
+second assessment.</p>
+<p>How Is Kappa Different from Simple Agreement Rate?</p>
+<ul>
+<li><p><strong>Simple agreement rate</strong>:<br />
+Number of matching responses ÷ total responses</p></li>
+<li><p><strong>Problem</strong>:<br />
+Some agreement may occur <strong>by chance</strong>.</p></li>
+</ul>
+<p>Example: - Guessing heads or tails yields about 50% agreement by
+chance.</p>
+<p>Kappa adjusts for this by subtracting <strong>chance
+agreement</strong>, providing a more accurate reliability estimate.</p>
+<p><strong>Interpretation of Kappa Values</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Kappa value</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.00</td>
+<td>Perfect agreement</td>
+</tr>
+<tr class="even">
+<td>0.81–0.99</td>
+<td>Almost perfect agreement</td>
+</tr>
+<tr class="odd">
+<td>0.61–0.80</td>
+<td>Substantial agreement</td>
+</tr>
+<tr class="even">
+<td>0.41–0.60</td>
+<td>Moderate agreement</td>
+</tr>
+<tr class="odd">
+<td>0.21–0.40</td>
+<td>Fair agreement</td>
+</tr>
+<tr class="even">
+<td>0.00–0.20</td>
+<td>Slight agreement</td>
+</tr>
+<tr class="odd">
+<td>&lt; 0.00</td>
+<td>Worse than chance</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example :</strong></p>
+<p>Suppose four participants responded as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Participant</th>
+<th>First</th>
+<th>Second</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>Want</td>
+<td>Want</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>Do not want</td>
+<td>Want</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>Want</td>
+<td>Want</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>Do not want</td>
+<td>Do not want</td>
+</tr>
+</tbody>
+</table>
+<p>Simple agreement rate = 3 / 4 = 75%</p>
+<p>Kappa evaluates this agreement <strong>after accounting for
+chance</strong>.</p>
+</div>
+<div id="agreement-of-top-1-preferred-activities-by-domain" class="section level3">
+<h3>[3] Agreement of Top 1 Preferred Activities by Domain</h3>
+<p>The goal is to examine whether the <strong>Top 1 preferred
+activity</strong> selected in each domain is consistent between the
+first and second assessments. For each domain, <strong>Cohen’s
+Kappa</strong> can be calculated to assess intra-rater reliability
+between the two time points.</p>
+<p>Example Variables ”</p>
+<p><strong>Instrumental Activities</strong> -
+<code>acs_instrumental_top1</code> (first assessment) -
+<code>2acs_instrumental_top1</code> (second assessment)</p>
+<p><strong>Leisure Activities</strong> - <code>acs_leisure_top1</code> -
+<code>2acs_leisure_top1</code></p>
+<p><strong>Social Activities</strong> - <code>acs_social_top1</code> -
+<code>2acs_social_top1</code></p>
+<p>Each pair represents the Top 1 selection from the first and second
+assessments.<br />
+A separate Kappa value is computed for each domain.</p>
+<p>Although the Top 1 variables are coded numerically, they represent
+<strong>categorical labels</strong>, not ordered or quantitative
+values.</p>
+<p>Examples: - A value of 5 does <strong>not</strong> mean “greater”
+than 7 - It simply refers to “Activity #5” versus “Activity #7”</p>
+<p>Therefore, during analysis (e.g., in SPSS), these variables must be
+treated as <strong>Nominal</strong>.</p>
+<p><strong>Conclusion</strong> Comparing the Top 1 preferred activities
+using <strong>Cohen’s Kappa</strong> for each domain is an appropriate
+way to assess <strong>intra-rater reliability</strong>.</p>
+<p>Three Kappa values will be obtained (instrumental, leisure, social),
+and higher values (commonly ≥ 0.6) indicate more stable and reliable
+assessments.</p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+
+  
+</div>
