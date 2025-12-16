@@ -1,0 +1,756 @@
+---
+title: "Ch4 : Ex.21 ~ Ex.28"
+date: 2023-01-01 23:20:40
+categories: [Measure Theory]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="there-is-convergence-in-the-norm-lim_ntoinftyt_n-t0.-also-there-is-a-strong-convergence-lim_ntoinftyt_nf-tf0-for-all-fin-h.-finally-there-is-a-weak-convergence-lim_ntoinftyt_nfgtfg-forall-fgin-h." class="section level2">
+<h2>21. There is ‘convergence in the norm’: <span class="math inline">\(\lim_{n\to\infty}\|T_n-T\|=0\)</span>. Also, there
+is a ‘strong convergence’: <span class="math inline">\(\lim_{n\to\infty}\|T_nf-Tf\|=0\)</span> for all
+<span class="math inline">\(f\in H\)</span>. Finally, there is a ‘weak
+convergence’: <span class="math inline">\(\lim_{n\to\infty}(T_nf,g)=(Tf,g)\)</span> <span class="math inline">\(\forall f,g\in H\)</span>.</h2>
+<div id="a-1-show-by-an-example-that-weak-convergence-does-not-imply-strong-convergence." class="section level3">
+<h3>(a)-1 Show, by an example, that weak convergence does not imply
+strong convergence.</h3>
+<p><strong>proof</strong> ① <span class="math inline">\((R^nf,g)=(f,L^ng)\)</span> in <span class="math inline">\(\ell^2(\mathbb{N})\)</span></p>
+<p>Let <span class="math inline">\(H=\ell^2(\mathbb{N})\)</span>, <span class="math inline">\(T\)</span> be a zero operator, and <span class="math inline">\(T_n=R^n\)</span> where <span class="math inline">\(R\)</span> is the right-shift operator : <span class="math inline">\(T_n(f)=(0,\cdots,0,a_1,a_2,\cdots)\)</span> where
+<span class="math inline">\(f=(a_1,a_2,\cdots)\in
+\ell^2(\mathbb{N})\)</span>. Let <span class="math inline">\(L\)</span>
+be the left-shift operator and <span class="math inline">\(g=(b_1,b_2,\cdots)\)</span>, then <span class="math display">\[
+(T_nf,g)=\sum_{k=1}^\infty \overline{a_k}b_{n+k}=(f,L^ng).
+\]</span></p>
+<p>② <span class="math inline">\(\|L^ng\|_H\to 0\)</span>, <span class="math inline">\((T_nf,g)\to 0\)</span></p>
+<p>Due to Cauchy-Schwartz inequality, <span class="math inline">\(|(T_nf,g)|\le \|f\|_H\|L^ng\|_H\)</span>.<br />
+<span class="math inline">\(f,g\in \ell^2(\mathbb{N})\)</span>, so <span class="math inline">\(\|f\|&lt;\infty\)</span> and <span class="math inline">\(\|g\|&lt;\infty\)</span>.<br />
+<span class="math display">\[
+\|L^ng\|_H^2=\sum_{k=1}^\infty |b_k|^2-\sum_{k=1}^n|b_k|^2,
+\]</span> so <span class="math inline">\(\lim_{n\to\infty}\|L^ng\|_H=0\)</span> and thus
+<span class="math inline">\(\lim_{n\to\infty}(T_nf,g)=0\)</span>.</p>
+<p>③ <span class="math inline">\(\|T_nf\|_H\not\to 0\)</span></p>
+<p>However, <span class="math inline">\(\|T_nf\|_H=\|f\|_H\)</span> for
+all <span class="math inline">\(f\in \ell^2(\mathbb{N})\)</span>. So
+<span class="math inline">\(\lim_{n\to\infty}\|T_nf-0\|\ne 0\)</span>.
+<span class="math inline">\(T_nf-Tf\)</span></p>
+</div>
+<div id="a-2-show-that-strong-convergence-does-not-imply-convergence-in-the-norm." class="section level3">
+<h3>(a)-2 Show that strong convergence does not imply convergence in the
+norm.</h3>
+<p><strong>proof</strong> Let <span class="math inline">\(T_n=L^n\)</span>. We’ve shown that <span class="math inline">\(\lim_{n\to\infty}\|L^nf\|_H=0\)</span> for all
+<span class="math inline">\(f\in \ell^2(\mathbb{N})\)</span> in (a)-1.
+So, <span class="math inline">\(\|T_nf-0f\|_H\to 0\)</span>.</p>
+<p>Note that <span class="math inline">\(\|T_n\|=\sup_{\|u\|_H=1}\|T_nu\|_H\)</span>. When
+<span class="math inline">\(e_k=(\cdots,1,0,0,\cdots)\in H\)</span>,
+<span class="math inline">\(\|T_n\|\ge \|T_ne_{n+1}\|_H=1\)</span> so
+<span class="math inline">\(\|T_n\|\ge 1\)</span>.</p>
+<p>Then, <span class="math inline">\(\lim_{n\to\infty}\|T_n-0\|\)</span>
+can’t be <span class="math inline">\(0\)</span>. So, <span class="math inline">\(\lim_{n\to\infty}\|T_n-0\|\ne 0\)</span>.</p>
+</div>
+<div id="b-show-that-for-any-bounded-operator-t-there-is-a-sequence-t_n-of-bounded-operators-of-finite-rank-such-that-t_nto-t-strongly" class="section level3">
+<h3>(b) Show that for any bounded operator <span class="math inline">\(T\)</span>, there is a sequence <span class="math inline">\(\{T_n\}\)</span> of bounded operators of finite
+rank such that <span class="math inline">\(T_n\to T\)</span>
+strongly</h3>
+<p><strong>proof</strong> ① def. of <span class="math inline">\(P_n\)</span>, <span class="math inline">\(T_n\)</span></p>
+<p>Let <span class="math inline">\(\{e_k\}_{k=1}^\infty\)</span> be an
+orthonormal basis for <span class="math inline">\(H\)</span> and <span class="math inline">\(\alpha_k\in\mathbb{C}\)</span>. Let <span class="math inline">\(P_n\)</span> be the orthogonal projection onto the
+first ‘<span class="math inline">\(n\)</span>’ coordinates : <span class="math inline">\(P_n\left(\sum_{k=1}^\infty
+\alpha_ke_k\right)=\sum_{k=1}^n \alpha_ke_k\)</span>. Let <span class="math inline">\(T_n=P_nT\)</span>. For <span class="math inline">\(f\in H\)</span>, let <span class="math inline">\(Tf=\sum_{k=1}^\infty \alpha_ke_k\in
+H\)</span>.</p>
+<p>② <span class="math inline">\(T_n\)</span> is bounded</p>
+<p><span class="math display">\[
+\|T_nf\|_H=\|P_n(Tf)\|_H\le \|Tf\|_H\ \ (\because P_n\ \text{is an
+orthogonal projection})
+\le \|T\|\,\|f\|_H.
+\]</span> <span class="math inline">\(T\)</span> is bounded, so <span class="math inline">\(\|T\|&lt;\infty\)</span> and thus <span class="math inline">\(T_n\)</span> is bounded</p>
+<p>③ <span class="math inline">\(\|T_nf-Tf\|_H\to 0\)</span></p>
+<p>Then, <span class="math display">\[
+\|T_nf-Tf\|_H=\left\|\sum_{k=1}^n \alpha_ke_k-\sum_{k=1}^\infty
+\alpha_ke_k\right\|_H\to 0\ \ \text{as}\ n\to\infty\ \ (\text{Thm 4.2.3
+iii}).
+\]</span> This holds for all <span class="math inline">\(f\in
+H\)</span>, so <span class="math inline">\(T_n\to T\)</span>
+strongly.</p>
+<hr />
+</div>
+</div>
+<div id="an-operator-t-is-an-isometry-if-tf_hf_h-forall-fin-h." class="section level2">
+<h2>22. An operator <span class="math inline">\(T\)</span> is an
+isometry if <span class="math inline">\(\|Tf\|_{H}=\|f\|_{H}\)</span>
+<span class="math inline">\(\forall f\in H\)</span>.</h2>
+<div id="a-1-show-that-if-t-is-an-isometry-then-tftgfg-for-all-fgin-h." class="section level3">
+<h3>(a)-1 Show that if <span class="math inline">\(T\)</span> is an
+isometry, then <span class="math inline">\((Tf,Tg)=(f,g)\)</span> for
+all <span class="math inline">\(f,g\in H\)</span>.</h3>
+<p><strong>proof</strong><br />
+<span class="math display">\[
+\begin{aligned}
+(Tf,Tg)&amp;=\frac14\left\{\|Tf+Tg\|_{H}^2-\|Tf-Tg\|_{H}^2+i\|iTf+Tg\|_{H}^2-i\|iTf-Tg\|_{H}^2\right\}
+&amp;=\frac14\left\{\|T(f+g)\|_{H}^2-\|T(f-g)\|_{H}^2+i\|T(if+g)\|_{H}^2-i\|T(if-g)\|_{H}^2\right\}\\
+&amp;=\frac14\left\{\|f+g\|_{H}^2-\|f-g\|_{H}^2+i\|if+g\|_{H}^2-i\|if-g\|_{H}^2\right\}\\
+&amp;=\frac14\Big\{(\|f\|_{H}^2+(f,g)+(g,f)+\|g\|_{H}^2)-(\|f\|_{H}^2-(f,g)-(g,f)+\|g\|_{H}^2)\\
+&amp;\qquad\quad+i(\|if\|_{H}^2+(if,g)+(g,if)+\|g\|_{H}^2)-i(\|if\|_{H}^2-(if,g)-(g,if)+\|g\|_{H}^2)\Big\}\\
+&amp;=\frac14\left\{2(f,g)+2(g,f)+i\left(\frac1i(f,g)+\frac1{-i}(g,f)\right)+i\left(\frac1i(f,g)+\frac1{-i}(g,f)\right)\right\}\\
+&amp;=\frac14\left\{2(f,g)+2(g,f)+2(f,g)-2(g,f)\right\}=(f,g).
+\end{aligned}
+\]</span></p>
+</div>
+<div id="a-2-show-that-tti" class="section level3">
+<h3>(a)-2 Show that <span class="math inline">\(T^*T=I\)</span></h3>
+<p><strong>proof</strong><br />
+<span class="math inline">\((Tf,Tg)=(f,T^*Tg)=(f,Ig)\)</span>. So, <span class="math inline">\(T^*T=I\)</span>.</p>
+</div>
+<div id="b-t-is-isometry-and-surjective.-show-that-t-is-unitary-tti" class="section level3">
+<h3>(b) <span class="math inline">\(T\)</span> is isometry and
+surjective. Show that <span class="math inline">\(T\)</span> is unitary
+&amp; <span class="math inline">\(TT^*=I\)</span></h3>
+<p><strong>proof</strong><br />
+When <span class="math inline">\(f\ne g\in H\)</span>, <span class="math inline">\(\|T(f)-T(g)\|_{H}=\|T(f-g)\|_{H}=\|f-g\|_{H}\ne0.\)</span>
+Since <span class="math inline">\(T(f)\ne T(g)\)</span>, <span class="math inline">\(T\)</span> is injective (1-1).<br />
+<span class="math inline">\(T\)</span> is surjective, then <span class="math inline">\(T\)</span> is bijective <span class="math inline">\(\Rightarrow T^{-1}\)</span> exists.<br />
+<span class="math inline">\(T\)</span> is linear, bijective, and
+isometry, so <span class="math inline">\(T\)</span> is unitary.<br />
+<span class="math inline">\(T^*T=I\)</span>, so <span class="math inline">\(T^*=T^{-1}\)</span> and thus <span class="math inline">\(TT^*=TT^{-1}=I\)</span>.</p>
+</div>
+<div id="c-give-an-example-of-an-isometry-that-is-not-unitary" class="section level3">
+<h3>(c) Give an example of an isometry that is not unitary</h3>
+<p><strong>proof</strong><br />
+Let <span class="math inline">\(H=\ell^2(\mathbb{N})\)</span> and <span class="math inline">\(T\)</span> be the right-shift operator: for <span class="math inline">\(a\in\ell^2(\mathbb{N})\)</span> with <span class="math inline">\(a=(a_1,a_2,\cdots)\)</span>, <span class="math inline">\(T(a)=(0,a_1,a_2,\cdots)\)</span>.<br />
+Since <span class="math inline">\(\|Ta\|_{H}^2=\sum_{k=1}^\infty|a_k|^2=\|a\|_{H}^2\)</span>,
+<span class="math inline">\(\|Ta\|_{H}=\|a\|_{H}\)</span>. So <span class="math inline">\(T\)</span> is isometry.<br />
+When <span class="math inline">\(b=(b_1,b_2,\cdots)\in\ell^2(\mathbb{N})\)</span>
+such that <span class="math inline">\(b_1\ne0\)</span>, there is no such
+<span class="math inline">\(a&#39;\in\ell^2(\mathbb{N})\)</span> that
+<span class="math inline">\(b=T(a)\)</span>. So, <span class="math inline">\(T\)</span> is not surjective (onto).</p>
+</div>
+<div id="d-show-that-if-tt-is-unitary-then-t-is-isometry." class="section level3">
+<h3>(d) Show that if <span class="math inline">\(T^*T\)</span> is
+unitary, then <span class="math inline">\(T\)</span> is isometry.</h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(\|Tf\|\le\|f\|\)</span><br />
+<span class="math display">\[
+\begin{aligned}
+\|Tf\|^2&amp;=(Tf,Tf)=(f,T^*Tf)\le\|f\|\ \|T^*Tf\|=\|f\|^2,\ \text{so
+}\|Tf\|\le\|f\|.
+\end{aligned}
+\]</span></p>
+<p>② <span class="math inline">\(\|f\|\le\|Tf\|\)</span><br />
+<span class="math display">\[
+\begin{aligned}
+\|f\|^2&amp;=\|T^*Tf\|^2\ \ (\because\ T^*T\ \text{is unitary})\\
+&amp;=(T^*Tf,T^*Tf)=(Tf,T(T^*Tf))\\
+&amp;\le\|Tf\|\ \|T(T^*Tf)\|\ \ (\because\ \text{Cauchy})\\
+&amp;\le\|Tf\|\ \|T^*Tf\|\ \ (\because\ ①)\\
+&amp;=\|Tf\|\ \|f\|\ \ (\because\ T^*T\ \text{is unitary}),
+\end{aligned}
+\]</span> so <span class="math inline">\(\|f\|\le\|Tf\|\)</span>.</p>
+<p>③ <span class="math inline">\(\therefore\ \|Tf\|=\|f\|\)</span> and
+thus <span class="math inline">\(T\)</span> is isometry.</p>
+<p>cf) due to (a) and (b), unitary <span class="math inline">\(U:H\to
+H&#39;\)</span> implies <span class="math inline">\(U^*U=I.\)</span>
+When <span class="math inline">\(T:H\to H\)</span> is unitary, <span class="math inline">\(TT^*=T^*T=I\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="suppose-t_k-is-a-collection-of-bounded-operators-on-mathcalh-with-t_kle-1-and-t_kt_jt_kt_j0forallkne-j." class="section level2">
+<h2>23. Suppose <span class="math inline">\(\{T_k\}\)</span> is a
+collection of bounded operators on <span class="math inline">\(\mathcal{H}\)</span> with <span class="math inline">\(\|T_k\|\le 1\)</span>, and <span class="math inline">\(T_kT_j^*=T_k^*T_j=0,^\forall\,k\ne
+j\)</span>.</h2>
+<div id="let-s_nsum_k-nnt_k.-show-that-s_nx-converges-in-norm-as-ntoinfty." class="section level3">
+<h3>(1) Let <span class="math inline">\(S_N=\sum_{k=-N}^{N}T_k\)</span>.
+Show that <span class="math inline">\(S_N(x)\)</span> converges (in
+norm) as <span class="math inline">\(N\to\infty\)</span>.</h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(P_k\)</span>, <span class="math inline">\((P_ky,P_{k&#39;}z)=0\)</span>.</p>
+<p>Let <span class="math inline">\(P_k\)</span> be an orthogonal
+projection onto the range of <span class="math inline">\(T_k\)</span>:
+<span class="math inline">\(y=P_ky+(I-P_k)y\)</span> where <span class="math inline">\(y\in\mathcal{H}\)</span> and <span class="math inline">\(P_ky\in\{T_k f:\,f\in\mathcal{H}\}\)</span>. Note
+that <span class="math inline">\(T_kx\perp (I-P_k)y\)</span>.</p>
+<p>For <span class="math inline">\(y\in\mathcal{H}\)</span>, there is
+<span class="math inline">\(\tilde y\in\mathcal{H}\)</span> s.t. <span class="math inline">\(P_ky=T_k\tilde y\)</span>. Then, <span class="math display">\[(P_ky,P_{k&#39;}z)=(T_k\tilde y,T_{k&#39;}\tilde
+z)=(\tilde y,T_k^*T_{k&#39;}\tilde z)=0.\]</span> So <span class="math inline">\((P_ky,P_{k&#39;}z)=0\)</span> for <span class="math inline">\(k\ne k&#39;\)</span> and all <span class="math inline">\(y,z\in\mathcal{H}\)</span>.</p>
+<p>② <span class="math inline">\(Q_k\)</span>, <span class="math inline">\((Q_kx,Q_{k&#39;}z)=0\)</span>.</p>
+<p>Let <span class="math inline">\(Q_k\)</span> be an orthogonal
+projection onto the range of <span class="math inline">\(T_k^*\)</span>:
+<span class="math inline">\(x=Q_kx+(I-Q_k)x\)</span> where <span class="math inline">\(x\in\mathcal{H}\)</span> and <span class="math inline">\(Q_kx\in\{T_k^*y:\,y\in\mathcal{H}\}\)</span>. Then
+<span class="math inline">\(T_k^*y\perp (I-Q_k)x\)</span>.</p>
+<p>For <span class="math inline">\(x\in\mathcal{H}\)</span>, there is
+<span class="math inline">\(\tilde x\in\mathcal{H}\)</span> s.t. <span class="math inline">\(Q_kx=T_k^*\tilde x\)</span>. <span class="math display">\[(Q_kx,Q_{k&#39;}z)=(T_k^*\tilde
+x,T_{k&#39;}^*\tilde z)=(\tilde x,T_kT_{k&#39;}^*\tilde z)=0.\]</span>
+So <span class="math inline">\((Q_kx,Q_{k&#39;}z)=0\)</span> for <span class="math inline">\(k\ne k&#39;\)</span> and <span class="math inline">\(\forall\,z_1,z_2\in\mathcal{H}\)</span>.</p>
+<p>③ <span class="math inline">\(T_kx\perp T_{k&#39;}y\)</span>.</p>
+<p>When <span class="math inline">\(k\ne k&#39;\)</span> and <span class="math inline">\(x,y\in\mathcal{H}\)</span>, <span class="math display">\[(T_kx,T_{k&#39;}y)=(x,T_k^*T_{k&#39;}y)=0.\]</span>
+So <span class="math inline">\(T_kx\perp T_{k&#39;}y\)</span> for all
+<span class="math inline">\(x,y\in\mathcal{H}\)</span>.</p>
+<p>④ <span class="math inline">\((T_kx,y)=(T_kQ_kx,P_ky)\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+(T_kx,y)
+&amp;=(T_kx,P_ky+(I-P_k)y) \\
+&amp;=(T_kx,P_ky)\qquad(\because\,T_kx\perp(I-P_k)y) \\
+&amp;=(x,T_k^*P_ky) \\
+&amp;=(Q_kx+(I-Q_k)x,T_k^*P_ky) \\
+&amp;=(Q_kx,T_k^*P_ky)\qquad(\because\,(I-Q_k)x\perp T_k^*P_ky) \\
+&amp;=(T_kQ_kx,P_ky).
+\end{aligned}\]</span></p>
+<p>⑤-1 <span class="math inline">\(\left|\sum_{k\in
+F}(T_kx,y)\right|\le\left(\sum_{k\in
+F}\|Q_kx\|^2\right)^{1/2}\left(\sum_{k\in
+F}\|P_ky\|^2\right)^{1/2}\)</span>.</p>
+<p>Let <span class="math inline">\(F\)</span> be any finite subset of
+<span class="math inline">\(\mathbb{N}\)</span>. Then, <span class="math display">\[\begin{aligned}
+\left|\sum_{k\in F}(T_kx,y)\right|
+&amp;\le \sum_{k\in F}|(T_kx,y)| \\
+&amp;= \sum_{k\in F}|(T_kQ_kx,P_ky)|\qquad(\because\,④) \\
+&amp;\le \sum_{k\in
+F}\|T_kQ_kx\|\,\|P_ky\|\qquad(\because\,\text{Cauchy–Schwarz inequality
+in }\mathcal{H}) \\
+&amp;\le \sum_{k\in F}\|Q_kx\|\,\|P_ky\|\qquad(\because\,\|T_k\|\le 1)
+\\
+&amp;\le \left(\sum_{k\in F}\|Q_kx\|^2\right)^{1/2}\left(\sum_{k\in
+F}\|P_ky\|^2\right)^{1/2}\qquad(\because\,\text{Cauchy–Schwarz
+inequality in }\mathbb{R}).
+\end{aligned}\]</span></p>
+<p>⑤-2 <span class="math inline">\(p_k=\|P_ky\|^{-1}P_ky,\ \
+q_k=\|Q_kx\|^{-1}Q_kx\)</span> orthonormal set.</p>
+<p>Let <span class="math inline">\(p_k=\|P_ky\|^{-1}P_ky\)</span>. <span class="math display">\[(p_k,p_{k&#39;})=\|P_ky\|^{-1}\|P_{k&#39;}y\|^{-1}(P_ky,P_{k&#39;}y)=0,\
+\ \text{and }\|p_k\|=1.\]</span> So <span class="math inline">\(\{p_k\}_k\)</span> is an orthonormal “set” in
+<span class="math inline">\(\mathcal{H}\)</span>.</p>
+<p>Let <span class="math inline">\(q_k=\|Q_kx\|^{-1}Q_kx\)</span>. <span class="math display">\[(q_k,q_{k&#39;})=\|Q_kx\|^{-1}\|Q_{k&#39;}x\|^{-1}(Q_kx,Q_{k&#39;}x)=0,\
+\ \text{and }\|q_k\|=1.\]</span> So <span class="math inline">\(\{q_k\}_k\)</span> is an orthonormal set in <span class="math inline">\(\mathcal{H}\)</span>.</p>
+<p>⑤-3 <span class="math inline">\((y,p_k)=\|P_ky\|,\ \
+(x,q_k)=\|Q_kx\|\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+(y,p_k)
+&amp;=\|P_ky\|^{-1}(y,P_ky)
+=\|P_ky\|^{-1}(P_ky+(I-P_k)y,P_ky) \\
+&amp;=\|P_ky\|^{-1}(P_ky,P_ky)
+=\|P_ky\|,
+\end{aligned}\]</span></p>
+<p><span class="math display">\[\begin{aligned}
+(x,q_k)
+&amp;=\|Q_kx\|^{-1}(x,Q_kx)
+=\|Q_kx\|^{-1}(Q_kx+(I-Q_k)x,Q_kx) \\
+&amp;=\|Q_kx\|^{-1}(Q_kx,Q_kx)
+=\|Q_kx\|.
+\end{aligned}\]</span></p>
+<p>⑤-4 <span class="math inline">\(\left|\sum_{k\in F}(T_kx,y)\right|\le
+\|x\|\,\|y\|\)</span>.</p>
+<p>Since <span class="math inline">\(\sum_{k\in
+F}(y,p_k)^2\le\sum_{k\in\mathbb{N}}(y,p_k)^2\le\|y\|^2\)</span>
+(Bessel’s inequality p.166), <span class="math display">\[\sum_{k\in
+F}\|P_ky\|^2=\sum_{k\in F}(y,p_k)^2\le\|y\|^2,\quad\text{and similarly
+}\sum_{k\in F}\|Q_kx\|^2\le\|x\|^2.\]</span> So, <span class="math display">\[\left|\sum_{k\in
+F}(T_kx,y)\right|\le\left(\sum_{k\in
+F}\|Q_kx\|^2\right)^{1/2}\left(\sum_{k\in F}\|P_ky\|^2\right)^{1/2}\le
+\|x\|\,\|y\|.\]</span></p>
+<p>⑥ <span class="math inline">\(\left\|\sum_{k\in F}T_kx\right\|\le
+\|x\|\)</span>.</p>
+<p>Let <span class="math inline">\(w=\sum_{k\in F}T_kx\)</span>. When
+<span class="math inline">\(w=0\)</span>, <span class="math inline">\(\|w\|=0\le\|x\|\)</span> (trivial).</p>
+<p>When <span class="math inline">\(w\ne 0\)</span>, let <span class="math inline">\(y=\dfrac{w}{\|w\|}\)</span>. <span class="math inline">\((w,y)=\left(w,\frac{w}{\|w\|}\right)=\|w\|.\)</span>
+Also, <span class="math inline">\(|(w,y)|=\left|\left(\sum_{k\in
+F}T_kx,y\right)\right|\le \|x\|\,\|y\|\ (\because\,⑤)=\|x\|.\)</span>
+Thus, <span class="math inline">\(\|w\|\le\|x\|\)</span>.</p>
+<p>⑦ <span class="math inline">\(\sum_{k\in
+F}\|T_kx\|^2=\left\|\sum_{k\in F}T_kx\right\|^2\)</span>, so <span class="math inline">\(\sum_{k\in F}\|T_kx\|^2\le\|x\|^2\)</span>.</p>
+<p>Let <span class="math inline">\(k_1,k_2\in F\)</span> s.t. <span class="math inline">\(k_1\ne k_2\)</span>. <span class="math display">\[\begin{aligned}
+\|T_{k_1}x+T_{k_2}x\|^2
+&amp;=(T_{k_1}x+T_{k_2}x,\ T_{k_1}x+T_{k_2}x) \\
+&amp;=\|T_{k_1}x\|^2+(T_{k_1}x,T_{k_2}x)+(T_{k_2}x,T_{k_1}x)+\|T_{k_2}x\|^2
+\\
+&amp;=\|T_{k_1}x\|^2+\|T_{k_2}x\|^2\qquad(\because\,T_{k_1}^*T_{k_2}=0).
+\end{aligned}\]</span></p>
+<p>Repeating the process, <span class="math inline">\(\sum_{k\in
+F}\|T_kx\|^2=\left\|\sum_{k\in F}T_kx\right\|^2\)</span>. Since <span class="math inline">\(\left\|\sum_{k\in F}T_kx\right\|\le\|x\|\
+(\because\,⑥)\)</span>, <span class="math inline">\(\sum_{k\in
+F}\|T_kx\|^2\le\|x\|^2\)</span>.</p>
+<p>⑧ <span class="math inline">\(u_n(x)=\sum_{k=-n}^{n}\|T_kx\|^2\)</span>
+converges in <span class="math inline">\(\mathbb{R}\)</span></p>
+<p>Let <span class="math inline">\(u_n(x)=\sum_{k=-n}^{n}\|T_kx\|^2\)</span> for
+<span class="math inline">\(x\in\mathcal{H}\)</span>. Since <span class="math inline">\(u_n(x)\le\|x\|^2&lt;\infty\)</span>, <span class="math inline">\(\{u_n(x)\}_n\)</span> converges and thus <span class="math inline">\(\{u_n(x)\}_n\)</span> in <span class="math inline">\(\mathbb{R}\)</span> is a Cauchy sequence. So, for
+given <span class="math inline">\(\varepsilon&gt;0\)</span>, there is
+<span class="math inline">\(N_\varepsilon\in\mathbb{N}\)</span> such
+that <span class="math inline">\(m&gt;n\ge N_\varepsilon\)</span>
+implies <span class="math inline">\(|u_m(x)-u_n(x)|=\sum_{n&lt;|k|\le
+m}\|T_kx\|^2&lt;\varepsilon\)</span>.</p>
+<p>⑨ <span class="math inline">\(S_n(x)=\sum_{k=-n}^{n}T_kx\)</span> is
+Cauchy in <span class="math inline">\(\mathcal{H}\)</span>, <span class="math inline">\(\therefore\ S_n(x)\to F\)</span></p>
+<p>Using ⑦, <span class="math inline">\(\sum_{n&lt;|k|\le
+m}\|T_kx\|^2=\left\|\sum_{n&lt;|k|\le
+m}T_kx\right\|^2=\left\|\sum_{k=-m}^{m}T_kx-\sum_{k=-n}^{n}T_kx\right\|^2&lt;\varepsilon\)</span>
+for <span class="math inline">\(m&gt;n\ge N_\varepsilon\)</span>. This
+holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so
+<span class="math inline">\(\{S_n(x)\}_n=\left\{\sum_{k=-n}^{n}T_kx\right\}_n\)</span>
+is a Cauchy sequence in <span class="math inline">\(\mathcal{H}\)</span>.</p>
+<p><span class="math inline">\(\mathcal{H}\)</span> is complete, so
+<span class="math inline">\(\{S_n(x)\}_n\)</span> converges to some
+<span class="math inline">\(F_x\in\mathcal{H}\)</span>: <span class="math inline">\(\lim_{n\to\infty}\left\|\sum_{k=-n}^{n}T_kx-F_x\right\|=0\)</span>.
+Note that this holds for all <span class="math inline">\(x\in\mathcal{H}\)</span>.</p>
+</div>
+<div id="show-that-tle-1" class="section level3">
+<h3>(2) Show that <span class="math inline">\(\|T\|\le 1\)</span></h3>
+<p><strong>proof</strong><br />
+Define <span class="math inline">\(T:\mathcal{H}\to\mathcal{H}\)</span>
+as follows: <span class="math inline">\(T(x)=F_x\)</span>.</p>
+<p><span class="math inline">\(\lim_{n\to\infty}\|S_n(x)-T(x)\|=0\)</span>, so
+for given <span class="math inline">\(\varepsilon&gt;0\)</span> there is
+<span class="math inline">\(N_\varepsilon\in\mathbb{N}\)</span> such
+that <span class="math inline">\(n\ge N_\varepsilon\)</span> implies
+<span class="math inline">\(\|S_n(x)-T(x)\|&lt;\varepsilon\)</span>.</p>
+<p>Since <span class="math inline">\(\|S_n(x)\|\le\|x\|\)</span> (⑥),
+<span class="math display">\[\|Tx\|\le\|Tx-S_nx\|+\|S_nx\|\le
+\varepsilon+\|x\|.\]</span></p>
+<p><span class="math inline">\(\|Tx\|\le \varepsilon+\|x\|\)</span>
+holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so
+<span class="math inline">\(\|Tx\|\le\|x\|\)</span> and thus <span class="math inline">\(\|T\|\le 1\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="let-e_k_k1infty-denote-an-orthonormal-set-in-a-hilbert-space-mathcalh-and-c_k0-such-that-sum_k1inftyc_k2infty.-then-aleftsum_k1inftya_ke_k-a_kle-c_kright-is-compact-in-mathcalh." class="section level2">
+<h2>24. Let <span class="math inline">\(\{e_k\}_{k=1}^{\infty}\)</span>
+denote an orthonormal set in a Hilbert space <span class="math inline">\(\mathcal{H}\)</span>, and <span class="math inline">\(C_k&gt;0\)</span> such that <span class="math inline">\(\sum_{k=1}^{\infty}C_k^2&lt;\infty\)</span>. Then,
+<span class="math inline">\(A=\left\{\sum_{k=1}^{\infty}a_ke_k:\
+|a_k|\le C_k\right\}\)</span> is compact in <span class="math inline">\(\mathcal{H}\)</span>.</h2>
+<p><strong>proof</strong><br />
+Let <span class="math inline">\(f_n=\sum_{k=1}^{\infty}a_{n,k}e_k\in
+A\)</span>, and <span class="math inline">\(A_1=\{a_{n,1}\}_n\)</span>.</p>
+<p><span class="math inline">\(|a_{n,1}|\le C_1\)</span>, so <span class="math inline">\(A_1\)</span> is a bounded sequence. Then, there is
+a subsequence <span class="math inline">\(\{a_{n_{i_1},1}\}_i\subset
+A_1\)</span> such that <span class="math inline">\(\lim_{i\to\infty}a_{n_{i_1},1}=b_1\)</span> <span class="math inline">\((|b_1|\le |C_1|)\)</span>.</p>
+<p>Let <span class="math inline">\(A_2=\{a_{n_{i_1},2}\}_n,\
+|a_{n_{i_1},2}|\le C_2\)</span>, so <span class="math inline">\(A_2\)</span> is a bounded sequence in <span class="math inline">\(\mathbb{C}\)</span>. So, there is a subsequence
+<span class="math inline">\(\{a_{n_{i_2},2}\}_i\subset A_2\)</span> such
+that <span class="math inline">\(\lim_{i\to\infty}a_{n_{i_2},2}=b_2\)</span> <span class="math inline">\((|b_2|\le C_2)\)</span>.</p>
+<p>Continuing this process inductively, we can obtain <span class="math inline">\(\{a_{n_i,k}\}_i\)</span> such that <span class="math inline">\(\lim_{i\to\infty}a_{n_i,k}=b_k\)</span> <span class="math inline">\((|b_k|\le C_k)\)</span> for <span class="math inline">\(\forall\,k\in\mathbb{N}\)</span>.</p>
+<p>Let <span class="math inline">\(f_{n_i}=\sum_{k=1}^{\infty}a_{n_i,k}e_k\)</span>,
+and <span class="math inline">\(f=\sum_{k=1}^{\infty}b_ke_k\in
+A\)</span>.</p>
+<p><span class="math inline">\(\sum_{k=1}^{\infty}C_k^2&lt;\infty\)</span>, so
+for given <span class="math inline">\(\varepsilon&gt;0\)</span> there is
+<span class="math inline">\(K\in\mathbb{N}\)</span> such that <span class="math inline">\(\sum_{k&gt;K}C_k^2&lt;\varepsilon^2\)</span>. Note
+that <span class="math inline">\(|a_{n_i,k}|\le |C_k|\)</span> and <span class="math inline">\(|b_k|\le |C_k|\)</span>, so <span class="math inline">\(|a_{n_i,k}-b_k|\le |a_{n_i,k}|+|b_k|\le
+2C_k\)</span>. Then</p>
+<p><span class="math display">\[\begin{aligned}
+\|f_{n_i}-f\|^2
+&amp;=\left\|\sum_{k=1}^{\infty}(a_{n_i,k}-b_k)e_k\right\|^2 \\
+&amp;=\sum_{k=1}^{\infty}|(a_{n_i,k}-b_k)e_k|^2
+=\sum_{k=1}^{\infty}|a_{n_i,k}-b_k|^2  \\
+&amp;=\sum_{k=1}^{K}|a_{n_i,k}-b_k|^2+\sum_{k=K+1}^{\infty}|a_{n_i,k}-b_k|^2
+\\
+&amp;\le \sum_{k=1}^{K}|a_{n_i,k}-b_k|^2+\sum_{k=K+1}^{\infty}4C_k^2 \\
+&amp;&lt;\sum_{k=1}^{K}|a_{n_i,k}-b_k|^2+4\varepsilon^2.
+\end{aligned}\]</span></p>
+<p>Since <span class="math inline">\(\lim_{i\to\infty}|a_{n_i,k}-b_k|=0\)</span>, there
+is <span class="math inline">\(J_k\in\mathbb{N}\)</span> s.t. <span class="math inline">\(i\ge J_k\)</span> implies <span class="math inline">\(|a_{n_i,k}-b_k|&lt;\varepsilon/\sqrt{K}\)</span>,
+<span class="math inline">\((k=1,\cdots,K)\)</span>. Then, <span class="math inline">\(i\ge J_\varepsilon:=\max_{1\le k\le K}J_k\)</span>
+implies <span class="math display">\[\sum_{k=1}^{K}|a_{n_i,k}-b_k|^2&lt;\sum_{k=1}^{K}\left(\frac{\varepsilon^2}{K}\right)=\varepsilon^2.\]</span></p>
+<p>So, <span class="math inline">\(i\ge J_\varepsilon\)</span> implies
+<span class="math inline">\(\|f_{n_i}-f\|&lt;\sqrt{5}\varepsilon\)</span>.</p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(\lim_{i\to\infty}\|f_{n_i}-f\|=0\)</span>. Since
+<span class="math inline">\(f\in A\)</span> and <span class="math inline">\(f_n\)</span> is a bounded function, <span class="math inline">\(A\)</span> is compact in <span class="math inline">\(\mathcal{H}\)</span>.</p>
+<hr />
+</div>
+<div id="suppose-t-is-a-bounded-operator-in-mathcalh-that-is-diagonal-with-respect-to-a-basis-psi_k-with-tpsi_klambda_kpsi_k.-show-that-t-is-compact-iff-lambda_kto-0." class="section level2">
+<h2>25. Suppose <span class="math inline">\(T\)</span> is a bounded
+operator in <span class="math inline">\(\mathcal{H}\)</span> that is
+diagonal with respect to a basis <span class="math inline">\(\{\psi_k\}\)</span> with <span class="math inline">\(T\psi_k=\lambda_k\psi_k\)</span>. Show that <span class="math inline">\(T\)</span> is compact iff <span class="math inline">\(\lambda_k\to 0\)</span>.</h2>
+<p><strong>proof</strong><br />
+(1) <span class="math inline">\(\Leftarrow\)</span></p>
+<p>① compact <span class="math inline">\(T_n\)</span></p>
+<p>Define <span class="math inline">\(T_n\)</span> as follows: <span class="math display">\[
+T_n(\psi_k)=
+\begin{cases}
+\lambda_k\psi_k, &amp; k=1,\cdots,n,\\
+0, &amp; k&gt;n.
+\end{cases}
+\]</span> <span class="math inline">\(T_n\)</span> is finite-ranked, so
+it is compact. Let <span class="math inline">\(x=\sum_{k=1}^{\infty}x_k\psi_k\in\mathcal{H}\)</span>
+<span class="math inline">\((x_k\in\mathbb{C})\)</span>,</p>
+<p>② <span class="math inline">\(\|T-T_n\|\le \sup_{k\ge
+n+1}|\lambda_k|\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+\|(T-T_n)x\|^2
+&amp;=\left\|\sum_{k=1}^{\infty}x_k\lambda_k\psi_k-\sum_{k=1}^{n}x_k\lambda_k\psi_k\right\|^2
+\\
+&amp;=\left\|\sum_{k=n+1}^{\infty}x_k\lambda_k\psi_k\right\|^2 \\
+&amp;=\sum_{k=n+1}^{\infty}|x_k\lambda_k|^2\|\psi_k\|^2
+=\sum_{k=n+1}^{\infty}|\lambda_k|^2|x_k|^2 \qquad(\because\ \psi_k\
+\text{is orthonormal})\\
+&amp;\le \sup_{k\ge n+1}|\lambda_k|^2\sum_{k=n+1}^{\infty}|x_k|^2 \\
+&amp;\le \sup_{k\ge n+1}|\lambda_k|^2\|x\|^2,
+\end{aligned}\]</span> so <span class="math inline">\(\|T-T_n\|\le
+\sup_{k\ge n+1}|\lambda_k|\)</span>.</p>
+<p>③ <span class="math inline">\(\|T_n-T\|\to 0\)</span></p>
+<p>Then, <span class="math display">\[\lim_{n\to\infty}\|T-T_n\|\le
+\lim_{n\to\infty}\sup_{k\ge
+n+1}|\lambda_k|=\limsup_{n\to\infty}|\lambda_n|=0\ (\because\
+\lambda_k\to 0).\]</span></p>
+<p>Thus, <span class="math inline">\(\lim_{n\to\infty}\|T-T_n\|=0\)</span> and <span class="math inline">\(T\)</span> is compact (Prop 4.6.1(ii)).</p>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="math inline">\(\Rightarrow\)</span></li>
+</ol>
+<p>① <span class="math inline">\(\lambda_k\nrightarrow 0\)</span>, then
+<span class="math inline">\(\exists\{\lambda_{n_i}\}\)</span> &amp;
+<span class="math inline">\(\delta&gt;0\)</span> s.t. <span class="math inline">\(|\lambda_{n_i}|&gt;\delta\)</span></p>
+<p>Assume that <span class="math inline">\(\lambda_k\nrightarrow
+0\)</span>. Then <span class="math inline">\(\limsup_{k\to\infty}|\lambda_k|&gt;0\)</span>, and
+there is a subsequence <span class="math inline">\(\{\lambda_{n_i}\}_i\)</span> &amp; <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math inline">\(|\lambda_{n_i}|&gt;\delta&gt;0\)</span> (if not,
+<span class="math inline">\(|\lambda_n|\le\delta, ^\forall n\)</span>,
+so <span class="math inline">\(|\lambda_n|\to 0\)</span>).</p>
+<p>② <span class="math inline">\(T\psi_{n_i}\to Tf\)</span></p>
+<p><span class="math inline">\(\{T\psi_{n_i}\}_i\)</span> is a bounded
+sequence, because <span class="math inline">\(\|T\psi_{n_i}\|\le\|T\|\|\psi_{n_i}\|=\|T\|\)</span>
+and <span class="math inline">\(T\)</span> is bounded. Then, there is a
+subsequence <span class="math inline">\(\{T\psi_{n_{i_\ell}}\}_\ell\)</span> that
+converges (<span class="math inline">\(\because\ T\)</span> is compact).
+Let the limit be <span class="math inline">\(Tf\)</span>, <span class="math inline">\(\tilde\psi_\ell=\psi_{n_{i_\ell}}\)</span>, and
+<span class="math inline">\(\tilde\lambda_\ell=\lambda_{n_{i_\ell}}\)</span>.</p>
+<p>③ <span class="math inline">\(\delta\le 0\)</span>, contradiction</p>
+<p>Because <span class="math inline">\(\tilde\psi_{\ell_1},\tilde\psi_{\ell_2}\)</span>
+is orthonormal, <span class="math display">\[\begin{aligned}
+\|T\tilde\psi_{\ell_1}-T\tilde\psi_{\ell_2}\|^2
+&amp;=\|\tilde\lambda_{\ell_1}\tilde\psi_{\ell_1}-\tilde\lambda_{\ell_2}\tilde\psi_{\ell_2}\|^2
+=|\tilde\lambda_{\ell_1}|^2+|\tilde\lambda_{\ell_2}|^2
+\end{aligned}\]</span></p>
+<p>Since <span class="math inline">\(\|T\tilde\psi_{\ell_1}-T\tilde\psi_{\ell_2}\|\le
+\|T\tilde\psi_{\ell_1}-Tf\|+\|Tf-T\tilde\psi_{\ell_2}\|\)</span> and
+<span class="math inline">\(\lim_{\ell\to\infty}\|T\tilde\psi_\ell-Tf\|=0\)</span>,
+<span class="math inline">\(\lim_{\ell_1,\ell_2\to\infty}\|T\tilde\psi_{\ell_1}-T\tilde\psi_{\ell_2}\|=0\)</span>.</p>
+<p><span class="math inline">\(|\tilde\lambda_\ell|&gt;\delta\)</span>,
+so <span class="math inline">\(\liminf_{\ell_1,\ell_2\to\infty}(|\tilde\lambda_{\ell_1}|^2+|\tilde\lambda_{\ell_2}|^2)\ge
+2\delta^2\)</span>.</p>
+<p>Then, <span class="math inline">\(0\ge \sqrt{2}\delta\)</span> so
+<span class="math inline">\(\delta\le 0\)</span>, which is
+contradiction.</p>
+<p>④ <span class="math inline">\(\therefore\ \lambda_k\to 0\)</span></p>
+<hr />
+</div>
+<div id="suppose-omega-is-a-measurable-function-on-mathbbrd-with-0omegaxinfty-a.e-x-and-k-is-a-measurable-function-on-mathbbr2d-that-satisfies-i-int_mathbbrdkxyomegaydyle-acdotomegax-a.e-xinmathbbrd-and-ii-int_mathbbrdkxyomegaxdxle-acdotomegay-a.e-yinmathbbrd.-the-integral-operator-is-defined-by-tfxint_mathbbrdkxyfydy-xinmathbbrd." class="section level2">
+<h2>26. Suppose <span class="math inline">\(\omega\)</span> is a
+measurable function on <span class="math inline">\(\mathbb{R}^d\)</span>
+with <span class="math inline">\(0&lt;\omega(x)&lt;\infty\)</span> a.e
+<span class="math inline">\(x\)</span>, and <span class="math inline">\(K\)</span> is a measurable function on <span class="math inline">\(\mathbb{R}^{2d}\)</span> that satisfies (i) <span class="math inline">\(\int_{\mathbb{R}^d}|K(x,y)|\omega(y)\,dy\le
+A\cdot\omega(x)\)</span> a.e <span class="math inline">\(x\in\mathbb{R}^d\)</span>, and (ii) <span class="math inline">\(\int_{\mathbb{R}^d}|K(x,y)|\omega(x)\,dx\le
+A\cdot\omega(y)\)</span> a.e <span class="math inline">\(y\in\mathbb{R}^d\)</span>. The integral operator
+is defined by <span class="math inline">\(Tf(x)=\int_{\mathbb{R}^d}K(x,y)f(y)\,dy\)</span>
+<span class="math inline">\((x\in\mathbb{R}^d)\)</span>.</h2>
+<div id="show-that-t-is-bounded-on-l2mathbbrd-tle-a" class="section level3">
+<h3>(1) Show that <span class="math inline">\(T\)</span> is bounded on
+<span class="math inline">\(L^2(\mathbb{R}^d)\)</span> : <span class="math inline">\(\|T\|\le A\)</span></h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(\left\{\int_{\mathbb{R}^d}|K(x,y)|\,|f(y)|\,dy\right\}^2\le
+A\,\omega(x)\int_{\mathbb{R}^d}|K(x,y)|\,\omega(y)^{-1}\,|f(y)|^2\,dy\
+\text{a.e }x\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+\int_{\mathbb{R}^d}|K(x,y)f(y)|\,dy
+&amp;=\int_{\mathbb{R}^d}\Big(\sqrt{|K(x,y)|\omega(y)}\Big)\Big(\sqrt{|K(x,y)|\omega(y)^{-1}|f(y)|^2}\Big)\,dy,
+\end{aligned}\]</span> so <span class="math display">\[\begin{aligned}
+\left\{\int_{\mathbb{R}^d}|K(x,y)f(y)|\,dy\right\}^2
+&amp;=\left\{\int_{\mathbb{R}^d}\Big(\sqrt{|K(x,y)|\omega(y)}\Big)\Big(\sqrt{|K(x,y)|\omega(y)^{-1}|f(y)|^2}\Big)\,dy\right\}^2
+\\
+&amp;\le
+\left(\int_{\mathbb{R}^d}|K(x,y)|\omega(y)\,dy\right)\left(\int_{\mathbb{R}^d}|K(x,y)|\omega(y)^{-1}|f(y)|^2\,dy\right)
+\\
+&amp;\Big(\because \text{Cauchy–Schwarz inequality} \Big)\\
+&amp;\le
+A\cdot\omega(x)\int_{\mathbb{R}^d}|K(x,y)|\omega(y)^{-1}|f(y)|^2\,dy\
+\text{a.e }x.
+\end{aligned}\]</span> (<span class="math inline">\(\because\)</span>
+Cauchy–Schwarz inequality)</p>
+<p>② <span class="math inline">\(\|Tf\|_2\le A\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+\|Tf\|_2^2
+&amp;=\int_{\mathbb{R}^d}\left|\int_{\mathbb{R}^d}K(x,y)f(y)\,dy\right|^2dx
+\\
+&amp;\le
+\int_{\mathbb{R}^d}\left\{\int_{\mathbb{R}^d}|K(x,y)|\,|f(y)|\,dy\right\}^2dx
+\\
+&amp;\le
+\int_{\mathbb{R}^d}A\omega(x)\int_{\mathbb{R}^d}|K(x,y)|\omega(y)^{-1}|f(y)|^2\,dy\cdot
+dx\qquad(\because\,①) \\
+&amp;=A\int_{\mathbb{R}^d}\int_{\mathbb{R}^d}\omega(x)|K(x,y)|\omega(y)^{-1}|f(y)|^2\,dx\,dy\qquad(\because\,\text{Tonelli&#39;s
+thm}) \\
+&amp;=A\int_{\mathbb{R}^d}\omega(y)^{-1}|f(y)|^2\int_{\mathbb{R}^d}|K(x,y)|\omega(x)\,dx\cdot
+dy \\
+&amp;\le A\int_{\mathbb{R}^d}\omega(y)^{-1}|f(y)|^2\cdot
+A\omega(y)\,dy\qquad(\because\,(ii)) \\
+&amp;=A^2\int_{\mathbb{R}^d}|f(y)|^2\,dy
+=A^2\|f\|_2^2.
+\end{aligned}\]</span></p>
+<p>Thus, <span class="math inline">\(\|Tf\|_2\le A\|f\|_2\)</span> and
+<span class="math inline">\(\|T\|\le A\)</span>.</p>
+</div>
+<div id="int_mathbbrdkxydyle-a-forall-x-and-int_mathbbrdkxydxle-a-forall-y.-show-that-tle-a." class="section level3">
+<h3>(2) <span class="math inline">\(\int_{\mathbb{R}^d}|K(x,y)|\,dy\le
+A\ \forall x\)</span> and <span class="math inline">\(\int_{\mathbb{R}^d}|K(x,y)|\,dx\le A\ \forall
+y\)</span>. Show that <span class="math inline">\(\|T\|\le
+A\)</span>.</h3>
+<p><strong>proof</strong><br />
+<span class="math display">\[\begin{aligned}
+\left\{\int_{\mathbb{R}^d}|K(x,y)f(y)|\,dy\right\}^2
+&amp;=\left\{\int_{\mathbb{R}^d}\sqrt{|K(x,y)|}\,\sqrt{|K(x,y)|}\,|f(y)|\,dy\right\}^2
+\\
+&amp;\le
+\left(\int_{\mathbb{R}^d}|K(x,y)|\,dy\right)\left(\int_{\mathbb{R}^d}|K(x,y)|\,|f(y)|^2\,dy\right)
+\\
+&amp;\le A\int_{\mathbb{R}^d}|K(x,y)|\,|f(y)|^2\,dy.\qquad\sim\text{①}
+\end{aligned}\]</span></p>
+<p>Then, <span class="math display">\[\begin{aligned}
+\|Tf\|_2^2
+&amp;=\int_{\mathbb{R}^d}\left|\int_{\mathbb{R}^d}K(x,y)f(y)\,dy\right|^2dx
+\\
+&amp;\le
+\int_{\mathbb{R}^d}\left\{\int_{\mathbb{R}^d}|K(x,y)|\,|f(y)|\,dy\right\}^2dx
+\\
+&amp;\le
+\int_{\mathbb{R}^d}A\int_{\mathbb{R}^d}|K(x,y)|\,|f(y)|^2\,dy\cdot
+dx\qquad(\because\,①) \\
+&amp;=A\int_{\mathbb{R}^d}\int_{\mathbb{R}^d}|K(x,y)|\,|f(y)|^2\,dx\,dy\qquad(\because\,\text{Tonelli&#39;s
+thm}) \\
+&amp;=A\int_{\mathbb{R}^d}|f(y)|^2\int_{\mathbb{R}^d}|K(x,y)|\,dx\cdot
+dy \\
+&amp;\le A\int_{\mathbb{R}^d}|f(y)|^2\cdot A\,dy
+=A^2\|f\|_2^2.
+\end{aligned}\]</span></p>
+<p>So, <span class="math inline">\(\|Tf\|_2\le A\|f\|_2\)</span>, and
+thus <span class="math inline">\(\|T\|\le A\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="tfxdfrac1piint_0inftydfrac1xyfydy.-show-that-t-is-bounded-on-l20infty-tle-1." class="section level2">
+<h2>27. <span class="math inline">\(Tf(x)=\dfrac{1}{\pi}\int_{0}^{\infty}\dfrac{1}{x+y}f(y)\,dy\)</span>.
+Show that <span class="math inline">\(T\)</span> is bounded on <span class="math inline">\(L^2(0,\infty)\)</span> : <span class="math inline">\(\|T\|\le 1\)</span>.</h2>
+<p><strong>proof</strong><br />
+① <span class="math inline">\((Tf,g)\le \|f\|_2\|g\|_2\)</span>, for
+<span class="math inline">\(g\in L^2(0,\infty)\)</span> with <span class="math inline">\(g\ne 0\)</span>.</p>
+<p><span class="math inline">\(\|\cdot\|_2\Rightarrow \|\cdot\|\)</span>
+for simplicity.</p>
+<p><span class="math display">\[\begin{aligned}
+(Tf(x),g(x))
+&amp;=\int_{0}^{\infty}Tf(x)\,\overline{g(x)}\,dx \\
+&amp;=\int_{0}^{\infty}\frac{1}{\pi}\int_{0}^{\infty}\frac{1}{x+y}f(y)\overline{g(x)}\,dy\,dx
+\qquad(\text{let } y=xt,\ dy=x\cdot dt) \\
+&amp;=\frac{1}{\pi}\int_{0}^{\infty}\int_{0}^{\infty}\frac{1}{x+xt}f(xt)\overline{g(x)}\,x\,dt\,dx
+\\
+&amp;=\frac{1}{\pi}\int_{0}^{\infty}\int_{0}^{\infty}\frac{1}{1+t}f(xt)\overline{g(x)}\,dt\,dx
+\\
+&amp;=\frac{1}{\pi}\int_{0}^{\infty}\frac{1}{1+t}\int_{0}^{\infty}f(xt)\overline{g(x)}\,dx\cdot
+dt \qquad(\because\ \text{Fubini&#39;s thm}) \\
+&amp;\le
+\frac{1}{\pi}\int_{0}^{\infty}\frac{1}{1+t}\left\{\int_{0}^{\infty}|f(xt)|^2dx\right\}^{\frac12}\left\{\int_{0}^{\infty}|g(x)|^2dx\right\}^{\frac12}dt
+\qquad(\because\ \text{Cauchy-Schwartz}) \\
+&amp; \biggl( xt=y, \text{ then }
+\int_{0}^{\infty}|f(xt)|^2dx=\int_{0}^{\infty}\frac{1}{t}|f(y)|^2dy=\frac{1}{t}\|f\|^2
+\ (xdt=dy) \biggr) \\
+&amp;=\frac{1}{\pi}\int_{0}^{\infty}\frac{1}{1+t}\cdot\frac{1}{\sqrt{t}}\|f\|\cdot\|g\|\,dt
+\qquad(\text{let } t=u^2,\ dt=2u\cdot du) \\
+&amp;=\frac{1}{\pi}\|f\|\cdot\|g\|\int_{0}^{\infty}\frac{1}{1+u^2}\cdot\frac{1}{u}\cdot
+2u\,du \\
+&amp; \biggl( u=\tan\theta,\ du=\sec^2\theta\,d\theta\Rightarrow
+\int_{0}^{\infty}\frac{1}{1+u^2}du=\int_{0}^{\pi/2}\frac{1}{1+\tan^2\theta}\cdot\sec^2\theta\,d\theta=\int_{0}^{\pi/2}d\theta=\frac{\pi}{2}
+\biggr)\\
+&amp;=\frac{2}{\pi}\|f\|\cdot\|g\|\cdot\frac{\pi}{2}=\|f\|\|g\|\end{aligned}\]</span></p>
+<p>So, <span class="math inline">\((Tf(x),g(x))\le
+\|f\|\|g\|\)</span>.</p>
+<p>② <span class="math inline">\(g=\|Tf\|^{-1}Tf\ \Rightarrow\ \|Tf\|\le
+\|f\|\)</span>, conclusion.</p>
+<p>Let <span class="math inline">\(g(x)=\|Tf(x)\|^{-1}Tf(x)\)</span>.
+Then <span class="math inline">\((Tf(x),g(x))=\|Tf(x)\|^{-1}\|Tf(x)\|^2=\|Tf(x)\|\)</span>,
+and <span class="math inline">\(\|g\|=1\)</span>. So, <span class="math inline">\(\|Tf(x)\|\le \|f\|\)</span>, and thus <span class="math inline">\(\|T\|\le 1\)</span>.</p>
+<hr />
+</div>
+<div id="suppose-mathcalhl2b-where-b-is-a-unit-ball-in-mathbbrd.-let-kxy-be-a-measurable-function-on-btimes-b-such-that-kxyle-ax-y-dalpha-for-some-alpha0-and-all-xyin-b.-define-t-as-tfxint_b-kxyfydy-for-finmathcalh." class="section level2">
+<h2>28. Suppose <span class="math inline">\(\mathcal{H}=L^2(B)\)</span>
+where <span class="math inline">\(B\)</span> is a unit ball in <span class="math inline">\(\mathbb{R}^d\)</span>. Let <span class="math inline">\(K(x,y)\)</span> be a measurable function on <span class="math inline">\(B\times B\)</span> such that <span class="math inline">\(|K(x,y)|\le A|x-y|^{-d+\alpha}\)</span> for some
+<span class="math inline">\(\alpha&gt;0\)</span> and all <span class="math inline">\(x,y\in B\)</span>. Define <span class="math inline">\(T\)</span> as <span class="math inline">\(Tf(x)=\int_B K(x,y)f(y)\,dy\)</span> for <span class="math inline">\(f\in\mathcal{H}\)</span>.</h2>
+<div id="a-show-that-t-is-a-bounded-operator-on-mathcalh.-b-xle-1-textwlog" class="section level3">
+<h3>(a) Show that <span class="math inline">\(T\)</span> is a bounded
+operator on <span class="math inline">\(\mathcal{H}\)</span>. <span class="math inline">\((B:\ |x|\le 1\ \text{wlog})\)</span></h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(\int_B|K(x,y)|dy\le C_1,\
+\int_B|K(x,y)|dx\le C_2\)</span></p>
+<p><span class="math display">\[\int_B|K(x,y)|\,dy\le
+A\int_B|y-x|^{-d+\alpha}dy=A\int_{B-x}|y&#39;|^{-d+\alpha}dy&#39;\le
+A\int_{2B}|y&#39;|^{-d+\alpha}dy&#39;\quad(2B:\ |z|\le 2).\]</span></p>
+<p>Since <span class="math inline">\((d-\alpha)&lt;d\)</span>, <span class="math inline">\(|y&#39;|^{-d+\alpha}\)</span> is integrable on
+<span class="math inline">\(2B\)</span>. Let <span class="math inline">\(A\int_{2B}|y&#39;|^{-d+\alpha}dy&#39;=C_1\)</span>.</p>
+<p>Similarly, <span class="math inline">\(\int_B|K(x,y)|dx\le
+A\int_{2B}|x&#39;|^{-d+\alpha}dx&#39;=:C_2\)</span> for <span class="math inline">\(x&#39;=x-y\)</span>.</p>
+<p>② <span class="math inline">\(\|Tf\|_{\mathcal{H}}\le
+\sqrt{C_1C_2}\|f\|_{\mathcal{H}}\)</span>, conclusion</p>
+<p><span class="math display">\[\begin{aligned}
+\|Tf\|_{\mathcal{H}}^2
+&amp;=\int_B\left|\int_BK(x,y)f(y)\,dy\right|^2dx \\
+&amp;\le
+\int_B\left\{\int_B|K(x,y)||f(y)|\,dy\right\}^2dx\qquad(\because\
+\Delta\ \text{ineq}) \\
+&amp;=\int_B\left\{\int_B\sqrt{|K(x,y)|}\,\sqrt{|K(x,y)|}\,|f(y)|\,dy\right\}^2dx
+\\
+&amp;\le
+\int_B\left\{\int_B|K(x,y)|\,dy\right\}\left\{\int_B|K(x,y)||f(y)|^2dy\right\}dx\qquad(\because\
+\text{Cauchy}) \\
+&amp;\le \int_B C_1\int_B|K(x,y)||f(y)|^2dy\ dx \\
+&amp;=C_1\int_B|f(y)|^2\int_B|K(x,y)|\,dx\ dy\qquad(\because\
+\text{Tonelli&#39;s thm}) \\
+&amp;\le C_1\int_B|f(y)|^2dy\cdot C_2
+=C_1C_2\|f\|_{\mathcal{H}}^2.
+\end{aligned}\]</span></p>
+<p>So, <span class="math inline">\(\|Tf\|_{\mathcal{H}}\le
+\sqrt{C_1C_2}\|f\|_{\mathcal{H}}\)</span> and <span class="math inline">\(\|T\|\le \sqrt{C_1C_2}\Rightarrow\)</span>
+bounded.</p>
+</div>
+<div id="b-show-that-t-is-compact" class="section level3">
+<h3>(b) Show that <span class="math inline">\(T\)</span> is compact</h3>
+<p><strong>proof</strong><br />
+Let <span class="math display">\[
+K_n(x,y)=
+\begin{cases}
+K(x,y), &amp; |x-y|\ge 1/n,\\
+0, &amp; \text{o.w},
+\end{cases}
+\qquad\text{and}\qquad
+T_nf(x)=\int_BK_n(x,y)f(y)\,dy\ (n\in\mathbb{N},\ f\in\mathcal{H}).
+\]</span></p>
+<p>① <span class="math inline">\(T_n\)</span> is a Hilbert-Schmidt
+operator</p>
+<p><span class="math display">\[|K_n(x,y)|\le |K(x,y)|\ (\text{when
+}|x-y|^{-1}\le n)\le A|x-y|^{-d+\alpha}\le A\cdot
+n^{d-\alpha}.\]</span></p>
+<p>Then, <span class="math display">\[\int_B\int_B|K_n(x,y)|^2dxdy\le
+A^2n^{2d-2\alpha}\int_B\int_Bdxdy,\]</span> so <span class="math inline">\(\le A^2n^{2d-2\alpha}\cdot
+C&lt;\infty\)</span>.</p>
+<p>So, <span class="math inline">\(K_n(x,y)\in L^2(B\times B)\)</span>
+and <span class="math inline">\(T_n\)</span> is a Hilbert-Schmidt
+operator.</p>
+<p>Note that <span class="math inline">\(T_n\)</span> is consequently
+compact.</p>
+<p>②-1 <span class="math inline">\(\int_B|K(x,y)-K_n(x,y)|\,dy\le
+D_n\)</span> with <span class="math inline">\(\lim_{n\to\infty}D_n=0\)</span></p>
+<p><span class="math display">\[\int_B|K(x,y)-K_n(x,y)|\,dy=\int_{|x-y|&lt;1/n}|K(x,y)|\,dy\le
+\int_{|x-y|&lt;1/n}A|x-y|^{-d+\alpha}dy=A\int_{|z|&lt;1/n}|z|^{-d+\alpha}dz.\]</span></p>
+<p><span class="math inline">\(|z|^{-d+\alpha}\)</span> is integrable on
+<span class="math inline">\(\{z:\ |z|&lt;1\}\)</span>, so for given
+<span class="math inline">\(\varepsilon&gt;0\)</span> there is <span class="math inline">\(\delta_\varepsilon&gt;0\)</span> such that <span class="math inline">\(m(E)&lt;\delta_\varepsilon\)</span> implies <span class="math inline">\(0\le
+A\int_E|z|^{-d+\alpha}dz&lt;\varepsilon\)</span>. (prop 2.1.12 (ii))</p>
+<p>Let <span class="math inline">\(N_\varepsilon\)</span> be the minimum
+of <span class="math inline">\(n\in\mathbb{N}\)</span> such that <span class="math inline">\(m(\{|z|&lt;1/n\})&lt;\delta_\varepsilon\)</span>.</p>
+<p>Then <span class="math inline">\(n\ge N_\varepsilon\)</span> implies
+<span class="math inline">\(0\le
+A\int_{|z|&lt;1/n}|z|^{-d+\alpha}dz&lt;\varepsilon\)</span>.</p>
+<p>This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(\lim_{n\to\infty}A\int_{|z|&lt;1/n}|z|^{-d+\alpha}dz=0\)</span>.</p>
+<p>Denote <span class="math inline">\(A\int_{|z|&lt;1/n}|z|^{-d+\alpha}dz\)</span> as
+<span class="math inline">\(D_n\)</span>; <span class="math inline">\(\lim_{n\to\infty}D_n=0\)</span>. Then <span class="math inline">\(\int_B|K(x,y)-K_n(x,y)|\,dy\le D_n\)</span>.</p>
+<p>②-2 <span class="math inline">\(\int_B|K(x,y)-K_n(x,y)|\,dx\le
+D_n\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+\int_B|K(x,y)-K_n(x,y)|\,dx&amp;=\int_{|x-y|&lt;1/n}|K(x,y)|\,dx \\
+&amp;\le \int_{|x-y|&lt;1/n}A|x-y|^{-d+\alpha}dx \\
+&amp;=A\int_{|z|&lt;1/n}|z|^{-d+\alpha}dz&#39;:=D_n. \qquad(\because\
+②\text{-}1)
+\end{aligned}\]</span></p>
+<p>③ <span class="math inline">\(\|T-T_n\|\le D_n\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+\|(T-T_n)f\|_{\mathcal{H}}^2
+&amp;=\int_B\left|\int_BK(x,y)f(y)\,dy-\int_BK_n(x,y)f(y)\,dy\right|^2dx
+\\
+&amp;=\int_B\left|\int_B(K(x,y)-K_n(x,y))f(y)\,dy\right|^2dx \\
+&amp;\le \int_B\left\{\int_B|K(x,y)-K_n(x,y)|\,|f(y)|\,dy\right\}^2dx \\
+&amp;=\int_B\left\{\int_B\sqrt{|K(x,y)-K_n(x,y)|}\,\sqrt{|K(x,y)-K_n(x,y)|}\,|f(y)|\,dy\right\}^2dx
+\\
+&amp;\le
+\int_B\left\{\int_B|K(x,y)-K_n(x,y)|\,dy\right\}\left\{\int_B|K(x,y)-K_n(x,y)||f(y)|^2dy\right\}dx\qquad(\because\
+\text{Cauchy}) \\
+&amp;\le \int_B D_n\int_B|K(x,y)-K_n(x,y)||f(y)|^2dy\ dx\qquad(\because\
+②) \\
+&amp;=D_n\int_B\int_B|K(x,y)-K_n(x,y)||f(y)|^2dxdy\qquad(\because\
+\text{Fubini&#39;s thm}) \\
+&amp;=D_n\int_B|f(y)|^2\int_B|K(x,y)-K_n(x,y)|\,dx\ dy \\
+&amp;\le D_n^2\|f\|_{\mathcal{H}}^2\qquad(\because\ ②)\
+(f\in\mathcal{H},\ \text{so }\|f\|_{\mathcal{H}}&lt;\infty).
+\end{aligned}\]</span></p>
+<p>So <span class="math inline">\(\|(T-T_n)f\|_{\mathcal{H}}\le
+D_n\|f\|_{\mathcal{H}}\)</span> and <span class="math inline">\(\|T-T_n\|\le D_n\)</span>.</p>
+<p>④ conclusion</p>
+<p><span class="math inline">\(\lim_{n\to\infty}D_n=0\)</span>, so <span class="math inline">\(\lim_{n\to\infty}\|T-T_n\|=0\)</span>. Thus, <span class="math inline">\(T\)</span> is compact (Prop 4.6.1(ii)).</p>
+</div>
+<div id="c-show-that-t-is-hilbert-schmidt-operator-if-alphadfracd2" class="section level3">
+<h3>(c) Show that <span class="math inline">\(T\)</span> is
+Hilbert-Schmidt operator if <span class="math inline">\(\alpha&gt;\dfrac{d}{2}\)</span></h3>
+<p><strong>proof</strong><br />
+<span class="math inline">\(T\)</span> is Hilbert-Schmidt operator</p>
+<p><span class="math display">\[\Leftrightarrow\ K(x,y)\in L^2(B\times
+B)\ \Leftrightarrow\ A|x-y|^{-d+\alpha}\in L^2(B\times B)\]</span></p>
+<p><span class="math display">\[\Leftrightarrow\
+A^2\int_B\int_B|x-y|^{-2d+2\alpha}dxdy&lt;\infty\ \Leftrightarrow\
+2d-2\alpha&lt;d\ \Leftrightarrow\ 2\alpha&gt;d.\]</span></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+                               </body>
+
+  
+</div>
