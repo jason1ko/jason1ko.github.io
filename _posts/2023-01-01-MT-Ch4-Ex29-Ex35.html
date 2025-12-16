@@ -1,0 +1,845 @@
+---
+title: "Ch4 : Ex.29 ~ Ex.35"
+date: 2023-01-01 23:20:30
+categories: [Measure Theory]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="ch4.-hilbert-space-an-introduction-ex.29-ex.35" class="section level1">
+<h1>Ch4. Hilbert Space: An Introduction (Ex.29 ~ Ex.35)</h1>
+<div id="let-t-be-a-compact-operator-on-a-hilbert-space-mathcalh-and-lambdane-0." class="section level2">
+<h2>29. Let <span class="math inline">\(T\)</span> be a compact operator
+on a Hilbert space <span class="math inline">\(\mathcal{H}\)</span> and
+<span class="math inline">\(\lambda\ne 0\)</span>.</h2>
+<div id="a-show-that-the-range-of-lambda-i-t-defined-by-ginmathcalh-glambda-i-tf-textfor-some-finmathcalh-is-closed." class="section level3">
+<h3>(a) Show that the range of <span class="math inline">\(\lambda
+I-T\)</span> defined by <span class="math inline">\(\{g\in\mathcal{H}:
+g=(\lambda I-T)f\ \text{for some }f\in\mathcal{H}\}\)</span> is
+closed.</h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(\lambda I-T\)</span> is continuous, so
+bounded</p>
+<p>Consider <span class="math inline">\(\{f_n\}\subset\mathcal{H}\)</span> such that <span class="math inline">\(\lim_{n\to\infty}\|f_n-f\|_{\mathcal{H}}=0\)</span>
+for <span class="math inline">\(f\in\mathcal{H}\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+\|(\lambda I-T)(f_n)-(\lambda I-T)(f)\|_{\mathcal{H}}
+&amp;=\|\lambda(f_n-f)-T(f_n-f)\|_{\mathcal{H}} \\
+&amp;\le
+\|\lambda(f_n-f)\|_{\mathcal{H}}+\|T(f_n-f)\|_{\mathcal{H}}\qquad(\because\
+\Delta\ \text{ineq}) \\
+&amp;=|\lambda|\,\|f_n-f\|_{\mathcal{H}}+\|T(f_n-f)\|_{\mathcal{H}} \\
+&amp;\le
+|\lambda|\,\|f_n-f\|_{\mathcal{H}}+\|T\|\,\|f_n-f\|_{\mathcal{H}}\qquad(T\
+\text{is bounded}).
+\end{aligned}\]</span></p>
+<p>Then, <span class="math inline">\(\lim_{n\to\infty}\|(\lambda
+I-T)(f_n)-(\lambda I-T)(f)\|_{\mathcal{H}}=0\)</span>.</p>
+<p>This holds for all <span class="math inline">\(\{f_n\}\)</span> with
+<span class="math inline">\(\|f_n-f\|_{\mathcal{H}}\to 0\)</span>, so
+<span class="math inline">\(\lambda I-T\)</span> is continuous <span class="math inline">\(\Rightarrow\)</span> bounded.</p>
+<p>② <span class="math inline">\(V_\lambda\)</span> is closed, where
+<span class="math inline">\(V_\lambda\)</span> is kernel of <span class="math inline">\(\lambda I-T\)</span></p>
+<p>Consider <span class="math inline">\(\{f_n\}\subset
+V_\lambda\)</span> with <span class="math inline">\(\|f_n-f\|_{\mathcal{H}}\to 0\)</span> for <span class="math inline">\(f\in\mathcal{H}\)</span>.</p>
+<p><span class="math inline">\((\lambda I-T)f_n=0\)</span>, so <span class="math inline">\(\|(\lambda I-T)f\|_{\mathcal{H}}\le
+|\lambda|\|f_n-f\|_{\mathcal{H}}+\|T\|\|f_n-f\|_{\mathcal{H}}\)</span>
+(using ①).</p>
+<p><span class="math inline">\(\|f_n-f\|_{\mathcal{H}}\to 0\)</span>
+implies <span class="math inline">\(\|(\lambda
+I-T)f\|_{\mathcal{H}}=0\)</span>, so <span class="math inline">\((\lambda I-T)f=0\)</span> &amp; <span class="math inline">\(f\in V_\lambda\)</span>.</p>
+<p>Thus, <span class="math inline">\(V_\lambda\)</span> is a closed
+subspace. Note that <span class="math inline">\(\mathcal{H}=V_\lambda\oplus
+V_\lambda^\perp\)</span>.</p>
+<p>③ <span class="math inline">\(S:V_\lambda^\perp\to R(\lambda
+I-T)\)</span>, then <span class="math inline">\(\exists\delta&gt;0\)</span> s.t. <span class="math inline">\(\|Sx\|_{\mathcal{H}}\ge \delta\|x\|_{\mathcal{H}}\
+\forall x\in V_\lambda^\perp\ (x\ne 0)\)</span></p>
+<p>Let <span class="math inline">\(S:V_\lambda^\perp\to R(\lambda
+I-T)=:R\)</span> be an operator ‘<span class="math inline">\(\lambda
+I-T\)</span>’ between <span class="math inline">\(V_\lambda\)</span> and
+<span class="math inline">\(R\)</span>. Assume that for every <span class="math inline">\(\delta&gt;0\)</span> <span class="math inline">\(\exists x\in V_\lambda^\perp\)</span> s.t. <span class="math inline">\(\|Sx\|_{\mathcal{H}}&lt;\delta\|x\|_{\mathcal{H}}\)</span>
+&amp; <span class="math inline">\(x\ne 0\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\|S(x_n)\|_{\mathcal{H}}\to
+0\)</span> Let <span class="math inline">\(\{x_n\}\)</span> be a bounded
+sequence in <span class="math inline">\(V_\lambda^\perp\)</span> s.t.
+<span class="math inline">\(\|x_n\|_{\mathcal{H}}=1\)</span>, <span class="math inline">\(\|Sx_n\|_{\mathcal{H}}&lt;\frac{1}{n}\|x_n\|_{\mathcal{H}}\
+\forall n\in\mathbb{N}\)</span> <span class="math inline">\((\delta=\frac{1}{n})\)</span>. This means <span class="math inline">\(\lim_{n\to\infty}\|Sx_n\|=0\)</span>.
+<strong>cf)</strong> <span class="math inline">\(S=\lambda I-T\)</span>
+for <span class="math inline">\(V_\lambda^\perp\)</span>, so <span class="math inline">\(\lim_{n\to\infty}\|S(x_n)-0\|_{\mathcal{H}}=0\)</span>
+(∵①, continuous &amp; <span class="math inline">\(S(0)=0\)</span>).</p></li>
+<li><p><span class="math inline">\(T(x_{n_k})\to y\)</span> &amp; <span class="math inline">\(S(x_{n_k})+T(x_{n_k})=\lambda x_{n_k}\)</span>
+<span class="math inline">\(\{x_n\}\)</span> is bounded, and <span class="math inline">\(T\)</span> is compact, so there is <span class="math inline">\(\{x_{n_k}\}\)</span> such that <span class="math inline">\(T(x_{n_k})\)</span> converges: <span class="math inline">\(\lim_{k\to\infty}\|T(x_{n_k})-y\|_{\mathcal{H}}=0\)</span>
+for some <span class="math inline">\(y\in\mathcal{H}\)</span>. Then,
+<span class="math inline">\(S(x_{n_k})+T(x_{n_k})=\lambda
+x_{n_k}-T(x_{n_k})+T(x_{n_k})=\lambda x_{n_k}\)</span>.</p></li>
+<li><p><span class="math inline">\(\dfrac{y}{\lambda}\in
+V_\lambda^\perp\)</span> : <span class="math inline">\(\|\lambda
+x_{n_k}-y\|_{\mathcal{H}}\to 0\)</span> <span class="math display">\[\begin{aligned}
+\|\lambda x_{n_k}-y\|_{\mathcal{H}}
+&amp;=\|S(x_{n_k})+T(x_{n_k})-y\|_{\mathcal{H}} \\
+&amp;\le \|S(x_{n_k})-0\|_{\mathcal{H}}+\|T(x_{n_k})-y\|_{\mathcal{H}},
+\end{aligned}\]</span> so <span class="math inline">\(\lim_{k\to\infty}\|\lambda
+x_{n_k}-y\|_{\mathcal{H}}=0\)</span> &amp; <span class="math inline">\(\lim_{k\to\infty}\|x_{n_k}-y/\lambda\|_{\mathcal{H}}=0\)</span>.
+<span class="math inline">\(\{x_{n_k}\}\subset V_\lambda^\perp\)</span>
+and <span class="math inline">\(\mathcal{H}\)</span> is closed implies
+<span class="math inline">\(y/\lambda\in
+V_\lambda^\perp\)</span>.</p></li>
+<li><p><span class="math inline">\(\dfrac{y}{\lambda}\in
+V_\lambda\)</span> <span class="math display">\[\|S(y/\lambda)-0\|_{\mathcal{H}}\le
+\|S(y/\lambda)-S(x_{n_k})\|_{\mathcal{H}}+\|S(x_{n_k})-0\|_{\mathcal{H}}.\]</span>
+<span class="math inline">\(S\)</span> is continuous, so <span class="math inline">\(\lim_{k\to\infty}\|S(x_{n_k})-S(y/\lambda)\|_{\mathcal{H}}=0\)</span>.
+Since <span class="math inline">\(\|S(x_{n_k})\|_{\mathcal{H}}\to
+0\)</span>, <span class="math inline">\(\|S(y/\lambda)\|_{\mathcal{H}}=0\)</span> and
+<span class="math inline">\(S(y/\lambda)=0\)</span>. This means <span class="math inline">\(y/\lambda\in V_\lambda\)</span>.</p></li>
+<li><p>Then, <span class="math inline">\(y/\lambda\in V_\lambda\cap
+V_\lambda^\perp\)</span>, so <span class="math inline">\(y=0\)</span></p></li>
+<li><p><span class="math inline">\(y\ne 0\)</span>, contradiction <span class="math display">\[\|y\|_{\mathcal{H}}\le \|y-\lambda
+x_{n_k}\|_{\mathcal{H}}+\|\lambda x_{n_k}\|_{\mathcal{H}}=\|y-\lambda
+x_{n_k}\|_{\mathcal{H}}+|\lambda|,\]</span> and <span class="math display">\[|\lambda|=\|\lambda x_{n_k}\|_{\mathcal{H}}\le
+\|\lambda x_{n_k}-y\|_{\mathcal{H}}+\|y\|_{\mathcal{H}}.\]</span> This
+means <span class="math inline">\(\|y\|_{\mathcal{H}}=|\lambda|\)</span>, so <span class="math inline">\(y\ne 0\)</span>, which is a
+contradiction.</p></li>
+</ol>
+<p>④ <span class="math inline">\(S\)</span> is bijection</p>
+<ol style="list-style-type: decimal">
+<li><p>injective (1-1) Consider <span class="math inline">\(g_1,g_2\in
+R(\lambda I-T)\)</span> s.t. <span class="math inline">\(g_1=g_2\)</span>. <span class="math display">\[(\lambda I-T)f_1=g_1=g_2=(\lambda
+I-T)f_2\qquad(f_1,f_2\in\mathcal{H}).\]</span> <span class="math inline">\(f_1=f_1^\lambda+f_1^\perp\)</span> and <span class="math inline">\(f_2=f_2^\lambda+f_2^\perp\)</span> <span class="math inline">\((f_1^\lambda,f_2^\lambda\in V_\lambda\ \&amp;\
+f_1^\perp,f_2^\perp\in V_\lambda^\perp)\)</span>, so <span class="math inline">\(g_1=(\lambda I-T)f_1^\perp\)</span> and <span class="math inline">\(g_2=(\lambda I-T)f_2^\perp\)</span>. This means
+<span class="math inline">\(T(f_1^\perp-f_2^\perp)=\lambda(f_1^\perp-f_2^\perp)\)</span>,
+so <span class="math inline">\(f_1^\perp-f_2^\perp\in
+V_\lambda\)</span>. Since <span class="math inline">\(V_\lambda^\perp\)</span> is a subspace, <span class="math inline">\(f_1^\perp-f_2^\perp\in V_\lambda^\perp\)</span>.
+Using the fact <span class="math inline">\(V_\lambda\cap
+V_\lambda^\perp=\{0\}\)</span>, <span class="math inline">\(f_1^\perp-f_2^\perp=0\)</span>. Hence, <span class="math inline">\(S\)</span> is injective (1-1).</p></li>
+<li><p>surjective (onto) Consider <span class="math inline">\(g\in
+R\)</span>: <span class="math inline">\(g=(\lambda I-T)f\)</span> for
+some <span class="math inline">\(f\in\mathcal{H}\)</span>. <span class="math inline">\(f=f_\lambda+f_\perp\)</span> where <span class="math inline">\(f_\lambda\in V_\lambda\)</span> and <span class="math inline">\(f_\perp\in V_\lambda^\perp\)</span> (∵ <span class="math inline">\(\mathcal{H}=V_\lambda\oplus
+V_\lambda^\perp\)</span>), so <span class="math inline">\(g=(\lambda
+I-T)(f_\lambda+f_\perp)=(\lambda I-T)f_\perp\)</span>. In summary, for
+<span class="math inline">\(g\in R\)</span>, <span class="math inline">\(\exists f_\perp\in V_\lambda^\perp\)</span> s.t.
+<span class="math inline">\(g=S(f_\perp)\)</span>. Thus, <span class="math inline">\(S\)</span> is surjective (onto). ∴ <span class="math inline">\(S\)</span> is bijection.</p></li>
+</ol>
+<p>⑤ Convergence in norm implies Cauchy sequence in norm</p>
+<p>Let <span class="math inline">\(\{h_n\}\subset\mathcal{H}\)</span>
+s.t. <span class="math inline">\(\lim_{n\to\infty}\|h_n-h\|_{\mathcal{H}}=0\)</span>
+for <span class="math inline">\(h\in\mathcal{H}\)</span>. For given
+<span class="math inline">\(\varepsilon&gt;0\)</span> there is <span class="math inline">\(N_\varepsilon\in\mathbb{N}\)</span> such that
+<span class="math inline">\(n\ge N_\varepsilon\)</span> implies <span class="math inline">\(\|h_n-h\|_{\mathcal{H}}&lt;\varepsilon\)</span>.</p>
+<p><span class="math inline">\(\|h_m-h_n\|_{\mathcal{H}}\le
+\|h_m-h\|_{\mathcal{H}}+\|h-h_n\|_{\mathcal{H}}\)</span>, so <span class="math inline">\(\|h_m-h_n\|_{\mathcal{H}}&lt;2\varepsilon\)</span>
+for <span class="math inline">\(m,n\ge N_\varepsilon\)</span>. So, <span class="math inline">\(\{h_n\}\)</span> is a Cauchy sequence in <span class="math inline">\(\mathcal{H}\)</span>.</p>
+<p>⑥ <span class="math inline">\(R\)</span> is closed</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\{g_n\}\subset R\)</span> s.t. <span class="math inline">\(\|g_n-g\|_{\mathcal{H}}\to 0\)</span> Consider
+<span class="math inline">\(\{g_n\}\subset R\)</span> such that <span class="math inline">\(\lim_{n\to\infty}\|g_n-g\|_{\mathcal{H}}=0\)</span>
+for <span class="math inline">\(g\in\mathcal{H}\)</span>. Choose <span class="math inline">\(f_n\in V_\lambda^\perp\)</span> such that <span class="math inline">\(g_n=(\lambda I-T)f_n\)</span>. (S is bijective ④)
+<span class="math inline">\(\{g_n\}\subset\mathcal{H}\)</span>, so it’s
+a Cauchy sequence (∵⑤). Then, for given <span class="math inline">\(\varepsilon&gt;0\)</span> there is <span class="math inline">\(N_\varepsilon\in\mathbb{N}\)</span> such that
+<span class="math inline">\(m,n\ge N_\varepsilon\)</span> implies <span class="math inline">\(\|g_m-g_n\|_{\mathcal{H}}&lt;\varepsilon\)</span>.</p></li>
+<li><p><span class="math inline">\(\{f_n\}\)</span> is Cauchy in <span class="math inline">\(V_\lambda^\perp\)</span> Using ③, there is <span class="math inline">\(\delta&gt;0\)</span> s.t. <span class="math inline">\(\|S(f_n)\|_{\mathcal{H}}=\|g_n\|_{\mathcal{H}}\ge
+\delta\|f_n\|_{\mathcal{H}}\)</span>. <span class="math inline">\(f_m-f_n\in V_\lambda^\perp\)</span> (∵ subspace)
+and <span class="math inline">\(S(f_m-f_n)=g_m-g_n\)</span> (∵ <span class="math inline">\(S\)</span> is linear), so <span class="math inline">\(\|f_m-f_n\|_{\mathcal{H}}\le
+\frac{1}{\delta}\|g_m-g_n\|_{\mathcal{H}}\)</span>. Then, <span class="math inline">\(m,n\ge N_\varepsilon\)</span> implies <span class="math inline">\(\|f_m-f_n\|_{\mathcal{H}}&lt;\frac{1}{\delta}\varepsilon\)</span>.
+(∵⑥-1), Cauchy) This holds for all <span class="math inline">\(\varepsilon&gt;0\)</span>, so <span class="math inline">\(\{f_n\}\)</span> is a Cauchy sequence in <span class="math inline">\(V_\lambda^\perp\)</span>.</p></li>
+<li><p><span class="math inline">\(g\in R\)</span>, conclusion <span class="math inline">\(V_\lambda^\perp\)</span> is a closed subspace, so
+it is a Hilbert space which is complete. Then, there is <span class="math inline">\(f\in V_\lambda^\perp\)</span> such that <span class="math inline">\(\lim_{n\to\infty}\|f_n-f\|_{\mathcal{H}}=0\)</span>.
+<span class="math inline">\(S\)</span> is continuous, so <span class="math inline">\(\lim_{n\to\infty}\|S(f_n)-S(f)\|_{\mathcal{H}}=\lim_{n\to\infty}\|g_n-S(f)\|_{\mathcal{H}}=0\)</span>.
+This means <span class="math inline">\(S(f)=g\)</span>, thus <span class="math inline">\(g\in R\)</span>.</p></li>
+</ol>
+<p>∴ <span class="math inline">\(R\)</span> is closed.</p>
+</div>
+<div id="b-show-by-example-that-this-may-fail-when-lambda0" class="section level3">
+<h3>(b) Show, by example, that this may fail when <span class="math inline">\(\lambda=0\)</span></h3>
+<p><strong>proof</strong><br />
+It suffices to show the existence of operator <span class="math inline">\(T\)</span> that is compact but <span class="math inline">\(R(T)\)</span> is not closed. Let <span class="math inline">\(\{e_n\}\)</span> be an orthonormal basis for <span class="math inline">\(H\)</span> and let <span class="math display">\[
+Tx=\sum_{n=1}^\infty \frac{1}{n}(x,e_n)e_n \qquad (x\in H).
+\]</span></p>
+<p>① <span class="math inline">\(T\)</span> is linear <span class="math inline">\((f,g\in H,\ \alpha,\beta\in\mathbb{C})\)</span>
+<span class="math display">\[
+\begin{aligned}
+T(\alpha f+\beta g)
+&amp;=\sum_{n=1}^\infty \frac{1}{n}(\alpha f+\beta g,e_n)e_n \\
+&amp;=\sum_{n=1}^\infty \frac{1}{n}\{\alpha(f,e_n)e_n+\beta(g,e_n)e_n\}
+\\
+&amp;=\alpha\sum_{n=1}^\infty
+\frac{1}{n}(f,e_n)e_n+\beta\sum_{n=1}^\infty \frac{1}{n}(g,e_n)e_n \\
+&amp;=\alpha T(f)+\beta T(g).
+\end{aligned}
+\]</span></p>
+<p>② <span class="math inline">\(T\)</span> is compact</p>
+<ol style="list-style-type: decimal">
+<li><p>Choose <span class="math inline">\(\{z_k\}\subset H\)</span> s.t.
+<span class="math inline">\((z_k,e_n)\to a_n\)</span><br />
+Let <span class="math inline">\(\{x_m\}=X_0\subset H\)</span> be a
+bounded sequence s.t. <span class="math inline">\(\|x_m\|_H\le
+1\)</span> <span class="math inline">\(\forall m\in\mathbb{N}\)</span>.
+Then <span class="math inline">\(|(x_m,e_1)|\le \|x_m\|\|e_1\|\le
+1\)</span>. This means <span class="math inline">\(\{(x_m,e_1)\}_m\)</span> is a bounded sequence, so
+there is a subsequence <span class="math inline">\(\{x_{1,k}\}_k=X_1\subset X_0\)</span> and <span class="math inline">\(a_1\in\mathbb{C}\)</span> s.t. <span class="math inline">\(\lim_{k\to\infty}(x_{1,k},e_1)=a_1\)</span> <span class="math inline">\((|a_1|\le 1)\)</span>. Then, for every fixed <span class="math inline">\(n\in\mathbb{N}\)</span> there exists <span class="math inline">\(a_n\in\mathbb{C}\)</span> and subsequence <span class="math inline">\(\{x_{n,k}\}_k=X_n\)</span> s.t. <span class="math inline">\(\lim_{k\to\infty}(x_{n,k},e_n)=a_n\)</span> <span class="math inline">\((X_n\subset X_{n-1},\ |a_n|\le 1)\)</span>. Let
+<span class="math inline">\(z_k=x_{k,k}\)</span> for simplicity, then
+<span class="math inline">\(\lim_{k\to\infty}(z_k,e_n)=a_n\)</span>
+<span class="math inline">\((n\in\mathbb{N})\)</span>. <span class="math inline">\(\{z_k\}\subset\{x_m\}_m\)</span>.</p></li>
+<li><p><span class="math inline">\(\left\|Tz_k-\sum_{n=1}^\infty
+\frac{1}{n}a_ne_n\right\|_H\to 0\)</span>, conclusion <span class="math display">\[\begin{aligned}
+T(z_k)-\sum_{n=1}^\infty \frac{1}{n}a_ne_n
+&amp;=\sum_{n=1}^\infty
+\left\{\frac{1}{n}(z_k,e_n)e_n-\frac{1}{n}a_ne_n\right\} \\
+&amp;=\sum_{n=1}^\infty \frac{1}{n}\big((z_k,e_n)-a_n\big)e_n.
+\end{aligned}
+\]</span> Then, <span class="math display">\[
+\begin{aligned}
+\left\|Tz_k-\sum_{n=1}^\infty \frac{1}{n}a_ne_n\right\|_H^2
+&amp;=\sum_{n=1}^\infty
+\left|\frac{1}{n}\big((z_k,e_n)-a_n\big)\right|^2 \\
+&amp;=\sum_{n=1}^\infty \frac{1}{n^2}\big|(z_k,e_n)-a_n\big|^2,
+\end{aligned}
+\]</span> and <span class="math display">\[
+\begin{aligned}
+\lim_{k\to\infty}\left\|Tz_k-\sum_{n=1}^\infty
+\frac{1}{n}a_ne_n\right\|_H^2
+&amp;=\lim_{k\to\infty}\sum_{n=1}^\infty
+\frac{1}{n^2}\big|(z_k,e_n)-a_n\big|^2 \\
+&amp;=\sum_{n=1}^\infty
+\lim_{k\to\infty}\frac{1}{n^2}\big|(z_k,e_n)-a_n\big|^2 \quad
+(\mathrm{DCT})\\
+&amp;=0.
+\end{aligned}
+\]</span> This shows <span class="math inline">\(\left\|Tz_k-\sum_{n=1}^\infty
+\frac{1}{n}a_ne_n\right\|_H\to 0\)</span> and this holds for all bounded
+<span class="math inline">\(\{x_m\}\)</span>, so <span class="math inline">\(T\)</span> is compact.</p></li>
+</ol>
+<p><strong>cf)</strong> <span class="math inline">\(\left\|\sum_{n=1}^\infty
+\frac{1}{n}a_ne_n\right\|^2=\sum_{n=1}^\infty \frac{1}{n^2}|a_n|^2\le
+\sum_{n=1}^\infty \frac{1}{n^2}&lt;\infty\)</span>, so <span class="math inline">\(\sum_{n=1}^\infty \frac{1}{n}a_ne_n\in
+H\)</span>.</p>
+<p>③ <span class="math inline">\(R(T) := R\)</span> is not closed</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\{T(\psi_m)\}_m\subset R\)</span>
+converges<br />
+Consider <span class="math inline">\(\psi_m=\sum_{k=1}^m e_k\)</span>,
+and <span class="math inline">\(y=\sum_{n=1}^\infty
+\frac{1}{n}e_n\)</span>. <span class="math display">\[
+\begin{aligned}
+T(\psi_m)
+&amp;=\sum_{n=1}^\infty \frac{1}{n}(\psi_m,e_n)e_n
+=\sum_{n=1}^\infty \frac{1}{n}\sum_{k=1}^m (e_k,e_n)e_n
+=\sum_{n=1}^m \frac{1}{n}e_n.
+\end{aligned}
+\]</span> Then, <span class="math display">\[
+\|T(\psi_m)-y\|_H^2
+=\left\|\sum_{n=m+1}^\infty \frac{1}{n}e_n\right\|_H^2
+=\sum_{n=m+1}^\infty \frac{1}{n^2}
+=\sum_{n=1}^\infty \frac{1}{n^2}-\sum_{n=1}^m \frac{1}{n^2}.
+\]</span> Thus, <span class="math inline">\(\lim_{m\to\infty}\|T(\psi_m)-y\|_H=0\)</span>
+<span class="math inline">\(\left(\sum
+\frac{1}{n^2}&lt;\infty\right)\)</span>.</p></li>
+<li><p><span class="math inline">\(y\notin R\)</span><br />
+Assume that <span class="math inline">\(y\in R\)</span>, then there is
+<span class="math inline">\(z\in H\)</span> such that <span class="math inline">\(Tz=y\)</span>: <span class="math display">\[
+\sum_{n=1}^\infty \frac{1}{n}(z,e_n)e_n=\sum_{n=1}^\infty
+\frac{1}{n}e_n.
+\]</span> <span class="math inline">\((z,e_n)=1\)</span> for all <span class="math inline">\(n\in\mathbb{N}\)</span>, so <span class="math inline">\(z=\sum_{n=1}^\infty e_n\)</span>. Then, <span class="math display">\[
+\|z\|_H^2=\left\|\sum_{n=1}^\infty e_n\right\|_H^2=\sum_{n=1}^\infty
+\|e_n\|_H^2=\infty,
+\]</span> contradiction. <span class="math inline">\((z\notin
+H)\)</span></p></li>
+</ol>
+<p><span class="math inline">\(\therefore\ R\)</span> is not closed.</p>
+</div>
+<div id="c-show-that-the-range-of-lambda-i-t-is-h-if-and-only-if-the-null-space-of-overlinelambdai-t-is-trivial" class="section level3">
+<h3>(c) Show that the range of <span class="math inline">\(\lambda
+I-T\)</span> is <span class="math inline">\(H\)</span> if and only if
+the null space of <span class="math inline">\(\overline{\lambda}I-T^*\)</span> is trivial</h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(\Leftarrow\)</span></p>
+<p>Assume that <span class="math inline">\(R\ne H\)</span>, then <span class="math inline">\(R^\perp\ne\{0\}\)</span>. <span class="math inline">\(H=R\oplus R^\perp\)</span>, so choose <span class="math inline">\(y\in R^\perp\)</span> s.t. <span class="math inline">\(y\ne 0\)</span>. Then <span class="math inline">\((y,(\lambda I-T)z)=0\)</span> for all <span class="math inline">\(z\in H\)</span> <span class="math inline">\((\because (\lambda I-T)z\in R)\)</span>.<br />
+<span class="math display">\[
+((\lambda I-T)^*y,z)=((\overline{\lambda}I-T^*)y,z)=0 \quad
+(\text{adjoint}) \qquad \forall z\in H.
+\]</span> Applying <span class="math inline">\((\overline{\lambda}I-T^*)y\)</span> to <span class="math inline">\(z\)</span>, <span class="math inline">\(\|(\overline{\lambda}I-T^*)y\|_H=0\)</span> so
+<span class="math inline">\((\overline{\lambda}I-T^*)y=0\)</span>.<br />
+Thus, there is <span class="math inline">\(y\ne 0\)</span> s.t. <span class="math inline">\(\overline{\lambda}y=T^*y\)</span> (non-trivial
+solution, contradiction).</p>
+<p>② <span class="math inline">\(\Rightarrow\)</span></p>
+<p><span class="math inline">\(R=H\)</span> and consider <span class="math inline">\(y\in H\)</span> with <span class="math inline">\(\overline{\lambda}y=T^*y\)</span> <span class="math inline">\((y:\)</span> null space of <span class="math inline">\(\overline{\lambda}I-T^*)\)</span>. Then <span class="math inline">\(((\overline{\lambda}I-T^*)y,z)=0\)</span> for all
+<span class="math inline">\(z\in H\)</span>, as well as <span class="math inline">\((y,(\lambda I-T)z)=0\)</span>.<br />
+<span class="math inline">\((\lambda I-T)z\in R=H\)</span>, so <span class="math inline">\(y\in R^\perp\)</span>. Since <span class="math inline">\(y\in R\)</span> &amp; <span class="math inline">\(R\cap R^\perp=\{0\}\)</span>, <span class="math inline">\(y=0\)</span>.<br />
+Thus, the null space of <span class="math inline">\(\overline{\lambda}I-T^*\)</span> is trivial.</p>
+<p><strong>cf)</strong> <span class="math inline">\((aT)^*=\overline{a}T^*\)</span> <span class="math display">\[
+\langle aTx,y\rangle=\langle Tx,\overline{a}y\rangle=\langle
+x,T^*(\overline{a}y)\rangle=\langle x,\overline{a}T^*y\rangle.
+\]</span></p>
+<hr />
+</div>
+</div>
+<div id="let-hl2-pipi-with--pipi-identified-as-the-unit-circle.-fix-a-bounded-sequence-lambda_n_ninmathbbzsubsetmathbbc-and-define-an-operator-t-bytfxsim-sum_n-inftyinftylambda_n-a_n-einxquad-textwheneverquad-fxsim-sum_n-inftyinfty-a_n-einxfourier-multiplier-operator." class="section level2">
+<h2>30. Let <span class="math inline">\(H=L^2([-\pi,\pi])\)</span> with
+<span class="math inline">\([-\pi,\pi]\)</span> identified as the unit
+circle. Fix a bounded sequence <span class="math inline">\(\{\lambda_n\}_{n\in\mathbb{Z}}\subset\mathbb{C}\)</span>,
+and define an operator <span class="math inline">\(T\)</span> by<span class="math display">\[Tf(x)\sim \sum_{n=-\infty}^{\infty}\lambda_n a_n
+e^{inx}\quad \text{whenever}\quad f(x)\sim \sum_{n=-\infty}^{\infty} a_n
+e^{inx}\]</span>(Fourier multiplier operator).</h2>
+<div id="a-show-that-t-is-a-bounded-operator-on-h-tsup_nlambda_n" class="section level3">
+<h3>(a) Show that <span class="math inline">\(T\)</span> is a bounded
+operator on <span class="math inline">\(H:\
+\|T\|=\sup_n|\lambda_n|\)</span></h3>
+<p><strong>proof</strong><br />
+① def of <span class="math inline">\(S_N(f),\,S_N(Tf)\)</span></p>
+<p>Let <span class="math inline">\(S_N(f)=\sum_{n=-N}^{N} a_n
+e^{inx}\)</span> and <span class="math inline">\(S_N(Tf)=\sum_{n=-N}^{N}\lambda_n a_n
+e^{inx}.\)</span><br />
+It is known that <span class="math inline">\(\lim_{N\to\infty}\|S_N(f)-f\|_2=0\)</span> and
+<span class="math inline">\(\lim_{N\to\infty}\|S_N(Tf)-Tf\|_2=0\)</span>
+(thm 4.3.2 iii)</p>
+<p>② <span class="math inline">\(S_N(e^{inx}),\
+S_N(Te^{inx})\)</span></p>
+<p>When <span class="math inline">\(f(x)=e^{inx}\)</span>, Fourier
+coefficient is <span class="math inline">\(a_n=\frac{1}{2\pi}\int_{-\pi}^{\pi}
+e^{inx}e^{-inx}\,dx=1\)</span> and <span class="math inline">\(a_m=0\)</span> <span class="math inline">\((m\neq
+n).\)</span> Since <span class="math inline">\(f\sim e^{inx}\)</span>,
+<span class="math inline">\(Tf\sim \lambda_n e^{inx}.\)</span><br />
+Then, <span class="math inline">\(S_N(e^{inx})=e^{inx}\)</span> and
+<span class="math inline">\(S_N(Te^{inx})=\lambda_n e^{inx}\)</span>
+<span class="math inline">\((N\ge |n|)\)</span> by def of <span class="math inline">\(S_N\)</span>.</p>
+<p>③ <span class="math inline">\(Te^{inx}=\lambda_n e^{inx}\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+\|T(e^{inx})-\lambda_n e^{inx}\|_2
+&amp;\le \|T(e^{inx})-S_N(T(e^{inx}))\|_2+\|S_N(T(e^{inx}))-\lambda_n
+e^{inx}\|_2\\
+&amp;=\|T(e^{inx})-S_N(T(e^{inx}))\|_2\quad (N\ge |n|,\ \because ②)
+\end{aligned}\]</span></p>
+<p>Letting <span class="math inline">\(N\to\infty\)</span>, <span class="math inline">\(\|T(e^{inx})-\lambda_n e^{inx}\|_2=0\)</span>
+<span class="math inline">\((n\in\mathbb{Z},\ \because ①)\)</span><br />
+This means <span class="math inline">\(T(e^{inx})=\lambda_n
+e^{inx}\)</span> for all <span class="math inline">\(n\in\mathbb{Z}\)</span>, so <span class="math inline">\(\lambda_n\)</span> is an eigenvalue with on
+eigenvector <span class="math inline">\(e^{inx}\)</span>.</p>
+<p>④ <span class="math inline">\(T\)</span> is bounded.</p>
+<p>Thus, <span class="math inline">\(\|T\|=\sup_n|\lambda_n|\)</span>
+which is finite (<span class="math inline">\(\lambda_n\)</span> is
+bounded), and <span class="math inline">\(T\)</span> is bounded.</p>
+</div>
+<div id="b-let-tau_hfxfx-h-hinmathbbr.-show-that-tcirctau_htau_hcirc-t" class="section level3">
+<h3>(b) Let <span class="math inline">\(\tau_h(f(x))=f(x-h)\)</span>
+<span class="math inline">\((h\in\mathbb{R})\)</span>. Show that <span class="math inline">\(T\circ\tau_h=\tau_h\circ T\)</span></h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(\tau_h\)</span> is linear and bounded</p>
+<p><span class="math inline">\(\tau_h(\alpha f(x)+\beta g(x))=\alpha
+f(x-h)+\beta g(x-h)=\alpha\tau_h(f)+\beta\tau_h(g)\)</span>, so <span class="math inline">\(\tau_h\)</span> is linear.<br />
+<span class="math inline">\(\|\tau_h(f)\|_2=\|f(x-h)\|_2=\|f\|_2\)</span>, so
+<span class="math inline">\(\|\tau_h\|=1\ \to\)</span> bounded (&amp;
+continuous)</p>
+<p>② <span class="math inline">\(S_N(Tf(x-h))=\tau_h(S_N(Tf(x)))\)</span></p>
+<p>Fourier coefficient is translation-invariant, so <span class="math inline">\(f(x-h)\sim \sum_{n=-\infty}^{\infty} a_n
+e^{in(x-h)}\)</span> and <span class="math inline">\(Tf(x-h)\sim
+\sum_{n=-\infty}^{\infty}\lambda_n a_n e^{in(x-h)}.\)</span><br />
+Then, <span class="math inline">\(S_N(Tf(x-h))=\sum_{n=-N}^{N}\lambda_n
+a_n e^{in(x-h)}\)</span></p>
+<p><span class="math inline">\(\tau_h(S_N(Tf(x)))=\tau_h\!\left(\sum_{n=-N}^{N}\lambda_n
+a_n e^{inx}\right)=\sum_{n=-N}^{N}\lambda_n a_n e^{in(x-h)}\ \
+(\because\ \tau_h\ \text{is linear},\ ①)\)</span></p>
+<p>This proves <span class="math inline">\(S_N(Tf(x-h))=\tau_h(S_N(Tf)).\)</span></p>
+<p>③ <span class="math inline">\(T\circ\tau_h=\tau_h\circ T\)</span>,
+conclusion</p>
+<p><span class="math display">\[\begin{aligned}
+\|T\circ\tau_h(f)-\tau_h\circ T(f)\|_2
+&amp;=\|Tf(x-h)-\tau_h(Tf(x))\|_2\\
+&amp;\le\underbrace{
+\|Tf(x-h)-S_N(Tf(x-h))\|_2}_{1)}+\underbrace{\|\tau_h(S_N(Tf(x)))-\tau_h(Tf(x))\|_2}_{2)}
+\end{aligned}\]</span></p>
+<p>By def of <span class="math inline">\(S_N\)</span>, <span class="math inline">\(\lim_{N\to\infty}\|S_N(Tf(x-h))-T\circ\tau_h(f)\|_2=0\
+\to 1)\)</span></p>
+<p><span class="math inline">\(\lim_{N\to\infty}\|S_N(Tf(x))-Tf(x)\|_2=0\)</span>
+and <span class="math inline">\(\tau_h\)</span> is continuous <span class="math inline">\((\because ①)\)</span>, so <span class="math inline">\(\lim_{N\to\infty}\|\tau_h(S_N(Tf))-\tau_h(Tf)\|_2=0\
+\to 2)\)</span></p>
+<p>Letting <span class="math inline">\(N\to\infty\)</span>, <span class="math inline">\(\|T\circ\tau_h(f)-\tau_h\circ
+T(f)\|_2=0\)</span></p>
+<p>Thus, <span class="math inline">\(T\circ\tau_h=\tau_h\circ
+T\)</span>,</p>
+</div>
+<div id="c-t-is-a-bounded-operator-on-h-that-commutes-with-translations.-show-that-t-is-a-fourier-multiplier-operator" class="section level3">
+<h3>(c) <span class="math inline">\(T\)</span> is a bounded operator on
+<span class="math inline">\(H\)</span> that commutes with translations.
+Show that <span class="math inline">\(T\)</span> is a Fourier multiplier
+operator,</h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(T(e^{inx})=b_n e^{inx}\)</span></p>
+<p>Consider <span class="math inline">\(e^{inx}\)</span> and let <span class="math inline">\(T(e^{inx})\sim \sum_{k=-\infty}^{\infty}\lambda_k
+e^{ikx}\)</span></p>
+<p><span class="math inline">\(T\circ\tau_h(e^{inx})=\tau_h\circ
+T(e^{inx})\sim \sum_{k=-\infty}^{\infty}\lambda_k e^{ik(x+h)}\ \
+(\because\ \text{translation invariance of F-C})\)</span><br />
+<span class="math inline">\(T(e^{in(x+h)})=e^{-inh}T(e^{inx})\sim
+\sum_{k=-\infty}^{\infty}\lambda_k e^{-inh}\cdot e^{ikx}\ \ (\because\
+\text{linearity of F-C})\)</span></p>
+<p>Then <span class="math inline">\(\lambda_k e^{ikh}=\lambda_k
+e^{-inh}\)</span>, so <span class="math inline">\(\lambda_k=0\ (k\neq
+n)\)</span><br />
+This implies <span class="math inline">\(T(e^{inx})\sim \lambda_n
+e^{inx}\)</span>, so <span class="math inline">\(T(e^{inx})=\lambda_n
+e^{inx}\ (\because (a)\ ②)\ \forall\, n\in\mathbb{Z}.\)</span></p>
+<p>② conclusion</p>
+<p><span class="math inline">\(\{e^{inx}\}_n\)</span> is an orthonormal
+basis for <span class="math inline">\(H\)</span>, so <span class="math inline">\(f\in H\)</span> can be written as follows: <span class="math inline">\(f(x)=\sum_{n=-\infty}^{\infty} a_n
+e^{inx}.\)</span></p>
+<p><span class="math inline">\(\frac{1}{2\pi}\int_{-\pi}^{\pi}
+f(x)e^{-imx}\,dx=\frac{1}{2\pi}\int_{-\pi}^{\pi} a_m
+e^{imx}e^{-imx}\,dx=a_m\)</span>, so <span class="math inline">\(\{a_n\}\)</span> is Fourier coefficient : <span class="math inline">\(f(x)\sim \sum_{n=-\infty}^{\infty} a_n
+e^{inx}.\)</span></p>
+<p><span class="math inline">\(Tf(x)=T\!\left(\sum_{n=-\infty}^{\infty}
+a_n e^{inx}\right)=\sum_{n=-\infty}^{\infty}\lambda_n a_n
+e^{inx}\)</span>, so <span class="math inline">\(Tf(x)\sim
+\sum_{n=-\infty}^{\infty}\lambda_n a_n e^{inx}.\)</span></p>
+<p>Thus, <span class="math inline">\(T\)</span> is Fourier multiplier
+operator.</p>
+<hr />
+</div>
+</div>
+<div id="consider-a-version-of-the-sawtooth-function-defined-on--pipi-bykximathrmsgnxpi-xand-extended-to-mathbbr-with-period-2pi.-suppose-fin-l1-pipi-is-extended-to-mathbbr-with-period-2pi-and-define-t-astfxfrac12piint_-pipikx-yfydyfrac12piint_-pipikyfx-ydy." class="section level2">
+<h2>31. Consider a version of the sawtooth function defined on <span class="math inline">\([-\pi,\pi]\)</span> by<span class="math display">\[K(x)=i(\mathrm{sgn}(x)\pi-x),\]</span>and
+extended to <span class="math inline">\(\mathbb{R}\)</span> with period
+<span class="math inline">\(2\pi\)</span>. Suppose <span class="math inline">\(f\in L^1([-\pi,\pi])\)</span> is extended to <span class="math inline">\(\mathbb{R}\)</span> with period <span class="math inline">\(2\pi\)</span> and define <span class="math inline">\(T\)</span> as<span class="math display">\[Tf(x)=\frac{1}{2\pi}\int_{-\pi}^{\pi}K(x-y)f(y)\,dy=\frac{1}{2\pi}\int_{-\pi}^{\pi}K(y)f(x-y)\,dy.\]</span></h2>
+<div id="a-1-show-that-fxtfx-is-absolutely-continuous" class="section level3">
+<h3>(a)-1 Show that <span class="math inline">\(F(x)=Tf(x)\)</span> is
+absolutely continuous</h3>
+<p><strong>proof</strong><br />
+<span class="math display">\[2\pi
+T(f)(x)=\int_{-\pi}^{\pi}K(x-y)f(y)\,dy=\int_{-\pi}^{\pi}
+i(\mathrm{sgn}(x-y)\pi-(x-y))f(y)\,dy.\]</span> So, <span class="math display">\[\begin{aligned}
+-i2\pi\,T(f)(x)&amp;=\int_{-\pi}^{\pi}\big(\pi\,\mathrm{sgn}(x-y)-(x-y)\big)f(y)\,dy
+\\
+&amp;\biggl( \begin{cases} x-y\ge 0 &amp;\to y\le x\\ x-y\le 0 &amp;\to
+y\ge x\end{cases} \biggr) \\
+&amp;=\int_{-\pi}^{x}\big(\pi-(x-y)\big)f(y)\,dy-\int_{x}^{\pi}\big(\pi+(x-y)\big)f(y)\,dy\\
+&amp;=(\pi-x)\int_{-\pi}^{x}f(y)\,dy+\int_{-\pi}^{x}y
+f(y)\,dy-(\pi+x)\int_{x}^{\pi}f(y)\,dy+\int_{x}^{\pi}y f(y)\,dy\\
+&amp;=(\pi-x)\int_{-\pi}^{x}f(y)\,dy-(\pi+x)\int_{x}^{\pi}f(y)\,dy+\int_{-\pi}^{\pi}y
+f(y)\,dy\\
+&amp;=\pi\left\{\int_{-\pi}^{x}f(y)\,dy-\int_{x}^{\pi}f(y)\,dy\right\}-x\left\{\int_{-\pi}^{x}f(y)\,dy+\int_{x}^{\pi}f(y)\,dy\right\}+\int_{-\pi}^{\pi}y
+f(y)\,dy\\
+&amp;=\pi\left\{\int_{-\pi}^{x}f(y)\,dy+\int_{\pi}^{x}f(y)\,dy\right\}-x\left\{\int_{-\pi}^{\pi}f(y)\,dy\right\}+\int_{-\pi}^{\pi}y
+f(y)\,dy
+\end{aligned}\]</span></p>
+<p>Since<span class="math display">\[\left|\int_{-\pi}^{\pi}y
+f(y)\,dy\right|\le \int_{-\pi}^{\pi}|y f(y)|\,dy\le
+\pi\int_{-\pi}^{\pi}|f(y)|\,dy&lt;\infty,\]</span> <span class="math inline">\(\int_{-\pi}^{\pi}y f(y)\,dy\)</span> is finite. It
+is obvious that <span class="math inline">\(\int_{-\pi}^{\pi}
+f(y)\,dy\)</span> is finite <span class="math inline">\((\because f\in
+L^1([-\pi,\pi])).\)</span></p>
+<p>Also, <span class="math inline">\(\int_{-\pi}^{x}f(y)\,dy\)</span>
+and <span class="math inline">\(\int_{\pi}^{x}f(y)\,dy\)</span> are
+absolutely continuous with respect to <span class="math inline">\(x\in[-\pi,\pi]\ (\because f\in
+L^1([-\pi,\pi]))\)</span>, and <span class="math inline">\(x\)</span> is
+absolutely continuous.</p>
+<p>Thus, <span class="math inline">\(F(x)\)</span> is absolutely
+continuous on <span class="math inline">\([-\pi,\pi]\)</span></p>
+</div>
+<div id="a-2-if-int_-pipifydy0-show-that-fxifx-a.e-x" class="section level3">
+<h3>(a)-2 If <span class="math inline">\(\int_{-\pi}^{\pi}f(y)\,dy=0\)</span>, show that
+<span class="math inline">\(F&#39;(x)=if(x)\)</span> a.e <span class="math inline">\(x\)</span></h3>
+<p><strong>proof</strong><br />
+<span class="math display">\[(-i2\pi
+F(x))&#39;=\pi\{f(x)+f(x)\}-\int_{-\pi}^{\pi}f(y)\,dy=2\pi
+f(x)-\int_{-\pi}^{\pi}f(y)\,dy\quad \text{a.e }x.\]</span> <span class="math display">\[\Rightarrow\
+F&#39;(x)=\frac{-2\pi}{-i2\pi}f(x)+\frac{1}{i2\pi}\int_{-\pi}^{\pi}f(y)\,dy=if(x)+\frac{1}{i2\pi}\int_{-\pi}^{\pi}f(y)\,dy.\]</span>
+Since <span class="math inline">\(\int_{-\pi}^{\pi}f(y)\,dy=0\)</span>,
+<span class="math inline">\(F&#39;(x)=if(x)\)</span> a.e <span class="math inline">\(x\)</span>.</p>
+</div>
+<div id="b-1-show-that-t-is-compact" class="section level3">
+<h3>(b)-1 Show that <span class="math inline">\(T\)</span> is
+compact</h3>
+<p><strong>proof</strong><br />
+Let <span class="math inline">\(K(x,y)=K(x-y)\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+\int_{-\pi}^{\pi}|K(x-y)|^2\,dx
+&amp;=\int_{-\pi}^{\pi}\big|\pi\,\mathrm{sgn}(x-y)-(x-y)\big|^2\,dx
+\quad\left\{\begin{aligned}
+x-y\ge 0 &amp;: x\ge y\\
+x-y\le 0 &amp;: x\le y
+\end{aligned}\right.\\
+&amp;=\int_{-\pi}^{y}|x-y+\pi|^2\,dx+\int_{y}^{\pi}|x-y-\pi|^2\,dx\qquad
+(x-y:=t)\\
+&amp;=\int_{-\pi-y}^{0}(t+\pi)^2\,dt+\int_{0}^{\pi-y}(t-\pi)^2\,dt\\
+&amp;=\int_{-\pi-y}^{0}(t^2+2\pi t+\pi^2)\,dt+\int_{0}^{\pi-y}(t^2-2\pi
+t+\pi^2)\,dt\\
+&amp;=\left[\frac{1}{3}t^3+\pi t^2+\pi^2
+t\right]_{t=-\pi-y}^{0}+\left[\frac{1}{3}t^3-\pi t^2+\pi^2
+t\right]_{t=0}^{t=\pi-y}\\
+&amp;=-\left\{\frac{1}{3}(-\pi-y)^3+\pi(-\pi-y)^2+\pi^2(-\pi-y)\right\}+\left\{\frac{1}{3}(\pi-y)^3-\pi(\pi-y)^2+\pi^2(\pi-y)\right\}\\
+&amp;=\left\{\frac{1}{3}(\pi+y)^3-\pi(\pi+y)^2+\pi^2(\pi+y)\right\}+\left\{\frac{1}{3}(\pi-y)^3-\pi(\pi-y)^2+\pi^2(\pi-y)\right\}\\
+&amp;=\frac{1}{3}(2\pi^3+2\cdot 3\cdot \pi
+y^2)-\pi(2\pi^2+2y^2)+\pi^2\cdot 2\pi\\
+&amp;=\frac{2}{3}\pi^3+2\pi y^2-2\pi^3-2\pi y^2+2\pi^3=\frac{2}{3}\pi^3
+\end{aligned}\]</span></p>
+<p>So, <span class="math display">\[\int_{-\pi}^{\pi}\int_{-\pi}^{\pi}|K(x-y)|^2\,dx\,dy=\int_{-\pi}^{\pi}\frac{2}{3}\pi^3\,dy=\frac{2}{3}\pi^3\cdot
+2\pi=\frac{4}{3}\pi^4&lt;\infty,\]</span> and <span class="math inline">\(K(x-y)\in L^2([-\pi,\pi]^2)\)</span>.</p>
+<p>Hence, <span class="math inline">\(T\)</span> is a Hilbert-Schmidt
+operator on <span class="math inline">\(L^2([-\pi,\pi])\)</span>, and it
+is compact.</p>
+</div>
+<div id="b-2-show-that-t-is-symmetric-on-l2-pipi" class="section level3">
+<h3>(b)-2 Show that <span class="math inline">\(T\)</span> is symmetric
+on <span class="math inline">\(L^2([-\pi,\pi])\)</span></h3>
+<p><strong>proof</strong> Due to prop 4.5.5(iii), <span class="math inline">\(T^*\)</span> has a kernel <span class="math inline">\(\overline{K(y,x)}=\overline{K(y-x)}\)</span></p>
+<p><span class="math display">\[K(y,x)=K(y-x)=-i(\pi\,\mathrm{sgn}(y-x)-(y-x))=i(\pi\,\mathrm{sgn}(x-y)-(x-y))=K(x,y)\]</span>
+Then, <span class="math display">\[T^*f(x)=\frac{1}{2\pi}\int_{-\pi}^{\pi}\overline{K(y-x)}f(y)\,dy=\frac{1}{2\pi}\int_{-\pi}^{\pi}K(x-y)f(y)\,dy=Tf(x).\]</span></p>
+<p>This holds for all <span class="math inline">\(f\in
+L^1([-\pi,\pi])\)</span>, so <span class="math inline">\(T^*=T\)</span>.</p>
+</div>
+<div id="c-show-that-psixin-l2-pipi-is-an-eigenfunction-for-t-if-and-only-if-psix-is-equal-to-einx-with-eigenvalue-frac1n-nne-0-or-psi1-with-0." class="section level3">
+<h3>(c) Show that <span class="math inline">\(\psi(x)\in
+L^2([-\pi,\pi])\)</span> is an eigenfunction for <span class="math inline">\(T\)</span> if and only if <span class="math inline">\(\psi(x)\)</span> is equal to <span class="math inline">\(e^{inx}\)</span> with eigenvalue <span class="math inline">\(\frac{1}{n}\ (n\ne 0)\)</span>, or <span class="math inline">\(\psi=1\)</span> with <span class="math inline">\(0\)</span>.</h3>
+<p><strong>proof</strong> It suffices to show that eigenfunctions are
+<span class="math inline">\(\{1,e^{\pm ix},e^{\pm 2ix},\cdots\}\)</span>
+with eigenvalues <span class="math inline">\(\{0,\pm 1,\pm
+\frac{1}{2},\cdots\}\)</span>.</p>
+<p>① <span class="math inline">\(\psi(x)=1\ \to\ \lambda=0\)</span></p>
+<p><span class="math display">\[(T1)&#39;=i\cdot 1+\frac{1}{2\pi
+i}\int_{-\pi}^{\pi}1\,dy=i\cdot 1+\frac{1}{2\pi i}\cdot 2\pi=i\cdot
+1-i\cdot 1=0,\]</span> so <span class="math inline">\(T1=\lambda
+1\)</span> and <span class="math inline">\(1\)</span> is an
+eigenvector.</p>
+<p>Using the result in (a)-1, <span class="math display">\[\{-i2\pi\,T(1)(x)\}=\pi\left\{\int_{-\pi}^{x}f(y)\,dy+\int_{\pi}^{x}f(y)\,dy\right\}-x\int_{-\pi}^{\pi}f(y)\,dy+\int_{-\pi}^{\pi}y
+f(y)\,dy\Big|_{f(y)=1}\]</span> <span class="math display">\[=\int_{-\pi}^{\pi}y\,dy=0.\]</span> So, <span class="math inline">\(T(1)=0\)</span> and <span class="math inline">\(\lambda=0\)</span>.</p>
+<p>② other <span class="math inline">\(\psi\)</span> with <span class="math inline">\(\lambda\ne 0\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\psi(x)=C\cdot
+e^{\frac{i}{\lambda}x}\)</span> (lemma 6.6.3) Consider other
+eigenfunction <span class="math inline">\(\psi\)</span> orthogonal to 1.
+Then, <span class="math inline">\((\psi,1)=0\)</span> and <span class="math inline">\(\int_{-\pi}^{\pi}\psi(x)\,dx=0.\)</span><br />
+Then, <span class="math inline">\((T\psi)&#39;=i\psi\)</span>. Let <span class="math inline">\(\lambda\)</span> be the eigenvalue : <span class="math inline">\(T\psi=\lambda\psi\)</span>, then <span class="math inline">\(i\psi=\lambda\psi&#39;.\)</span><br />
+The solution of <span class="math inline">\(\psi&#39;=\frac{i}{\lambda}\psi\ (\because
+\lambda\ne 0)\)</span> is <span class="math inline">\(\psi(x)=C\cdot
+e^{\frac{i}{\lambda}x}\ \ (C\in\mathbb{C},\ C\ne 0)\)</span></p></li>
+<li><p><span class="math inline">\(\psi\)</span> has period <span class="math inline">\(2\pi\)</span> <span class="math inline">\(K\)</span> is <span class="math inline">\(2\pi\)</span>-periodic, so <span class="math display">\[Tf(x+2\pi)=\frac{1}{2\pi}\int_{-\pi}^{\pi}K(x+2\pi-y)f(y)\,dy=\frac{1}{2\pi}\int_{-\pi}^{\pi}K(x-y)f(y)\,dy=Tf(x).\]</span>
+This makes <span class="math inline">\(Tf(x)\)</span> <span class="math inline">\(2\pi\)</span>-periodic for all <span class="math inline">\(f\)</span>.<br />
+Then, <span class="math inline">\(T\psi=\lambda\psi\)</span> makes <span class="math inline">\(\psi\)</span> <span class="math inline">\(2\pi\)</span>-periodic as well.</p></li>
+<li><p><span class="math inline">\(\lambda=\pm\frac{1}{n}\)</span> <span class="math display">\[\psi(\pi)=\psi(-\pi)\ \Leftrightarrow\ C\cdot
+e^{\frac{i}{\lambda}\pi}=C\cdot e^{\frac{i}{\lambda}(-\pi)}\
+\Leftrightarrow\ e^{\frac{i}{\lambda}2\pi}=1\]</span> <span class="math display">\[\Leftrightarrow\ \frac{2\pi}{\lambda}=\pm 2n\pi\
+(n\in\mathbb{N})\ \Leftrightarrow\ \lambda=\pm\frac{1}{n}\
+(n\in\mathbb{N}).\]</span></p></li>
+<li><p>Conclusion Thus, <span class="math inline">\(\{C\cdot
+e^{inx}\}_{n\in\mathbb{Z}}\)</span> is the eigenvectors with eigenvalues
+<span class="math inline">\(\pm\frac{1}{n}\ (n\ne 0)\)</span> and <span class="math inline">\(0\ (n=0)\)</span>.</p></li>
+</ol>
+</div>
+<div id="d-show-that-einx_ninmathbbz-is-an-orthonormal-basis-for-l2-pipi" class="section level3">
+<h3>(d) Show that <span class="math inline">\(\{e^{inx}\}_{n\in\mathbb{Z}}\)</span> is an
+orthonormal basis for <span class="math inline">\(L^2([-\pi,\pi])\)</span></h3>
+<p><strong>proof</strong><br />
+<span class="math inline">\(T\)</span> is a compact, symmetric operator
+<span class="math inline">\((\because (b))\)</span> on a Hilbert space
+<span class="math inline">\(L^2([-\pi,\pi])\)</span> (p.162 ex1). So
+<span class="math inline">\(\{C\cdot e^{inx}\}_{n\in\mathbb{Z}}\)</span>
+is a basis for <span class="math inline">\(L^2([-\pi,\pi])\)</span> (Hmw
+4b.2, spectral thm)</p>
+<p>Thus, <span class="math inline">\(\{e^{inx}\}_{n\in\mathbb{Z}}\)</span> is an
+orthonormal basis for <span class="math inline">\(L^2([-\pi,\pi])\)</span></p>
+<hr />
+</div>
+</div>
+<div id="consider-the-operator-tl201to-l201-defined-bytfttcdot-ft" class="section level2">
+<h2>32. Consider the operator <span class="math inline">\(T:L^2([0,1])\to L^2([0,1])\)</span> defined
+by<span class="math display">\[Tf(t)=t\cdot f(t)\]</span></h2>
+<div id="a-1-show-that-t-is-bounded-linear-operator-with-tt" class="section level3">
+<h3>(a)-1 Show that <span class="math inline">\(T\)</span> is bounded,
+linear operator with <span class="math inline">\(T=T^*\)</span></h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(T\)</span> is bounded<br />
+<span class="math display">\[\|Tf\|_2^2=\int_0^1 t^2|f(t)|^2dt\le
+\int_0^1|f(t)|^2dt=\|f\|_2^2,\]</span> so <span class="math inline">\(\|T\|\le 1\)</span> and <span class="math inline">\(T\)</span> is bounded</p>
+<p>② <span class="math inline">\(T\)</span> is linear<br />
+Let <span class="math inline">\(h(t)=\alpha\cdot f(t)+\beta\cdot g(t)\ \
+(\alpha,\beta\in\mathbb{C})\)</span><br />
+<span class="math inline">\(Th(t)=t\cdot h(t)=\alpha\cdot t
+f(t)+\beta\cdot t g(t)=\alpha\cdot Tf(t)+\beta\cdot Tg(t)\)</span>. So
+<span class="math inline">\(T\)</span> is linear.</p>
+<p>③ <span class="math inline">\(T^*=T\)</span><br />
+<span class="math display">\[(Tf,g)=\int_0^1 t
+f(t)\overline{g(t)}\,dt=\int_0^1 f(t)\cdot \overline{t\cdot
+g(t)}\,dt=(f,Tg)=(f,T^*g)\ \ (f,g\in L^2([0,1]))\]</span> Since <span class="math inline">\(T^*\)</span> is unique, <span class="math inline">\(T^*=T\)</span>.</p>
+</div>
+<div id="a-2-show-that-t-is-not-compact" class="section level3">
+<h3>(a)-2 Show that <span class="math inline">\(T\)</span> is not
+compact</h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(f_n(t)=\sqrt{n}\chi_{[1-\frac{1}{n},\,1]}(t)\in
+L^2([0,1])\)</span><br />
+Consider <span class="math display">\[\{f_n\}_{n\in\mathbb{N}}=\left\{\sqrt{n}\chi_{[1-\frac{1}{n},\,1]}(t)\right\}_{n=1}^\infty,\]</span>
+which are all bounded functions. <span class="math inline">\(\int_0^1|f_n(t)|^2dt=n\cdot\int_{1-\frac{1}{n}}^1
+1\,dt=n\cdot\frac{1}{n}=1\)</span>, so <span class="math inline">\(\|f_n\|_2=1\)</span> and <span class="math inline">\(\{f_n\}\subset L^2([0,1])\)</span>.</p>
+<p>② assume <span class="math inline">\(\|Tf_{n_k}-g\|_2\to
+0\)</span><br />
+Assume that there exist a subsequence <span class="math inline">\(\{f_{n_k}\}\)</span> such that <span class="math inline">\(\lim_{k\to\infty}\|Tf_{n_k}-g\|_2=0\)</span> for
+some <span class="math inline">\(g\in L^2([0,1])\)</span>. Then, for
+every <span class="math inline">\(\varepsilon&gt;0\)</span> there is
+<span class="math inline">\(k_\varepsilon\in\mathbb{N}\)</span> such
+that <span class="math inline">\(k\ge k_\varepsilon\)</span> implies
+<span class="math inline">\(\|Tf_{n_k}-g\|_2&lt;\varepsilon\)</span>.</p>
+<p>③ <span class="math inline">\(g\ne 0\)</span>, <span class="math inline">\(\exists a\)</span> s.t <span class="math inline">\(\int_0^a|g(t)|^2dt&gt;0\)</span><br />
+<span class="math display">\[\begin{aligned}
+\|Tf_n\|_2^2&amp;=\|t\cdot f_n(t)\|_2^2 \\
+&amp;=\int_0^1 t^2\cdot n\chi_{[1-\frac{1}{n},\,1]}(t)\,dt
+=n\int_{1-\frac{1}{n}}^1 t^2\,dt\\
+&amp;=n\left[\frac{1}{3}t^3\right]_{t=1-\frac{1}{n}}^{1}
+=\frac{n}{3}\left\{1-\left(1-\frac{1}{n}\right)^3\right\} \\
+&amp;=\frac{n}{3}\left\{1-\left(1-\frac{3}{n}+\frac{3}{n^2}-\frac{1}{n^3}\right)\right\}\\
+&amp;=\frac{n}{3}\left(\frac{3}{n}-\frac{3}{n^2}+\frac{1}{n^3}\right) \\
+&amp;=1-\frac{3}{n}+\frac{1}{3n^2}.
+\end{aligned}\]</span> Since <span class="math inline">\(\lim_{n\to\infty}\|Tf_n\|_2=1\)</span>, <span class="math inline">\(\lim_{k\to\infty}\|Tf_{n_k}\|_2=1\)</span> as
+well.<br />
+This means <span class="math inline">\(g\ne 0\)</span> (even in a.e), so
+there is <span class="math inline">\(a\in(0,1)\)</span> such that <span class="math inline">\(\varepsilon^2:=\int_0^a|g(t)|^2dt&gt;0\)</span>.</p>
+<p>④ <span class="math inline">\(\|g-Tf_{n_k}\|_2\ge
+\varepsilon\)</span>, contradiction</p>
+<p>Choose <span class="math inline">\(k\)</span> sufficiently larger
+than <span class="math inline">\(k_\varepsilon\)</span> so that <span class="math inline">\(a\le 1-\frac{1}{n_k}\)</span>. Then <span class="math display">\[\begin{aligned}
+\|g-Tf_{n_k}\|_2^2
+&amp;=\int_0^1|g(t)-t\cdot f_{n_k}(t)|^2dt\\
+&amp;=\int_0^a|g(t)|^2dt+\int_a^1|g(t)-t\cdot f_{n_k}(t)|^2dt\\
+&amp;\ge \int_0^a|g(t)|^2dt=\varepsilon^2.
+\end{aligned}\]</span> This is a contradiction to <span class="math inline">\(\|Tf_{n_k}-g\|&lt;\varepsilon\)</span> for all
+<span class="math inline">\(k\ge k_\varepsilon\)</span>.<br />
+<span class="math inline">\(\therefore\)</span> <span class="math inline">\(T\)</span> is not compact</p>
+</div>
+<div id="b-show-that-t-has-no-eigenvectors" class="section level3">
+<h3>(b) Show that <span class="math inline">\(T\)</span> has no
+eigenvectors</h3>
+<p><strong>proof</strong><br />
+Let <span class="math inline">\(\psi\)</span> be an eigenvector of <span class="math inline">\(T\)</span> corresponding to <span class="math inline">\(\lambda\)</span>.<br />
+<span class="math inline">\(t\cdot \psi(t)=T\psi(t)=\lambda\cdot
+\psi(t)\)</span> so <span class="math inline">\((t-\lambda)\psi(t)=0.\)</span><br />
+This holds for all <span class="math inline">\(t\in[0,1]\)</span>, so
+<span class="math inline">\(\psi(t)=0\)</span> (a.e).<br />
+Then, <span class="math inline">\(\psi\)</span> can’t be an eigenvector,
+which is a contradiction.</p>
+<hr />
+</div>
+</div>
+<div id="let-h-be-a-hilbert-space-with-orthonormal-basis-psi_k_k1infty-but-no-eigenvector" class="section level2">
+<h2>33. Let <span class="math inline">\(H\)</span> be a Hilbert space
+with (orthonormal) basis <span class="math inline">\(\{\psi_k\}_{k=1}^\infty\)</span>, but no
+eigenvector</h2>
+<div id="show-that-the-operator-t-defined-by-tpsi_kfrac1kpsi_k1-is-compact" class="section level3">
+<h3>(1) Show that the operator <span class="math inline">\(T\)</span>
+defined by <span class="math inline">\(T(\psi_k)=\frac{1}{k}\psi_{k+1}\)</span> is
+compact</h3>
+<p><strong>proof</strong><br />
+① compact <span class="math inline">\(T_n\)</span></p>
+<p>Define an operator <span class="math inline">\(T_n\)</span> by <span class="math inline">\(T_n(\psi_k)=\frac{1}{k}\psi_{k+1}\)</span> if
+<span class="math inline">\(1\le k\le n\)</span> and <span class="math inline">\(T_n(\psi_k)=0\)</span> for <span class="math inline">\(k&gt;n.\)</span><br />
+<span class="math inline">\(T_n\)</span> is of finite rank, so it is
+compact for all <span class="math inline">\(n\in\mathbb{N}\)</span>.</p>
+<p>② <span class="math inline">\(\|T-T_n\|\to 0\)</span>, conclusion</p>
+<p>For <span class="math inline">\(x=\sum_{k=1}^\infty x_k\psi_k\in H\ \
+(x_k\in\mathbb{C})\)</span>,<br />
+<span class="math display">\[Tx=T\left(\sum_{k=1}^\infty
+x_k\psi_k\right)=\sum_{k=1}^\infty
+x_k\cdot\frac{1}{k}\psi_{k+1}\]</span> and <span class="math display">\[T_nx=\sum_{k=1}^\infty
+x_kT_n(\psi_k)=\sum_{k=1}^n x_k\frac{1}{k}\psi_{k+1}.\]</span><br />
+So, <span class="math inline">\((T-T_n)x=\sum_{k=n+1}^\infty
+x_k\cdot\frac{1}{k}\psi_{k+1}.\)</span></p>
+<p>Then, <span class="math display">\[\|(T-T_n)x\|_H^2=\sum_{k=n+1}^\infty
+\frac{1}{k^2}x_k^2\le \frac{1}{(n+1)^2}\sum_{k=n+1}^\infty x_k^2\le
+\frac{1}{(n+1)^2}\|x\|_H^2.\]</span></p>
+<p>This means <span class="math inline">\(\|T-T_n\|\le
+\frac{1}{n+1}\)</span>, so <span class="math inline">\(\lim_{n\to\infty}\|T-T_n\|=0.\)</span> Thus, <span class="math inline">\(T\)</span> is compact.</p>
+</div>
+<div id="show-that-t-has-no-eigenvectors" class="section level3">
+<h3>(2) Show that <span class="math inline">\(T\)</span> has no
+eigenvectors</h3>
+<p><strong>proof</strong><br />
+Assume that <span class="math inline">\(f\in H\)</span> is an
+eigenvector with <span class="math inline">\(f=\sum_{n=1}^\infty
+a_n\psi_n.\)</span></p>
+<p><span class="math display">\[T(f)=\sum_{n=1}^\infty
+a_nT(\psi_n)=\sum_{n=1}^\infty a_n\cdot\frac{1}{n}\psi_{n+1}\]</span>
+and <span class="math display">\[Tf=\lambda f=\lambda\sum_{n=1}^\infty
+a_n\psi_n.\]</span></p>
+<p>Then, <span class="math display">\[\lambda a_1\psi_1+\lambda
+a_2\psi_2+\lambda
+a_3\psi_3+\cdots=0\cdot\psi_1+a_1\cdot\frac{1}{1}\psi_2+a_2\cdot\frac{1}{2}\psi_3+\cdots\]</span></p>
+<p>So, we can obtain <span class="math inline">\(a_1=0,\ a_2=0,\
+\cdots,\ a_n=0,\ \cdots\)</span> inductively (whether <span class="math inline">\(\lambda=0\)</span> or not).</p>
+<p>So, <span class="math inline">\(f=0\)</span>, which is a
+contradiction.</p>
+<hr />
+</div>
+</div>
+<div id="let-h-be-a-hilbert-space." class="section level2">
+<h2>35. Let <span class="math inline">\(H\)</span> be a Hilbert
+space.</h2>
+<div id="a-if-t_1-and-t_2-are-two-linear-symmetric-compact-operators-on-h-that-commute-t_1t_2t_2t_1-show-that-they-can-be-diagonalized-simultaneously-there-is-an-orthonormal-basis-for-h-which-consists-of-eigenvectors-for-both-t_1-and-t_2." class="section level3">
+<h3>(a) If <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span> are two linear, symmetric, compact
+operators on <span class="math inline">\(H\)</span> that commute <span class="math inline">\((T_1T_2=T_2T_1)\)</span>, show that they can be
+diagonalized simultaneously: there is an orthonormal basis for <span class="math inline">\(H\)</span> which consists of eigenvectors for both
+<span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span>.</h3>
+<p><strong>proof</strong><br />
+① common eigenvectors <span class="math inline">\(\{\phi_n\}\)</span></p>
+<p><span class="math inline">\(T_1,\ T_2\)</span> are compact and
+symmetric, so there exist orthonormal basis <span class="math inline">\(\{\phi_{1,k}\},\ \{\phi_{2,k}\}\)</span> of <span class="math inline">\(H\)</span> that consist of eigenvectors of <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span> respectively (spectral thm.). Let
+<span class="math inline">\(\{\phi_n\}_n=\{\phi_{1,k}\}\cap\{\phi_{2,k}\}\)</span>
+be common eigenvectors of <span class="math inline">\(T_1\)</span> and
+<span class="math inline">\(T_2\)</span>.</p>
+<p>② assume <span class="math inline">\(S=\operatorname{span}\{\phi_n\}\ne H\)</span>
+(cf. orthonormal basis is dense in <span class="math inline">\(H\)</span>.)</p>
+<p>Let <span class="math inline">\(S\)</span> be the closure of the
+subspace spanned by all of the <span class="math inline">\(\{\phi_n\}\)</span>. Assume that <span class="math inline">\(S\ne H\)</span>, then <span class="math inline">\(H=S\oplus S^\perp\)</span>, where <span class="math inline">\(S^\perp\)</span> has some elements other than
+<span class="math inline">\(0\)</span>.</p>
+<p>③ eigenvector of <span class="math inline">\(T_1\)</span>: <span class="math inline">\(\psi\in S^\perp \Rightarrow\)</span> eigenvector
+of <span class="math inline">\(T_2\)</span></p>
+<p>Let <span class="math inline">\(\psi\)</span> be an eigenvector of
+<span class="math inline">\(T_1\)</span> with eigenvalue <span class="math inline">\(\lambda\)</span> such that <span class="math inline">\(\psi\in S^\perp,\ \psi\notin\{\phi_n\}\)</span>.
+Then, <span class="math inline">\(T_1(T_2\psi)=T_2(T_1\psi)=T_2(\lambda\psi)=\lambda(T_2\psi)\)</span>.</p>
+<p>This mean <span class="math inline">\(T_2\psi\)</span> is an
+eigenvector of eigenvalue <span class="math inline">\(\lambda\)</span>,
+so there is <span class="math inline">\(\mu\in\mathbb{C}\)</span> such
+that <span class="math inline">\(T_2\psi=\mu\psi\)</span>.</p>
+<p>Then, <span class="math inline">\(\psi\)</span> is an eigenvector of
+<span class="math inline">\(T_2\)</span> with eigenvalue <span class="math inline">\(\mu\)</span>.<br />
+<span class="math inline">\(\psi\)</span> is a common eigenvector of
+<span class="math inline">\(T_1\)</span> &amp; <span class="math inline">\(T_2\)</span>, so <span class="math inline">\(\psi\in S\)</span>.<br />
+<span class="math inline">\(\psi\in S^\perp\)</span>, so this leads to
+<span class="math inline">\(\psi=0\)</span>, contradiction.</p>
+<p>④ conclusion <span class="math inline">\(\therefore\)</span> <span class="math inline">\(S=H\)</span>, and <span class="math inline">\(\{\phi_n\}\)</span> is the orthonormal basis for
+<span class="math inline">\(H\)</span> which is the eigenvectors of both
+<span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span>.</p>
+</div>
+<div id="b-a-linear-operator-t-is-normal-if-tttt.-show-that-if-t-is-normal-and-compact-then-t-can-be-diagonalized." class="section level3">
+<h3>(b) A linear operator <span class="math inline">\(T\)</span> is
+normal if <span class="math inline">\(TT^*=T^*T\)</span>. Show that if
+<span class="math inline">\(T\)</span> is normal and compact, then <span class="math inline">\(T\)</span> can be diagonalized.</h3>
+<p><strong>proof</strong><br />
+①<br />
+<span class="math display">\[\frac12(T+T^*)+i\frac{1}{2i}(T-T^*)=\frac12T+\frac12T^*+\frac12T-\frac12T^*=T\]</span></p>
+<p>② <span class="math inline">\(\frac12(T+T^*),\
+\frac{1}{2i}(T-T^*)\)</span> commute</p>
+<p>Let <span class="math inline">\(T_1=\frac12(T+T^*),\
+T_2=\frac{1}{2i}(T-T^*)\)</span>. <span class="math display">\[\begin{aligned}
+T_1T_2
+&amp;=\frac{1}{4i}(T+T^*)(T-T^*)\\
+&amp;=\frac{1}{4i}(TT-TT^*+T^*T-T^*T^*)\\
+&amp;=\frac{1}{4i}(TT-T^*T+TT^*-T^*T^*)\quad(\because\ T\ \text{is
+normal})\\
+&amp;=\frac{1}{4i}\big(T(T+T^*)-T^*(T+T^*)\big)\\
+&amp;=\frac{1}{4i}(T-T^*)(T+T^*)=\frac{1}{2i}(T-T^*)\frac12(T+T^*)=T_2T_1.
+\end{aligned}\]</span></p>
+<p>③ <span class="math inline">\(T_1,\ T_2\)</span> is compact</p>
+<p><span class="math inline">\(T\)</span> is compact, so for given
+bounded sequence <span class="math inline">\(\{f_n\}\subset H\)</span>
+there is a subsequence <span class="math inline">\(\{f_{n_k}\}\)</span>
+such that <span class="math inline">\(\lim_{k\to\infty}\|Tf_{n_k}-g\|_H=0\)</span> for
+some <span class="math inline">\(g\in H\)</span>.</p>
+<p><span class="math inline">\(T^*\)</span> is compact as well, so there
+is a subsequence <span class="math inline">\(\{f_{n_{k_i}}\}\)</span>
+such that <span class="math inline">\(\lim_{i\to\infty}\|T^*f_{n_{k_i}}-g^*\|_H=0\)</span>
+for some <span class="math inline">\(g^*\in H\)</span>. <span class="math inline">\(\{f_{n_{k_i}}\}\subset\{f_{n_k}\}\)</span>, so
+<span class="math inline">\(\lim_{i\to\infty}\|Tf_{n_{k_i}}-g\|_H=0\)</span>.</p>
+<p>Then, <span class="math inline">\(\|(T+T^*)f_{n_{k_i}}-(g+g^*)\|_H\le
+\|Tf_{n_{k_i}}-g\|_H+\|T^*f_{n_{k_i}}-g^*\|_H\)</span>.<br />
+So, <span class="math inline">\(\lim_{i\to\infty}\|(T+T^*)f_{n_{k_i}}-(g+g^*)\|_H=0\)</span>.</p>
+<p>Thus, <span class="math inline">\(T+T^*\)</span> is compact, as well
+as <span class="math inline">\(T-T^*\)</span>, and <span class="math inline">\(T_1,\ T_2\)</span>.</p>
+<p>④ <span class="math inline">\(T_1,\ T_2\)</span> is symmetric<br />
+<span class="math display">\[\begin{aligned}T_1^*&amp;=\left(\frac12(T+T^*)\right)^*=\frac12(T^*+T)=T_1,\\
+T_2^*&amp;=\left(\frac{1}{2i}(T-T^*)\right)^*=-\frac{1}{2i}(T^*-T)=\frac{1}{2i}(T-T^*)=T_2.\end{aligned}\]</span></p>
+<p>⑤ conclusion <span class="math inline">\((\sim(a))\)</span></p>
+<p><span class="math inline">\(T,\ T^*\)</span> is linear, so <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span> are linear.</p>
+<p>Then, using (a), there is an orthonormal basis <span class="math inline">\(\{e_n\}\subset H\)</span> which are eigenvectors
+of <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span>: <span class="math inline">\(T_1e_n=\lambda_{1,n}e_n\)</span> and <span class="math inline">\(T_2e_n=\lambda_{2,n}e_n\)</span>.</p>
+<p>So, <span class="math inline">\(Te_n=(T_1+iT_2)e_n=(\lambda_{1,n}+i\lambda_{2,n})e_n=:\lambda_ne_n\)</span>.</p>
+<p><span class="math inline">\(\therefore\)</span> <span class="math inline">\(T\)</span> can be diagonalized by <span class="math inline">\(\{e_n\}_n\)</span>.</p>
+</div>
+<div id="c-u-is-unitary-t-is-compact-and-ulambda-i-t.-show-that-u-can-be-diagonalized." class="section level3">
+<h3>(c) <span class="math inline">\(U\)</span> is unitary, <span class="math inline">\(T\)</span> is compact, and <span class="math inline">\(U=\lambda I-T\)</span>. Show that <span class="math inline">\(U\)</span> can be diagonalized.</h3>
+<p><strong>proof</strong><br />
+① <span class="math inline">\(T\)</span> is normal</p>
+<p>Using the property <span class="math inline">\(UU^*=U^*U=I\)</span>,
+<span class="math display">\[\begin{aligned}
+TT^* &amp;=(\lambda I-U)(\bar{\lambda}I-U^*) \\
+&amp;=|\lambda|^2I-\lambda U^*-\bar{\lambda}U+UU^*\\
+&amp;=|\lambda|^2I-\bar{\lambda}U-\lambda U^*+U^*U \\
+&amp;=(\bar{\lambda}I-U^*)(\lambda I-U) \\
+&amp;=T^*T.
+\end{aligned}\]</span></p>
+<p>② conclusion</p>
+<p>Due to (b), there is an orthonormal basis <span class="math inline">\(\{\phi_n\}\subset H\)</span> s.t. <span class="math inline">\(T\phi_n=\lambda_n\phi_n\ \ \forall
+n\in\mathbb{N}\)</span>. Then, <span class="math inline">\(U\phi_n=\lambda\phi_n-T\phi_n=(\lambda-\lambda_n)\phi_n\
+\ \forall n\in\mathbb{N}\)</span>.</p>
+<p>Thus, <span class="math inline">\(U\)</span> can be diagonalized with
+eigenvectors <span class="math inline">\(\{\phi_n\}\)</span> and the
+corresponding eigenvalues <span class="math inline">\(\{\lambda-\lambda_n\}\)</span>.</p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+                                                                                                                       </body>
+
+  
+</div>
