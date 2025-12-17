@@ -1,0 +1,745 @@
+---
+title: "Consultation 4"
+date: 2025-03-01 23:45:50
+categories: [Data Science Institute]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<div class="main-content">
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="consultation-4-multilevel-sem-for-logic-model-evaluation-with-small-cluster-sizes" class="section level1">
+<h1>Consultation 4: Multilevel SEM for Logic Model Evaluation with Small
+Cluster Sizes</h1>
+<div id="clients-inquiry" class="section level2">
+<h2>Client’s Inquiry</h2>
+<div id="analysis-goal" class="section level3">
+<h3>Analysis goal</h3>
+<p>Based on a <strong>logic model</strong> framework, the study aims to
+empirically test a <strong>sequential causal pathway</strong> that links
+public library performance <strong>outcomes</strong>.</p>
+</div>
+<div id="planned-statistical-methodology" class="section level3">
+<h3>Planned statistical methodology</h3>
+<ul>
+<li><p>Use <strong>Structural Equation Modeling (SEM)</strong> to test
+the logic-model causal pathway, including both <strong>direct</strong>
+and <strong>indirect (mediated)</strong> effects.</p></li>
+<li><p>Conceptual chain: <strong>Inputs → Activities → Outputs →
+Outcomes</strong></p></li>
+<li><p>Outcomes are further structured as:</p>
+<ul>
+<li><p>Short-term outcomes</p></li>
+<li><p>Intermediate outcomes</p></li>
+<li><p>Long-term outcomes</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="data-description" class="section level3">
+<h3>Data description</h3>
+<ul>
+<li><p>Variables collected:</p>
+<ul>
+<li><p>Inputs</p></li>
+<li><p>Activities</p></li>
+<li><p>Outputs</p></li>
+<li><p>Short-term outcomes</p></li>
+<li><p>Intermediate outcomes</p></li>
+<li><p>Long-term outcomes</p></li>
+</ul></li>
+<li><p>Note: A conceptual research model figure has been prepared
+(attached by the researcher).</p></li>
+</ul>
+</div>
+<div id="key-issue-mixed-unit-of-analysis" class="section level3">
+<h3>Key issue (mixed unit of analysis)</h3>
+<p>Some variables are measured at the <strong>library level</strong>,
+while others are measured at the <strong>individual user
+level</strong>.</p>
+<ul>
+<li><p><strong>Inputs, Activities, Outputs:</strong> quantitative data
+at the <strong>library level</strong></p></li>
+<li><p><strong>Short-/Intermediate-/Long-term outcomes:</strong>
+<strong>user-level</strong> survey responses (Likert scale)</p></li>
+</ul>
+</div>
+<div id="intended-analysis-level" class="section level3">
+<h3>Intended analysis level</h3>
+<ul>
+<li><p>The researcher wants to perform the analysis at the
+<strong>library level</strong>.</p></li>
+<li><p>In the survey, each user selected the library they mainly use and
+answered about that library, so survey responses can be grouped by
+<strong>library</strong>.</p></li>
+</ul>
+</div>
+<div id="main-question" class="section level3">
+<h3>Main question</h3>
+<ul>
+<li><p>Many libraries have <strong>fewer than 30 respondents</strong>
+(about <strong>46%</strong> of all libraries).</p></li>
+<li><p>Is SEM still feasible when some groups (libraries) have <strong>n
+&lt; 30</strong>? (Excluding all libraries with fewer than 30
+respondents would remove too much data.)</p></li>
+<li><p>Since small group sizes are believed to reduce reliability, the
+researcher asks whether there are <strong>practical analytic
+approaches</strong> that still allow SEM (or related modeling) without
+dropping most of these libraries.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<div id="what-is-structural-equation-modeling-sem" class="section level3">
+<h3>What is Structural Equation Modeling (SEM)?</h3>
+<p>Structural Equation Modeling (SEM) is a statistical framework that
+allows researchers to test <strong>multiple causal (direct and indirect)
+relationships among variables simultaneously</strong>. SEM is typically
+composed of two main parts: a measurement model and a structural
+model.</p>
+<div id="measurement-model" class="section level4">
+<h4>(1) Measurement model</h4>
+<p>The measurement model specifies how <strong>observed indicators
+(measured variables)</strong> represent <strong>latent variables
+(unobserved constructs)</strong>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+x &amp; = \Lambda_x \xi + \delta
+\quad \text{(measurement model for exogenous latent variables)} \\
+y &amp; = \Lambda_y \eta + \epsilon
+\quad \text{(measurement model for endogenous latent variables)}
+\end{aligned}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(x\)</span>: vector of observed
+indicators for <strong>exogenous</strong> latent variables</p>
+<ul>
+<li><p>In this study, <span class="math inline">\(x\)</span> can
+correspond to the <strong>library-level measured variables</strong> that
+are treated as exogenous inputs to the causal chain.</p></li>
+<li><p><strong>Inputs / Activities / Outputs</strong> (e.g., budget,
+staffing, number of programs, number of loans, number of events, etc.,
+depending on the dataset).</p></li>
+</ul></li>
+<li><p><span class="math inline">\(y\)</span>: vector of observed
+indicators for <strong>endogenous</strong> latent variables</p>
+<ul>
+<li><p>In this study, <span class="math inline">\(y\)</span> can
+correspond to <strong>user-survey items (Likert-scale
+indicators)</strong> that measure outcome-related constructs.</p></li>
+<li><p><strong>Short-term / Intermediate / Long-term outcomes</strong>
+(e.g., satisfaction items, perceived usefulness, learning/skill
+improvement items, intention to revisit, community engagement,
+etc.).</p></li>
+</ul></li>
+<li><p><span class="math inline">\(\xi\)</span>: vector of
+<strong>exogenous latent variables</strong> (latent predictors)</p>
+<ul>
+<li>Example interpretation: a latent construct such as <strong>“Library
+Resources/Capacity”</strong> or <strong>“Service Provision
+Intensity”</strong>, measured by library-level indicators in <span class="math inline">\(x\)</span>.</li>
+</ul></li>
+<li><p><span class="math inline">\(\eta\)</span>: vector of
+<strong>endogenous latent variables</strong> (latent
+outcomes/mediators)</p>
+<ul>
+<li>Example interpretation: latent constructs such as
+<strong>“Short-term Outcome”</strong>, <strong>“Intermediate
+Outcome”</strong>, and <strong>“Long-term Outcome”</strong>, each
+measured by multiple survey items in <span class="math inline">\(y\)</span>.</li>
+</ul></li>
+<li><p><span class="math inline">\(\Lambda_x, \Lambda_y\)</span>: factor
+loading matrices</p></li>
+<li><p><span class="math inline">\(\delta, \epsilon\)</span>:
+measurement error terms</p></li>
+</ul>
+</div>
+<div id="structural-model" class="section level4">
+<h4>(2) Structural model</h4>
+<p>The structural model defines the <strong>causal paths among latent
+variables</strong>, capturing both direct and mediated effects.</p>
+<p><span class="math display">\[
+\eta = B \eta + \Gamma \xi + \zeta
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(B\)</span>: matrix of path
+coefficients among endogenous latent variables (<span class="math inline">\(\eta \rightarrow \eta\)</span>)</p></li>
+<li><p><span class="math inline">\(\Gamma\)</span>: matrix of path
+coefficients from exogenous to endogenous latent variables (<span class="math inline">\(\xi \rightarrow \eta\)</span>)</p></li>
+<li><p><span class="math inline">\(\zeta\)</span>: structural
+disturbance (residual) term</p></li>
+</ul>
+</div>
+</div>
+<div id="application-to-your-logic-model-consultation-sem" class="section level3">
+<h3>Application to your logic-model consultation (SEM)</h3>
+<p>Following the logic-model framework, you aim to test a sequential
+causal pathway (including <strong>direct</strong> and
+<strong>indirect</strong> effects):</p>
+<p><span class="math display">\[
+\text{Inputs} \rightarrow \text{Activities} \rightarrow \text{Outputs}
+\rightarrow \text{Short-term Outcomes} \rightarrow \text{Intermediate
+Outcomes} \rightarrow \text{Long-term Outcomes}.
+\]</span></p>
+</div>
+<div id="variable-definitions" class="section level3">
+<h3>1. Variable definitions</h3>
+<p><strong>Exogenous latent variable</strong></p>
+<p><span class="math display">\[
+\xi_1 = \text{Inputs}.
+\]</span></p>
+<p><strong>Endogenous latent variables</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+\eta_1 &amp; = \text{Activities}, \\
+\eta_2 &amp; = \text{Outputs}, \\
+\eta_3 &amp; = \text{Short-term Outcomes}, \\
+\eta_4 &amp; = \text{Intermediate Outcomes}, \\
+\eta_5 &amp; = \text{Long-term Outcomes}.
+\end{aligned}
+\]</span></p>
+</div>
+<div id="measurement-model-1" class="section level3">
+<h3>2. Measurement model</h3>
+<p>Let the observed indicators (survey items, administrative metrics,
+etc.) that measure each latent construct be denoted by <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. For example:</p>
+<p><span class="math display">\[
+\begin{aligned}
+x_1 &amp; = \Lambda_{x_1}\,\xi_1 + \delta_1, \\
+y_i &amp; = \Lambda_{y_i}\,\eta_i + \epsilon_i,\quad i=1,\ldots,5.
+\end{aligned}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\Lambda_{\cdot}\)</span>: factor
+loading matrices</p></li>
+<li><p><span class="math inline">\(\delta_1,\epsilon_i\)</span>:
+measurement errors</p></li>
+</ul>
+<p>The measurement model links each latent construct to its observed
+indicators. Under your research framework, you can substitute the actual
+indicator names from the attached model into the notation below.</p>
+<div id="measurement-model-for-the-exogenous-latent-variable-inputs-xi_1" class="section level4">
+<h4>2.1 Measurement model for the exogenous latent variable: Inputs
+(<span class="math inline">\(\xi_1\)</span>)</h4>
+<p>Let the observed variables <span class="math inline">\(x_{1i}\)</span> <span class="math inline">\((i=1,\ldots,p)\)</span> be indicators that measure
+Inputs. Then:</p>
+<p><span class="math display">\[
+x_{1i} = \lambda_{x_{1i}}\,\xi_1 + \delta_{1i},\quad i=1,\ldots,p.
+\]</span></p>
+<p>In vector/matrix form:</p>
+<p><span class="math display">\[
+x_1 =
+\begin{pmatrix}
+x_{11}\\
+x_{12}\\
+\vdots\\
+x_{1p}
+\end{pmatrix} =
+\underbrace{
+\begin{pmatrix}
+\lambda_{x_{11}}\\
+\lambda_{x_{12}}\\
+\vdots\\
+\lambda_{x_{1p}}
+\end{pmatrix}}_{\Lambda_{x_1}}
+\xi_1
++
+\underbrace{
+\begin{pmatrix}
+\delta_{11}\\
+\delta_{12}\\
+\vdots\\
+\delta_{1p}
+\end{pmatrix}}_{\delta_1}.
+\]</span></p>
+</div>
+<div id="measurement-models-for-endogenous-latent-variables-eta_j-j1ldots5" class="section level4">
+<h4>2.2 Measurement models for endogenous latent variables (<span class="math inline">\(\eta_j,\ j=1,\ldots,5\)</span>)</h4>
+<p>For each stage-specific latent variable <span class="math inline">\(\eta_j\)</span> <span class="math inline">\((j=1,\ldots,5)\)</span>, let the observed
+indicators be <span class="math inline">\(y_{ji}\)</span> <span class="math inline">\((i=1,\ldots,q_j)\)</span>. Then:</p>
+<p><span class="math display">\[
+y_{ji} = \lambda_{y_{ji}}\,\eta_j + \epsilon_{ji},\quad
+i=1,\ldots,q_j,\quad j=1,\ldots,5.
+\]</span></p>
+<p>Stage interpretation:</p>
+<ul>
+<li><p><span class="math inline">\(j=1\)</span>: Activities (<span class="math inline">\(\eta_1\)</span>), indicators <span class="math inline">\(y_{1i}\)</span> <span class="math inline">\((i=1,\ldots,q_1)\)</span></p></li>
+<li><p><span class="math inline">\(j=2\)</span>: Outputs (<span class="math inline">\(\eta_2\)</span>), indicators <span class="math inline">\(y_{2i}\)</span> <span class="math inline">\((i=1,\ldots,q_2)\)</span></p></li>
+<li><p><span class="math inline">\(j=3\)</span>: Short-term Outcomes
+(<span class="math inline">\(\eta_3\)</span>), indicators <span class="math inline">\(y_{3i}\)</span> <span class="math inline">\((i=1,\ldots,q_3)\)</span></p></li>
+<li><p><span class="math inline">\(j=4\)</span>: Intermediate Outcomes
+(<span class="math inline">\(\eta_4\)</span>), indicators <span class="math inline">\(y_{4i}\)</span> <span class="math inline">\((i=1,\ldots,q_4)\)</span></p></li>
+<li><p><span class="math inline">\(j=5\)</span>: Long-term Outcomes
+(<span class="math inline">\(\eta_5\)</span>), indicators <span class="math inline">\(y_{5i}\)</span> <span class="math inline">\((i=1,\ldots,q_5)\)</span></p></li>
+</ul>
+<p>In vector/matrix form (for each <span class="math inline">\(j\)</span>):</p>
+<p><span class="math display">\[
+y_j =
+\begin{pmatrix}
+y_{j1}\\
+y_{j2}\\
+\vdots\\
+y_{jq_j}
+\end{pmatrix}=
+\Lambda_{y_j}\,\eta_j + \epsilon_j,\quad j=1,\ldots,5.
+\]</span></p>
+</div>
+<div id="summary-of-the-full-measurement-model-block-diagonal-form" class="section level4">
+<h4>2.3 Summary of the full measurement model (block-diagonal form)</h4>
+<p>Stacking all observed indicator vectors into one vector:</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+x_1\\
+y_1\\
+\vdots\\
+y_5
+\end{pmatrix}=
+\underbrace{
+\begin{pmatrix}
+\Lambda_{x_1} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; \Lambda_{y_1} &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+\vdots &amp; &amp; \ddots &amp; &amp; &amp; \vdots\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \Lambda_{y_5}
+\end{pmatrix}}_{\Lambda}
+\begin{pmatrix}
+\xi_1\\
+\eta_1\\
+\vdots\\
+\eta_5
+\end{pmatrix}
++
+\begin{pmatrix}
+\delta_1\\
+\epsilon_1\\
+\vdots\\
+\epsilon_5
+\end{pmatrix}.
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\Lambda\)</span>: a block-diagonal
+loading matrix that places each factor loading matrix in the appropriate
+block</p></li>
+<li><p><span class="math inline">\(\delta_1, \epsilon_j\)</span>:
+measurement error vectors</p></li>
+</ul>
+</div>
+</div>
+<div id="structural-model-1" class="section level3">
+<h3>3. Structural model</h3>
+<div id="comprehensive-structural-equations-sequential-all-earlier-to-later-direct-paths" class="section level4">
+<h4>3.1 Comprehensive structural equations (sequential + all
+earlier-to-later direct paths)</h4>
+<p>Below is a more comprehensive specification that includes:</p>
+<ul>
+<li><p>the <strong>sequential path</strong> (e.g., <span class="math inline">\(\eta_1 \to \eta_2 \to \cdots \to \eta_5\)</span>),
+and</p></li>
+<li><p><strong>direct paths from every earlier stage to every later
+stage</strong>, including <span class="math inline">\(\xi_1\)</span> to
+all <span class="math inline">\(\eta_j\)</span>.</p></li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+\eta_1 &amp;= \gamma_{11}\xi_1 + \zeta_1,\\
+\eta_2 &amp;= \beta_{21}\eta_1 + \gamma_{21}\xi_1 + \zeta_2,\\
+\eta_3 &amp;= \beta_{32}\eta_2 + \beta_{31}\eta_1 + \gamma_{31}\xi_1 +
+\zeta_3,\\
+\eta_4 &amp;= \beta_{43}\eta_3 + \beta_{42}\eta_2 + \beta_{41}\eta_1 +
+\gamma_{41}\xi_1 + \zeta_4,\\
+\eta_5 &amp;= \beta_{54}\eta_4 + \beta_{53}\eta_3 + \beta_{52}\eta_2 +
+\beta_{51}\eta_1 + \gamma_{51}\xi_1 + \zeta_5.
+\end{aligned}
+\]</span></p>
+<p>Interpretation examples:</p>
+<ul>
+<li><p><span class="math inline">\(\gamma_{11}\)</span>: Inputs <span class="math inline">\(\rightarrow\)</span> Activities</p></li>
+<li><p><span class="math inline">\(\beta_{21}\)</span>: Activities <span class="math inline">\(\rightarrow\)</span> Outputs</p></li>
+<li><p><span class="math inline">\(\beta_{31}\)</span>: Activities <span class="math inline">\(\rightarrow\)</span> Short-term Outcomes (direct
+shortcut)</p></li>
+<li><p><span class="math inline">\(\beta_{42}\)</span>: Outputs <span class="math inline">\(\rightarrow\)</span> Intermediate Outcomes (direct
+shortcut)</p></li>
+<li><p><span class="math inline">\(\gamma_{51}\)</span>: Inputs <span class="math inline">\(\rightarrow\)</span> Long-term Outcomes (direct
+shortcut)</p></li>
+<li><p><span class="math inline">\(\zeta_i\)</span>: structural
+disturbances (residuals)</p></li>
+</ul>
+</div>
+<div id="matrix-form" class="section level4">
+<h4>3.2 Matrix form</h4>
+<p>Let</p>
+<p><span class="math display">\[
+\eta = (\eta_1,\eta_2,\eta_3,\eta_4,\eta_5)^\prime,\quad
+\xi = (\xi_1)^\prime.
+\]</span></p>
+<p>Then the structural model can be written as:</p>
+<p><span class="math display">\[
+\eta = B\eta + \Gamma\xi + \zeta,
+\]</span></p>
+<p>where <span class="math inline">\(\zeta=(\zeta_1,\ldots,\zeta_5)^\prime\)</span>,
+and (one possible representation)</p>
+<p><span class="math display">\[
+B=
+\begin{pmatrix}
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+\beta_{21} &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+\beta_{31} &amp; \beta_{32} &amp; 0 &amp; 0 &amp; 0\\
+\beta_{41} &amp; \beta_{42} &amp; \beta_{43} &amp; 0 &amp; 0\\
+\beta_{51} &amp; \beta_{52} &amp; \beta_{53} &amp; \beta_{54} &amp; 0
+\end{pmatrix},
+\quad
+\Gamma=
+\begin{pmatrix}
+\gamma_{11}\\
+\gamma_{21}\\
+\gamma_{31}\\
+\gamma_{41}\\
+\gamma_{51}
+\end{pmatrix}.
+\]</span></p>
+</div>
+<div id="examples-of-direct-indirect-and-total-effects" class="section level4">
+<h4>3.3 Examples of direct, indirect, and total effects</h4>
+<p><strong>Direct effect (example)</strong></p>
+<ul>
+<li>Inputs <span class="math inline">\(\rightarrow\)</span> Long-term
+Outcomes (if included): <span class="math inline">\(\gamma_{51}\)</span></li>
+</ul>
+<p><strong>One specific indirect effect (pure sequential
+chain)</strong></p>
+<ul>
+<li>Inputs <span class="math inline">\(\rightarrow\)</span> Activities
+<span class="math inline">\(\rightarrow\)</span> Outputs <span class="math inline">\(\rightarrow\)</span> Short-term <span class="math inline">\(\rightarrow\)</span> Intermediate <span class="math inline">\(\rightarrow\)</span> Long-term:</li>
+</ul>
+<p><span class="math display">\[
+\gamma_{11}\times \beta_{21}\times \beta_{32}\times \beta_{43}\times
+\beta_{54}.
+\]</span></p>
+<p><strong>Total effect</strong></p>
+<ul>
+<li>The total effect equals the direct effect plus the sum of all
+possible indirect paths implied by the model.</li>
+</ul>
+</div>
+</div>
+<div id="structural-model-using-only-the-sequential-logic-model-paths" class="section level3">
+<h3>4. Structural model using only the sequential (logic-model)
+paths</h3>
+<div id="overview" class="section level4">
+<h4>4.1 Overview</h4>
+<p>Even though a comprehensive structural model can include direct paths
+from every earlier stage to every later stage, it is also valid to
+specify a <strong>parsimonious model</strong> that includes <strong>only
+the sequential causal chain</strong> implied by the logic model:</p>
+<p><span class="math display">\[
+\xi_1 \rightarrow \eta_1 \rightarrow \eta_2 \rightarrow \eta_3
+\rightarrow \eta_4 \rightarrow \eta_5.
+\]</span></p>
+<p>In equations (sequential paths only):</p>
+<p><span class="math display">\[
+\begin{aligned}
+\eta_1 \;&amp;=\; \gamma_{11}\xi_1 + \zeta_1, \\
+\eta_2 \;&amp;=\; \beta_{21}\eta_1 + \zeta_2, \\
+\eta_3 \;&amp;=\; \beta_{32}\eta_2 + \zeta_3, \\
+\eta_4 \;&amp;=\; \beta_{43}\eta_3 + \zeta_4, \\
+\eta_5 \;&amp;=\; \beta_{54}\eta_4 + \zeta_5.
+\end{aligned}
+\]</span></p>
+<p>In matrix form, letting</p>
+<p><span class="math display">\[
+\eta = (\eta_1,\eta_2,\eta_3,\eta_4,\eta_5)^\prime,\quad
+\xi = (\xi_1)^\prime,
+\]</span></p>
+<p>the model can be written as:</p>
+<p><span class="math display">\[
+\eta = B\eta + \Gamma\xi + \zeta,
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+B=
+\begin{pmatrix}
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+\beta_{21} &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; \beta_{32} &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; \beta_{43} &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; \beta_{54} &amp; 0
+\end{pmatrix},
+\quad
+\Gamma=
+\begin{pmatrix}
+\gamma_{11}\\
+0\\
+0\\
+0\\
+0
+\end{pmatrix}.
+\]</span></p>
+</div>
+<div id="why-start-with-a-parsimonious-model-theoretical-parsimony" class="section level4">
+<h4>4.2 Why start with a parsimonious model? (Theoretical
+parsimony)</h4>
+<p>In SEM, adding every possible path “just in case” can make the model
+unnecessarily complex. When the model becomes too complex relative to
+the sample size, it may lead to:</p>
+<ul>
+<li><p>loss of degrees of freedom,</p></li>
+<li><p>unstable estimation, and</p></li>
+<li><p>potential identification problems.</p></li>
+</ul>
+<p>Therefore, a recommended strategy is to first fit a <strong>baseline
+SEM</strong> that reflects the <strong>core theoretical
+assumption</strong> of the logic model (the sequential stage-to-stage
+causality), and then consider adding additional paths only when there is
+strong theoretical and empirical justification.</p>
+<p>With sequential paths only, it is easier to interpret mediation
+because direct and indirect effects are less entangled.</p>
+<p>For example, the sequential-only model allows you to test the
+mediated pathway step by step, such as:</p>
+<p><span class="math display">\[
+\xi_1 \rightarrow \eta_3 \rightarrow \eta_4 \rightarrow \eta_5,
+\]</span></p>
+<p>and later examine whether adding an extra direct path (e.g., <span class="math inline">\(\xi_1 \rightarrow \eta_4\)</span>) is
+theoretically meaningful and empirically supported.</p>
+</div>
+<div id="a-standard-stepwise-modeling-strategy" class="section level4">
+<h4>4.3 A standard stepwise modeling strategy</h4>
+<p>A common approach is:</p>
+<ul>
+<li><p><strong>Model 1 (baseline):</strong> test the sequential
+logic-model paths only.</p></li>
+<li><p><strong>Model 2 (expanded):</strong> add one theoretically
+motivated additional path at a time, and evaluate improvement in fit and
+statistical significance.</p></li>
+</ul>
+<p>This stepwise strategy helps prevent overfitting and supports a more
+defensible final model by keeping only the “truly important” paths.</p>
+<hr />
+</div>
+</div>
+</div>
+<div id="answer" class="section level2">
+<h2>Answer</h2>
+<div id="addressing-small-within-library-sample-sizes-n_k30-in-library-level-sem" class="section level3">
+<h3>Addressing small within-library sample sizes (<span class="math inline">\(n_k&lt;30\)</span>) in library-level SEM</h3>
+<p>If you aggregate user surveys into simple library-level means and
+treat those means as observed indicators, libraries with small <span class="math inline">\(n_k\)</span> can have <strong>large measurement
+error</strong> in those means. This can bias or destabilize the SEM
+measurement model. However, the issue can be mitigated while keeping
+those libraries in the analysis by using the following approach.</p>
+</div>
+<div id="multilevel-sem-using-individual-responses-no-aggregation" class="section level3">
+<h3>1. Multilevel SEM using individual responses (no aggregation)</h3>
+<p><strong>Idea:</strong> Do not aggregate survey responses. Instead,
+model users at <strong>Level-1</strong> and libraries at
+<strong>Level-2</strong>. This naturally yields <strong>partial
+pooling</strong>, which stabilizes estimation even when some libraries
+have small <span class="math inline">\(n_k\)</span>.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li><p>Even libraries with small <span class="math inline">\(n_k\)</span> benefit from information sharing
+(partial pooling), improving stability.</p></li>
+<li><p>Separates <strong>within-library</strong> (individual) variation
+from <strong>between-library</strong> variation.</p></li>
+<li><p>Possible tools: Mplus (Multilevel SEM), and multilevel /
+complex-sample approaches in R (e.g., <code>lavaan.survey</code> with
+<code>survey</code>), depending on design and feasibility.</p></li>
+</ul>
+</div>
+<div id="multilevel-sem-formulation-for-this-consultation" class="section level3">
+<h3>2. Multilevel SEM formulation for this consultation</h3>
+<p>Index libraries by <span class="math inline">\(k=1,\ldots,K\)</span>,
+individuals within library <span class="math inline">\(k\)</span> by
+<span class="math inline">\(i=1,\ldots,n_k\)</span>, and (outcome)
+survey items or indicators by <span class="math inline">\(j\)</span>.</p>
+<div id="level-1-individual-level-outcomes-only-measurement" class="section level4">
+<h4>2.1 Level-1 (individual level): outcomes-only measurement</h4>
+<p>At the individual level, the dataset contains only outcome-related
+survey responses. Inputs / Activities / Outputs are library-level
+administrative variables, so they do not appear in Level-1.</p>
+<p>A simple random-intercept-only specification is:</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_{kij} \;&amp;=\; \pi_{0kj} + \epsilon_{kij}, \\
+\epsilon_{kij} \;&amp;\sim\; N(0,\sigma_{\epsilon j}^2).
+\end{aligned}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(y_{kij}\)</span>: response of
+individual <span class="math inline">\(i\)</span> in library <span class="math inline">\(k\)</span> to outcome indicator/item <span class="math inline">\(j\)</span></p></li>
+<li><p><span class="math inline">\(\pi_{0kj}\)</span>: library-specific
+mean (random intercept) for item <span class="math inline">\(j\)</span></p></li>
+<li><p><span class="math inline">\(\epsilon_{kij}\)</span>:
+within-library individual-level deviation (treated as Level-1
+error)</p></li>
+</ul>
+<p>In this setup, <strong>small <span class="math inline">\(n_k\)</span>
+is not automatically fatal</strong> because the multilevel model yields
+partial pooling at Level-2.</p>
+</div>
+<div id="level-2-library-level-measurement-model-including-exogenous-inputs" class="section level4">
+<h4>2.2 Level-2 (library level): measurement model including exogenous
+Inputs</h4>
+<p>At Level-2, both exogenous latent variables (<span class="math inline">\(\xi\)</span>) and endogenous latent variables
+(<span class="math inline">\(\eta\)</span>) are modeled.</p>
+<div id="a-exogenous-latent-variable-inputs-measurement-model" class="section level5">
+<h5>(A) Exogenous latent variable (Inputs) measurement model</h5>
+<p>Let <span class="math inline">\(x_{k\ell}\)</span> denote
+library-level administrative indicators (e.g., budget, staff size,
+collection size). Then:</p>
+<p><span class="math display">\[
+x_{k\ell} = \lambda_{x\ell}\,\xi_k + \delta_{k\ell},\quad
+\delta_{k\ell}\sim N(0,\theta_{x\ell}).
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\xi_k\)</span>: latent Inputs for
+library <span class="math inline">\(k\)</span></p></li>
+<li><p><span class="math inline">\(x_{k\ell}\)</span>: administrative
+indicator <span class="math inline">\(\ell\)</span> for library <span class="math inline">\(k\)</span></p></li>
+<li><p><span class="math inline">\(\delta_{k\ell}\)</span>: measurement
+error at the library level</p></li>
+</ul>
+<p>This component is essential because Inputs are library-level and
+should enter the SEM as a Level-2 latent construct.</p>
+</div>
+<div id="b-endogenous-latent-variables-activities-through-outcomes-measurement-model" class="section level5">
+<h5>(B) Endogenous latent variables (Activities through Outcomes)
+measurement model</h5>
+<p>Use the Level-1 random intercepts <span class="math inline">\(\pi_{0kj}\)</span> (library-level item means) as
+the measurement layer for library-level latent constructs:</p>
+<p><span class="math display">\[
+\pi_{0kj} = \tau_j + \lambda_{yj}\,\eta_{kj} + \epsilon_{kj},\quad
+\epsilon_{kj}\sim N(0,\theta_{yj}).
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\eta_{kj}\)</span>: library-level
+latent variable for stage <span class="math inline">\(j\)</span>
+(Activities, Outputs, Short-term, Intermediate, Long-term)</p></li>
+<li><p><span class="math inline">\(\epsilon_{kj}\)</span>: library-level
+measurement error, distinct from Level-1 individual error <span class="math inline">\(\epsilon_{kij}\)</span></p></li>
+</ul>
+</div>
+</div>
+<div id="level-2-structural-model-logic-model-causal-paths" class="section level4">
+<h4>2.3 Level-2 structural model (logic-model causal paths)</h4>
+<p>The logic-model causal chain is modeled at Level-2. A comprehensive
+version can allow sequential effects plus selected direct paths:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\eta_{k1} \;&amp;=\; \gamma_{11}\,\xi_k + \zeta_{k1}, \\
+\eta_{k2} \;&amp;=\; \beta_{21}\,\eta_{k1} + \gamma_{21}\,\xi_k +
+\zeta_{k2}, \\
+\eta_{k3} \;&amp;=\; \beta_{32}\,\eta_{k2} + \beta_{31}\,\eta_{k1} +
+\gamma_{31}\,\xi_k + \zeta_{k3}, \\
+\eta_{k4} \;&amp;=\; \beta_{43}\,\eta_{k3} + \beta_{42}\,\eta_{k2} +
+\gamma_{41}\,\xi_k + \zeta_{k4}, \\
+\eta_{k5} \;&amp;=\; \beta_{54}\,\eta_{k4} + \beta_{53}\,\eta_{k3} +
+\gamma_{51}\,\xi_k + \zeta_{k5}.
+\end{aligned}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\xi_k\)</span>: Inputs (exogenous
+latent variable)</p></li>
+<li><p><span class="math inline">\(\eta_{k1},\ldots,\eta_{k5}\)</span>:
+Activities <span class="math inline">\(\rightarrow\)</span> Outputs
+<span class="math inline">\(\rightarrow\)</span> Outcomes (endogenous
+latent variables)</p></li>
+<li><p><span class="math inline">\(\zeta_{kj}\)</span>: library-level
+structural disturbances (residuals)</p></li>
+</ul>
+</div>
+</div>
+<div id="why-this-is-a-multilevel-sem-and-why-it-helps-when-n_k30" class="section level3">
+<h3>Why this is a multilevel SEM (and why it helps when <span class="math inline">\(n_k&lt;30\)</span>)</h3>
+<ul>
+<li><p><strong>Level-1:</strong> absorbs individual survey noise and
+separates within-library variability</p></li>
+<li><p><strong>Level-2:</strong> estimates library-level latent
+constructs and the causal logic-model pathway</p></li>
+<li><p><strong>Inputs measurement:</strong> models library
+administrative indicators as an exogenous latent factor</p></li>
+<li><p><strong>Outcomes measurement:</strong> accounts for measurement
+error in library-level outcome constructs without naïvely treating
+small-<span class="math inline">\(n_k\)</span> means as
+error-free</p></li>
+</ul>
+</div>
+<div id="conclusion-for-consultation-response" class="section level3">
+<h3>Conclusion (for consultation response)</h3>
+<p>A multilevel SEM can be applied by modeling individual survey
+responses at Level-1 and libraries at Level-2. This approach allows
+stable estimation of library-level latent constructs even when some
+libraries have fewer than 30 respondents, because the model separates
+individual-level variability and uses partial pooling at the library
+level. Moreover, library-level Inputs can be incorporated as an
+exogenous latent variable via administrative indicators, enabling a
+theoretically consistent test of the logic-model causal pathway without
+dropping a large portion of libraries.</p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+  </body>
+
+  
+</div>
