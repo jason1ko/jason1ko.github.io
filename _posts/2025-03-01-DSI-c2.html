@@ -210,29 +210,39 @@ W = \frac{\left(\sum_{i=1}^n a_i\, x_{(i)}\right)^2}{\sum_{i=1}^n (x_i -
 \bar{x})^2},
 \]</span> where <span class="math inline">\(a_i\)</span> are weights
 derived under normality.</p>
-<p><strong>Interpretation</strong> - Numerator: squared linear
-combination aligning observed order statistics with those expected under
-normality. - Denominator: sample variance (total variation). - <span class="math inline">\(W \approx 1\)</span> indicates strong concordance
-with normality; smaller <span class="math inline">\(W\)</span> indicates
-departures from normality.</p>
-<p><strong>Hypotheses</strong> - <span class="math inline">\(H_0\)</span>: the sample follows a normal
-distribution. - <span class="math inline">\(H_1\)</span>: the sample
-does not follow a normal distribution.<br />
+<p><strong>Interpretation</strong></p>
+<ul>
+<li>Numerator: squared linear combination aligning observed order
+statistics with those expected under normality.</li>
+<li>Denominator: sample variance (total variation).</li>
+<li><span class="math inline">\(W \approx 1\)</span> indicates strong
+concordance with normality; smaller <span class="math inline">\(W\)</span> indicates departures from
+normality.</li>
+</ul>
+<p><strong>Hypotheses</strong></p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: the sample follows a
+normal distribution.</li>
+<li><span class="math inline">\(H_1\)</span>: the sample does not follow
+a normal distribution.<br />
 Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(p\)</span>-value <span class="math inline">\(&lt;
-0.05\)</span>.</p>
+0.05\)</span>.</li>
+</ul>
 </div>
 <div id="appropriateness-of-normality-testing-in-this-study" class="section level4">
 <h4>(3) Appropriateness of Normality Testing in This Study</h4>
-<p><strong>1) On averaging item scores within each condition (see print
-p. 9)</strong> Averaging two items per condition can
-<strong>attenuate</strong> non-normality. Therefore, it is preferable to
-test normality on the <strong>original item-level scores</strong> rather
-than on the averaged composites.</p>
-<p><strong>2) Accounting for the repeated-measures structure (see print
-p. 9)</strong> Because the design is <strong>within-subjects</strong>,
-measurements are <strong>correlated</strong> across conditions
-(A/B/C/D). Testing normality separately on each condition’s raw scores
-ignores this correlation and can bias interpretation.</p>
+<p><strong>1) On averaging item scores within each
+condition</strong></p>
+<p>Averaging two items per condition can <strong>attenuate</strong>
+non-normality. Therefore, it is preferable to test normality on the
+<strong>original item-level scores</strong> rather than on the averaged
+composites.</p>
+<p><strong>2) Accounting for the repeated-measures
+structure</strong></p>
+<p>Because the design is <strong>within-subjects</strong>, measurements
+are <strong>correlated</strong> across conditions (A/B/C/D). Testing
+normality separately on each condition’s raw scores ignores this
+correlation and can bias interpretation.</p>
 <p>A more appropriate approach is to examine the
 <strong>residuals</strong> from the repeated-measures model: <span class="math display">\[
 Y_{ij} = \mu + \alpha_j + s_i + \epsilon_{ij},
@@ -347,10 +357,13 @@ intention).</li>
 </ul>
 <p><strong>But this only examines the “b path” in
 isolation.</strong><br />
-It does <em>not</em> consider: - The impact of persuasion type
-<code>X</code> on perceived autonomy (<code>a</code> path) - Nor the
-full mediation structure - Nor the repeated-measures (within-subject)
-nature of the data</p>
+It does not consider:</p>
+<ul>
+<li>The impact of persuasion type <code>X</code> on perceived autonomy
+(<code>a</code> path)</li>
+<li>Nor the full mediation structure</li>
+<li>Nor the repeated-measures (within-subject) nature of the data</li>
+</ul>
 <p>Furthermore, regression assumes <strong>independence of
 observations</strong>, which is violated here: the same participants
 rated all 4 persuasion types.</p>
@@ -358,21 +371,22 @@ rated all 4 persuasion types.</p>
 <div id="correct-method-repeated-measures-mediation-multilevel-mediation" class="section level3">
 <h3>3. Correct Method: Repeated Measures Mediation (Multilevel
 Mediation)</h3>
-<p>Because the data involve: - <strong>All participants rating all 4
-persuasion types</strong> (within-subjects factor) - <strong>Responses
-nested within participants</strong></p>
+<p>Because the data involve:</p>
+<ul>
+<li><strong>All participants rating all 4 persuasion types</strong>
+(within-subjects factor)</li>
+<li><strong>Responses nested within participants</strong></li>
+</ul>
 <p>→ The correct approach is <strong>Multilevel Mediation
 Analysis</strong> (also called Repeated Measures Mediation).</p>
 </div>
 <div id="model-structure" class="section level3">
 <h3>4. Model Structure</h3>
 <p><strong>Level 1 (within participants):</strong></p>
-<p><span class="math display">\[
-M_{ij} = \alpha_{0i} + a\,X_{ij} + r_{1ij}
-\]</span></p>
-<p><span class="math display">\[
-Y_{ij} = \beta_{0i} + c&#39; \, X_{ij} + b \, M_{ij} + r_{2ij}
-\]</span></p>
+<p><span class="math display">\[\begin{aligned}
+M_{ij} &amp;= \alpha_{0i} + a\,X_{ij} + r_{1ij} \\
+Y_{ij} &amp;= \beta_{0i} + c&#39; \, X_{ij} + b \, M_{ij} + r_{2ij}
+\end{aligned}\]</span></p>
 <ul>
 <li><span class="math inline">\(i\)</span>: participant<br />
 </li>
@@ -386,29 +400,8 @@ Y_{ij} = \beta_{0i} + c&#39; \, X_{ij} + b \, M_{ij} + r_{2ij}
 <p>→ This models both the fixed effects (mediation paths)
 <strong>and</strong> random intercepts per participant.</p>
 </div>
-<div id="r-code-example-simplified" class="section level3">
-<h3>5. R Code Example (Simplified)</h3>
-<p>```{r} library(lme4) library(mediation)</p>
-</div>
-</div>
-</div>
-<div id="mediation-model-x-m" class="section level1">
-<h1>1. Mediation model: X → M</h1>
-<p>model.M &lt;- lmer(autonomy ~ persuasion_type + (1 | id), data =
-df)</p>
-</div>
-<div id="outcome-model-x-m-y" class="section level1">
-<h1>2. Outcome model: X, M → Y</h1>
-<p>model.Y &lt;- lmer(intention ~ persuasion_type + autonomy + (1 | id),
-data = df)</p>
-</div>
-<div id="mediation-test" class="section level1">
-<h1>3. Mediation test</h1>
-<p>med.out &lt;- mediate(model.M, model.Y, treat = “persuasion_type”,
-mediator = “autonomy”, boot = TRUE, sims = 1000)</p>
-<p>summary(med.out) ```</p>
 <div id="conclusion-key-message-for-client" class="section level3">
-<h3>6. Conclusion (Key Message for Client)</h3>
+<h3>5. Conclusion (Key Message for Client)</h3>
 <ul>
 <li><strong>Yes, H3 mediation analysis <em>is possible</em></strong>
 despite the repeated-measures design.</li>
@@ -423,6 +416,7 @@ assumptions (independence of residuals).</li>
 perform proper repeated-measures mediation.</li>
 </ul>
 <hr />
+</div>
 </div>
 <div id="iv.-answer-of-q3" class="section level2">
 <h2>IV. Answer of Q3</h2>
@@ -476,20 +470,29 @@ type)</strong></h4>
 <strong>four</strong> manipulation-check facets (<strong>Emotional,
 Rational, Gain, Loss</strong>) → a within-subjects factor with 4 levels
 is valid.</p>
-<p>For a given type (e.g., A): - <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_{\text{Emo}} = \mu_{\text{Rat}} =
+<p>For a given type (e.g., A):</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_{\text{Emo}} = \mu_{\text{Rat}} =
 \mu_{\text{Gain}} = \mu_{\text{Loss}}\)</span><br />
-- <span class="math inline">\(H_1\)</span>: At least one mean
-differs.</p>
+</li>
+<li><span class="math inline">\(H_1\)</span>: At least one mean
+differs.</li>
+</ul>
 <p>If the ANOVA is significant (<span class="math inline">\(p &lt;
 \alpha\)</span>), run <strong>pairwise comparisons</strong> (paired
 t-tests) as <strong>post hoc</strong> to identify which pairs
-differ.<br />
-- Number of pairs: <span class="math inline">\(\binom{4}{2} =
+differ.</p>
+<ul>
+<li>Number of pairs: <span class="math inline">\(\binom{4}{2} =
 6\)</span>.<br />
-- Apply a multiple-comparison correction (e.g., Bonferroni or
+</li>
+<li>Apply a multiple-comparison correction (e.g., Bonferroni or
 Holm).<br />
-- Evidence of <strong>Emotional &gt; Rational</strong> and <strong>Gain
-&gt; Loss</strong> indicates successful manipulation for that type.</p>
+</li>
+<li>Evidence of <strong>Emotional &gt; Rational</strong> and
+<strong>Gain &gt; Loss</strong> indicates successful manipulation for
+that type.</li>
+</ul>
 <blockquote>
 <p>Most software (SPSS, R, etc.) can directly perform RM ANOVA and
 <strong>post hoc paired comparisons</strong> with appropriate
@@ -603,11 +606,17 @@ order</strong> → <strong>ample power</strong> and
 <p><strong>Optional model-based check for order effects</strong></p>
 <p><span class="math display">\[
 Y_{ijk} = \mu + \alpha_j + s_i + \gamma_k + \epsilon_{ijk}
-\]</span> - <span class="math inline">\(\alpha_j\)</span>: fixed effect
-of condition <span class="math inline">\(j\)</span> (A/B/C/D)<br />
-- <span class="math inline">\(s_i\)</span>: random subject effect<br />
-- <span class="math inline">\(\gamma_k\)</span>: fixed effect of
-<strong>order group</strong> <span class="math inline">\(k=1,\dots,4\)</span></p>
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\alpha_j\)</span>: fixed effect of
+condition <span class="math inline">\(j\)</span> (A/B/C/D)<br />
+</li>
+<li><span class="math inline">\(s_i\)</span>: random subject
+effect<br />
+</li>
+<li><span class="math inline">\(\gamma_k\)</span>: fixed effect of
+<strong>order group</strong> <span class="math inline">\(k=1,\dots,4\)</span></li>
+</ul>
 <p>If <span class="math inline">\(\gamma_k\)</span> is <strong>not
 significant</strong>, order effects are negligible—evidence that the
 Latin Square successfully controlled order.</p>
@@ -745,7 +754,5 @@ $(document).ready(function () {
 
   </body>
 
-
-</div>
-
   
+</div>
