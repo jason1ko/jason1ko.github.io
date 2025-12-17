@@ -388,24 +388,38 @@ match</strong>.</p>
 <p>Kappa summarizes such agreements across all activities. Cohen’s Kappa
 (<span class="math inline">\(\kappa\)</span>) is defined as <span class="math display">\[
 \kappa = \frac{P_o - P_e}{1 - P_e},
-\]</span> where: - <span class="math inline">\(P_o\)</span> is the
-<strong>observed proportion of agreement</strong> between the first and
-second assessments. - <span class="math inline">\(P_e\)</span> is the
-<strong>expected proportion of agreement by chance</strong>, calculated
-from the marginal distributions of the two assessments.</p>
-<p>The <strong>observed agreement</strong> <span class="math inline">\(P_o\)</span> is given by <span class="math display">\[
-P_o = \frac{\sum_{i=1}^{K} n_{ii}}{N},
-\]</span> where: - <span class="math inline">\(K\)</span> is the number
-of categories, - <span class="math inline">\(n_{ii}\)</span> is the
-number of cases classified into category <span class="math inline">\(i\)</span> in both assessments, - <span class="math inline">\(N\)</span> is the total number of
-observations.</p>
-<p>The <strong>expected agreement</strong> <span class="math inline">\(P_e\)</span> is calculated as <span class="math display">\[
-P_e = \sum_{i=1}^{K} \left( \frac{n_{i+}}{N} \cdot \frac{n_{+i}}{N}
-\right),
-\]</span> where: - <span class="math inline">\(n_{i+}\)</span> is the
-total number of cases classified into category <span class="math inline">\(i\)</span> in the first assessment, - <span class="math inline">\(n_{+i}\)</span> is the total number of cases
-classified into category <span class="math inline">\(i\)</span> in the
-second assessment.</p>
+\]</span> 
+where:
+<ul>
+  <li><span class="math inline">\(P_o\)</span> is the <strong>observed proportion of agreement</strong> between the first and second assessments.</li>
+  <li><span class="math inline">\(P_e\)</span> is the <strong>expected proportion of agreement by chance</strong>, calculated from the marginal distributions of the two assessments.</li>
+</ul></p>
+  
+<p>
+  The <strong>observed agreement</strong> <span class="math inline">\(P_o\)</span> is given by
+  <span class="math display">\[
+  P_o = \frac{\sum_{i=1}^{K} n_{ii}}{N},
+  \]</span>
+  where:
+</p>
+<ul>
+  <li><span class="math inline">\(K\)</span> is the number of categories,</li>
+  <li><span class="math inline">\(n_{ii}\)</span> is the number of cases classified into category <span class="math inline">\(i\)</span> in both assessments,</li>
+  <li><span class="math inline">\(N\)</span> is the total number of observations.</li>
+</ul>
+
+<p>
+  The <strong>expected agreement</strong> <span class="math inline">\(P_e\)</span> is calculated as
+  <span class="math display">\[
+  P_e = \sum_{i=1}^{K} \left( \frac{n_{i+}}{N} \cdot \frac{n_{+i}}{N} \right),
+  \]</span>
+  where:
+</p>
+<ul>
+  <li><span class="math inline">\(n_{i+}\)</span> is the total number of cases classified into category <span class="math inline">\(i\)</span> in the first assessment,</li>
+  <li><span class="math inline">\(n_{+i}\)</span> is the total number of cases classified into category <span class="math inline">\(i\)</span> in the second assessment.</li>
+</ul>
+  
 <p>How Is Kappa Different from Simple Agreement Rate?</p>
 <ul>
 <li><p><strong>Simple agreement rate</strong>:<br />
@@ -504,18 +518,26 @@ between the two time points.</p>
 <ul>
   <li>
     <strong>Instrumental Activities</strong>:
-    <code>acs_instrumental_top1</code> (first assessment),
-    <code>2acs_instrumental_top1</code> (second assessment)
+    <ul>
+      <li><code>acs_instrumental_top1</code> (first assessment)</li>
+      <li><code>2acs_instrumental_top1</code> (second assessment)</li>
+    </ul>
   </li>
+
   <li>
     <strong>Leisure Activities</strong>:
-    <code>acs_leisure_top1</code> (first assessment),
-    <code>2acs_leisure_top1</code> (second assessment)
+    <ul>
+      <li><code>acs_leisure_top1</code> (first assessment)</li>
+      <li><code>2acs_leisure_top1</code> (second assessment)</li>
+    </ul>
   </li>
+
   <li>
     <strong>Social Activities</strong>:
-    <code>acs_social_top1</code> (first assessment),
-    <code>2acs_social_top1</code> (second assessment)
+    <ul>
+      <li><code>acs_social_top1</code> (first assessment)</li>
+      <li><code>2acs_social_top1</code> (second assessment)</li>
+    </ul>
   </li>
 </ul>
 <p>Each pair represents the Top 1 selection from the first and second
