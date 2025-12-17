@@ -35,28 +35,28 @@ The ACS consists of <strong>67 cards</strong> in total, including
 <strong>33 instrumental activities</strong>, <strong>18 leisure
 activities</strong>, and <strong>16 social activities</strong>, each
 represented by a printed photograph.</p>
-<p>First, the researcher presented the <strong>33 instrumental activity
-cards</strong> to each patient one by one and asked whether the patient
-would like to perform the activity. - If the patient did
-<strong>not</strong> want to do the activity, it was coded as
-<strong>0</strong>. - If the patient <strong>wanted</strong> to do the
-activity, it was coded as <strong>1</strong>. - For example, if
-<code>acs_instrumental_1 = 1</code> in the Excel coding file, it
-indicates that the patient prefers instrumental activity #1 (visiting a
-hospital).</p>
-<p>After all 33 instrumental activities were classified, only the
-activities selected as preferred were gathered, and the patient was
-asked to choose their <strong>Top 1</strong> preferred activity among
-them. - The activity number was recorded in
-<code>acs_instrumental_top1</code>. - For example, if
-<code>acs_instrumental_top1 = 5</code>, it indicates that instrumental
-activity #5 (preparing a meal) was selected as the top preference.</p>
-<p>After completing the instrumental activity classification, the same
-procedure was applied to: - <strong>Leisure activities</strong>
-(<code>acs_leisure_34</code>–<code>acs_leisure_51</code>,
-<code>acs_leisure_top1</code>) - <strong>Social activities</strong>
-(<code>acs_social_52</code>–<code>acs_social_67</code>,
-<code>acs_social_top1</code>)</p>
+<p>
+  First, the researcher presented the <strong>33 instrumental activity cards</strong>
+  to each patient one by one and asked whether the patient would like to perform the activity.
+</p>
+<ul>
+  <li>If the patient did <strong>not</strong> want to do the activity, it was coded as <strong>0</strong>.</li>
+  <li>If the patient <strong>wanted</strong> to do the activity, it was coded as <strong>1</strong>.</li>
+  <li>For example, if <code>acs_instrumental_1 = 1</code> in the Excel coding file, it indicates that the patient prefers instrumental activity #1 (visiting a hospital).</li>
+</ul>
+<p>
+  After all 33 instrumental activities were classified, only the activities selected as preferred were gathered,
+  and the patient was asked to choose their <strong>Top 1</strong> preferred activity among them.
+</p>
+<ul>
+  <li>The activity number was recorded in <code>acs_instrumental_top1</code>.</li>
+  <li>For example, if <code>acs_instrumental_top1 = 5</code>, it indicates that instrumental activity #5 (preparing a meal) was selected as the top preference.</li>
+</ul>
+<p>After completing the instrumental activity classification, the same procedure was applied to:</p>
+<ul>
+  <li><strong>Leisure activities</strong> (<code>acs_leisure_34</code>–<code>acs_leisure_51</code>, <code>acs_leisure_top1</code>)</li>
+  <li><strong>Social activities</strong> (<code>acs_social_52</code>–<code>acs_social_67</code>, <code>acs_social_top1</code>)</li>
+</ul>
 <p>To evaluate <strong>intra-rater reliability</strong> of the ACS, a
 second assessment was conducted for <strong>30 out of the 50
 patients</strong>, <strong>2 weeks to 4 months</strong> after the first
@@ -125,7 +125,7 @@ observations <strong>within a subject are correlated</strong>.</li>
 is recommended to use:
 <ul>
 <li><strong>Logistic GLMM (Generalized Linear Mixed Model)</strong> with
-a <strong>random intercept for subject</strong>, or</li>
+a <strong>random intercept for subject</strong></li>
 <li><strong>Logistic GEE (Generalized Estimating Equations)</strong> to
 account for within-subject correlation.</li>
 </ul></li>
@@ -369,7 +369,7 @@ results</strong>.</li>
 <p><strong>When Is ICC Appropriate?</strong> If an assessment produces
 <strong>continuous scores</strong> that are repeatedly measured in the
 same way, ICC is appropriate.</p>
-<p>Example: - Treatment effect rated on a 0–100 scale</p>
+<p>Example: Treatment effect rated on a 0–100 scale</p>
 <p>However, <strong>activity codes and binary selections are
 categorical</strong>, so ICC should not be used here.</p>
 </div>
@@ -379,10 +379,12 @@ categorical</strong>, so ICC should not be used here.</p>
 agree</strong> beyond chance. In simple terms, it quantifies how well
 the results of the <strong>first and second assessments
 match</strong>.</p>
-<p>Example: - A participant selects “Visiting a hospital” in the first
-assessment - The same activity is selected again in the second
-assessment<br />
-→ This is counted as agreement.</p>
+<p>Example:</p>
+<ul>
+  <li>A participant selects “Visiting a hospital” in the first assessment.</li>
+  <li>The same activity is selected again in the second assessment.</li>
+</ul>
+<p>→ This is counted as agreement.</p>
 <p>Kappa summarizes such agreements across all activities. Cohen’s Kappa
 (<span class="math inline">\(\kappa\)</span>) is defined as <span class="math display">\[
 \kappa = \frac{P_o - P_e}{1 - P_e},
@@ -411,7 +413,7 @@ Number of matching responses ÷ total responses</p></li>
 <li><p><strong>Problem</strong>:<br />
 Some agreement may occur <strong>by chance</strong>.</p></li>
 </ul>
-<p>Example: - Guessing heads or tails yields about 50% agreement by
+<p>Example: Guessing heads or tails yields about 50% agreement by
 chance.</p>
 <p>Kappa adjusts for this by subtracting <strong>chance
 agreement</strong>, providing a more accurate reliability estimate.</p>
@@ -498,22 +500,35 @@ activity</strong> selected in each domain is consistent between the
 first and second assessments. For each domain, <strong>Cohen’s
 Kappa</strong> can be calculated to assess intra-rater reliability
 between the two time points.</p>
-<p>Example Variables ”</p>
-<p><strong>Instrumental Activities</strong> -
-<code>acs_instrumental_top1</code> (first assessment) -
-<code>2acs_instrumental_top1</code> (second assessment)</p>
-<p><strong>Leisure Activities</strong> - <code>acs_leisure_top1</code> -
-<code>2acs_leisure_top1</code></p>
-<p><strong>Social Activities</strong> - <code>acs_social_top1</code> -
-<code>2acs_social_top1</code></p>
+<p>Example variables:</p>
+<ul>
+  <li>
+    <strong>Instrumental Activities</strong>:
+    <code>acs_instrumental_top1</code> (first assessment),
+    <code>2acs_instrumental_top1</code> (second assessment)
+  </li>
+  <li>
+    <strong>Leisure Activities</strong>:
+    <code>acs_leisure_top1</code> (first assessment),
+    <code>2acs_leisure_top1</code> (second assessment)
+  </li>
+  <li>
+    <strong>Social Activities</strong>:
+    <code>acs_social_top1</code> (first assessment),
+    <code>2acs_social_top1</code> (second assessment)
+  </li>
+</ul>
 <p>Each pair represents the Top 1 selection from the first and second
 assessments.<br />
 A separate Kappa value is computed for each domain.</p>
 <p>Although the Top 1 variables are coded numerically, they represent
 <strong>categorical labels</strong>, not ordered or quantitative
 values.</p>
-<p>Examples: - A value of 5 does <strong>not</strong> mean “greater”
-than 7 - It simply refers to “Activity #5” versus “Activity #7”</p>
+<p>Examples:</p>
+<ul>
+  <li>A value of 5 does <strong>not</strong> mean “greater” than 7.</li>
+  <li>It simply refers to “Activity #5” versus “Activity #7”.</li>
+</ul>
 <p>Therefore, during analysis (e.g., in SPSS), these variables must be
 treated as <strong>Nominal</strong>.</p>
 <p><strong>Conclusion</strong> Comparing the Top 1 preferred activities
