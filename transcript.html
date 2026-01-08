@@ -218,7 +218,7 @@ permalink: /transcript/
 
     <h1>3. GPA</h1>
   <h2>(1) Undergraduate</h2>
-    <p><strong>Cumulative GPA</strong>     : 4.02/4.3 (<strong>3.85/4.0</strong> using 0.3-step, 3.86/4.0 using 0.33-step)</p>
+    <p><strong>Cumulative GPA</strong>     : 4.02/4.3 (<strong>3.85/4.0</strong> using 0.3-step, <strong>3.86/4.0</strong> using 0.33-step)</p>
     <p><strong>Last Two Years GPA</strong>: 4.21/4.3 (<strong>4.0/4.0</strong>)</p>
   <h2>(2) Master</h2>
     <p><strong>Cumulative GPA</strong>     : 4.3/4.3 (<strong>4.0/4.0</strong>)</p>
@@ -243,6 +243,21 @@ permalink: /transcript/
   }
   td {
     font-size: 12px;
+  }
+
+  /* 섹션 제목(h1/h2)과 표 사이 간격 조절 */
+  .intro-section h1 { margin: 20px 0 12px 0; }  /* 위, 좌우, 아래 */
+  .intro-section h2 { margin: 15px 0 10px 0; }
+
+  /* 제목 바로 아래에 오는 table의 위쪽 여백 */
+  .intro-section h1 + table,
+  .intro-section h2 + table {
+    margin-top: 10px;
+  }
+
+  /* 표 아래 여백 (다음 섹션과 간격) */
+  .intro-section table {
+    margin-bottom: 18px;
   }
 
   th:nth-child(1), td:nth-child(1) { width: 14%; }  /* Course */
