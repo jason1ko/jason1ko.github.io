@@ -1,0 +1,738 @@
+---
+title: "Consultation 5"
+date: 2025-03-01 23:40:00
+categories: [Data Science Institute]
+layout: post
+---
+
+{% include sidebar.html %}
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="consultation-5-complex-survey-methods-for-age-group-comparisons-in-knhanes" class="section level1">
+<h1>Consultation 5: Complex Survey Methods for Age-Group Comparisons in
+KNHANES</h1>
+<div id="i.-clients-inquiry" class="section level2">
+<h2>I. Client’s Inquiry</h2>
+<div id="study-objective" class="section level3">
+<h3>Study Objective</h3>
+<ul>
+<li><strong>Thesis title:</strong> <em>Nutritional Recommendations for
+Muscle Health in the Ageing Population of South Korea: Exploring Dietary
+Intake and Patterns, Activity Levels, and Socio-cultural Influences on
+Sarcopenia Risk.</em></li>
+<li><strong>Hypothesis:</strong> Intake of specific nutrients/foods in
+older adults positively affects <strong>arm muscle mass (Lean Body
+Mass)</strong> and <strong>handgrip strength (HGS)</strong>, which may
+in turn improve <strong>quality of life (QoL)</strong>, particularly in
+relation to <strong>physical activity</strong>.</li>
+</ul>
+</div>
+<div id="current-issue" class="section level3">
+<h3>Current Issue</h3>
+<ul>
+<li>I used:
+<ul>
+<li><strong>Complex samples chi-square tests</strong>, and</li>
+<li><strong>Post hoc logistic regression with Bonferroni
+adjustment</strong> to compare <strong>categorical variables across age
+groups</strong>.</li>
+</ul></li>
+<li>I am unsure whether this approach is appropriate and would like
+professional guidance on whether the methods are correct (and, if not,
+what alternatives are recommended).</li>
+</ul>
+</div>
+<div id="data-description" class="section level3">
+<h3>Data Description</h3>
+<ul>
+<li><strong>Data source:</strong> Korea National Health and Nutrition
+Examination Survey (<strong>KNHANES</strong>),
+<strong>2015–2023</strong>.</li>
+<li><strong>Exclusion:</strong> <strong>2021–2022</strong> were excluded
+due to missing <strong>HGS</strong> measurements.</li>
+<li><strong>Variables included:</strong> socioeconomic status
+(<strong>SES</strong>), anthropometric/body composition (InBody) data,
+nutrient intake, <strong>QoL</strong>, and <strong>HGS</strong>.</li>
+<li><strong>Sample size:</strong> <strong>30,354</strong> participants
+<ul>
+<li>Men: <strong>13,149</strong><br />
+</li>
+<li>Women: <strong>17,205</strong></li>
+</ul></li>
+<li><strong>Age groups (5 categories):</strong>
+<ul>
+<li>Young Adults: <strong>19–29</strong> (n =
+<strong>3,398</strong>)</li>
+<li>Middle-aged Adults: <strong>30–49</strong> (n =
+<strong>9,422</strong>)</li>
+<li>Older Adults: <strong>50–64</strong> (n =
+<strong>8,174</strong>)</li>
+<li>Elderly: <strong>65–74</strong> (n = <strong>6,132</strong>)</li>
+<li>Older Elderly: <strong>≥ 75</strong> (n =
+<strong>3,228</strong>)</li>
+</ul></li>
+<li><strong>Key derived/classified measures:</strong>
+<ul>
+<li>Physical activity levels and HGS classified using:
+<ul>
+<li><strong>quintiles</strong>, and</li>
+<li><strong>Asian Working Group for Sarcopenia (AWGS)</strong> criteria
+(low vs high strength)</li>
+</ul></li>
+<li>Estimated energy requirements calculated</li>
+<li>Macronutrient intake computed as:
+<ul>
+<li><strong>absolute intake</strong>, and</li>
+<li><strong>percentage contribution to total caloric
+intake</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="ii.-background" class="section level2">
+<h2>II. Background</h2>
+</div>
+<div id="categorical-variables" class="section level2">
+<h2>1. Categorical variables</h2>
+<p>When the client says:</p>
+<blockquote>
+<p>“to get the difference between age groups for different categorical
+variables,”</p>
+</blockquote>
+<p>the items in the <strong>Data Description</strong> that most directly
+connect to “categorical variables” (especially for comparing
+<strong>distributions across the 5 age groups</strong>) are the
+following statements:</p>
+<ul>
+<li>“<strong>age was categorized into five groups</strong> …”</li>
+<li>“<strong>Physical activity levels and HGS were classified</strong>
+using both quintiles and the AWGS criteria …”</li>
+<li>“The dataset includes information on <strong>socioeconomic status
+(SES)</strong> … <strong>quality of life (QoL)</strong> …”</li>
+</ul>
+<p>From these, the most natural interpretation is that “different
+categorical variables” refers primarily to the variables that were
+explicitly <strong>classified</strong> into categories, and secondarily
+to other variables that are commonly categorical in KNHANES.</p>
+<div id="physical-activity-pa-level-explicitly-classified" class="section level3">
+<h3>1) Physical activity (PA) level — explicitly “classified”</h3>
+<p>Likely categorical forms include:</p>
+<ul>
+<li><strong>Quintiles (5 categories)</strong> of physical activity
+level, and/or<br />
+</li>
+<li>A <strong>binary grouping</strong> (e.g., low vs high) if the
+quintiles were collapsed</li>
+</ul>
+<p>This is a very typical setup for using a chi-square test to check
+whether the <strong>distribution of PA categories differs by age
+group</strong>.</p>
+</div>
+<div id="handgrip-strength-hgs-explicitly-categorized" class="section level3">
+<h3>2) Handgrip strength (HGS) — explicitly categorized</h3>
+<p>Likely categorical forms include:</p>
+<ul>
+<li><strong>AWGS criteria:</strong> low vs high strength
+(<strong>binary</strong>), and/or<br />
+</li>
+<li><strong>Quintiles (5 categories)</strong> if HGS was also divided
+into quintiles</li>
+</ul>
+<p>Again, comparing <strong>low/high proportions</strong> (or quintile
+distributions) across age groups via chi-square is common.</p>
+</div>
+<div id="socioeconomic-status-ses-variables-a-categorical-bundle" class="section level3">
+<h3>3) Socioeconomic status (SES) variables — a categorical
+“bundle”</h3>
+<p>The client only wrote “SES,” so specific variable names are not
+given. However, in <strong>KNHANES</strong>, SES-related variables are
+often categorical, such as:</p>
+<ul>
+<li>income quantile group</li>
+<li>education level</li>
+<li>occupation class</li>
+<li>marital status</li>
+</ul>
+<p>It is very common to test whether these <strong>SES category
+distributions differ across age groups</strong>.</p>
+</div>
+<div id="quality-of-life-qol-likely-categorical-depending-on-how-it-was-used" class="section level3">
+<h3>4) Quality of life (QoL) — likely categorical depending on how it
+was used</h3>
+<p>QoL can be continuous (e.g., an index score), but survey-based QoL
+measures (e.g., EQ-5D-type items) often include categorical responses
+(e.g., no problems / some problems / severe problems). Since the client
+explicitly referred to “categorical variables,” it is plausible that QoL
+was used in a <strong>categorical form</strong> (individual items or
+categorized scores).</p>
+</div>
+<div id="summary" class="section level3">
+<h3>Summary</h3>
+<p>In the client’s wording, “different categorical variables” most
+plausibly refers to:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Physical activity classification variables</strong>
+(quintiles or low/high), and<br />
+</li>
+<li><strong>HGS classification variables</strong> (AWGS low/high or
+quintiles),</li>
+</ol>
+<p>as the primary targets, and additionally:</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>SES variables</strong> (commonly categorical in KNHANES),
+and<br />
+</li>
+<li><strong>QoL variables</strong> if represented as categorical items
+or categorized scores.</li>
+</ol>
+</div>
+</div>
+<div id="awgs-criteria-asian-working-group-for-sarcopenia" class="section level2">
+<h2>2. AWGS criteria (Asian Working Group for Sarcopenia)</h2>
+<p><strong>AWGS (Asian Working Group for Sarcopenia)</strong> is a
+consensus guideline used to <strong>classify/diagnose
+sarcopenia</strong> in Asian populations (especially older
+adults).<br />
+Its core idea is to take <strong>continuous measurements</strong> (e.g.,
+handgrip strength, gait speed, muscle mass) and apply <strong>clinical
+cut-offs</strong> to create <strong>categories</strong> such as
+<em>low</em> vs <em>normal</em>.</p>
+<div id="typical-awgs-2019-cut-offs-examples" class="section level4">
+<h4>Typical AWGS 2019 cut-offs (examples)</h4>
+<ul>
+<li><strong>Low muscle strength (Handgrip strength, HGS)</strong>
+<ul>
+<li>Men: <strong>&lt; 28 kg</strong></li>
+<li>Women: <strong>&lt; 18 kg</strong></li>
+</ul></li>
+<li><strong>Low physical performance</strong>
+<ul>
+<li>6m gait speed <strong>&lt; 1.0 m/s</strong>, or</li>
+<li>SPPB <strong>≤ 9</strong>, or</li>
+<li>5-times chair stand <strong>≥ 12 s</strong></li>
+</ul></li>
+<li><strong>Low muscle mass</strong> also has DXA/BIA-based cut-offs
+(used for full diagnosis).</li>
+</ul>
+<p>The sentence:</p>
+<blockquote>
+<p>“Physical activity levels and HGS were classified using both
+quintiles and the AWGS criteria …”</p>
+</blockquote>
+<p>is most naturally read as:</p>
+<blockquote>
+<p>The same variables were <strong>categorized in two different
+ways</strong>.</p>
+</blockquote>
+</div>
+<div id="quintiles-q1q5-distribution-based-categorization" class="section level3">
+<h3>(1) Quintiles (Q1–Q5): distribution-based categorization</h3>
+<ul>
+<li>Split the sample into <strong>five equal-sized groups (20%
+each)</strong> based on the variable’s distribution.</li>
+<li>Example: HGS quintiles, or physical activity (e.g., MET-min/week)
+quintiles.</li>
+</ul>
+<p><strong>Pros:</strong> easy “relative low vs high” comparisons within
+the sample<br />
+<strong>Cons:</strong> weaker direct clinical meaning (“at risk”
+threshold)</p>
+</div>
+<div id="awgs-criteria-guideline-cut-off-categorization" class="section level3">
+<h3>(2) AWGS criteria: guideline cut-off categorization</h3>
+<ul>
+<li>Use <strong>clinical cut-offs</strong> to create categories like
+<strong>low vs normal</strong>.</li>
+<li>Example: HGS low/high using AWGS thresholds (men &lt; 28 kg, women
+&lt; 18 kg).</li>
+</ul>
+<p><strong>Pros:</strong> clinically interpretable (“below risk
+threshold or not”)<br />
+<strong>Cons:</strong> only possible if the needed measures exist (or if
+proxies are used)</p>
+</div>
+</div>
+<div id="complex-samples-chi-square-test" class="section level2">
+<h2>3. Complex Samples Chi-square Test</h2>
+<p>A <strong>complex samples chi-square test</strong> is a
+<strong>design-based</strong> test of association (independence) between
+two categorical variables when the data come from a <strong>complex
+survey design</strong> (e.g., <strong>stratification, clustering/PSUs,
+and sampling weights</strong>), not from simple random sampling
+(SRS).</p>
+<div id="core-ideas-why-it-differs-from-the-usual-pearson-chi-square" class="section level3">
+<h3>Core ideas (why it differs from the usual Pearson chi-square)</h3>
+<ul>
+<li><p>In complex surveys, observations are not i.i.d. due to
+<strong>weights</strong> and <strong>within-cluster
+correlation</strong>.<br />
+→ Using the usual Pearson chi-square test can produce <strong>incorrect
+p-values</strong>.</p></li>
+<li><p>The solution is:</p>
+<ul>
+<li><p>build a <strong>weighted contingency table</strong>, but</p></li>
+<li><p>compute inference <strong>accounting for the survey
+design</strong>, typically via a <strong>Rao–Scott adjusted
+chi-square</strong> (often with an <strong>F
+transformation</strong>).</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="starting-point-weighted-contingency-table-and-pearson-chi-square" class="section level3">
+<h3>1) Starting point: weighted contingency table and Pearson
+chi-square</h3>
+<p>Let:</p>
+<ul>
+<li><p><span class="math inline">\(A \in \{1,\dots,R\}\)</span>, <span class="math inline">\(B \in \{1,\dots,C\}\)</span> be categorical
+variables,</p></li>
+<li><p><span class="math inline">\(w_i\)</span> be the survey weight for
+individual <span class="math inline">\(i\)</span>.</p></li>
+</ul>
+</div>
+<div id="weighted-cell-counts" class="section level3">
+<h3>Weighted cell counts</h3>
+<p><span class="math display">\[
+\widehat{N}_{rc}
+=\sum_{i=1}^{n} w_i \, \mathbf{1}(A_i=r, B_i=c).
+\]</span></p>
+<p>Marginal totals: <span class="math display">\[
+\widehat{N}_{r+}=\sum_{c=1}^{C}\widehat{N}_{rc},\quad
+\widehat{N}_{+c}=\sum_{r=1}^{R}\widehat{N}_{rc},\quad
+\widehat{N}_{++}=\sum_{r=1}^{R}\sum_{c=1}^{C}\widehat{N}_{rc}.
+\]</span></p>
+<p>Under the independence null hypothesis <span class="math inline">\(H_0: A \perp B\)</span>, the expected weighted
+counts are:</p>
+<p><span class="math display">\[
+\widehat{E}_{rc}
+=\frac{\widehat{N}_{r+}\widehat{N}_{+c}}{\widehat{N}_{++}}.
+\]</span></p>
+<p>The (weighted) Pearson chi-square statistic is:</p>
+<p><span class="math display">\[
+X_P^2
+=\sum_{r=1}^{R}\sum_{c=1}^{C}
+\frac{\left(\widehat{N}_{rc}-\widehat{E}_{rc}\right)^2}{\widehat{E}_{rc}}.
+\]</span></p>
+</div>
+<div id="why-x_p2-is-not-enough-in-complex-surveys" class="section level3">
+<h3>Why <span class="math inline">\(X_P^2\)</span> is not enough in
+complex surveys</h3>
+<p>In complex samples, <span class="math inline">\(X_P^2\)</span>
+<strong>does not</strong> follow a standard chi-square distribution well
+because:</p>
+<ul>
+<li><p>clustering induces correlation (reducing the <strong>effective
+sample size</strong>),</p></li>
+<li><p>unequal weights increase variance.</p></li>
+</ul>
+</div>
+<div id="key-adjustment-raoscott-correction-design-effect" class="section level3">
+<h3>2) Key adjustment: Rao–Scott correction (design effect)</h3>
+<p>To get valid inference, we estimate the covariance of estimated
+proportions (or cell proportions) <strong>reflecting
+stratification/clustering/weights</strong>, e.g. using:</p>
+<ul>
+<li><p><strong>Taylor linearization</strong>, or</p></li>
+<li><p><strong>replicate weights</strong> (jackknife, BRR,
+bootstrap).</p></li>
+</ul>
+<p>Rao–Scott adjustment modifies the Pearson statistic to reflect the
+<strong>design effect</strong> (variance inflation due to the survey
+design). A common first-order intuition is:</p>
+<p><span class="math display">\[
+X_{RS}^2
+=\frac{X_P^2}{\widehat{c}},
+\]</span> where <span class="math inline">\(\widehat{c}\)</span> acts
+like an “average design effect / inflation factor,” shrinking <span class="math inline">\(X_P^2\)</span> because the true variance is larger
+under complex sampling.</p>
+<p>Many software packages (e.g., <strong>SPSS Complex Samples</strong>,
+<strong>R <code>survey</code></strong>) often convert the adjusted
+statistic into an <strong>F statistic</strong> for p-values:</p>
+<ul>
+<li><p>Numerator df: <span class="math inline">\((R-1)(C-1)\)</span></p></li>
+<li><p>Denominator df: approximately “#PSUs − #strata” (design-based
+degrees of freedom; exact details depend on implementation)</p></li>
+</ul>
+</div>
+<div id="one-line-summary" class="section level3">
+<h3>3) One-line summary</h3>
+<p>A <strong>complex samples chi-square test</strong> is an independence
+test on a <strong>weighted contingency table</strong>, where the
+<strong>p-value</strong> is computed using a
+<strong>design-based</strong> adjustment (typically <strong>Rao–Scott
+adjusted chi-square</strong> or its <strong>F-equivalent</strong>) to
+account for <strong>stratification, clustering, and
+weights</strong>.</p>
+</div>
+</div>
+<div id="bonferroni-test-in-logistic-regression" class="section level2">
+<h2>4. Bonferroni test in logistic regression</h2>
+<p>In this context, “<strong>post hoc logistic regression Bonferroni
+test</strong>” does <strong>not</strong> mean that logistic regression
+has a special standalone test called “the Bonferroni test.”<br />
+It means:</p>
+<ul>
+<li>the researcher ran <strong>multiple post hoc comparisons</strong>
+using <strong>logistic regression</strong>, and</li>
+<li>they <strong>adjusted</strong> the resulting p-values (or
+significance level / confidence intervals) using the <strong>Bonferroni
+correction</strong> to control inflation of Type I error due to multiple
+testing.</li>
+</ul>
+<div id="why-it-is-needed-the-multiple-comparisons-problem" class="section level3">
+<h3>1) Why it is needed: the multiple-comparisons problem</h3>
+<p>Suppose there are <strong>5 age groups</strong>. If we want to find
+<em>which</em> groups differ, we typically run several comparisons:</p>
+<ul>
+<li><strong>Reference-group comparisons:</strong> choose one reference
+group and compare it to the other 4
+<ul>
+<li>number of tests: <span class="math inline">\(m=4\)</span></li>
+</ul></li>
+<li><strong>All pairwise comparisons:</strong> compare every pair of
+groups
+<ul>
+<li>number of tests: <span class="math inline">\(m=\binom{5}{2}=10\)</span></li>
+</ul></li>
+</ul>
+<p>If we test each comparison at level <span class="math inline">\(\alpha\)</span> without adjustment, the
+probability of getting at least one false positive (family-wise error
+rate, FWER) increases as <span class="math inline">\(m\)</span>
+grows.</p>
+</div>
+<div id="bonferroni-correction-the-key-idea" class="section level3">
+<h3>2) Bonferroni correction: the key idea</h3>
+<p>Bonferroni controls FWER at <span class="math inline">\(\alpha\)</span> by making each individual test
+more stringent.</p>
+</div>
+<div id="a-adjust-the-significance-level" class="section level3">
+<h3>(a) Adjust the significance level</h3>
+<p>Use: <span class="math display">\[
+\alpha^* = \frac{\alpha}{m}.
+\]</span></p>
+</div>
+<div id="b-equivalent-p-value-adjustment" class="section level3">
+<h3>(b) Equivalent p-value adjustment</h3>
+<p>If the original p-value for comparison <span class="math inline">\(j\)</span> is <span class="math inline">\(p_j\)</span>, the Bonferroni-adjusted p-value is:
+<span class="math display">\[
+p_j^{(\mathrm{Bonf})} = \min\{m\,p_j,\,1\}.
+\]</span></p>
+<p>Declare significance if: <span class="math display">\[
+p_j^{(\mathrm{Bonf})} \le \alpha.
+\]</span></p>
+</div>
+<div id="what-is-being-tested-multiple-times-in-logistic-regression" class="section level3">
+<h3>3) What is being tested multiple times in logistic regression?</h3>
+<p>In logistic regression, post hoc comparisons are typically tests
+of:</p>
+<ul>
+<li>regression coefficients, or</li>
+<li><strong>linear contrasts</strong> (differences between
+coefficients), which correspond to group comparisons.</li>
+</ul>
+<p>Example: let <span class="math inline">\(Y_i\)</span> indicate
+whether a person has low HGS<br />
+(e.g., <span class="math inline">\(Y_i=1\)</span> for “low”, <span class="math inline">\(Y_i=0\)</span> for “normal”).<br />
+With age group <span class="math inline">\(G_i \in
+\{1,\dots,5\}\)</span> and group 1 as reference:</p>
+<p><span class="math display">\[
+\mathrm{logit}\{\Pr(Y_i=1)\}
+=\beta_0 + \beta_2\,\mathbf{1}(G_i=2)+\cdots+\beta_5\,\mathbf{1}(G_i=5).
+\]</span></p>
+<p>Then each <span class="math inline">\(\beta_k\)</span> represents the
+log-odds difference between group <span class="math inline">\(k\)</span>
+and the reference group 1, and the odds ratio is: <span class="math display">\[
+\mathrm{OR}_{k:1} = \exp(\beta_k).
+\]</span></p>
+<p>Typical <strong>post hoc logistic + Bonferroni</strong> workflows
+are:</p>
+<ul>
+<li><strong>Reference vs others:</strong> test <span class="math inline">\(H_{0k}:\beta_k=0\)</span> for <span class="math inline">\(k=2,\dots,5\)</span>
+<ul>
+<li><span class="math inline">\(m=4\)</span> tests</li>
+</ul></li>
+<li><strong>All pairwise comparisons:</strong> test contrasts such as
+<span class="math display">\[
+H_{0(a,b)}:\beta_a - \beta_b = 0
+\]</span> for all pairs <span class="math inline">\((a,b)\)</span>
+<ul>
+<li><span class="math inline">\(m=10\)</span> tests</li>
+</ul></li>
+</ul>
+<p>Bonferroni adjustment is then applied to these multiple p-values (or
+contrasts).</p>
+</div>
+<div id="bonferroni-adjusted-confidence-intervals-optional-but-common" class="section level3">
+<h3>4) Bonferroni-adjusted confidence intervals (optional but
+common)</h3>
+<p>Bonferroni can also adjust confidence intervals.</p>
+<p>Instead of using <span class="math inline">\(z_{1-\alpha/2}\)</span>
+for each interval, to achieve simultaneous coverage across <span class="math inline">\(m\)</span> comparisons we use: <span class="math display">\[
+\widehat{\beta}_j \pm z_{1-\alpha/(2m)}\,\mathrm{SE}(\widehat{\beta}_j).
+\]</span></p>
+<p>For odds ratios, exponentiate the endpoints: <span class="math display">\[
+\exp\Bigl(\widehat{\beta}_j \pm
+z_{1-\alpha/(2m)}\,\mathrm{SE}(\widehat{\beta}_j)\Bigr).
+\]</span></p>
+</div>
+<div id="one-sentence-summary" class="section level3">
+<h3>One-sentence summary</h3>
+<p>“<strong>post hoc logistic regression Bonferroni test</strong>” means
+the researcher performed <strong>multiple age-group comparisons</strong>
+using logistic regression (via coefficients or contrasts) and controlled
+the inflated false-positive risk by applying the <strong>Bonferroni
+correction</strong> (either <span class="math inline">\(\alpha/m\)</span> or <span class="math inline">\(m
+p_j\)</span> adjustments).</p>
+<hr />
+</div>
+</div>
+<div id="iii.-answer" class="section level2">
+<h2>III. Answer</h2>
+<div id="bottom-line-first-their-procedure-can-be-valid-conditionally" class="section level3">
+<h3>1) Bottom line first: their procedure can be valid,
+<strong>conditionally</strong></h3>
+<p>What the client did:</p>
+<ol style="list-style-type: decimal">
+<li><p>Run a <strong>complex-samples chi-square test (Rao–Scott
+family)</strong> to test the <strong>overall</strong> association
+between <strong>age group (5 levels)</strong> and a categorical outcome
+<span class="math inline">\(Y\)</span>.</p></li>
+<li><p>If significant, run <strong>post hoc comparisons</strong> using
+<strong>logistic-regression-based</strong> methods (to see
+<em>which</em> age groups differ).</p></li>
+<li><p>Apply <strong>Bonferroni (or Holm, etc.)</strong> to adjust for
+multiple comparisons.</p></li>
+</ol>
+<p>Conceptually, this is a reasonable workflow.</p>
+<p>However, for it to be <em>truly</em> correct, <strong>both</strong>
+of the following must hold:</p>
+<ul>
+<li><p><strong>The post hoc logistic regression must also account for
+the complex survey design</strong> (weights, strata,
+clusters/PSUs).<br />
+Otherwise, step (1) is design-based but step (2) ignores the design →
+inconsistent SEs / p-values.</p></li>
+<li><p>The regression model must match the <strong>number of categories
+/ ordinality</strong> of <span class="math inline">\(Y\)</span>.</p>
+<ul>
+<li>If <span class="math inline">\(Y\)</span> is binary → logistic
+regression<br />
+</li>
+<li>If <span class="math inline">\(Y\)</span> has <span class="math inline">\(3+\)</span> categories → multinomial or ordinal
+logistic regression (as appropriate)</li>
+</ul></li>
+</ul>
+</div>
+<div id="step-1-what-does-the-complex-samples-chi-square-test-actually-test" class="section level3">
+<h3>2) Step 1: What does the complex-samples chi-square test actually
+test?</h3>
+<p>Let age group be <span class="math inline">\(G \in
+\{1,\dots,5\}\)</span> and a categorical variable be <span class="math inline">\(Y \in \{1,\dots,C\}\)</span>.</p>
+<p>Null hypothesis (independence):</p>
+<p><span class="math display">\[
+H_0:\Pr(Y=c \mid G=g)=\Pr(Y=c)\quad \forall g,c.
+\]</span></p>
+<p>With survey weights <span class="math inline">\(w_i\)</span>, form
+the weighted contingency table:</p>
+<p><span class="math display">\[
+\widehat{N}_{gc}=\sum_{i=1}^{n} w_i\,\mathbf{1}(G_i=g,\;Y_i=c).
+\]</span></p>
+<p>Compute expected counts under independence:</p>
+<p><span class="math display">\[
+\widehat{E}_{gc}=\frac{\widehat{N}_{g+}\widehat{N}_{+c}}{\widehat{N}_{++}}.
+\]</span></p>
+<p>Instead of treating the usual Pearson statistic as chi-square,
+complex-sample software uses a <strong>Rao–Scott adjusted
+chi-square</strong> (or an F-transformation) so that:</p>
+<ul>
+<li>the <strong>variance / standard errors</strong> reflect
+stratification + clustering + weighting, and</li>
+<li>the <strong>reference distribution / degrees of freedom</strong> are
+design-based.</li>
+</ul>
+</div>
+<div id="step-2-key-what-is-the-proper-way-to-do-post-hoc-logistic-regression-bonferroni" class="section level3">
+<h3>3) Step 2 (key): What is the “proper” way to do post hoc logistic
+regression + Bonferroni?</h3>
+<p>In practice, the cleanest and easiest-to-defend approach is often to
+use <strong>one survey-weighted regression framework</strong> that
+handles:</p>
+<ul>
+<li>a <strong>global test</strong> (overall age-group effect), and
+then</li>
+<li><strong>post hoc contrasts</strong> (pairwise comparisons),</li>
+</ul>
+<p>all within the same design-based model (rather than “chi-square
+first, then regression”).</p>
+<div id="if-y-is-binary-e.g.-low-hgs-vs-normal-survey-weighted-logistic-regression" class="section level4">
+<h4>3.1 If <span class="math inline">\(Y\)</span> is binary (e.g., low
+HGS vs normal): survey-weighted logistic regression</h4>
+<p>Model:</p>
+<p><span class="math display">\[
+\mathrm{logit}\{\Pr(Y_i=1 \mid G_i)\}
+=\beta_0+\sum_{g=2}^{5}\beta_g\,\mathbf{1}(G_i=g).
+\]</span></p>
+<p>If group 1 is the reference, then <span class="math inline">\(\exp(\beta_g)\)</span> is the odds ratio for
+“group <span class="math inline">\(g\)</span> vs group 1”.</p>
+<p><strong>(A) Global test (overall age effect)</strong></p>
+<p><span class="math display">\[
+H_0:\beta_2=\beta_3=\beta_4=\beta_5=0.
+\]</span></p>
+<p>A typical design-based Wald form is:</p>
+<p><span class="math display">\[
+W=\widehat{\beta}^{\top}\Bigl(\widehat{\mathrm{Var}}(\widehat{\beta})\Bigr)^{-1}\widehat{\beta},
+\]</span></p>
+<p>where <span class="math inline">\(\widehat{\mathrm{Var}}(\widehat{\beta})\)</span>
+is the <strong>survey-design-based (sandwich) variance</strong>.</p>
+<p><strong>(B) Post hoc comparisons (pairwise contrasts)</strong></p>
+<p>To compare age groups <span class="math inline">\(a\)</span> and
+<span class="math inline">\(b\)</span>, test a contrast such as:</p>
+<p><span class="math display">\[
+H_0:\beta_a-\beta_b=0.
+\]</span></p>
+<p>You obtain p-values <span class="math inline">\(p_j\)</span> for
+<span class="math inline">\(j=1,\dots,m\)</span> comparisons, then
+adjust for multiplicity.</p>
+<p>Bonferroni-adjusted p-values:</p>
+<p><span class="math display">\[
+p_j^{(\mathrm{Bonf})}=\min\{m\,p_j,\,1\}.
+\]</span></p>
+<p>Equivalently, adjust the per-test significance level:</p>
+<p><span class="math display">\[
+\alpha^{\*}=\frac{\alpha}{m}.
+\]</span></p>
+</div>
+<div id="if-y-has-3-categories-multinomial-or-ordinal-survey-regression" class="section level4">
+<h4>3.2 If <span class="math inline">\(Y\)</span> has <span class="math inline">\(3+\)</span> categories: multinomial or ordinal
+survey regression</h4>
+<p>Running separate binary logistic models for each category is often
+messy and can complicate error control.</p>
+<ul>
+<li>If categories are nominal (no order): <strong>multinomial
+logistic</strong> (with baseline category <span class="math inline">\(c=1\)</span>)</li>
+</ul>
+<p><span class="math display">\[
+\log\frac{\Pr(Y_i=c \mid G_i)}{\Pr(Y_i=1 \mid G_i)}
+=\alpha_c+\sum_{g=2}^{5}\beta_{cg}\,\mathbf{1}(G_i=g),\quad c=2,\dots,C.
+\]</span></p>
+<ul>
+<li>If categories are ordered: consider an <strong>ordinal (cumulative
+logit)</strong> model.</li>
+</ul>
+<p>Global tests are still “all age effects are zero” (a multivariate
+Wald test), and post hoc comparisons are still contrast tests of the
+form <span class="math inline">\(L\beta=0\)</span>, followed by
+Bonferroni/Holm adjustments.</p>
+<hr />
+</div>
+</div>
+<div id="conclusion" class="section level3">
+<h3>4) Conclusion</h3>
+<ul>
+<li><p>“Your overall workflow—testing the age-group association first
+using a complex-samples chi-square test and then conducting post hoc
+comparisons—is conceptually acceptable.”</p></li>
+<li><p>“However, the post hoc logistic regression must also reflect the
+complex survey design (weights, strata, clusters). If step 1 is
+design-based but step 2 ignores the design, standard errors and p-values
+may not be consistent.”</p></li>
+<li><p>“Also, logistic regression is appropriate only when the outcome
+is binary. If the outcome has three or more categories, multinomial or
+ordinal logistic regression is typically the standard
+approach.”</p></li>
+<li><p>“Bonferroni adjustment is a valid (but conservative) way to
+control family-wise error. If the number of comparisons is large, Holm
+or FDR-based options can be considered depending on the study
+goal.”</p></li>
+</ul>
+<hr />
+</div>
+<div id="a-recommended-clean-procedure-to-propose-to-the-client" class="section level3">
+<h3>5) A recommended “clean” procedure to propose to the client</h3>
+<p>For each categorical variable <span class="math inline">\(Y\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Fit a <strong>survey-design-adjusted model</strong> appropriate
+for <span class="math inline">\(Y\)</span> (binary / multinomial /
+ordinal).</p></li>
+<li><p>Perform a <strong>global test</strong> of the age-group
+effect:</p></li>
+</ol>
+<p><span class="math display">\[
+H_0:\text{(all age-group coefficients)}=0.
+\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>If significant, run <strong>planned contrasts</strong> for post
+hoc comparisons<br />
+(e.g., 4 reference comparisons or 10 pairwise comparisons).</p></li>
+<li><p>Apply multiple-comparison correction (Bonferroni or
+Holm):</p></li>
+</ol>
+<p><span class="math display">\[
+p^{(\mathrm{adj})}=\min(m\,p,1)\quad \text{or}\quad \alpha/m.
+\]</span></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
